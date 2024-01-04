@@ -3,6 +3,10 @@ process gatk_MergeSamFiles {
 
     label 'gatk'
 
+    label 'def_cpu'
+    label 'def_mem'
+    label 'def_time'
+
     input:
         tuple val(metadata), path(bams), path(bais)
 

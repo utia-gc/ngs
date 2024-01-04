@@ -11,6 +11,10 @@ process samtools_sort_index {
 
     label 'samtools'
 
+    label 'def_cpu'
+    label 'def_mem'
+    label 'lil_time'
+
     input:
         tuple val(metadata), path(alignments)
 

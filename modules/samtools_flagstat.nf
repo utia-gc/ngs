@@ -3,6 +3,10 @@ process samtools_flagstat {
 
     label 'samtools'
 
+    label 'def_cpu'
+    label 'lil_mem'
+    label 'lil_time'
+
     publishDir(
         path:    "${params.publishDirReports}/alignments",
         mode:    "${params.publishMode}",

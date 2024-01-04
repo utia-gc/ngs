@@ -3,7 +3,9 @@ process multiqc {
     
     label 'multiqc'
 
-    label 'med_mem'
+    label 'def_cpu'
+    label 'def_mem'
+    label 'lil_time'
 
     publishDir(
         path:    "${params.publishDirReports}/multiqc/${fileName}",

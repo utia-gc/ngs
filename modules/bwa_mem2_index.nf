@@ -12,6 +12,7 @@ process bwa_mem2_index {
 
     label 'bwa_mem2'
 
+    label 'max_cpu'
     label 'max_mem'
     label 'big_time'
 

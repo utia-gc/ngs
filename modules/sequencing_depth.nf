@@ -12,6 +12,10 @@ process sequencing_depth {
 
     label 'biopython'
 
+    label 'def_cpu'
+    label 'lil_mem'
+    label 'med_time'
+
     input:
         tuple val(metadata), path(reads1), path(reads2)
         path fai

@@ -3,6 +3,10 @@ process samtools_faidx {
 
     label 'samtools'
 
+    label 'def_cpu'
+    label 'lil_mem'
+    label 'lil_time'
+
     input:
         path fasta
 

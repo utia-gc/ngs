@@ -5,6 +5,7 @@ process fastp {
 
     label 'med_cpu'
     label 'med_mem'
+    label 'med_time'
 
     publishDir(
         path:    "${params.publishDirReports}/reads/trim",

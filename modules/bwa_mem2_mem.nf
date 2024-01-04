@@ -13,7 +13,7 @@ process bwa_mem2_mem {
 
     label 'bwa_mem2'
 
-    label 'big_cpu'
+    label 'sup_cpu'
     label 'sup_mem'
     label 'sup_time'
 

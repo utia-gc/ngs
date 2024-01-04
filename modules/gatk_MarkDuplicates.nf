@@ -3,7 +3,9 @@ process gatk_MarkDuplicates {
 
     label 'gatk'
 
-    label 'med_mem'
+    label 'big_cpu'
+    label 'big_mem'
+    label 'med_time'
 
     publishDir(
         path:    "${params.publishDirData}/alignments",

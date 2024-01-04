@@ -3,7 +3,9 @@ process fastqc {
     
     label 'fastqc'
 
-    label 'lil_mem'
+    label 'med_cpu'
+    label 'def_mem'
+    label 'med_time'
 
     publishDir(
         path:    "${params.publishDirReports}/fastqc",

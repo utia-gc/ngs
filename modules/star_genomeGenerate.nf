@@ -3,9 +3,9 @@ process star_genomeGenerate {
 
     label 'star'
 
-    label 'big_cpu'
+    label 'sup_cpu'
     label 'sup_mem'
-    label 'big_time'
+    label 'med_time'
 
     input:
         path genome

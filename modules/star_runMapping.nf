@@ -13,9 +13,9 @@ process star_runMapping {
     
     label 'star'
 
-    label 'big_cpu'
-    label 'sup_mem'
-    label 'sup_time'
+    label 'huge_cpu'
+    label 'huge_mem'
+    label 'huge_time'
 
     input:
         tuple val(metadata), path(reads1), path(reads2)
