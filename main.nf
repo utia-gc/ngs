@@ -27,9 +27,9 @@ PipelineValidator.validateRequiredParams(params, log)
 
 workflow {
     PREPARE_INPUTS(
-        params.samplesheet,
-        params.genome,
-        params.annotations
+        file(params.samplesheet),
+        file(params.genome),
+        file(params.annotations)
     )
     ch_reads_raw    = PREPARE_INPUTS.out.samples
     ch_reads_raw.dump(tag: "ch_reads_raw")
