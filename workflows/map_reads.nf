@@ -26,7 +26,6 @@ workflow MAP_READS {
                     genome
                 )
                 ch_alignments = Bwa_Mem2.out.alignments
-                // ch_map_log    = Channel.empty()
                 break
 
             case "STAR":
@@ -46,5 +45,4 @@ workflow MAP_READS {
     emit:
         alignmentsIndividual = samtools_sort_index.out.bamSortedIndexed
         alignmentsMerged     = gatk_MarkDuplicates.out.bamMarkDupIndexed
-        // map_log    = ch_map_log
 }

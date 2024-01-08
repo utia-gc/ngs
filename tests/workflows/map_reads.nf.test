@@ -100,10 +100,6 @@ nextflow_workflow {
                     assert get(1) ==~ /^.*\/${readsLane1.getSampleName()}\.bam/
                 }
             }
-            // test map log
-            // with(workflow.out.map_log) {
-            //     assert isEmpty()
-            // }
 
             // test reproducibility
             assert snapshot(workflow.out).match()
@@ -207,10 +203,6 @@ nextflow_workflow {
                     assert get(1) ==~ /^.*\/${readsLane1.getSampleName()}\.bam/
                 }
             }
-            // test map log
-            // with(workflow.out.map_log) {
-            //     assert isEmpty()
-            // }
 
             // test reproducibility
             assert snapshot(workflow.out).match()
@@ -314,10 +306,6 @@ nextflow_workflow {
                     assert get(1) ==~ /^.*\/${readsLane1.getSampleName()}\.bam/
                 }
             }
-            // test map log
-            // with(workflow.out.map_log) {
-            //     assert isEmpty()
-            // }
 
             // test reproducibility
             assert snapshot(workflow.out).match()
@@ -421,10 +409,6 @@ nextflow_workflow {
                     assert get(1) ==~ /^.*\/${readsLane1.getSampleName()}\.bam/
                 }
             }
-            // test map log
-            // with(workflow.out.map_log) {
-            //     assert isEmpty()
-            // }
 
             // test reproducibility
             assert snapshot(workflow.out).match()
