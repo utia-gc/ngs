@@ -47,15 +47,16 @@ workflow {
         ch_annotations,
         params.tools.map
     )
-    ch_alignmentsIndividual = MAP_READS.out.alignmentsIndividual
-    ch_alignmentsMerged     = MAP_READS.out.alignmentsMerged
+    ch_alignmentsIndividualSortedByCoord = MAP_READS.out.alignmentsIndividualSortedByCoord
+    ch_alignmentsMergedSortedByCoord     = MAP_READS.out.alignmentsMergedSortedByCoord
+    ch_alignmentsMergedSortedByName      = MAP_READS.out.alignmentsMergedSortedByName
 
     CHECK_QUALITY(
         ch_reads_raw,
         ch_reads_pre_align,
         ch_trim_log,
         ch_genome_index,
-        ch_alignmentsIndividual,
-        ch_alignmentsMerged
+        ch_alignmentsIndividualSortedByCoord,
+        ch_alignmentsMergedSortedByCoord
     )
 }
