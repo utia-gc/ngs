@@ -71,7 +71,7 @@ nextflow_pipeline {
         then {
             // test workflow status
             assert workflow.success
-            assert workflow.trace.succeeded().size() == 45
+            assert workflow.trace.succeeded().size() == 47
 
             // test raw FastQC html reports and zip files published to reports dir
             assert path("${params.publishDirReports}/fastqc/${readsSELane1.getStemName()}_raw_R1_fastqc.html").exists()
@@ -152,7 +152,7 @@ nextflow_pipeline {
         then {
             // test workflow status
             assert workflow.success
-            assert workflow.trace.succeeded().size() == 43
+            assert workflow.trace.succeeded().size() == 45
 
             // test raw FastQC html reports and zip files published to reports dir
             assert path("${params.publishDirReports}/fastqc/${readsSELane1.getStemName()}_raw_R1_fastqc.html").exists()
@@ -231,7 +231,7 @@ nextflow_pipeline {
         then {
             // test workflow status
             assert workflow.success
-            assert workflow.trace.succeeded().size() == 45
+            assert workflow.trace.succeeded().size() == 47
 
             // test raw FastQC html reports and zip files published to reports dir
             assert path("${params.publishDirReports}/fastqc/${readsSELane1.getStemName()}_raw_R1_fastqc.html").exists()
@@ -312,7 +312,7 @@ nextflow_pipeline {
         then {
             // test workflow status
             assert workflow.success
-            assert workflow.trace.succeeded().size() == 45
+            assert workflow.trace.succeeded().size() == 47
 
             // test raw FastQC html reports and zip files published to reports dir
             assert path("${params.publishDirReports}/fastqc/${readsSELane1.getStemName()}_raw_R1_fastqc.html").exists()
