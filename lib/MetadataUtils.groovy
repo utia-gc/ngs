@@ -15,6 +15,7 @@ static String buildStemName(LinkedHashMap metadata) {
     return stemNameComponents.join('_')
 }
 
+
 /**
  * Find the intersection of a list of metadata maps.
  *
@@ -28,6 +29,11 @@ static LinkedHashMap intersectListOfMetadata(metadataList) {
     metadataList.each { metadata ->
         metadataIntersection = metadataIntersection.intersect(metadata)
     }
+
+    /*
+    // drop 'lane' key(s) from the interstected metadata map if they survived the intersection
+    metadataIntersection.removeAll { k,v -> k == 'lane' }
+    */
 
     return metadataIntersection
 }

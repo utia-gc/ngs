@@ -1,0 +1,95 @@
+nextflow_function {
+
+    name "Test MetadataUtils.groovy"
+
+    test("MetadataUtils.intersectListOfMetadata() succeeds -- two metadata maps with matching keys except lane") {
+
+        function "MetadataUtils.intersectListOfMetadata"
+        
+        // instantiate helper objects
+        def readsLane1 = new ReadsSELane1()
+        def readsLane2 = new ReadsSELane2()
+
+        when {
+            function {
+                """
+                input[0] = [
+                    [
+                        sampleName:   "${readsLane1.getSampleName()}",
+                        sampleNumber: "${readsLane1.getSampleNumber()}",
+                        lane:         "${readsLane1.getLane()}",
+                        readType:     "${readsLane1.getReadType()}",
+                        trimStatus:   "raw"
+                    ],
+                    [
+                        sampleName:   "${readsLane2.getSampleName()}",
+                        sampleNumber: "${readsLane2.getSampleNumber()}",
+                        lane:         "${readsLane2.getLane()}",
+                        readType:     "${readsLane2.getReadType()}",
+                        trimStatus:   "raw"
+                    ]
+                ]
+                """
+            }
+        }
+
+        then {
+            // test function success
+            assert function.success
+
+            // test metadata is correctly intersected
+            assert function.result.sampleName   == "${readsLane1.getSampleName()}"
+            assert function.result.sampleNumber == "${readsLane1.getSampleNumber()}"
+            assert function.result.readType     == "${readsLane1.getReadType()}"
+            assert function.result.trimStatus   == "raw"
+            // test lane key is removed
+            assert function.result.lane         == null
+
+            // test reproducbility
+            assert snapshot(function.result).match()
+        }
+
+    }
+
+    test("MetadataUtils.intersectListOfMetadata() succeeds -- one metadata map") {
+
+        function "MetadataUtils.intersectListOfMetadata"
+        
+        // instantiate helper objects
+        def readsLane1 = new ReadsSELane1()
+
+        when {
+            function {
+                """
+                input[0] = [
+                    [
+                        sampleName:   "${readsLane1.getSampleName()}",
+                        sampleNumber: "${readsLane1.getSampleNumber()}",
+                        lane:         "${readsLane1.getLane()}",
+                        readType:     "${readsLane1.getReadType()}",
+                        trimStatus:   "raw"
+                    ]
+                ]
+                """
+            }
+        }
+
+        then {
+            // test function success
+            assert function.success
+
+            // test metadata is correctly intersected
+            assert function.result.sampleName   == "${readsLane1.getSampleName()}"
+            assert function.result.sampleNumber == "${readsLane1.getSampleNumber()}"
+            assert function.result.readType     == "${readsLane1.getReadType()}"
+            assert function.result.trimStatus   == "raw"
+            // test lane key is removed
+            assert function.result.lane         == null
+
+            // test reproducbility
+            assert snapshot(function.result).match()
+        }
+
+    }
+
+}

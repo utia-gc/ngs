@@ -1,0 +1,24 @@
+{
+    "MetadataUtils.intersectListOfMetadata() succeeds -- two metadata maps with matching keys except lane": {
+        "content": [
+            {
+                "sampleName": "SRR1066657",
+                "sampleNumber": "3",
+                "readType": "single",
+                "trimStatus": "raw"
+            }
+        ],
+        "timestamp": "2024-01-08T11:33:02.373485799"
+    },
+    "intersectListOfMetadata succeeds -- two metadata maps with matching keys except lane": {
+        "content": [
+            {
+                "sampleName": "SRR1066657",
+                "sampleNumber": "3",
+                "readType": "single",
+                "trimStatus": "raw"
+            }
+        ],
+        "timestamp": "2024-01-08T11:30:55.610764967"
+    }
+}
