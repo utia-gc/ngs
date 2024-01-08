@@ -62,8 +62,8 @@ nextflow_workflow {
             // test workflow status
             assert workflow.success
 
-            // test alignments for each individual sample-lane
-            with(workflow.out.alignmentsIndividual) {
+            // test alignments for each individual coordinate sorted sample-lane
+            with(workflow.out.alignmentsIndividualSortedByCoord) {
                 assert size() == 2
                 with(get(0)) {
                     assert size() == 3
@@ -80,8 +80,8 @@ nextflow_workflow {
                     assert get(2) ==~ /^.*\/${readsLane2.getStemName()}\.bam\.bai/
                 }
             }
-            // test alignments for each merged sample
-            with(workflow.out.alignmentsMerged) {
+            // test alignments for each merged and coordinate sorted sample
+            with(workflow.out.alignmentsMergedSortedByCoord) {
                 assert size() == 1
                 with(get(0)) {
                     assert size() == 3
@@ -89,6 +89,15 @@ nextflow_workflow {
                     assert get(1) ==~ /^.*\/${readsLane1.getSampleName()}\.bam/
                     // test indexed alignments file
                     assert get(2) ==~ /^.*\/${readsLane1.getSampleName()}\.bam\.bai/
+                }
+            }
+            // test alignments for each merged and name sorted sample
+            with(workflow.out.alignmentsMergedSortedByName) {
+                assert size() == 1
+                with(get(0)) {
+                    assert size() == 2
+                    // test alignments file
+                    assert get(1) ==~ /^.*\/${readsLane1.getSampleName()}\.bam/
                 }
             }
             // test map log
@@ -160,8 +169,8 @@ nextflow_workflow {
             // test workflow status
             assert workflow.success
 
-            // test alignments for each individual sample-lane
-            with(workflow.out.alignmentsIndividual) {
+            // test alignments for each individual coordinate sorted sample-lane
+            with(workflow.out.alignmentsIndividualSortedByCoord) {
                 assert size() == 2
                 with(get(0)) {
                     assert size() == 3
@@ -178,8 +187,8 @@ nextflow_workflow {
                     assert get(2) ==~ /^.*\/${readsLane2.getStemName()}\.bam\.bai/
                 }
             }
-            // test alignments for each merged sample
-            with(workflow.out.alignmentsMerged) {
+            // test alignments for each merged and coordinate sorted sample
+            with(workflow.out.alignmentsMergedSortedByCoord) {
                 assert size() == 1
                 with(get(0)) {
                     assert size() == 3
@@ -187,6 +196,15 @@ nextflow_workflow {
                     assert get(1) ==~ /^.*\/${readsLane1.getSampleName()}\.bam/
                     // test indexed alignments file
                     assert get(2) ==~ /^.*\/${readsLane1.getSampleName()}\.bam\.bai/
+                }
+            }
+            // test alignments for each merged and name sorted sample
+            with(workflow.out.alignmentsMergedSortedByName) {
+                assert size() == 1
+                with(get(0)) {
+                    assert size() == 2
+                    // test alignments file
+                    assert get(1) ==~ /^.*\/${readsLane1.getSampleName()}\.bam/
                 }
             }
             // test map log
@@ -258,8 +276,8 @@ nextflow_workflow {
             // test workflow status
             assert workflow.success
 
-            // test alignments for each individual sample-lane
-            with(workflow.out.alignmentsIndividual) {
+            // test alignments for each individual coordinate sorted sample-lane
+            with(workflow.out.alignmentsIndividualSortedByCoord) {
                 assert size() == 2
                 with(get(0)) {
                     assert size() == 3
@@ -276,8 +294,8 @@ nextflow_workflow {
                     assert get(2) ==~ /^.*\/${readsLane2.getStemName()}\.bam\.bai/
                 }
             }
-            // test alignments for each merged sample
-            with(workflow.out.alignmentsMerged) {
+            // test alignments for each merged and coordinate sorted sample
+            with(workflow.out.alignmentsMergedSortedByCoord) {
                 assert size() == 1
                 with(get(0)) {
                     assert size() == 3
@@ -285,6 +303,15 @@ nextflow_workflow {
                     assert get(1) ==~ /^.*\/${readsLane1.getSampleName()}\.bam/
                     // test indexed alignments file
                     assert get(2) ==~ /^.*\/${readsLane1.getSampleName()}\.bam\.bai/
+                }
+            }
+            // test alignments for each merged and name sorted sample
+            with(workflow.out.alignmentsMergedSortedByName) {
+                assert size() == 1
+                with(get(0)) {
+                    assert size() == 2
+                    // test alignments file
+                    assert get(1) ==~ /^.*\/${readsLane1.getSampleName()}\.bam/
                 }
             }
             // test map log
@@ -356,8 +383,8 @@ nextflow_workflow {
             // test workflow status
             assert workflow.success
 
-            // test alignments for each individual sample-lane
-            with(workflow.out.alignmentsIndividual) {
+            // test alignments for each individual coordinate sorted sample-lane
+            with(workflow.out.alignmentsIndividualSortedByCoord) {
                 assert size() == 2
                 with(get(0)) {
                     assert size() == 3
@@ -374,8 +401,8 @@ nextflow_workflow {
                     assert get(2) ==~ /^.*\/${readsLane2.getStemName()}\.bam\.bai/
                 }
             }
-            // test alignments for each merged sample
-            with(workflow.out.alignmentsMerged) {
+            // test alignments for each merged and coordinate sorted sample
+            with(workflow.out.alignmentsMergedSortedByCoord) {
                 assert size() == 1
                 with(get(0)) {
                     assert size() == 3
@@ -383,6 +410,15 @@ nextflow_workflow {
                     assert get(1) ==~ /^.*\/${readsLane1.getSampleName()}\.bam/
                     // test indexed alignments file
                     assert get(2) ==~ /^.*\/${readsLane1.getSampleName()}\.bam\.bai/
+                }
+            }
+            // test alignments for each merged and name sorted sample
+            with(workflow.out.alignmentsMergedSortedByName) {
+                assert size() == 1
+                with(get(0)) {
+                    assert size() == 2
+                    // test alignments file
+                    assert get(1) ==~ /^.*\/${readsLane1.getSampleName()}\.bam/
                 }
             }
             // test map log
