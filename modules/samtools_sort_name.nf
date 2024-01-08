@@ -11,7 +11,7 @@ process samtools_sort_name {
 
     label 'def_cpu'
     label 'def_mem'
-    label 'def_time'
+    label 'med_time'
 
     input:
         tuple val(metadata), path(bam), path(bai)
