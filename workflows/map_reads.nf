@@ -4,6 +4,7 @@ include { Star                } from '../subworkflows/star.nf'
 include { gatk_MarkDuplicates } from '../modules/gatk_MarkDuplicates.nf'
 include { gatk_MergeSamFiles  } from '../modules/gatk_MergeSamFiles.nf'
 include { samtools_sort_index } from '../modules/samtools_sort_index.nf'
+include { samtools_sort_name  } from '../modules/samtools_sort_name.nf'
 
 
 /**
@@ -41,8 +42,10 @@ workflow MAP_READS {
           | Group_Alignments
           | gatk_MergeSamFiles
           | gatk_MarkDuplicates
+          | samtools_sort_name
 
     emit:
-        alignmentsIndividual = samtools_sort_index.out.bamSortedIndexed
-        alignmentsMerged     = gatk_MarkDuplicates.out.bamMarkDupIndexed
+        alignmentsIndividualSortedByCoord = samtools_sort_index.out.bamSortedIndexed
+        alignmentsMergedSortedByCoord     = gatk_MarkDuplicates.out.bamMarkDupIndexed
+        alignmentsMergedSortedByName      = samtools_sort_name.out.bamSortedByName
 }

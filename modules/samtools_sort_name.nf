@@ -19,7 +19,6 @@ process samtools_sort_name {
     output:
         tuple val(metadata), path("output/*.bam"), emit:bamSortedByName
 
-    
     shell:
         stemName = MetadataUtils.buildStemName(metadata)
 
