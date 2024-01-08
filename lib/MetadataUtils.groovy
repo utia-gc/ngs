@@ -30,10 +30,8 @@ static LinkedHashMap intersectListOfMetadata(metadataList) {
         metadataIntersection = metadataIntersection.intersect(metadata)
     }
 
-    /*
     // drop 'lane' key(s) from the interstected metadata map if they survived the intersection
     metadataIntersection.removeAll { k,v -> k == 'lane' }
-    */
 
     return metadataIntersection
 }

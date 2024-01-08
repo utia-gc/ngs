@@ -10,6 +10,17 @@
         ],
         "timestamp": "2024-01-08T11:33:02.373485799"
     },
+    "MetadataUtils.intersectListOfMetadata() succeeds -- one metadata map": {
+        "content": [
+            {
+                "sampleName": "SRR1066657",
+                "sampleNumber": "3",
+                "readType": "single",
+                "trimStatus": "raw"
+            }
+        ],
+        "timestamp": "2024-01-08T11:36:12.735681216"
+    },
     "intersectListOfMetadata succeeds -- two metadata maps with matching keys except lane": {
         "content": [
             {
