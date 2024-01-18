@@ -15,10 +15,10 @@ module_order:
       path_filters:
         - "*_raw_R[12]_fastqc.zip"
 extra_fn_clean_exts:
-  - type: regex
-    pattern: "_raw_R[12]"
-  - type: regex
-    pattern: "_trimmed_R[12]"
+  - type: remove
+    pattern: "_raw"
+  - type: remove
+    pattern: "_trimmed"
   - type: regex
     pattern: "_fastp"
   - type: regex
