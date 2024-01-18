@@ -54,6 +54,25 @@ nextflow_pipeline {
 
     }
 
+
+    test("main.nf fails -- no project title.") {
+        when {
+            params {
+                publishDirReports = "${outputDir}/reports"
+                publishDirData    = "${outputDir}/data"
+                projectTitle      = null
+            }
+        }
+
+        then {
+            assert workflow.failed
+            assert workflow.exitStatus == 64
+            assert workflow.stdout.contains("ERROR ~ Parameter 'projectTitle' is required but was not provided.")
+        }
+
+    }
+
+
     test("main.nf succeeds with default `nf_test` params") {
         // instantiate helper objects
         def readsSELane1 = new ReadsSELane1()
