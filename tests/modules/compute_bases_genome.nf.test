@@ -1,0 +1,39 @@
+nextflow_process {
+
+    name "Test Process compute_bases_genome"
+    script "modules/compute_bases_genome.nf"
+    process "compute_bases_genome"
+
+    test("compute_bases_genome computes the number of bases in a reference genome") {
+        // instantiate helper objects
+        def refs = new RefsEnsembl()
+
+        when {
+            params {
+                publishDirReports = "${outputDir}/reports"
+                publishDirData    = "${outputDir}/data"
+            }
+            process {
+                """
+                input[0] = file("${refs.getGenomeIndex()}")
+                """
+            }
+        }
+
+        then {
+            // test process success
+            assert process.success
+
+            // test expected number bases
+            with(process.out.bases) {
+                assert get(0).isNumber()
+                assert get(0).toInteger() == 230218
+            }
+
+            // test reproducibility
+            assert snapshot(process.out).match()
+        }
+
+    }
+
+}

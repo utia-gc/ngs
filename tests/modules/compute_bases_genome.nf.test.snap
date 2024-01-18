@@ -1,0 +1,15 @@
+{
+    "compute_bases_genome computes the number of bases in a reference genome": {
+        "content": [
+            {
+                "0": [
+                    "230218\n"
+                ],
+                "bases": [
+                    "230218\n"
+                ]
+            }
+        ],
+        "timestamp": "2024-01-18T16:45:25.515184937"
+    }
+}
