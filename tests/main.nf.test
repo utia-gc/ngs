@@ -145,8 +145,8 @@ nextflow_pipeline {
             assert path("${params.publishDirReports}/multiqc/reads/reads_data/").exists()
             assert path("${params.publishDirReports}/multiqc/alignments/alignments.html").exists()
             assert path("${params.publishDirReports}/multiqc/alignments/alignments_data/").exists()
-            assert path("${params.publishDirReports}/multiqc/ngs/ngs.html").exists()
-            assert path("${params.publishDirReports}/multiqc/ngs/ngs_data/").exists()
+            assert path("${params.publishDirReports}/multiqc/ngs_nf-test/ngs_nf-test.html").exists()
+            assert path("${params.publishDirReports}/multiqc/ngs_nf-test/ngs_nf-test_data/").exists()
         }
 
     }
@@ -226,8 +226,8 @@ nextflow_pipeline {
             assert path("${params.publishDirReports}/multiqc/reads/reads_data/").exists()
             assert path("${params.publishDirReports}/multiqc/alignments/alignments.html").exists()
             assert path("${params.publishDirReports}/multiqc/alignments/alignments_data/").exists()
-            assert path("${params.publishDirReports}/multiqc/ngs/ngs.html").exists()
-            assert path("${params.publishDirReports}/multiqc/ngs/ngs_data/").exists()
+            assert path("${params.publishDirReports}/multiqc/ngs_nf-test/ngs_nf-test.html").exists()
+            assert path("${params.publishDirReports}/multiqc/ngs_nf-test/ngs_nf-test_data/").exists()
         }
 
     }
@@ -305,8 +305,8 @@ nextflow_pipeline {
             assert path("${params.publishDirReports}/multiqc/reads/reads_data/").exists()
             assert path("${params.publishDirReports}/multiqc/alignments/alignments.html").exists()
             assert path("${params.publishDirReports}/multiqc/alignments/alignments_data/").exists()
-            assert path("${params.publishDirReports}/multiqc/ngs/ngs.html").exists()
-            assert path("${params.publishDirReports}/multiqc/ngs/ngs_data/").exists()
+            assert path("${params.publishDirReports}/multiqc/ngs_nf-test/ngs_nf-test.html").exists()
+            assert path("${params.publishDirReports}/multiqc/ngs_nf-test/ngs_nf-test_data/").exists()
         }
 
     }
@@ -386,8 +386,8 @@ nextflow_pipeline {
             assert path("${params.publishDirReports}/multiqc/reads/reads_data/").exists()
             assert path("${params.publishDirReports}/multiqc/alignments/alignments.html").exists()
             assert path("${params.publishDirReports}/multiqc/alignments/alignments_data/").exists()
-            assert path("${params.publishDirReports}/multiqc/ngs/ngs.html").exists()
-            assert path("${params.publishDirReports}/multiqc/ngs/ngs_data/").exists()
+            assert path("${params.publishDirReports}/multiqc/ngs_nf-test/ngs_nf-test.html").exists()
+            assert path("${params.publishDirReports}/multiqc/ngs_nf-test/ngs_nf-test_data/").exists()
         }
 
     }
