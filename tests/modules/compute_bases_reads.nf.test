@@ -1,0 +1,51 @@
+nextflow_process {
+
+    name "Test Process compute_bases_reads"
+    script "modules/compute_bases_reads.nf"
+    process "compute_bases_reads"
+
+    test("compute_bases_reads computes the number of bases in reads -- SE reads; one read") {
+        // instantiate helper objects
+        def readsLane1 = new ReadsSELane1()
+
+        when {
+            params {
+                publishDirReports = "${outputDir}/reports"
+                publishDirData    = "${outputDir}/data"
+            }
+            process {
+                """
+                input[0] = [
+                    [
+                        sampleName:   "${readsLane1.getSampleName()}",
+                        readType:     "${readsLane1.getReadType()}",
+                        trimStatus:   "raw"
+                    ],
+                    [
+                        file("${readsLane1.getR1()}"),
+                    ],
+                    [
+                        file("${readsLane1.getR2()}"),
+                    ]
+                ]
+                """
+            }
+        }
+
+        then {
+            // test process success
+            assert process.success
+
+            // test expected number bases
+            with(process.out.bases) {
+                assert get(0).isNumber()
+                assert get(0).toInteger() > 0
+            }
+
+            // test reproducibility
+            assert snapshot(process.out).match()
+        }
+
+    }
+
+}
