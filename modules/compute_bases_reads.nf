@@ -26,7 +26,7 @@ process compute_bases_reads {
         String reads = (metadata.readType == 'single') ? "${reads1}" : "${reads1} ${reads2}"
 
         """
-        zcat "${reads}" \\
+        zcat ${reads} \\
             | grep -E '^[ACGTN]+\$' \\
             | tr -d '\n' \\
             | wc -m \\

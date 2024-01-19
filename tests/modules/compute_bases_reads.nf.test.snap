@@ -1,4 +1,17 @@
 {
+    "compute_bases_reads computes the number of bases in reads -- PE reads; multiple reads": {
+        "content": [
+            {
+                "0": [
+                    "15098974"
+                ],
+                "bases": [
+                    "15098974"
+                ]
+            }
+        ],
+        "timestamp": "2024-01-19T15:31:05.432675267"
+    },
     "compute_bases_reads computes the number of bases in reads -- SE reads; one read": {
         "content": [
             {
@@ -11,5 +24,31 @@
             }
         ],
         "timestamp": "2024-01-18T19:17:10.585597466"
+    },
+    "compute_bases_reads computes the number of bases in reads -- SE reads; multiple reads": {
+        "content": [
+            {
+                "0": [
+                    "5000000"
+                ],
+                "bases": [
+                    "5000000"
+                ]
+            }
+        ],
+        "timestamp": "2024-01-19T15:21:44.381620704"
+    },
+    "compute_bases_reads computes the number of bases in reads -- PE reads; one read": {
+        "content": [
+            {
+                "0": [
+                    "7549612"
+                ],
+                "bases": [
+                    "7549612"
+                ]
+            }
+        ],
+        "timestamp": "2024-01-19T15:30:52.060740667"
     }
 }
