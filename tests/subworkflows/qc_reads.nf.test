@@ -52,7 +52,7 @@ nextflow_workflow {
         then {
             // test workflow status
             assert workflow.success
-            assert workflow.trace.succeeded().size() == 5
+            assert workflow.trace.succeeded().size() == 6
 
             // test output for full MultiQC
             assert workflow.out.multiqc
@@ -114,7 +114,7 @@ nextflow_workflow {
         then {
             // test workflow status
             assert workflow.success
-            assert workflow.trace.succeeded().size() == 5
+            assert workflow.trace.succeeded().size() == 6
 
             // test output for full MultiQC
             assert workflow.out.multiqc
@@ -178,7 +178,7 @@ nextflow_workflow {
         then {
             // test workflow status
             assert workflow.success
-            assert workflow.trace.succeeded().size() == 5
+            assert workflow.trace.succeeded().size() == 6
 
             // test output for full MultiQC
             assert workflow.out.multiqc
@@ -240,7 +240,7 @@ nextflow_workflow {
         then {
             // test workflow status
             assert workflow.success
-            assert workflow.trace.succeeded().size() == 5
+            assert workflow.trace.succeeded().size() == 6
 
             // test output for full MultiQC
             assert workflow.out.multiqc

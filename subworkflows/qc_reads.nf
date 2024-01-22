@@ -1,3 +1,4 @@
+include { compute_bases_genome                          } from '../modules/compute_bases_genome.nf'
 include { fastqc           as fastqc_prealign           } from '../modules/fastqc.nf'
 include { fastqc           as fastqc_raw                } from '../modules/fastqc.nf'
 include { multiqc          as multiqc_reads             } from '../modules/multiqc.nf'
@@ -16,6 +17,8 @@ workflow QC_Reads {
     main:
         fastqc_raw(reads_raw)
         fastqc_prealign(reads_prealign)
+
+        compute_bases_genome(genome_index)
 
         Group_Reads_Raw(reads_raw)
         sequencing_depth_raw(
