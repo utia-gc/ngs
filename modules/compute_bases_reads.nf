@@ -19,7 +19,7 @@ process compute_bases_reads {
         tuple val(metadata), path(reads1), path(reads2)
 
     output:
-        stdout emit: bases
+        tuple val(metadata), stdout, emit: bases
 
     script:
         String stemName = MetadataUtils.buildStemName(metadata)

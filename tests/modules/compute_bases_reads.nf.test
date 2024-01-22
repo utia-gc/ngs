@@ -37,10 +37,19 @@ nextflow_process {
             assert process.success
 
             // test expected number bases
-            with(process.out.bases) {
-                assert size() == 1
-                assert get(0).isNumber()
-                assert get(0).toInteger() > 0
+            with(process.out.bases.get(0)) {
+                assert size() == 2
+                // test metadata
+                with(get(0)) {
+                    assert sampleName == "${readsLane1.getSampleName()}"
+                    assert readType   == "${readsLane1.getReadType()}"
+                    assert trimStatus == "raw"
+                }
+                // test number of bases
+                with(get(1)) {
+                    assert isNumber()
+                    assert toInteger() > 0
+                }
             }
 
             // test reproducibility
@@ -86,10 +95,19 @@ nextflow_process {
             assert process.success
 
             // test expected number bases
-            with(process.out.bases) {
-                assert size() == 1
-                assert get(0).isNumber()
-                assert get(0).toInteger() > 0
+            with(process.out.bases.get(0)) {
+                assert size() == 2
+                // test metadata
+                with(get(0)) {
+                    assert sampleName == "${readsLane1.getSampleName()}"
+                    assert readType   == "${readsLane1.getReadType()}"
+                    assert trimStatus == "raw"
+                }
+                // test number of bases
+                with(get(1)) {
+                    assert isNumber()
+                    assert toInteger() > 0
+                }
             }
 
             // test reproducibility
@@ -132,10 +150,19 @@ nextflow_process {
             assert process.success
 
             // test expected number bases
-            with(process.out.bases) {
-                assert size() == 1
-                assert get(0).isNumber()
-                assert get(0).toInteger() > 0
+            with(process.out.bases.get(0)) {
+                assert size() == 2
+                // test metadata
+                with(get(0)) {
+                    assert sampleName == "${readsLane1.getSampleName()}"
+                    assert readType   == "${readsLane1.getReadType()}"
+                    assert trimStatus == "raw"
+                }
+                // test number of bases
+                with(get(1)) {
+                    assert isNumber()
+                    assert toInteger() > 0
+                }
             }
 
             // test reproducibility
@@ -181,10 +208,19 @@ nextflow_process {
             assert process.success
 
             // test expected number bases
-            with(process.out.bases) {
-                assert size() == 1
-                assert get(0).isNumber()
-                assert get(0).toInteger() > 0
+            with(process.out.bases.get(0)) {
+                assert size() == 2
+                // test metadata
+                with(get(0)) {
+                    assert sampleName == "${readsLane1.getSampleName()}"
+                    assert readType   == "${readsLane1.getReadType()}"
+                    assert trimStatus == "raw"
+                }
+                // test number of bases
+                with(get(1)) {
+                    assert isNumber()
+                    assert toInteger() > 0
+                }
             }
 
             // test reproducibility
