@@ -18,8 +18,8 @@ process multiqc {
         val fileName
 
     output:
-        path("*html"),              emit: report
-        path("${fileName}_data/*"), emit: data
+        path "${fileName}.html", hidden: true,   emit: report
+        path "${fileName}_data/*", hidden: true, emit: data
 
     script:
         String args = new Args(task.ext).buildArgsString()

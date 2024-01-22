@@ -8,7 +8,7 @@ process samtools_idxstats {
     label 'lil_time'
 
     publishDir(
-        path:    "${params.publishDirReports}/alignments",
+        path:    "${params.publishDirReports}/.alignments",
         mode:    "${params.publishMode}",
         pattern: '*_idxstat.txt'
     )

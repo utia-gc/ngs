@@ -8,7 +8,7 @@ process samtools_stats {
     label 'def_time'
 
     publishDir(
-        path:    "${params.publishDirReports}/alignments",
+        path:    "${params.publishDirReports}/.alignments",
         mode:    "${params.publishMode}",
         pattern: '*_samtools-stats.txt'
     )

@@ -8,7 +8,7 @@ process fastqc {
     label 'med_time'
 
     publishDir(
-        path:    "${params.publishDirReports}/fastqc",
+        path:    "${params.publishDirReports}/.fastqc",
         mode:    "${params.publishMode}",
         pattern: '*{.html,.zip}'
     )

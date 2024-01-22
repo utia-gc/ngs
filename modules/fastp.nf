@@ -8,7 +8,7 @@ process fastp {
     label 'med_time'
 
     publishDir(
-        path:    "${params.publishDirReports}/reads/trim",
+        path:    "${params.publishDirReports}/.reads/trim",
         mode:    "${params.publishMode}",
         pattern: '*_fastp.json'
     )
