@@ -43,7 +43,7 @@ nextflow_workflow {
                         file("${readsLane1.getR2()}")
                     ]
                 )
-                input[2] = Channel.of( file("https://github.com/ewels/MultiQC_TestData/raw/master/data/modules/cutadapt/v2.10/SAMPLE3_SE.cutadapt.log") )
+                input[2] = Channel.of( file("${readsLane1.getTrimLogCutadapt()}") )
                 input[3] = Channel.of( file("${refs.getGenomeIndex()}") )
                 """
             }
@@ -60,7 +60,7 @@ nextflow_workflow {
                 assert size() == 5
                 assert get(0) ==~ /^.*\/${readsLane1.getStemName()}_raw_R1_fastqc.zip/
                 assert get(1) ==~ /^.*\/${readsLane1.getStemName()}_trimmed_R1_fastqc.zip/
-                assert get(2) ==~ /^.*\/SAMPLE3_SE.cutadapt.log/
+                assert get(2) ==~ /^.*\/${readsLane1.getStemName()}_cutadapt-log.txt/
                 assert get(3) ==~ /^.*\/${readsLane1.getSampleName()}_raw_seq-depth.tsv/
                 assert get(4) ==~ /^.*\/${readsLane1.getSampleName()}_prealign_seq-depth.tsv/
             }
@@ -105,7 +105,7 @@ nextflow_workflow {
                         file("${readsLane1.getR2()}")
                     ]
                 )
-                input[2] = Channel.of( file("https://github.com/ewels/MultiQC_TestData/raw/master/data/modules/cutadapt/v2.10/SAMPLE3_SE.cutadapt.log") )
+                input[2] = Channel.of( file("${readsLane1.getTrimLogCutadapt()}") )
                 input[3] = Channel.of( file("${refs.getGenomeIndex()}") )
                 """
             }
@@ -124,7 +124,7 @@ nextflow_workflow {
                 assert get(1) ==~ /^.*\/${readsLane1.getStemName()}_raw_R2_fastqc.zip/
                 assert get(2) ==~ /^.*\/${readsLane1.getStemName()}_trimmed_R1_fastqc.zip/
                 assert get(3) ==~ /^.*\/${readsLane1.getStemName()}_trimmed_R2_fastqc.zip/
-                assert get(4) ==~ /^.*\/SAMPLE3_SE.cutadapt.log/
+                assert get(4) ==~ /^.*\/${readsLane1.getStemName()}_cutadapt-log.txt/
                 assert get(5) ==~ /^.*\/${readsLane1.getSampleName()}_raw_seq-depth.tsv/
                 assert get(6) ==~ /^.*\/${readsLane1.getSampleName()}_prealign_seq-depth.tsv/
             }
@@ -169,7 +169,7 @@ nextflow_workflow {
                         file("${readsLane1.getR2()}")
                     ]
                 )
-                input[2] = Channel.of( file("https://github.com/ewels/MultiQC_TestData/raw/master/data/modules/fastp/fastp.json") )
+                input[2] = Channel.of( file("${readsLane1.getTrimLogFastp()}") )
                 input[3] = Channel.of( file("${refs.getGenomeIndex()}") )
                 """
             }
@@ -186,7 +186,7 @@ nextflow_workflow {
                 assert size() == 5
                 assert get(0) ==~ /^.*\/${readsLane1.getStemName()}_raw_R1_fastqc.zip/
                 assert get(1) ==~ /^.*\/${readsLane1.getStemName()}_trimmed_R1_fastqc.zip/
-                assert get(2) ==~ /^.*\/fastp.json/
+                assert get(2) ==~ /^.*\/${readsLane1.getStemName()}_fastp.json/
                 assert get(3) ==~ /^.*\/${readsLane1.getSampleName()}_raw_seq-depth.tsv/
                 assert get(4) ==~ /^.*\/${readsLane1.getSampleName()}_prealign_seq-depth.tsv/
             }
@@ -231,7 +231,7 @@ nextflow_workflow {
                         file("${readsLane1.getR2()}")
                     ]
                 )
-                input[2] = Channel.of( file("https://github.com/ewels/MultiQC_TestData/raw/master/data/modules/fastp/fastp.json") )
+                input[2] = Channel.of( file("${readsLane1.getTrimLogFastp()}") )
                 input[3] = Channel.of( file("${refs.getGenomeIndex()}") )
                 """
             }
@@ -250,7 +250,7 @@ nextflow_workflow {
                 assert get(1) ==~ /^.*\/${readsLane1.getStemName()}_raw_R2_fastqc.zip/
                 assert get(2) ==~ /^.*\/${readsLane1.getStemName()}_trimmed_R1_fastqc.zip/
                 assert get(3) ==~ /^.*\/${readsLane1.getStemName()}_trimmed_R2_fastqc.zip/
-                assert get(4) ==~ /^.*\/fastp.json/
+                assert get(4) ==~ /^.*\/${readsLane1.getStemName()}_fastp.json/
                 assert get(5) ==~ /^.*\/${readsLane1.getSampleName()}_raw_seq-depth.tsv/
                 assert get(6) ==~ /^.*\/${readsLane1.getSampleName()}_prealign_seq-depth.tsv/
             }

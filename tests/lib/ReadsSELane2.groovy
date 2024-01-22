@@ -12,4 +12,8 @@ class ReadsSELane2 extends Reads {
         'https://github.com/utia-gc/ngs-test/raw/ngs/data/reads/raw/SRR1066657_S3_L002_R1_001.fastq.gz',
         'https://github.com/utia-gc/ngs-test/raw/ngs/data/reads/raw/SRR1066657_S3_L002_R1_001.fastq.gz.NOFILE'
     ]
+    LinkedHashMap trimLogs = [
+        cutadapt: 'https://github.com/utia-gc/ngs-test/raw/ngs/data/reads/trimmed/cutadapt/SRR1066657_L002_cutadapt-log.txt',
+        fastp:    'https://github.com/utia-gc/ngs-test/raw/ngs/data/reads/trimmed/fastp/SRR1066657_L002_fastp.json',
+    ]
 }

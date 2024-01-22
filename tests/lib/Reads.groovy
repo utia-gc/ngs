@@ -67,4 +67,12 @@ abstract class Reads {
 
         file(this.getR2()).getName() - fastqSuffix
     }
+
+    public getTrimLogCutadapt() {
+        this.trimLogs.cutadapt
+    }
+
+    public getTrimLogFastp() {
+        this.trimLogs.fastp
+    }
 }
