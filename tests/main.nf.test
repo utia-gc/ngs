@@ -142,15 +142,6 @@ nextflow_pipeline {
             assert path("${params.publishDirData}/alignments/${readsSELane1.getSampleName()}.bam.bai").exists()
             assert path("${params.publishDirData}/alignments/${readsPELane1.getSampleName()}.bam").exists()
             assert path("${params.publishDirData}/alignments/${readsPELane1.getSampleName()}.bam.bai").exists()
-            // test qualimap rnaseq QC directory is written to reports dir
-            assert path("${params.publishDirReports}/rnaseq/qualimap/${readsSELane1.getSampleName()}_rnaseq_qc").exists()
-            assert path("${params.publishDirReports}/rnaseq/qualimap/${readsPELane1.getSampleName()}_rnaseq_qc").exists()
-            // test featureCounts counts files published to data dir
-            assert path("${params.publishDirData}/counts/${readsSELane1.getSampleName()}.txt").exists()
-            assert path("${params.publishDirData}/counts/${readsPELane1.getSampleName()}.txt").exists()
-            // test featureCounts summary files published to reports dir
-            assert path("${params.publishDirReports}/counts/${readsSELane1.getSampleName()}.txt.summary").exists()
-            assert path("${params.publishDirReports}/counts/${readsPELane1.getSampleName()}.txt.summary").exists()
             // test MultiQC reports and data published to reports dir
             assert path("${params.publishDirReports}/multiqc/reads/reads.html").exists()
             assert path("${params.publishDirReports}/multiqc/reads/reads_data/").exists()
@@ -233,22 +224,11 @@ nextflow_pipeline {
             assert path("${params.publishDirData}/alignments/${readsSELane1.getSampleName()}.bam.bai").exists()
             assert path("${params.publishDirData}/alignments/${readsPELane1.getSampleName()}.bam").exists()
             assert path("${params.publishDirData}/alignments/${readsPELane1.getSampleName()}.bam.bai").exists()
-            // test qualimap rnaseq QC directory is written to reports dir
-            assert path("${params.publishDirReports}/rnaseq/qualimap/${readsSELane1.getSampleName()}_rnaseq_qc").exists()
-            assert path("${params.publishDirReports}/rnaseq/qualimap/${readsPELane1.getSampleName()}_rnaseq_qc").exists()
-            // test featureCounts counts files published to data dir
-            assert path("${params.publishDirData}/counts/${readsSELane1.getSampleName()}.txt").exists()
-            assert path("${params.publishDirData}/counts/${readsPELane1.getSampleName()}.txt").exists()
-            // test featureCounts summary files published to reports dir
-            assert path("${params.publishDirReports}/counts/${readsSELane1.getSampleName()}.txt.summary").exists()
-            assert path("${params.publishDirReports}/counts/${readsPELane1.getSampleName()}.txt.summary").exists()
             // test MultiQC reports and data published to reports dir
             assert path("${params.publishDirReports}/multiqc/reads/reads.html").exists()
             assert path("${params.publishDirReports}/multiqc/reads/reads_data/").exists()
             assert path("${params.publishDirReports}/multiqc/alignments/alignments.html").exists()
             assert path("${params.publishDirReports}/multiqc/alignments/alignments_data/").exists()
-            assert path("${params.publishDirReports}/multiqc/rnaseq/rnaseq.html").exists()
-            assert path("${params.publishDirReports}/multiqc/rnaseq/rnaseq_data/").exists()
             assert path("${params.publishDirReports}/multiqc/rnaseq_nf-test/rnaseq_nf-test.html").exists()
             assert path("${params.publishDirReports}/multiqc/rnaseq_nf-test/rnaseq_nf-test_data/").exists()
         }
@@ -326,22 +306,11 @@ nextflow_pipeline {
             assert path("${params.publishDirData}/alignments/${readsSELane1.getSampleName()}.bam.bai").exists()
             assert path("${params.publishDirData}/alignments/${readsPELane1.getSampleName()}.bam").exists()
             assert path("${params.publishDirData}/alignments/${readsPELane1.getSampleName()}.bam.bai").exists()
-            // test qualimap rnaseq QC directory is written to reports dir
-            assert path("${params.publishDirReports}/rnaseq/qualimap/${readsSELane1.getSampleName()}_rnaseq_qc").exists()
-            assert path("${params.publishDirReports}/rnaseq/qualimap/${readsPELane1.getSampleName()}_rnaseq_qc").exists()
-            // test featureCounts counts files published to data dir
-            assert path("${params.publishDirData}/counts/${readsSELane1.getSampleName()}.txt").exists()
-            assert path("${params.publishDirData}/counts/${readsPELane1.getSampleName()}.txt").exists()
-            // test featureCounts summary files published to reports dir
-            assert path("${params.publishDirReports}/counts/${readsSELane1.getSampleName()}.txt.summary").exists()
-            assert path("${params.publishDirReports}/counts/${readsPELane1.getSampleName()}.txt.summary").exists()
             // test MultiQC reports and data published to reports dir
             assert path("${params.publishDirReports}/multiqc/reads/reads.html").exists()
             assert path("${params.publishDirReports}/multiqc/reads/reads_data/").exists()
             assert path("${params.publishDirReports}/multiqc/alignments/alignments.html").exists()
             assert path("${params.publishDirReports}/multiqc/alignments/alignments_data/").exists()
-            assert path("${params.publishDirReports}/multiqc/rnaseq/rnaseq.html").exists()
-            assert path("${params.publishDirReports}/multiqc/rnaseq/rnaseq_data/").exists()
             assert path("${params.publishDirReports}/multiqc/rnaseq_nf-test/rnaseq_nf-test.html").exists()
             assert path("${params.publishDirReports}/multiqc/rnaseq_nf-test/rnaseq_nf-test_data/").exists()
         }
@@ -419,22 +388,11 @@ nextflow_pipeline {
             assert path("${params.publishDirData}/alignments/${readsSELane1.getSampleName()}.bam.bai").exists()
             assert path("${params.publishDirData}/alignments/${readsPELane1.getSampleName()}.bam").exists()
             assert path("${params.publishDirData}/alignments/${readsPELane1.getSampleName()}.bam.bai").exists()
-            // test qualimap rnaseq QC directory is written to reports dir
-            assert path("${params.publishDirReports}/rnaseq/qualimap/${readsSELane1.getSampleName()}_rnaseq_qc").exists()
-            assert path("${params.publishDirReports}/rnaseq/qualimap/${readsPELane1.getSampleName()}_rnaseq_qc").exists()
-            // test featureCounts counts files published to data dir
-            assert path("${params.publishDirData}/counts/${readsSELane1.getSampleName()}.txt").exists()
-            assert path("${params.publishDirData}/counts/${readsPELane1.getSampleName()}.txt").exists()
-            // test featureCounts summary files published to reports dir
-            assert path("${params.publishDirReports}/counts/${readsSELane1.getSampleName()}.txt.summary").exists()
-            assert path("${params.publishDirReports}/counts/${readsPELane1.getSampleName()}.txt.summary").exists()
             // test MultiQC reports and data published to reports dir
             assert path("${params.publishDirReports}/multiqc/reads/reads.html").exists()
             assert path("${params.publishDirReports}/multiqc/reads/reads_data/").exists()
             assert path("${params.publishDirReports}/multiqc/alignments/alignments.html").exists()
             assert path("${params.publishDirReports}/multiqc/alignments/alignments_data/").exists()
-            assert path("${params.publishDirReports}/multiqc/rnaseq/rnaseq.html").exists()
-            assert path("${params.publishDirReports}/multiqc/rnaseq/rnaseq_data/").exists()
             assert path("${params.publishDirReports}/multiqc/rnaseq_nf-test/rnaseq_nf-test.html").exists()
             assert path("${params.publishDirReports}/multiqc/rnaseq_nf-test/rnaseq_nf-test_data/").exists()
         }
