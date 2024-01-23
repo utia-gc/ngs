@@ -241,7 +241,9 @@ nextflow_pipeline {
 
         when {
             params {
-                load("${baseDir}/tests/params/fastp.yaml")
+                tools {
+                    trim = 'fastp'
+                }
                 publishDirReports = "${outputDir}/reports"
                 publishDirData    = "${outputDir}/data"
             }
