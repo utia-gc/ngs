@@ -349,7 +349,7 @@ nextflow_pipeline {
     }
 
 
-    test("main.nf succeeds -- bwa-mem2.") {
+    test("main.nf succeeds -- STAR.") {
         // instantiate helper objects
         def readsSELane1 = new ReadsSELane1()
         def readsSELane2 = new ReadsSELane2()
@@ -359,7 +359,7 @@ nextflow_pipeline {
         when {
             params {
                 tools {
-                    map = 'bwa-mem2'
+                    map = 'STAR'
                 }
                 publishDirReports = "${outputDir}/reports"
                 publishDirData    = "${outputDir}/data"
