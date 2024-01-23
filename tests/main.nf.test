@@ -20,6 +20,7 @@ nextflow_pipeline {
 
     }
 
+
     test("main.nf fails -- no reference genome.") {
         when {
             params {
@@ -36,6 +37,7 @@ nextflow_pipeline {
         }
 
     }
+
 
     test("main.nf fails -- no reference annotations.") {
         when {
@@ -151,6 +153,7 @@ nextflow_pipeline {
 
     }
 
+
     test("main.nf succeeds with default `nf_test` params and uncompressed genome and annotation files.") {
         // instantiate helper objects
         def readsSELane1 = new ReadsSELane1()
@@ -232,6 +235,7 @@ nextflow_pipeline {
 
     }
 
+
     test("main.nf succeeds -- fastp.") {
         // instantiate helper objects
         def readsSELane1 = new ReadsSELane1()
@@ -312,6 +316,7 @@ nextflow_pipeline {
         }
 
     }
+
 
     test("main.nf succeeds -- STAR.") {
         // instantiate helper objects
