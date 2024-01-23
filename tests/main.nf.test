@@ -121,10 +121,10 @@ nextflow_pipeline {
             assert path("${params.publishDirReports}/.fastqc/${readsPELane2.getStemName()}_trimmed_R2_fastqc.html").exists()
             assert path("${params.publishDirReports}/.fastqc/${readsPELane2.getStemName()}_trimmed_R2_fastqc.zip").exists()
             // test trimmed reads logs published to reports dir
-            assert path("${params.publishDirReports}/.reads/trim/${readsSELane1.getStemName()}_cutadapt-log.txt").exists()
-            assert path("${params.publishDirReports}/.reads/trim/${readsSELane2.getStemName()}_cutadapt-log.txt").exists()
-            assert path("${params.publishDirReports}/.reads/trim/${readsPELane1.getStemName()}_cutadapt-log.txt").exists()
-            assert path("${params.publishDirReports}/.reads/trim/${readsPELane2.getStemName()}_cutadapt-log.txt").exists()
+            assert path("${params.publishDirReports}/.reads/trim/${readsSELane1.getStemName()}_fastp.json").exists()
+            assert path("${params.publishDirReports}/.reads/trim/${readsSELane2.getStemName()}_fastp.json").exists()
+            assert path("${params.publishDirReports}/.reads/trim/${readsPELane1.getStemName()}_fastp.json").exists()
+            assert path("${params.publishDirReports}/.reads/trim/${readsPELane2.getStemName()}_fastp.json").exists()
             // test samtools flagstat and samtools idxstats for individual alignments files written to reports dir
             assert path("${params.publishDirReports}/.alignments/${readsSELane1.getStemName()}_idxstat.txt").exists()
             assert path("${params.publishDirReports}/.alignments/${readsSELane2.getStemName()}_idxstat.txt").exists()
@@ -212,10 +212,10 @@ nextflow_pipeline {
             assert path("${params.publishDirReports}/.fastqc/${readsPELane2.getStemName()}_trimmed_R2_fastqc.html").exists()
             assert path("${params.publishDirReports}/.fastqc/${readsPELane2.getStemName()}_trimmed_R2_fastqc.zip").exists()
             // test trimmed reads logs published to reports dir
-            assert path("${params.publishDirReports}/.reads/trim/${readsSELane1.getStemName()}_cutadapt-log.txt").exists()
-            assert path("${params.publishDirReports}/.reads/trim/${readsSELane2.getStemName()}_cutadapt-log.txt").exists()
-            assert path("${params.publishDirReports}/.reads/trim/${readsPELane1.getStemName()}_cutadapt-log.txt").exists()
-            assert path("${params.publishDirReports}/.reads/trim/${readsPELane2.getStemName()}_cutadapt-log.txt").exists()
+            assert path("${params.publishDirReports}/.reads/trim/${readsSELane1.getStemName()}_fastp.json").exists()
+            assert path("${params.publishDirReports}/.reads/trim/${readsSELane2.getStemName()}_fastp.json").exists()
+            assert path("${params.publishDirReports}/.reads/trim/${readsPELane1.getStemName()}_fastp.json").exists()
+            assert path("${params.publishDirReports}/.reads/trim/${readsPELane2.getStemName()}_fastp.json").exists()
             // test samtools stats and samtools idxstats files written to reports dir
             assert path("${params.publishDirReports}/.alignments/${readsSELane1.getStemName()}_idxstat.txt").exists()
             assert path("${params.publishDirReports}/.alignments/${readsSELane2.getStemName()}_idxstat.txt").exists()
@@ -398,10 +398,10 @@ nextflow_pipeline {
             assert path("${params.publishDirReports}/.fastqc/${readsPELane2.getStemName()}_trimmed_R2_fastqc.html").exists()
             assert path("${params.publishDirReports}/.fastqc/${readsPELane2.getStemName()}_trimmed_R2_fastqc.zip").exists()
             // test trimmed reads logs published to reports dir
-            assert path("${params.publishDirReports}/.reads/trim/${readsSELane1.getStemName()}_cutadapt-log.txt").exists()
-            assert path("${params.publishDirReports}/.reads/trim/${readsSELane2.getStemName()}_cutadapt-log.txt").exists()
-            assert path("${params.publishDirReports}/.reads/trim/${readsPELane1.getStemName()}_cutadapt-log.txt").exists()
-            assert path("${params.publishDirReports}/.reads/trim/${readsPELane2.getStemName()}_cutadapt-log.txt").exists()
+            assert path("${params.publishDirReports}/.reads/trim/${readsSELane1.getStemName()}_fastp.json").exists()
+            assert path("${params.publishDirReports}/.reads/trim/${readsSELane2.getStemName()}_fastp.json").exists()
+            assert path("${params.publishDirReports}/.reads/trim/${readsPELane1.getStemName()}_fastp.json").exists()
+            assert path("${params.publishDirReports}/.reads/trim/${readsPELane2.getStemName()}_fastp.json").exists()
             // test samtools stats and samtools idxstats files written to reports dir
             assert path("${params.publishDirReports}/.alignments/${readsSELane1.getStemName()}_idxstat.txt").exists()
             assert path("${params.publishDirReports}/.alignments/${readsSELane2.getStemName()}_idxstat.txt").exists()
