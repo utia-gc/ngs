@@ -35,7 +35,7 @@ This serves the dual purpose of saving time by not repeating logged tasks while 
 During exploratory analysis, iteratively make changes to parameters and run the pipeline with the `exploratory` profile:
 
 ```bash
-nextflow run utia-gc/ngs \
+nextflow run utia-gc/rnaseq \
    -revision main \
    -profile exploratory
 ```
@@ -43,7 +43,7 @@ nextflow run utia-gc/ngs \
 Once you have settled on an optimal set of parameters, rerun the pipeline without the `exploratory` profile:
 
 ```bash
-nextflow run utia-gc/ngs \
+nextflow run utia-gc/rnaseq \
    -revision main \
    -resume
 ```
@@ -53,7 +53,7 @@ Use `nextflow log` to view information about previous runs.
 For example, to resume from a run named 'boring_euler':
 
 ```bash
-nextflow run utia-gc/ngs \
+nextflow run utia-gc/rnaseq \
    -revision main \
    -resume boring_euler
 ```
