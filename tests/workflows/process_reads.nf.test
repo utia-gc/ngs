@@ -157,9 +157,11 @@ nextflow_workflow {
 
         when {
             params {
-                load("${baseDir}/tests/params/fastp.yaml")
                 publishDirReports = "${outputDir}/reports"
                 publishDirData    = "${outputDir}/data"
+                tools {
+                    trim = 'fastp'
+                }
             }
             workflow {
                 """
@@ -228,9 +230,11 @@ nextflow_workflow {
 
         when {
             params {
-                load("${baseDir}/tests/params/fastp.yaml")
                 publishDirReports = "${outputDir}/reports"
                 publishDirData    = "${outputDir}/data"
+                tools {
+                    trim = 'fastp'
+                }
             }
             workflow {
                 """
