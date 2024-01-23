@@ -1,11 +1,11 @@
-title: utia-gc/rnaseq
-description: A Nextflow pipeline for RNA-seq analysis based on utia-gc/ngs.
+title: utia-gc/ngs
+description: A Nextflow pipeline for base NGS analysis.
 theme: just-the-docs
 
 url: https://utia-gc.github.io
 
 aux_links:
-  utia-gc/rnaseq on GitHub: https://github.com/utia-gc/rnaseq
+  utia-gc/ngs on GitHub: https://github.com/utia-gc/ngs
 
 plugins:
   - jekyll-relative-links
