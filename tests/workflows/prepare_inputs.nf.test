@@ -15,7 +15,7 @@ nextflow_workflow {
             }
             workflow {
                 """
-                input[0] = file("https://github.com/utia-gc/ngs-test/raw/rnaseq/samplesheets/samplesheet_mix.csv")
+                input[0] = file("https://github.com/utia-gc/ngs-test/raw/ngs/samplesheets/samplesheet_mix.csv")
                 input[1] = file("${refs.getGenomeGzip()}")
                 input[2] = file("${refs.getGTFGzip()}")
                 """
