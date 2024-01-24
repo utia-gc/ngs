@@ -21,6 +21,7 @@ class Tools {
         }
     }
 
+
     /**
      *  Enum representing tools for mapping reads.
      */
