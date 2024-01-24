@@ -75,6 +75,46 @@ nextflow_pipeline {
     }
 
 
+    test("main.nf fails -- no trim tool.") {
+        when {
+            params {
+                publishDirReports = "${outputDir}/reports"
+                publishDirData    = "${outputDir}/data"
+                tools {
+                    trim = null
+                }
+            }
+        }
+
+        then {
+            assert workflow.failed
+            assert workflow.exitStatus == 64
+            assert workflow.stdout.contains("ERROR ~ Parameter 'tools.trim' is required but was not provided.")
+        }
+
+    }
+
+
+    test("main.nf fails -- invalid trim tool.") {
+        when {
+            params {
+                publishDirReports = "${outputDir}/reports"
+                publishDirData    = "${outputDir}/data"
+                tools {
+                    trim = 'bowtie2'
+                }
+            }
+        }
+
+        then {
+            assert workflow.failed
+            assert workflow.exitStatus == 64
+            assert workflow.stdout.contains("ERROR ~ ${params.tools.trim} is not a valid trim tool.")
+        }
+
+    }
+
+
     test("main.nf succeeds with default `nf_test` params") {
         // instantiate helper objects
         def readsSELane1 = new ReadsSELane1()
