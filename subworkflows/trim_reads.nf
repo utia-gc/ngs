@@ -11,8 +11,8 @@ workflow Trim_Reads {
         trim_tool
 
     main:
-        switch( trim_tool.toUpperCase() ) {
-            case "CUTADAPT":
+        switch( Tools.Trim.valueOf(trim_tool.toUpperCase()) ) {
+            case Tools.Trim.CUTADAPT:
                 cutadapt(
                     reads_raw,
                     params.r1_adapter,
@@ -23,7 +23,7 @@ workflow Trim_Reads {
                 ch_trim_log   = cutadapt.out.log
                 break
 
-            case "FASTP":
+            case Tools.Trim.FASTP:
                 fastp(reads_raw)
                 ch_reads_trim = fastp.out.reads
                 ch_trim_log   = fastp.out.log
