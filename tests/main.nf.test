@@ -4,6 +4,8 @@ nextflow_pipeline {
     script "main.nf"
 
     test("main.nf fails -- no input samplesheet.") {
+        tag "validate"
+
         when {
             params {
                 publishDirReports = "${outputDir}/reports"
@@ -22,6 +24,8 @@ nextflow_pipeline {
 
 
     test("main.nf fails -- no reference genome.") {
+        tag "validate"
+
         when {
             params {
                 publishDirReports = "${outputDir}/reports"
@@ -40,6 +44,8 @@ nextflow_pipeline {
 
 
     test("main.nf fails -- no reference annotations.") {
+        tag "validate"
+
         when {
             params {
                 publishDirReports = "${outputDir}/reports"
@@ -58,6 +64,8 @@ nextflow_pipeline {
 
 
     test("main.nf fails -- no project title.") {
+        tag "validate"
+
         when {
             params {
                 publishDirReports = "${outputDir}/reports"
@@ -76,6 +84,9 @@ nextflow_pipeline {
 
 
     test("main.nf fails -- no trim tool.") {
+        tag "validate"
+        tag "tools"
+
         when {
             params {
                 publishDirReports = "${outputDir}/reports"
@@ -96,6 +107,9 @@ nextflow_pipeline {
 
 
     test("main.nf fails -- invalid trim tool.") {
+        tag "validate"
+        tag "tools"
+
         when {
             params {
                 publishDirReports = "${outputDir}/reports"
@@ -109,7 +123,7 @@ nextflow_pipeline {
         then {
             assert workflow.failed
             assert workflow.exitStatus == 64
-            assert workflow.stdout.contains("ERROR ~ ${params.tools.trim} is not a valid trim tool.")
+            assert workflow.stdout.contains("ERROR ~ 'bowtie2' is not a valid trim tool.")
         }
 
     }
