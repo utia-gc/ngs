@@ -14,14 +14,14 @@ import java.util.zip.GZIPInputStream
  *
  * @return String Read group line.
  */
-public static String buildRGLine(rgFields, tool) {
+public static String buildRGLine(rgFields, Tools.Map tool) {
     String rgLine = ''
     switch (tool) {
-        case 'bwamem2':
+        case Tools.Map.BWAMEM2:
             rgLine = buildBwaMem2RGLine(rgFields)
             break
 
-        case 'star':
+        case Tools.Map.STAR:
             rgLine = buildSTARRGLine(rgFields)
             break
     }

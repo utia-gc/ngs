@@ -32,7 +32,7 @@ process star_runMapping {
         String stemName = MetadataUtils.buildStemName(metadata)
 
         // build read group line
-        String rgLine = ReadGroup.buildRGLine(metadata.rgFields, 'star')
+        String rgLine = ReadGroup.buildRGLine(metadata.rgFields, Tools.Map.STAR)
 
         String args = new Args(task.ext).buildArgsString()
         
