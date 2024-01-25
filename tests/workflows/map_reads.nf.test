@@ -53,7 +53,7 @@ nextflow_workflow {
                 )
                 input[1] = file("${refs.getGenome()}")
                 input[2] = file("${refs.getGTF()}")
-                input[3] = "bwa-mem2"
+                input[3] = "bwamem2"
                 """
             }
         }
@@ -156,7 +156,7 @@ nextflow_workflow {
                 )
                 input[1] = file("${refs.getGenome()}")
                 input[2] = file("${refs.getGTF()}")
-                input[3] = "bwa-mem2"
+                input[3] = "bwamem2"
                 """
             }
         }

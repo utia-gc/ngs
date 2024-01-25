@@ -17,7 +17,7 @@ import java.util.zip.GZIPInputStream
 public static String buildRGLine(rgFields, tool) {
     String rgLine = ''
     switch (tool) {
-        case 'bwa-mem2':
+        case 'bwamem2':
             rgLine = buildBwaMem2RGLine(rgFields)
             break
 

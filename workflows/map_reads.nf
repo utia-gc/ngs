@@ -21,7 +21,7 @@ workflow MAP_READS {
 
     main:
         switch( map_tool.toUpperCase() ) {
-            case "BWA-MEM2":
+            case "BWAMEM2":
                 Bwa_Mem2(
                     reads,
                     genome
