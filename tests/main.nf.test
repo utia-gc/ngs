@@ -169,7 +169,7 @@ nextflow_pipeline {
         then {
             assert workflow.failed
             assert workflow.exitStatus == 64
-            assert workflow.stdout.contains("ERROR ~ 'trimmomatic' is not a valid trim tool.")
+            assert workflow.stdout.contains("ERROR ~ 'trimmomatic' is not a valid map tool.")
         }
 
     }
