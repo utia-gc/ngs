@@ -11,31 +11,5 @@
             }
         ],
         "timestamp": "2023-09-13T19:31:52+0000"
-    },
-    "gunzip successfully unzips GZIP-compressed fasta file.": {
-        "content": [
-            {
-                "0": [
-                    "genome_I.fa:md5,e050100d0a9a7d06a8accf8424ad0d98"
-                ],
-                "gunzip": [
-                    "genome_I.fa:md5,e050100d0a9a7d06a8accf8424ad0d98"
-                ]
-            }
-        ],
-        "timestamp": "2023-09-13T19:31:52+0000"
-    },
-    "gzip successfully unzips GZIP-compressed fasta file.": {
-        "content": [
-            {
-                "0": [
-                    "genome_I.fa:md5,e050100d0a9a7d06a8accf8424ad0d98"
-                ],
-                "gunzip": [
-                    "genome_I.fa:md5,e050100d0a9a7d06a8accf8424ad0d98"
-                ]
-            }
-        ],
-        "timestamp": "2023-09-13T19:31:52+0000"
     }
 }
