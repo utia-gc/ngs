@@ -14,7 +14,7 @@ import java.util.zip.GZIPInputStream
  *
  * @return String Read group line.
  */
-public static String buildRGLine(rgFields, Tools.Map tool) {
+public static String buildRGLine(rgFields, tool) {
     String rgLine = ''
     switch (tool) {
         case Tools.Map.BWAMEM2:
