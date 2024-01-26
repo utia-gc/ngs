@@ -26,8 +26,7 @@ nextflow_process {
 
             // test expected number bases
             with(process.out.bases) {
-                assert get(0).isNumber()
-                assert get(0).toInteger() == 230218
+                assert Long.valueOf(get(0)) == 230218L
             }
 
             // test reproducibility
@@ -55,8 +54,7 @@ nextflow_process {
 
             // test expected number bases
             with(process.out.bases) {
-                assert get(0).isNumber()
-                assert get(0).toInteger() > 2_000_000_000
+                assert Long.valueOf(get(0)) > 2_000_000_000L
             }
 
             // test reproducibility

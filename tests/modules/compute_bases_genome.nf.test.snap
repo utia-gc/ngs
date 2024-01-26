@@ -11,5 +11,18 @@
             }
         ],
         "timestamp": "2024-01-19T11:28:19.77708076"
+    },
+    "compute_bases_genome computes the number of bases in a large reference genome and outputs a number": {
+        "content": [
+            {
+                "0": [
+                    "2770686120"
+                ],
+                "bases": [
+                    "2770686120"
+                ]
+            }
+        ],
+        "timestamp": "2024-01-26T10:02:40.34260478"
     }
 }
