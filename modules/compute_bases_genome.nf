@@ -21,7 +21,7 @@ process compute_bases_genome {
 
     script:
         """
-        awk 'BEGIN { FS = "\t" } ; { sum += \$2 } ; END { print sum }' ${fai} \\
+        awk 'BEGIN { FS = "\t"; OFMT = "%.0f" } ; { sum += \$2 } ; END { print sum }' ${fai} \\
             | tr -d '\n'
         """
 }
