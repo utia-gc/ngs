@@ -36,4 +36,33 @@ nextflow_process {
 
     }
 
+    test("compute_bases_genome computes the number of bases in a large reference genome and outputs a number") {
+        when {
+            params {
+                publishDirReports = "${outputDir}/reports"
+                publishDirData    = "${outputDir}/data"
+            }
+            process {
+                """
+                input[0] = file("https://github.com/utia-gc/ngs-test/raw/b34247fcd38695c8a07abdb8fa521424920a97db/data/references/GCF_002263795.3_ARS-UCD2.0_genomic.fna.fai")
+                """
+            }
+        }
+
+        then {
+            // test process success
+            assert process.success
+
+            // test expected number bases
+            with(process.out.bases) {
+                assert get(0).isNumber()
+                assert get(0).toInteger() > 2_000_000_000
+            }
+
+            // test reproducibility
+            assert snapshot(process.out).match()
+        }
+
+    }
+
 }
