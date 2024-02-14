@@ -167,7 +167,7 @@ flowchart LR
 
    - Run on Windows with [Windows Subsystem for Linux (WSL)](https://docs.microsoft.com/en-us/windows/wsl/). WSL2 highly recommended.
 
-2. [Nextflow](https://www.nextflow.io/) version >= 21.04
+2. [Nextflow](https://www.nextflow.io/) version >= 23.09.2
 
    - See [Nextflow Get started](https://www.nextflow.io/docs/latest/getstarted.html#) for prerequisites and instructions on installing and updating Nextflow.
 
