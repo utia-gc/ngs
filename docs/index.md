@@ -8,7 +8,14 @@ nav_order: 1
 
 Welcome to the [utia-gc/ngs](https://github.com/utia-gc/ngs) documentation!
 
+`utia-gc/ngs` is a [Nextflow](https://www.nextflow.io/) pipeline for base NGS analysis.
+While `utia-gc/ngs` can be run on any platform supported by Nextflow, it is specifically developed for use on the [ISAAC Next Generation](https://oit.utk.edu/hpsc/isaac-open-enclave-new-kpb/) cluster at the University of Tennessee, Knoxville.
+
 ## Structure of the docs
+
+{: .important }
+> These docs assume at least a passing familiarity with some key Nextflow concepts.
+> You will get much more out of these docs if you first read through the Nextflow documentation's [Getting started](https://www.nextflow.io/docs/latest/getstarted.html) and [Basic concepts](https://www.nextflow.io/docs/latest/basic.html) pages.
 
 These docs are mainly setup in a question and answer format, typically from the perspective of a user who has decided to run the pipeline and is asking themself a question starting with "How do I... ?"
 

@@ -9,3 +9,9 @@ aux_links:
 
 plugins:
   - jekyll-relative-links
+
+callouts:
+  important:
+    title: Important
+    color: blue
+
