@@ -11,5 +11,14 @@
 ## Directory structure
 
 ```text
-└── README.md               <- Top-level README for the project
+{{ cookiecutter.project_slug }}
+├── config                                       <- Directory for all configs and params files
+│   ├── nextflow.config
+│   ├── params_ngs.yaml
+│   └── params_setup.yaml
+├── src                                          <- Directory for all source code
+│   └── sbatch
+│       ├── nf_run_ngs.sh
+│       └── nf_run_setup.sh
+└── README.md                                    <- Top-level README for the project
 ```
