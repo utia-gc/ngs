@@ -7,7 +7,6 @@
     "project_name": "{{ cookiecutter.project_date }} {{ cookiecutter.project_owner_last }} {{ cookiecutter.project_organism }} {{ cookiecutter.project_brief }} {{ cookiecutter.project_type }}",
     "project_slug": "{{ cookiecutter.project_date }}-{{ cookiecutter.project_owner_last|lower }}-{{ cookiecutter.project_organism|lower|replace(' ', '-') }}-{{ cookiecutter.project_brief|lower|replace(' ', '_') }}-{{ cookiecutter.project_type|lower|replace(' ', '_') }}",
     "project_purpose": "Analyze NGS data.",
-    "raw_reads_dir": "",
     "email": "",
     "author": "",
     "slurm_account": "",
