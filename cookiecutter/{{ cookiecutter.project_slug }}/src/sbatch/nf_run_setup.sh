@@ -1,15 +1,15 @@
 #!/bin/bash
 #SBATCH --job-name={{ cookiecutter.project_slug }}_setup
-#SBATCH --error=job_logs/%x.e%j
-#SBATCH --output=job_logs/%x.o%j
-#SBATCH --mail-user={{ cookiecutter.email }}
-#SBATCH --mail-type=END,FAIL
+#SBATCH --cpus-per-task=1
+#SBATCH --mem=3GB
+#SBATCH --time=00-02:00:00
+#SBATCH --error=.cache/sbatch_logs/%j_-_%x.err
+#SBATCH --output=.cache/sbatch_logs/%j_-_%x.out
 #SBATCH --account={{ cookiecutter.slurm_account }}
 #SBATCH --partition={{ cookiecutter.slurm_partition }}
 #SBATCH --qos={{ cookiecutter.slurm_qos }}
-#SBATCH --nodes=1
-#SBATCH --ntasks=1
-#SBATCH --time=00-02:00:00
+#SBATCH --mail-user={{ cookiecutter.email }}
+#SBATCH --mail-type=END,FAIL
 
 
 set -u
