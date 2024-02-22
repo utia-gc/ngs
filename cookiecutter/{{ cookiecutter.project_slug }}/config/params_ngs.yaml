@@ -1,0 +1,4 @@
+projectTitle: "{{ cookiecutter.project_slug }}"
+genome: ""
+annotations: ""
+samplesheet: "data/samplesheets/samplesheet.csv"

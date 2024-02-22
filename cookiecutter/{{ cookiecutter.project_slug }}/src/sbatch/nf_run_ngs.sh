@@ -12,13 +12,19 @@
 #SBATCH --time=01-00:00:00
 
 
+set -u
+set -e
+
 # set nextflow options for execution via slurm
 export NXF_OPTS="-Xms500M -Xmx2G"
 export NXF_ANSI_LOG=false
 
+# install/update the pipeline
+nextflow pull utia-gc/ngs
+
 # run pipeline
 nextflow run utia-gc/ngs \
-    -latest \                
-    # uncomment the line below for forked pipelines since a specific revision should always be used
-    # -revision v0.0.0.9000 \
-    -profile isaac_tff,exploratory
+    -revision main \
+    -profile condo_trowan1,exploratory \
+    -config config/nextflow.config \
+    -params-file config/params_ngs.yaml
