@@ -27,6 +27,8 @@ Finally, we will give direction as to how the user can make use of our solution 
 
 - [What outputs will I get from the pipeline?](input_output/outputs.md)
 
+- [How should I setup my project?](input_output/project_setup.md)
+
 ### [Pipeline Configuration](pipeline_config/pipeline_config.md)
 
 - [How do I run a step of the pipeline with the command line arguments that I want to use?](pipeline_config/arguments_to_processes.md)
