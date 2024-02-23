@@ -1,16 +1,30 @@
 {
-    "project_date": "20230101",
+    "project_date": "",
     "project_owner_last": "",
     "project_organism": "",
-    "project_brief": "NGS",
+    "project_brief": "",
     "project_type": "ngs",
     "project_name": "{{ cookiecutter.project_date }} {{ cookiecutter.project_owner_last }} {{ cookiecutter.project_organism }} {{ cookiecutter.project_brief }} {{ cookiecutter.project_type }}",
     "project_slug": "{{ cookiecutter.project_date }}-{{ cookiecutter.project_owner_last|lower }}-{{ cookiecutter.project_organism|lower|replace(' ', '-') }}-{{ cookiecutter.project_brief|lower|replace(' ', '_') }}-{{ cookiecutter.project_type|lower|replace(' ', '_') }}",
     "project_purpose": "Analyze NGS data.",
-    "raw_reads_dir": "",
     "email": "",
     "author": "",
     "slurm_account": "",
     "slurm_partition": "",
-    "slurm_qos": ""
+    "slurm_qos": "",
+    "__prompts__": {
+        "project_date": "Date for the project formatted like YYYYMMDD. Used for forming project name and slug.",
+        "project_owner_last": "Last name of the project owner. Used for forming project name and slug.",
+        "project_organism": "Organism for the project. Used for forming project name and slug.",
+        "project_brief": "Very short (1-3 word) project desciption, e.g. Cancer drug. Used for forming project name and slug.",
+        "project_type": "Type of project. Used for forming project name and slug.",
+        "project_name": "Project name formed from inputs above.",
+        "project_slug": "Project slug formed from inputs above.",
+        "project_purpose": "Brief description of project purpose. Used for README.",
+        "author": "Project author name. Used for README.",
+        "email": "Email address. Used for README and SBATCH `--mail-user` header.",
+        "slurm_account": "SLURM project account. Used for SBATCH `--account` header.",
+        "slurm_partition": "SLURM partition. Used for SBATCH `--partition` header.",
+        "slurm_qos": "SLURM QOS. Used for SBATCH `--qos` header."
+    }
 }

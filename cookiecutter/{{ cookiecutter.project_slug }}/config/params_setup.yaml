@@ -1,0 +1,4 @@
+readsSources: ""
+readsDest: "data/reads/raw"
+samplesheet: "data/samplesheets/samplesheet.csv"
+decode: "data/samplesheets/decode.csv"

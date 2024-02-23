@@ -1,4 +1,0 @@
-readsSource: "{{ cookiecutter.raw_reads_dir }}"
-readsDest: "data/reads/raw"
-decode: "data/samplesheets/decode.csv"
-project: "{{ cookiecutter.project_brief }}"
