@@ -16,11 +16,12 @@ workflow {
         }
     }
 
-    readsSource = file(params.readsSource)
-    readsDest   = file(params.readsDest)
+    readsSources = validateReadsSources(params.readsSources)
+    println readsSources
+    readsDest    = file(params.readsDest)
 
     COPY_READS(
-        readsSource,
+        readsSources,
         readsDest,
         decodeTable
     )
@@ -36,7 +37,7 @@ workflow {
 
 workflow COPY_READS {
     take:
-        source_reads_dir
+        source_reads_dirs
         destination_reads_dir
         decode_table
 
@@ -48,11 +49,13 @@ workflow COPY_READS {
         def combinedPatterns = decode_table.keySet().toList().join('|')
         log.info "Patterns to search for matches: ${combinedPatterns}"
 
-        // iterate through all fastq.gz files in source directory
-        source_reads_dir.eachFileMatch(~/.*(${combinedPatterns}).*\.fastq\.gz/) { fastq ->
-            // copy files to copy dir
-            def fastqDestPath = fastq.copyTo(destination_reads_dir)
-            log.info "Copied fastq file ${fastq} --> ${fastqDestPath}"
+        // iterate through all fastq.gz files in source directories
+        source_reads_dirs.each { sourceReadsDir ->
+            sourceReadsDir.eachFileMatch(~/.*(${combinedPatterns}).*\.fastq\.gz/) { fastq ->
+                // copy files to copy dir
+                def fastqDestPath = fastq.copyTo(destination_reads_dir)
+                log.info "Copied fastq file ${fastq} --> ${fastqDestPath}"
+            }
         }
 }
 
@@ -97,5 +100,24 @@ def captureFastqStemNameInfo(String stemName) {
         return stemNameInfo
     } else {
         log.error "fastq file stem manes do not "
+    }
+}
+
+
+def validateReadsSources(readsSources) {
+    if (readsSources instanceof List) {
+        // if readsSources is a list of strings, return a list containing file objects of those strings
+        if (readsSources.every { it instanceof String }) {
+            return readsSources.collect { file(it, checkIfExists: true) }
+        }
+        else {
+            throw new IllegalArgumentException("params.readsSources is a list but contains non-string elements. Must be a list of valid paths or a single valid path.")
+        }
+    } else if (readsSources instanceof String) {
+        // if readsSources is a string, return a list containing a file object of that string
+        return [file(readsSources, checkIfExists: true)]
+    } else {
+        // if readsSources is neither a list of strings nor a string, throw an expection
+        throw new IllegalArgumentException("params.readsSources must be a list of valid paths or a single valid path.")
     }
 }
