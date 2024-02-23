@@ -75,14 +75,14 @@ workflow WRITE_SAMPLESHEET {
         ch_readPairs
             .map { stemName, reads ->
                 def stemNameInfo = captureFastqStemNameInfo(stemName)
-                "${decode_table.get(stemNameInfo.sampleName) ?: stemNameInfo.sampleName},${stemNameInfo.sampleNumber},${stemNameInfo.lane},${reads[0]},${reads[1] ?: ''}"
+                "${decode_table.get(stemNameInfo.sampleName) ?: stemNameInfo.sampleName},${stemNameInfo.lane},${reads[0]},${reads[1] ?: ''}"
             }
             .collectFile(
                 name: samplesheet.name,
                 newLine: true,
                 storeDir: samplesheet.parent,
                 sort: true,
-                seed: 'sampleName,sampleNumber,lane,reads1,reads2'
+                seed: 'sampleName,lane,reads1,reads2'
             )
 }
 
@@ -93,7 +93,7 @@ def captureFastqStemNameInfo(String stemName) {
     if (fastqMatcher.find()) {
         stemNameInfo = [:]
         stemNameInfo.put('sampleName', fastqMatcher.group(1))
-        stemNameInfo.put('sampleNumber', fastqMatcher.group(2))
+        // stemNameInfo.put('sampleNumber', fastqMatcher.group(2))
         stemNameInfo.put('lane', fastqMatcher.group(3))
 
         return stemNameInfo
