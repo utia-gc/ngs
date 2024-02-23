@@ -17,7 +17,6 @@ workflow {
     }
 
     readsSources = validateReadsSources(params.readsSources)
-    println readsSources
     readsDest    = file(params.readsDest)
 
     COPY_READS(
