@@ -46,13 +46,13 @@ workflow COPY_READS {
 
         // combine patterns to match
         def combinedPatterns = decode_table.keySet().toList().join('|')
-        log.debug "Patterns to search for matches: ${combinedPatterns}"
+        log.info "Patterns to search for matches: ${combinedPatterns}"
 
         // iterate through all fastq.gz files in source directory
         source_reads_dir.eachFileMatch(~/.*(${combinedPatterns}).*\.fastq\.gz/) { fastq ->
             // copy files to copy dir
             def fastqDestPath = fastq.copyTo(destination_reads_dir)
-            log.debug "Copied fastq file ${fastq} --> ${fastqDestPath}"
+            log.info "Copied fastq file ${fastq} --> ${fastqDestPath}"
         }
 }
 
