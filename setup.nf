@@ -103,6 +103,12 @@ def captureFastqStemNameInfo(String stemName) {
 }
 
 
+/**
+ * Validate reads source directories.
+ *
+ * @param  readsSources The params.readsSources argument
+ * @return              A list of files to the paths specified in readsSources.
+ */
 def validateReadsSources(readsSources) {
     if (readsSources instanceof List) {
         // if readsSources is a list of strings, return a list containing file objects of those strings
