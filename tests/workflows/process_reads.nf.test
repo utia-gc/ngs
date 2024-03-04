@@ -41,6 +41,7 @@ nextflow_workflow {
                         file("${readsLane2.getR2()}")
                     ]
                 )
+                input[1] = file("${projectDir}/assets/NO_FILE")
                 """
             }
         }
@@ -114,6 +115,7 @@ nextflow_workflow {
                         file("${readsLane2.getR2()}")
                     ]
                 )
+                input[1] = file("${projectDir}/assets/NO_FILE")
                 """
             }
         }
@@ -187,6 +189,7 @@ nextflow_workflow {
                         file("${readsLane2.getR2()}")
                     ]
                 )
+                input[1] = file("${projectDir}/assets/NO_FILE")
                 """
             }
         }
@@ -260,6 +263,155 @@ nextflow_workflow {
                         file("${readsLane2.getR2()}")
                     ]
                 )
+                input[1] = file("${projectDir}/assets/NO_FILE")
+                """
+            }
+        }
+
+        then {
+            // test workflow status
+            assert workflow.success
+            assert workflow.trace.succeeded().size() == 2
+
+            // test read trimming and concatenation
+            with(workflow.out.reads_pre_align) {
+                assert size() == 2
+                with(get(0)) {
+                    assert size() == 3
+                    assert get(1) ==~ /^.*\/${readsLane1.getStemName()}_trimmed_R1.fastq.gz/
+                    assert get(2) ==~ /^.*\/${readsLane1.getStemName()}_trimmed_R2.fastq.gz/
+                }
+                with(get(1)) {
+                    assert size() == 3
+                    assert get(1) ==~ /^.*\/${readsLane2.getStemName()}_trimmed_R1.fastq.gz/
+                    assert get(2) ==~ /^.*\/${readsLane2.getStemName()}_trimmed_R2.fastq.gz/
+                }
+            }
+            assert snapshot(workflow.out.reads_pre_align).match()
+
+            // test read trimming log
+            with(workflow.out.trim_log) {
+                assert size() == 2
+                assert get(0) ==~ /^.*\/${readsLane1.getStemName()}_fastp.json/
+                assert get(1) ==~ /^.*\/${readsLane2.getStemName()}_fastp.json/
+            }
+        }
+
+    }
+
+
+    test("PROCESS_READS trims reads by default -- fastp + SE reads + adapter fasta.") {
+        // instantiate helper objects
+        def readsLane1 = new ReadsSELane1()
+        def readsLane2 = new ReadsSELane2()
+
+        when {
+            params {
+                publishDirReports = "${outputDir}/reports"
+                publishDirData    = "${outputDir}/data"
+                tools {
+                    trim = 'fastp'
+                }
+            }
+            workflow {
+                """
+                input[0] = Channel.of(
+                    [
+                        [
+                            sampleName:   "${readsLane1.getSampleName()}",
+                            sampleNumber: "${readsLane1.getSampleNumber()}",
+                            lane:         "${readsLane1.getLane()}",
+                            readType:     "${readsLane1.getReadType()}"
+                        ],
+                        file("${readsLane1.getR1()}"),
+                        file("${readsLane1.getR2()}")
+                    ],
+                    [
+                        [
+                            sampleName:   "${readsLane2.getSampleName()}",
+                            sampleNumber: "${readsLane2.getSampleNumber()}",
+                            lane:         "${readsLane2.getLane()}",
+                            readType:     "${readsLane2.getReadType()}"
+                        ],
+                        file("${readsLane2.getR1()}"),
+                        file("${readsLane2.getR2()}")
+                    ]
+                )
+                input[1] = file("${projectDir}/tests/assets/sample_adapters.fasta")
+                """
+            }
+        }
+
+        then {
+            // test workflow status
+            assert workflow.success
+            assert workflow.trace.succeeded().size() == 2
+
+            // test read trimming and concatenation
+            with(workflow.out.reads_pre_align) {
+                assert size() == 2
+                with(get(0)) {
+                    assert size() == 3
+                    assert get(1) ==~ /^.*\/${readsLane1.getStemName()}_trimmed_R1\.fastq\.gz/
+                    assert get(2) ==~ /^.*\/${readsLane1.getStemName()}_trimmed_R2\.NOFILE/
+                }
+                with(get(1)) {
+                    assert size() == 3
+                    assert get(1) ==~ /^.*\/${readsLane2.getStemName()}_trimmed_R1\.fastq\.gz/
+                    assert get(2) ==~ /^.*\/${readsLane2.getStemName()}_trimmed_R2\.NOFILE/
+                }
+            }
+            assert snapshot(workflow.out.reads_pre_align).match()
+
+            // test read trimming log
+            with(workflow.out.trim_log) {
+                assert size() == 2
+                assert get(0) ==~ /^.*\/${readsLane1.getStemName()}_fastp.json/
+                assert get(1) ==~ /^.*\/${readsLane2.getStemName()}_fastp.json/
+            }
+        }
+
+    }
+
+
+    test("PROCESS_READS trims reads by default -- fastp +  PE reads + adapter fasta.") {
+        // instantiate helper objects
+        def readsLane1 = new ReadsPELane1()
+        def readsLane2 = new ReadsPELane2()
+
+        when {
+            params {
+                publishDirReports = "${outputDir}/reports"
+                publishDirData    = "${outputDir}/data"
+                tools {
+                    trim = 'fastp'
+                }
+            }
+            workflow {
+                """
+                input[0] = Channel.of(
+                    [
+                        [
+                            sampleName:   "${readsLane1.getSampleName()}",
+                            sampleNumber: "${readsLane1.getSampleNumber()}",
+                            lane:         "${readsLane1.getLane()}",
+                            readType:     "${readsLane1.getReadType()}"
+                        ],
+                        file("${readsLane1.getR1()}"),
+                        file("${readsLane1.getR2()}")
+                    ],
+                    [
+                        [
+                            sampleName:   "${readsLane2.getSampleName()}",
+                            sampleNumber: "${readsLane2.getSampleNumber()}",
+                            lane:         "${readsLane2.getLane()}",
+                            readType:     "${readsLane2.getReadType()}"
+                        ],
+                        file("${readsLane2.getR1()}"),
+                        file("${readsLane2.getR2()}")
+                    ]
+                )
+                input[1] = file("${projectDir}/tests/assets/sample_adapters.fasta")
                 """
             }
         }

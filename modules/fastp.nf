@@ -15,6 +15,7 @@ process fastp {
 
     input:
         tuple val(metadata), path(reads1), path(reads2)
+        path adapterFasta
 
     output:
         tuple val(metadata), path("*_trimmed_R1.fastq.gz"), path("*_trimmed_R2{.fastq.gz,.NOFILE}"), emit: reads
@@ -35,6 +36,7 @@ process fastp {
                 --in1 ${reads1NewName} \
                 --out1 ${stemName}_trimmed_R1.fastq.gz \
                 --json ${stemName}_fastp.json \
+                --adapter_fasta ${adapterFasta} \\
                 ${args}
 
             cp ${reads2} ${stemName}_trimmed_R2.NOFILE
@@ -53,6 +55,7 @@ process fastp {
                 --out1 ${stemName}_trimmed_R1.fastq.gz \
                 --out2 ${stemName}_trimmed_R2.fastq.gz \
                 --json ${stemName}_fastp.json \
+                --adapter_fasta ${adapterFasta} \\
                 ${args}
             """
         }

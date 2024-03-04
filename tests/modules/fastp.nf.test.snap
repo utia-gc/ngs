@@ -1,4 +1,22 @@
 {
+    "fastp trims reads -- PE reads + adapter fasta": {
+        "content": [
+            [
+                [
+                    {
+                        "sampleName": "SRR6924569",
+                        "sampleNumber": "1",
+                        "lane": "001",
+                        "readType": "paired",
+                        "trimStatus": "raw"
+                    },
+                    "SRR6924569_L001_trimmed_R1.fastq.gz:md5,a26de658644febb1260fd56d2690c01c",
+                    "SRR6924569_L001_trimmed_R2.fastq.gz:md5,569eb9ca4d935f290fc1e4a88fa9433d"
+                ]
+            ]
+        ],
+        "timestamp": "2024-03-04T12:23:56.438949466"
+    },
     "fastp trims reads -- SE reads": {
         "content": [
             [
@@ -34,5 +52,23 @@
             ]
         ],
         "timestamp": "2023-10-31T13:44:54.751299753"
+    },
+    "fastp trims reads -- SE reads + adapter fasta": {
+        "content": [
+            [
+                [
+                    {
+                        "sampleName": "SRR1066657",
+                        "sampleNumber": "3",
+                        "lane": "001",
+                        "readType": "single",
+                        "trimStatus": "raw"
+                    },
+                    "SRR1066657_L001_trimmed_R1.fastq.gz:md5,4259524899c6389b75cf20739402e65c",
+                    "SRR1066657_L001_trimmed_R2.NOFILE:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ]
+            ]
+        ],
+        "timestamp": "2024-03-04T12:23:46.481046166"
     }
 }

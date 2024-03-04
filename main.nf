@@ -37,7 +37,10 @@ workflow {
     ch_genome_index = PREPARE_INPUTS.out.genome_index
     ch_annotations  = PREPARE_INPUTS.out.annotations
 
-    PROCESS_READS(ch_reads_raw)
+    PROCESS_READS(
+        ch_reads_raw,
+        file(params.adapterFasta)
+    )
     ch_reads_pre_align = PROCESS_READS.out.reads_pre_align
     ch_trim_log        = PROCESS_READS.out.trim_log
 

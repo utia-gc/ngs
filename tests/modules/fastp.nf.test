@@ -26,6 +26,7 @@ nextflow_process {
                     file("${readsLane1.getR1()}"),
                     file("${readsLane1.getR2()}")
                 ]
+                input[1] = file("${projectDir}/assets/NO_FILE")
                 """
             }
         }
@@ -76,9 +77,115 @@ nextflow_process {
                         file("${readsLane1.getR1()}"),
                         file("${readsLane1.getR2()}")
                 ]
+                input[1] = file("${projectDir}/assets/NO_FILE")
                 """
             }
         }
+
+        then {
+            // test process success
+            assert process.success
+
+            // test trimmed fastqs
+            with(process.out.reads) {
+                assert size() == 1
+                with(get(0)) {
+                    assert get(1) ==~ /^.*\/${readsLane1.getStemName()}_trimmed_R1.fastq.gz/
+                    assert get(2) ==~ /^.*\/${readsLane1.getStemName()}_trimmed_R2.fastq.gz/
+                }
+            }
+            // test trim log
+            with(process.out.log) {
+                assert size() == 1
+                assert get(0) ==~ /^.*\/${readsLane1.getStemName()}_fastp.json/
+            }
+
+            // test trimmed fastq reproducibility
+            assert snapshot(process.out.reads).match()
+        }
+
+    }
+
+
+    test("fastp trims reads -- SE reads + adapter fasta") {
+        // instantiate helper objects
+        def readsLane1 = new ReadsSELane1()
+
+        when {
+            params {
+                publishDirReports = "${outputDir}/reports"
+                publishDirData    = "${outputDir}/data"
+            }
+            process {
+                """
+                input[0] = [
+                    [
+                        sampleName:   "${readsLane1.getSampleName()}",
+                        sampleNumber: "${readsLane1.getSampleNumber()}",
+                        lane:         "${readsLane1.getLane()}",
+                        readType:     "${readsLane1.getReadType()}",
+                        trimStatus:   "raw",
+                    ],
+                    file("${readsLane1.getR1()}"),
+                    file("${readsLane1.getR2()}")
+                ]
+                input[1] = file("${projectDir}/tests/assets/sample_adapters.fasta")
+                """
+            }
+        }
+
+        then {
+            // test process success
+            assert process.success
+
+            // test trimmed fastqs
+            with(process.out.reads) {
+                assert size() == 1
+                with(get(0)) {
+                    assert get(1) ==~ /^.*\/${readsLane1.getStemName()}_trimmed_R1\.fastq\.gz/
+                    assert get(2) ==~ /^.*\/${readsLane1.getStemName()}_trimmed_R2\.NOFILE/
+                }
+            }
+            // test trim log
+            with(process.out.log) {
+                assert size() == 1
+                assert get(0) ==~ /^.*\/${readsLane1.getStemName()}_fastp.json/
+            }
+
+            // test trimmed fastq reproducibility
+            assert snapshot(process.out.reads).match()
+        }
+
+    }
+
+
+    test("fastp trims reads -- PE reads + adapter fasta") {
+        // instantiate helper objects
+        def readsLane1 = new ReadsPELane1()
+
+        when {
+            params {
+                publishDirReports = "${outputDir}/reports"
+                publishDirData    = "${outputDir}/data"
+            }
+            process {
+                """
+                input[0] = [
+                    [
+                        sampleName:   "${readsLane1.getSampleName()}",
+                        sampleNumber: "${readsLane1.getSampleNumber()}",
+                        lane:         "${readsLane1.getLane()}",
+                        readType:     "${readsLane1.getReadType()}",
+                        trimStatus:   "raw",
+                    ],
+                        file("${readsLane1.getR1()}"),
+                        file("${readsLane1.getR2()}")
+                ]
+                input[1] = file("${projectDir}/tests/assets/sample_adapters.fasta")
+                """
+            }
+        }
+
 
         then {
             // test process success

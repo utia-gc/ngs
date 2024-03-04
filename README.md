@@ -20,6 +20,10 @@ While `utia-gc/ngs` can be run on any platform supported by Nextflow, it is deve
 flowchart LR
     %% list all the input files
     samplesheet>"Samplesheet"]
+    adapter_fasta>"
+        Adapter
+        Fasta
+    "]
     genome_fasta>"
         Genome
         FASTA
@@ -90,6 +94,7 @@ flowchart LR
     %% list all subgraphs for Nextflow subworkflows/workflows with options
     subgraph inputs["Input Files"]
     samplesheet
+    adapter_fasta
     genome_fasta
     annotations_gtf
     end
@@ -130,6 +135,7 @@ flowchart LR
 
     %% reads processing workflow
     samplesheet --> raw_reads
+    adapter_fasta --- fastp
     raw_reads --- trim_reads --> prealign_reads
 
     %% reads QC workflow
