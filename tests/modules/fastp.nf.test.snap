@@ -10,12 +10,12 @@
                         "readType": "paired",
                         "trimStatus": "raw"
                     },
-                    "SRR6924569_L001_trimmed_R1.fastq.gz:md5,d9b32e10291c7cbc06c1497b55df8b47",
-                    "SRR6924569_L001_trimmed_R2.fastq.gz:md5,9985305f9337ba7b778f2358af193ca1"
+                    "SRR6924569_L001_trimmed_R1.fastq.gz:md5,a26de658644febb1260fd56d2690c01c",
+                    "SRR6924569_L001_trimmed_R2.fastq.gz:md5,569eb9ca4d935f290fc1e4a88fa9433d"
                 ]
             ]
         ],
-        "timestamp": "2024-03-04T11:54:37.498321514"
+        "timestamp": "2024-03-04T12:23:56.438949466"
     },
     "fastp trims reads -- SE reads": {
         "content": [
@@ -64,11 +64,11 @@
                         "readType": "single",
                         "trimStatus": "raw"
                     },
-                    "SRR1066657_L001_trimmed_R1.fastq.gz:md5,350fd1934d6b16373803945cc8fd3f28",
+                    "SRR1066657_L001_trimmed_R1.fastq.gz:md5,4259524899c6389b75cf20739402e65c",
                     "SRR1066657_L001_trimmed_R2.NOFILE:md5,d41d8cd98f00b204e9800998ecf8427e"
                 ]
             ]
         ],
-        "timestamp": "2024-03-04T11:54:28.450360668"
+        "timestamp": "2024-03-04T12:23:46.481046166"
     }
 }

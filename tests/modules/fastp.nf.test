@@ -129,7 +129,7 @@ nextflow_process {
                     file("${readsLane1.getR1()}"),
                     file("${readsLane1.getR2()}")
                 ]
-                input[1] = file("${projectDir}/assets/homopolymers.fasta")
+                input[1] = file("${projectDir}/tests/assets/sample_adapters.fasta")
                 """
             }
         }
@@ -181,7 +181,7 @@ nextflow_process {
                         file("${readsLane1.getR1()}"),
                         file("${readsLane1.getR2()}")
                 ]
-                input[1] = file("${projectDir}/assets/homopolymers.fasta")
+                input[1] = file("${projectDir}/tests/assets/sample_adapters.fasta")
                 """
             }
         }

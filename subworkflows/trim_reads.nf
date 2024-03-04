@@ -24,7 +24,10 @@ workflow Trim_Reads {
                 break
 
             case Tools.Trim.FASTP:
-                fastp(reads_raw)
+                fastp(
+                    reads_raw,
+                    file(params.adapterFasta)
+                )
                 ch_reads_trim = fastp.out.reads
                 ch_trim_log   = fastp.out.log
                 break
