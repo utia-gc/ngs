@@ -9,6 +9,7 @@ workflow Trim_Reads {
     take:
         reads_raw
         trim_tool
+        adapter_fasta
 
     main:
         switch( Tools.Trim.valueOf(trim_tool.toUpperCase()) ) {
@@ -26,7 +27,7 @@ workflow Trim_Reads {
             case Tools.Trim.FASTP:
                 fastp(
                     reads_raw,
-                    file(params.adapterFasta)
+                    adapter_fasta
                 )
                 ch_reads_trim = fastp.out.reads
                 ch_trim_log   = fastp.out.log

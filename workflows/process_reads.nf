@@ -8,12 +8,14 @@ include { Trim_Reads } from "../subworkflows/trim_reads.nf"
 workflow PROCESS_READS {
     take:
         reads_raw
+        adapter_fasta
 
     main:
         if(!params.skipTrimReads) {
             Trim_Reads(
                 reads_raw,
-                params.tools.trim
+                params.tools.trim,
+                adapter_fasta
             )
             ch_reads_post_trim = Trim_Reads.out.reads_trim
             ch_trim_log        = Trim_Reads.out.trim_log
