@@ -34,6 +34,7 @@ workflow {
     )
 }
 
+
 workflow COPY_READS {
     take:
         source_reads_dirs
@@ -51,12 +52,18 @@ workflow COPY_READS {
         // iterate through all fastq.gz files in source directories
         source_reads_dirs.each { sourceReadsDir ->
             sourceReadsDir.eachFileMatch(~/.*(${combinedPatterns}).*\.fastq\.gz/) { fastq ->
-                // copy files to copy dir
-                def fastqDestPath = fastq.copyTo(destination_reads_dir)
-                log.info "Copied fastq file ${fastq} --> ${fastqDestPath}"
+                // copy fastq file to destination directory if it does not already exist in the destination directory
+                if (isExtantInDestination(fastq, destination_reads_dir)) {
+                    log.info "fastq file '${fastq}' already exists in '${destination_reads_dir}'. Did not copy."
+                    return
+                } else {
+                    def fastqDestPath = fastq.copyTo(destination_reads_dir)
+                    log.info "Copied fastq file '${fastq}' --> '${fastqDestPath}'"
+                }
             }
         }
 }
+
 
 workflow WRITE_SAMPLESHEET {
     take:
@@ -85,6 +92,7 @@ workflow WRITE_SAMPLESHEET {
                 seed: 'sampleName,lane,reads1,reads2'
             )
 }
+
 
 def captureFastqStemNameInfo(String stemName) {
     def capturePattern = /(.*)_S(\d+)_L(\d{3})/
@@ -125,4 +133,16 @@ def validateReadsSources(readsSources) {
         // if readsSources is neither a list of strings nor a string, throw an expection
         throw new IllegalArgumentException("params.readsSources must be a list of valid paths or a single valid path.")
     }
+}
+
+
+/**
+ * Does a source file already exist in a destination directory?
+ *
+ * @param sourceFile     The file to be checked for existence.
+ * @param destinationDir The desination directory to check for the source file name.
+ * @return               `true` if the source file exists in the destination directory.
+ */
+boolean isExtantInDestination(sourceFile, destinationDir) {
+    return destinationDir.resolve(sourceFile.name).exists()
 }
