@@ -27,4 +27,4 @@ nextflow run utia-gc/ngs \
     -main-script setup.nf \
     -revision main \
     -profile condo_trowan1 \
-    -params-file src/nextflow/params_setup.yaml
+    -params-file config/params_setup.yaml
