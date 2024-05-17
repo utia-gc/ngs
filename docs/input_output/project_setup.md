@@ -32,13 +32,13 @@ However, we highly recommended using both tools in the two simple steps outline 
 
 1. Setup the project directory from the pipeline repo with Cookiecutter:
 
-    ```bash
+    ``` bash title="Terminal"
     cookiecutter gh:utia-gc/ngs --directory cookiecutter --checkout main
     ```
 
 2. Run the project setup Nextflow script:
 
-    ```bash
+    ```bash title="Terminal"
     nextflow run utia-gc/ngs -main-script setup.nf -revision main -params-file src/nextflow/setup_params.yaml
     ```
 
@@ -52,7 +52,7 @@ We recommend following the installation instructions using pip inside a virtual 
 
 2. Setup the project directory from the pipeline repo with Cookiecutter:
 
-    ```bash
+    ``` bash title="Terminal"
     cookiecutter gh:utia-gc/ngs --directory cookiecutter --checkout main
     ```
 
@@ -62,12 +62,12 @@ We recommend following the installation instructions using pip inside a virtual 
 
 1. Install or update the latest pipeline revision:
 
-    ```bash
+    ``` bash title="Terminal"
     nextflow pull utia-gc/ngs
     ```
 
 2. Run the project setup Nextflow script:
 
-    ```bash
+    ``` bash title="Terminal"
     nextflow run utia-gc/ngs -main-script setup.nf -revision main -params-file src/nextflow/setup_params.yaml
     ```

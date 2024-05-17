@@ -44,9 +44,7 @@ You can see an example of how the default and dynamic arguments are specified in
 Let's use an example to demonstrate how to specify arguments -- the same example as the read counting tool from above.
 In this example, the pipeline has the following builtin arguments in a configuration file:
 
-##### `args.config`
-
-```nextflow
+``` groovy title="pipeline_dir/conf/args.config"
 process {
     withName: 'foo' {
         ext.argsDefault = [
@@ -61,11 +59,9 @@ process {
 }
 ```
 
-The user can then specify their own arguments by adding arguments to their own user configuration file:
+The user can then specify their own arguments by adding arguments in their user configuration file:
 
-##### `nextflow.config`
-
-```nextflow
+``` groovy title="nextflow.config"
 process {
     withName: 'foo' {
         ext.argsUser = [

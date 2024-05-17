@@ -18,7 +18,7 @@ This serves the dual purpose of saving time by not repeating logged tasks while 
 
 During exploratory analysis, iteratively make changes to parameters and run the pipeline with the `exploratory` profile:
 
-```bash
+``` bash title="Terminal"
 nextflow run utia-gc/ngs \
    -revision main \
    -profile exploratory
@@ -26,7 +26,7 @@ nextflow run utia-gc/ngs \
 
 Once you have settled on an optimal set of parameters, rerun the pipeline without the `exploratory` profile:
 
-```bash
+``` bash title="Terminal"
 nextflow run utia-gc/ngs \
    -revision main \
    -resume
@@ -36,7 +36,7 @@ Useful tip --- if a specific previous run contained the user's optimal set of pa
 Use `nextflow log` to view information about previous runs.
 For example, to resume from a run named 'boring_euler':
 
-```bash
+``` bash title="Terminal"
 nextflow run utia-gc/ngs \
    -revision main \
    -resume boring_euler
