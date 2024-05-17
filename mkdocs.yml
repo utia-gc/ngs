@@ -4,7 +4,7 @@ repo_url: https://github.com/utia-gc/ngs
 edit_uri: edit/main/docs
 
 nav:
-  - 'index.md'
+  - 'Home': 'index.md'
   - 'Input / Output':
     - 'input_output/index.md'
     - 'input_output/project_setup.md'

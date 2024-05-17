@@ -1,20 +1,4 @@
----
-title: Project setup
-layout: default
-parent: Input / Output
----
-
 # Project setup
-{: .no_toc }
-
-<details open markdown="block">
-  <summary>
-    Table of contents
-  </summary>
-  {: .text-delta }
-- TOC
-{:toc}
-</details>
 
 ## Problem
 

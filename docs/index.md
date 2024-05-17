@@ -1,9 +1,3 @@
----
-title: Home
-layout: home
-nav_order: 1
----
-
 # `utia-gc/ngs`
 
 Welcome to the [utia-gc/ngs](https://github.com/utia-gc/ngs) documentation!
