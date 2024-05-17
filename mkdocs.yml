@@ -20,9 +20,17 @@ theme:
         name: Switch to light mode
 
   features:
+    # Navigation features: https://squidfunk.github.io/mkdocs-material/setup/setting-up-navigation/
     - navigation.tracking
     - navigation.tabs
     - navigation.path
     - navigation.indexes
     - toc.follow
     - navigation.top
+
+    # Site search features: https://squidfunk.github.io/mkdocs-material/setup/setting-up-site-search/
+    - search.highlight
+    - search.share
+
+plugins:
+  - search
