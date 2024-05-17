@@ -54,6 +54,10 @@ theme:
     - content.action.edit
     - content.action.view
 
+    # Code blocks: https://squidfunk.github.io/mkdocs-material/reference/code-blocks/#code-blocks
+    - content.code.copy
+    - content.code.annotate
+
   icon:
     repo: fontawesome/brands/github
     edit: material/pencil
@@ -61,3 +65,13 @@ theme:
 
 plugins:
   - search
+
+markdown_extensions:
+  # Enable code syntax highlighting and source code inclusion from other files
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
