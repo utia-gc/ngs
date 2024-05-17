@@ -1,4 +1,6 @@
 site_name: utia-gc/ngs
+site_url: https://utia-gc.github.io/ngs/
+
 theme:
   name: material
 
@@ -16,3 +18,6 @@ theme:
       toggle:
         icon: material/brightness-4
         name: Switch to light mode
+
+  features:
+    - navigation.indexes

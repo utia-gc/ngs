@@ -19,7 +19,7 @@ Finally, we will give direction as to how the user can make use of our solution 
 
 ## Questions
 
-### [Input / Output](input_output/input_output.md)
+### [Input / Output](input_output/index.md)
 
 - [What params do I need to run the pipeline?](input_output/required_params.md)
 
@@ -29,13 +29,13 @@ Finally, we will give direction as to how the user can make use of our solution 
 
 - [How should I setup my project?](input_output/project_setup.md)
 
-### [Pipeline Configuration](pipeline_config/pipeline_config.md)
+### [Pipeline Configuration](pipeline_config/index.md)
 
 - [How do I run a step of the pipeline with the command line arguments that I want to use?](pipeline_config/arguments_to_processes.md)
 
 - [How do I make it easier to try out and evaluate new params or arguments?](pipeline_config/exploratory_profile.md)
 
-### [Contribute](contribute/contribute.md)
+### [Contribute](contribute/index.md)
 
 - [How can I contribute to the pipeline code or documentation?](contribute/development.md)
 
