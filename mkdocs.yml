@@ -1,5 +1,7 @@
 site_name: utia-gc/ngs
 site_url: https://utia-gc.github.io/ngs/
+repo_url: https://github.com/utia-gc/ngs
+edit_uri: edit/main/docs
 
 theme:
   name: material
@@ -31,6 +33,15 @@ theme:
     # Site search features: https://squidfunk.github.io/mkdocs-material/setup/setting-up-site-search/
     - search.highlight
     - search.share
+
+    # Code actions: https://squidfunk.github.io/mkdocs-material/setup/adding-a-git-repository/#code-actions
+    - content.action.edit
+    - content.action.view
+
+  icon:
+    repo: fontawesome/brands/github
+    edit: material/pencil
+    view: material/eye
 
 plugins:
   - search
