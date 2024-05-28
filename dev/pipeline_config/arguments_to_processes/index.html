@@ -18,7 +18,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.24">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.25">
     
     
       
@@ -946,7 +946,7 @@ This allows each process to have its own set of arguments that can easily be spe
 <h3 id="how-to-specify-arguments">How to specify arguments</h3>
 <p>Let's use an example to demonstrate how to specify arguments -- the same example as the read counting tool from above.
 In this example, the pipeline has the following builtin arguments in a configuration file:</p>
-<div class="language-groovy highlight"><span class="filename">pipeline_dir/conf/args.config</span><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">process</span><span class="w"> </span><span class="o">{</span>
+<div class="language-groovy highlight"><span class="filename">pipeline-directory/conf/args.config</span><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">process</span><span class="w"> </span><span class="o">{</span>
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="nl">withName:</span><span class="w"> </span><span class="s1">&#39;foo&#39;</span><span class="w"> </span><span class="o">{</span>
 </span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">        </span><span class="n">ext</span><span class="o">.</span><span class="na">argsDefault</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span>
 </span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">            </span><span class="s1">&#39;--ends&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;single&#39;</span><span class="o">,</span>
