@@ -1,6 +1,6 @@
-# `utia-gc/ngs`
+# `{{ pipeline.name }}`
 
-Welcome to the [utia-gc/ngs](https://github.com/utia-gc/ngs) documentation!
+Welcome to the [{{ pipeline.name }}](https://github.com/utia-gc/ngs) documentation!
 
 ## Structure of the docs
 

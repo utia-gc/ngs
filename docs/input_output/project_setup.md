@@ -5,7 +5,7 @@
 How should I setup my project?
 
 Many bioinformatics pipelines tend to work best when projects are setup in a specific manner, i.e. when certain files are present and when there is a specific directory structure.
-This is not the case for `utia-gc/ngs` and pipelines built on `utia-gc/ngs`.
+This is not the case for `{{ pipeline.name }}` and pipelines built on `utia-gc/ngs`.
 The pipeline does not assume or require any default directory structure or locations for specific files -- these are all supplied at runtime as [params or config options](required_params.md).
 Ironically, we find that not requiring a specific project setup leads many of us with a new issue -- if all the required inputs can go anywhere, then what's a good place to put them?
 
@@ -33,13 +33,16 @@ However, we highly recommended using both tools in the two simple steps outline 
 1. Setup the project directory from the pipeline repo with Cookiecutter:
 
     ``` bash title="Terminal"
-    cookiecutter gh:utia-gc/ngs --directory cookiecutter --checkout main
+    cookiecutter gh:{{ pipeline.name }} --directory cookiecutter --checkout {{ pipeline.revision }}
     ```
 
 2. Run the project setup Nextflow script:
 
     ```bash title="Terminal"
-    nextflow run utia-gc/ngs -main-script setup.nf -revision main -params-file src/nextflow/setup_params.yaml
+    nextflow run {{ pipeline.name }} \
+        -main-script setup.nf \
+        -revision {{ pipeline.revision }} \
+        -params-file src/nextflow/setup_params.yaml
     ```
 
 ### Cookiecutter project template
@@ -53,7 +56,7 @@ We recommend following the installation instructions using pip inside a virtual 
 2. Setup the project directory from the pipeline repo with Cookiecutter:
 
     ``` bash title="Terminal"
-    cookiecutter gh:utia-gc/ngs --directory cookiecutter --checkout main
+    cookiecutter gh:{{ pipeline.name }} --directory cookiecutter --checkout {{ pipeline.revision }}
     ```
 
     Simply follow the prompts and your project directory will be created.
@@ -63,11 +66,14 @@ We recommend following the installation instructions using pip inside a virtual 
 1. Install or update the latest pipeline revision:
 
     ``` bash title="Terminal"
-    nextflow pull utia-gc/ngs
+    nextflow pull {{ pipeline.name }}
     ```
 
 2. Run the project setup Nextflow script:
 
     ``` bash title="Terminal"
-    nextflow run utia-gc/ngs -main-script setup.nf -revision main -params-file src/nextflow/setup_params.yaml
+    nextflow run {{ pipeline.name }} \
+        -main-script setup.nf \
+        -revision {{ pipeline.revision }} \
+        -params-file src/nextflow/setup_params.yaml
     ```

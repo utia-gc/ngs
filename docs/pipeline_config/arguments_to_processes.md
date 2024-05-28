@@ -5,7 +5,7 @@
 How do I run a step of the pipeline with the command line arguments that I want to use?
 
 Bioinformatics pipelines should have reasonable default arguments but ultimately be fully configurable by the user.
-We have designed `utia-gc/ngs` and pipelines built on `utia-gc/ngs` to make handling command line arguments user-friendly, predictable, and robust.
+We have designed `{{ pipeline.name }}` and pipelines built on `utia-gc/ngs` to make handling command line arguments user-friendly, predictable, and robust.
 
 ## Solution
 
@@ -15,7 +15,7 @@ We identified three levels at which configurable process-level arguments should 
 2. *Dynamic arguments* -- Arguments determined by the pipeline at runtime. For example, a user analyzing an RNA-seq experiment where libraries are a mix of single-end and paired-end reads may want their pipeline run's read counting step to run in single- or paired-end mode depending on the type of library provided.
 3. *User arguments* -- Arguments specified by the user.
 
-A key consideration built in to `utia-gc/ngs` is that arguments at each successive level should add to the arguments of the level above it, and if the same argument is supplied at multiple levels, the lower level should take precedence.
+A key consideration built in to `{{ pipeline.name }}` is that arguments at each successive level should add to the arguments of the level above it, and if the same argument is supplied at multiple levels, the lower level should take precedence.
 Concretely, the order of precedence is as follows: user > dynamic > default.
 
 To illustrate this idea, consider a process for counting reads within features using a made up tool.
@@ -44,7 +44,7 @@ You can see an example of how the default and dynamic arguments are specified in
 Let's use an example to demonstrate how to specify arguments -- the same example as the read counting tool from above.
 In this example, the pipeline has the following builtin arguments in a configuration file:
 
-``` groovy title="pipeline_dir/conf/args.config"
+``` groovy title="pipeline-directory/conf/args.config"
 process {
     withName: 'foo' {
         ext.argsDefault = [
@@ -73,7 +73,7 @@ process {
 }
 ```
 
-As stated above, `utia-gc/ngs` solves this collection of arguments (and transforms the `Map` to a `String` for its use in the command) so that the arguments that are finally used in the command are: `'--ends paired --verbose 2 --stranded 0 --feature exon'`.
+As stated above, `{{ pipeline.name }}` solves this collection of arguments (and transforms the `Map` to a `String` for its use in the command) so that the arguments that are finally used in the command are: `'--ends paired --verbose 2 --stranded 0 --feature exon'`.
 
 Note (as explained further below) that because of the dynamic arguments, this is true for the case in which `metadata.readType == 'paired'`.
 If `metadata.readType == 'single'`, then the arguments would be solved as: `'--ends single --verbose 2 --stranded 0 --feature exon'`.

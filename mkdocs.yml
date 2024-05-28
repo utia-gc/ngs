@@ -74,6 +74,7 @@ plugins:
       version_selector: true
       css_dir: css
       javascript_dir: js
+  - macros
 
 markdown_extensions:
   # Enable code syntax highlighting and source code inclusion from other files
@@ -86,6 +87,9 @@ markdown_extensions:
   - pymdownx.superfences
 
 extra:
+  pipeline:
+    name: utia-gc/ngs
+    revision: main
   version:
     provider: mike
     alias: true
