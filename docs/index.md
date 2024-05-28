@@ -1,6 +1,6 @@
 # `{{ pipeline.name }}`
 
-Welcome to the [`{{ pipeline.name }}`](https://github.com/utia-gc/ngs) documentation!
+Welcome to the [`{{ pipeline.name }}`][repo_home] documentation!
 
 ## Structure of the docs
 
@@ -36,7 +36,10 @@ Finally, we will give direction as to how the user can make use of our solution 
 ## Problems with code and docs
 
 Since these docs are written and maintained by the pipeline developers, there will be many great questions from the users that need answers but which we haven't thought of asking.
-In this case, please open a new issue in the [main repo issues page](https://github.com/utia-gc/ngs/issues) so that we can make sure the pipeline is useful to and usable by everyone.
+In this case, please open a new issue in the [main repo issues page][repo_issues] so that we can make sure the pipeline is useful to and usable by everyone.
 There is no such thing as a dumb question!
 
 We also kindly ask that you report any bugs you may come across and make any feature requests in the issues page as well.
+
+[repo_home]: https://github.com/utia-gc/ngs
+[repo_issues]: https://github.com/utia-gc/ngs/issues

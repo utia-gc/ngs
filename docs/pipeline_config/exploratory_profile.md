@@ -8,7 +8,7 @@ To help facilitate this crucial process, we have included an `exploratory` profi
 - Data and reports are published within time-stamped subdirectories of `exploratory` structured as follows: `<current working directory>/exploratory/<timestamp>_<project title>`. This allows the user to see a chronological log of their changes and gives the option to put a brief description of changes in the project title.
 - Results are published as symbolic links as opposed to the default behavior of copying published results. This prevents the user's working directory from being bloated with duplicates of data.
 - Sets the `-resume` flag in Nextflow through the profile so that it does not need to be supplied at the command line. This allows for faster iteration and exploration as results from intensive processes are used from their cached location instead of being reproduced.
-For more info on Nextflow's resume feature, checkout these articles on [demistifying](https://www.nextflow.io/blog/2019/demystifying-nextflow-resume.html) and [troubleshooting](https://www.nextflow.io/blog/2019/troubleshooting-nextflow-resume.html) Nextflow resume.
+For more info on Nextflow's resume feature, checkout these articles on [demistifying][demistifying_resume] and [troubleshooting][troubleshooting_resume] Nextflow resume.
 
 Once the user finishes exploring and has decided on a final set of parameters, those parameters should be specified during an explicitly resumed run of the pipeline without the `exploratory` profile.
 By default this will rerun the pipeline and publish results by copying them into the user's specified data and report publishing directories (see [output documentation](../input_output/outputs.md)).
@@ -41,3 +41,6 @@ nextflow run {{ pipeline.name }} \
    -revision {{ pipeline.revision }} \
    -resume boring_euler
 ```
+
+[demistifying_resume]: https://www.nextflow.io/blog/2019/demystifying-nextflow-resume.html
+[troubleshooting_resume]: https://www.nextflow.io/blog/2019/troubleshooting-nextflow-resume.html

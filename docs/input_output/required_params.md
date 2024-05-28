@@ -12,11 +12,9 @@ We have designed `{{ pipeline.name }}` and pipelines built on `utia-gc/ngs` to r
 We identified a few types of information that users must supply to be able to run the pipeline:
 
 * Input sample files
-  * `samplesheet` -- Sample files and metadata [formatted as a structured CSV file][samplesheet_format].
+  * `samplesheet` -- Sample files and metadata [formatted as a structured CSV file](./samplesheet_format.md)
 * Reference assembly information
   * `genome` -- A URL or path to a reference genome fasta file. May be gzip compressed.
   * `annotations` -- A URL path to a reference annotations GTF file. May be gzip compressed.
 
 ## Usage
-
-[samplesheet_format]: ./samplesheet_format.md
