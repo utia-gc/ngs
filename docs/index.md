@@ -13,6 +13,8 @@ Finally, we will give direction as to how the user can make use of our solution 
 
 ## Questions
 
+### [Quick Start](./quick_start/index.md)
+
 ### [Input / Output](input_output/index.md)
 
 - [What params do I need to run the pipeline?](input_output/required_params.md)

@@ -3,6 +3,24 @@ nextflow_pipeline {
     name "Test Workflow main.nf"
     script "main.nf"
 
+    test("main.nf prints help message") {
+        tag "nf-schema"
+
+        when {
+            params {
+                publishDirReports = "${outputDir}/reports"
+                publishDirData    = "${outputDir}/data"
+                help              = true
+            }
+        }
+
+        then {
+            // It doesn't seem like nf-test supports testing against text printed by log.info, so for now just check that exit code is 0 (workflow succeeds) and no tasks are executed.
+            assert workflow.success
+            assert workflow.trace.succeeded().size() == 0
+        }
+    }
+
     test("main.nf fails -- no input samplesheet.") {
         tag "validate"
 
