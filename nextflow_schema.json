@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/utia-gc/ngs/master/nextflow_schema.json",
+  "title": "utia-gc/ngs pipeline parameters",
+  "description": "A Nextflow pipeline for base NGS analysis.",
+  "type": "object",
+  "properties": {
+    "publishDirData": {
+      "type": "string",
+      "default": "/home/tfreem10/pipelines/ngs/data"
+    },
+    "publishDirReports": {
+      "type": "string",
+      "default": "/home/tfreem10/pipelines/ngs/reports"
+    },
+    "publishMode": {
+      "type": "string",
+      "default": "copy"
+    },
+    "adapterFasta": {
+      "type": "string",
+      "default": "/home/tfreem10/pipelines/ngs/assets/NO_FILE"
+    },
+    "r1_adapter": {
+      "type": "string",
+      "default": "AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGT"
+    },
+    "r2_adapter": {
+      "type": "string",
+      "default": "AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC"
+    },
+    "minimum_length": {
+      "type": "integer",
+      "default": 30
+    },
+    "skipTrimReads": {
+      "type": "boolean"
+    }
+  }
+}
