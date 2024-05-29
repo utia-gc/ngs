@@ -5,6 +5,18 @@
   "description": "A Nextflow pipeline for base NGS analysis.",
   "type": "object",
   "properties": {
+    "projectTitle": {
+      "type": "string"
+    },
+    "samplesheet": {
+      "type": "string"
+    },
+    "genome": {
+      "type": "string"
+    },
+    "annotations": {
+      "type": "string"
+    },
     "publishDirData": {
       "type": "string",
       "default": "/home/tfreem10/pipelines/ngs/data"
