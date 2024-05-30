@@ -18,7 +18,7 @@ A Nextflow pipeline for base NGS analysis.
 
 | Parameter | Description | Type | Default | Required | Hidden |
 |-----------|-----------|-----------|-----------|-----------|-----------|
-| `adapterFasta` | Fasta file of adapters for read trimming. | `string` | ${projectDir}/assets/NO_FILE |  |  |
+| `adapterFasta` | Fasta file of adapters for read trimming. <details><summary>Help</summary><small>`cutadapt` does not currently work with an adapter fasta file.</small></details>| `string` | ${projectDir}/assets/NO_FILE |  |  |
 
 ## Skip steps options
 

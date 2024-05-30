@@ -4,7 +4,7 @@
   "title": "utia-gc/ngs pipeline parameters",
   "description": "A Nextflow pipeline for base NGS analysis.",
   "type": "object",
-  "defs": {
+  "definitions": {
     "input_output_options": {
       "title": "Input/output options",
       "type": "object",
@@ -68,7 +68,8 @@
         "adapterFasta": {
           "type": "string",
           "default": "${projectDir}/assets/NO_FILE",
-          "description": "Fasta file of adapters for read trimming."
+          "description": "Fasta file of adapters for read trimming.",
+          "help_text": "`cutadapt` does not currently work with an adapter fasta file."
         }
       }
     },
@@ -87,13 +88,13 @@
   },
   "allOf": [
     {
-      "$ref": "#/defs/input_output_options"
+      "$ref": "#/definitions/input_output_options"
     },
     {
-      "$ref": "#/defs/read_trim_filter_options"
+      "$ref": "#/definitions/read_trim_filter_options"
     },
     {
-      "$ref": "#/defs/skip_steps_options"
+      "$ref": "#/definitions/skip_steps_options"
     }
   ]
 }
