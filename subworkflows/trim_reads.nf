@@ -15,10 +15,7 @@ workflow Trim_Reads {
         switch( Tools.Trim.valueOf(trim_tool.toUpperCase()) ) {
             case Tools.Trim.CUTADAPT:
                 cutadapt(
-                    reads_raw,
-                    params.r1_adapter,
-                    params.r2_adapter,
-                    params.minimum_length
+                    reads_raw
                 )
                 ch_reads_trim = cutadapt.out.reads
                 ch_trim_log   = cutadapt.out.log

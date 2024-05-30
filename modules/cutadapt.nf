@@ -15,9 +15,6 @@ process cutadapt {
 
     input:
         tuple val(metadata), path(reads1), path(reads2)
-        val r1_adapter
-        val r2_adapter
-        val minimum_length
 
     output:
         tuple val(metadata), path("*_trimmed_R1.fastq.gz"), path("*_trimmed_R2{.fastq.gz,.NOFILE}"), emit: reads
@@ -35,8 +32,6 @@ process cutadapt {
 
             cutadapt \
                 --cores ${task.cpus} \
-                -a ${r1_adapter} \
-                -m ${minimum_length} \
                 -o ${stemName}_trimmed_R1.fastq.gz \
                 ${args} \
                 ${reads1NewName} \
@@ -53,9 +48,6 @@ process cutadapt {
 
             cutadapt \
                 --cores ${task.cpus} \
-                -a ${r1_adapter} \
-                -A ${r2_adapter} \
-                -m ${minimum_length} \
                 -o ${stemName}_trimmed_R1.fastq.gz \
                 -p ${stemName}_trimmed_R2.fastq.gz \
                 ${args} \
