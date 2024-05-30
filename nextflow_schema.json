@@ -5,110 +5,95 @@
   "description": "A Nextflow pipeline for base NGS analysis.",
   "type": "object",
   "defs": {
-      "input_output_options": {
-          "title": "Input/output options",
-          "type": "object",
-          "description": "",
-          "default": "",
-          "properties": {
-              "projectTitle": {
-                  "type": "string",
-                  "description": "A short title for the project. Used in naming files/directories.",
-                  "pattern": "^\\S+$"
-              },
-              "samplesheet": {
-                  "type": "string",
-                  "description": "Path to input samplesheet in CSV format.",
-                  "pattern": "^\\S+\\.csv$"
-              },
-              "genome": {
-                  "type": "string",
-                  "description": "A path or URL to the reference genome sequence file in fasta format.",
-                  "help_text": "For reasons of reproducibility and portability we recommend using direct links to reference genome sequence files available through repositories such as RefSeq and Ensembl."
-              },
-              "annotations": {
-                  "type": "string",
-                  "description": "A path or URL to the reference genome annotations file in GTF format.",
-                  "help_text": "For reasons of reproducibility and portability we recommend using direct links to reference annotation files available through repositories such as RefSeq and Ensembl."
-              },
-              "publishDirData": {
-                  "type": "string",
-                  "default": "${launchDir}/data",
-                  "description": "Base directory in which output data files will be published.",
-                  "help_text": "We think of this pipeline as producing as producing two main types of output: data and reports. Data files are raw or processed files that are used for generating results and insights. They typically are not immediately interpretable by humans and often are not even human readable.\n\nExamples of data files would include raw fastq files, mappings in BAM format, tables of read counts within genes."
-              },
-              "publishDirReports": {
-                  "type": "string",
-                  "default": "${launchDir}/reports",
-                  "description": "Base directory in which output reports files will be published.",
-                  "help_text": "We think of this pipeline as producing as producing two main types of output: data and reports. Reports files are processed files that are used for immediately producing insights. They typically immediately interpretable by humans.\n\nExamples of reports files would include MultiQC reports and MultiQC data tables, summary statistics files produced by Samtools stats, etc."
-              },
-              "publishMode": {
-                  "type": "string",
-                  "default": "copy",
-                  "description": "Method for publishing files.",
-                  "enum": [
-                      "copy",
-                      "copyNoFollow",
-                      "link",
-                      "move",
-                      "rellink",
-                      "symlink"
-                  ],
-                  "help_text": "This sets the default mode for publishing files. See the `mode` section of the [`publishDir` Nextflow docs](https://www.nextflow.io/docs/latest/process.html#publishdir) for details about the options."
-              }
-          }
-      },
-      "read_trim_filter_options": {
-          "title": "Read trim/filter options",
-          "type": "object",
-          "description": "",
-          "default": "",
-          "properties": {
-              "adapterFasta": {
-                  "type": "string",
-                  "default": "${projectDir}/assets/NO_FILE",
-                  "description": "Fasta file of adapters for read trimming."
-              },
-              "r1_adapter": {
-                  "type": "string",
-                  "default": "AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGT",
-                  "description": "`cutadapt` R1 adapter sequence. Passed to the `-a` argument of `cutadapt`."
-              },
-              "r2_adapter": {
-                  "type": "string",
-                  "default": "AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC",
-                  "description": "`cutadapt` R2 adapter sequence. Passed to the `-A` argument of `cutadapt`."
-              },
-              "minimum_length": {
-                  "type": "integer",
-                  "default": 30,
-                  "description": "`cutadapt` minimum length. Passed to the `-m` argument of `cutadapt`."
-              }
-          }
-      },
-      "skip_steps_options": {
-          "title": "Skip steps options",
-          "type": "object",
-          "description": "Options to skip pipeline execution steps.",
-          "default": "",
-          "properties": {
-              "skipTrimReads": {
-                  "type": "boolean",
-                  "description": "Skip read trimming steps. Will use raw reads for all downstream steps, e.g. read mapping."
-              }
-          }
+    "input_output_options": {
+      "title": "Input/output options",
+      "type": "object",
+      "description": "",
+      "default": "",
+      "properties": {
+        "projectTitle": {
+          "type": "string",
+          "description": "A short title for the project. Used in naming files/directories.",
+          "pattern": "^\\S+$"
+        },
+        "samplesheet": {
+          "type": "string",
+          "description": "Path to input samplesheet in CSV format.",
+          "pattern": "^\\S+\\.csv$"
+        },
+        "genome": {
+          "type": "string",
+          "description": "A path or URL to the reference genome sequence file in fasta format.",
+          "help_text": "For reasons of reproducibility and portability we recommend using direct links to reference genome sequence files available through repositories such as RefSeq and Ensembl."
+        },
+        "annotations": {
+          "type": "string",
+          "description": "A path or URL to the reference genome annotations file in GTF format.",
+          "help_text": "For reasons of reproducibility and portability we recommend using direct links to reference annotation files available through repositories such as RefSeq and Ensembl."
+        },
+        "publishDirData": {
+          "type": "string",
+          "default": "${launchDir}/data",
+          "description": "Base directory in which output data files will be published.",
+          "help_text": "We think of this pipeline as producing as producing two main types of output: data and reports. Data files are raw or processed files that are used for generating results and insights. They typically are not immediately interpretable by humans and often are not even human readable.\n\nExamples of data files would include raw fastq files, mappings in BAM format, tables of read counts within genes."
+        },
+        "publishDirReports": {
+          "type": "string",
+          "default": "${launchDir}/reports",
+          "description": "Base directory in which output reports files will be published.",
+          "help_text": "We think of this pipeline as producing as producing two main types of output: data and reports. Reports files are processed files that are used for immediately producing insights. They typically immediately interpretable by humans.\n\nExamples of reports files would include MultiQC reports and MultiQC data tables, summary statistics files produced by Samtools stats, etc."
+        },
+        "publishMode": {
+          "type": "string",
+          "default": "copy",
+          "description": "Method for publishing files.",
+          "enum": [
+            "copy",
+            "copyNoFollow",
+            "link",
+            "move",
+            "rellink",
+            "symlink"
+          ],
+          "help_text": "This sets the default mode for publishing files. See the `mode` section of the [`publishDir` Nextflow docs](https://www.nextflow.io/docs/latest/process.html#publishdir) for details about the options."
+        }
       }
+    },
+    "read_trim_filter_options": {
+      "title": "Read trim/filter options",
+      "type": "object",
+      "description": "",
+      "default": "",
+      "properties": {
+        "adapterFasta": {
+          "type": "string",
+          "default": "${projectDir}/assets/NO_FILE",
+          "description": "Fasta file of adapters for read trimming."
+        }
+      }
+    },
+    "skip_steps_options": {
+      "title": "Skip steps options",
+      "type": "object",
+      "description": "Options to skip pipeline execution steps.",
+      "default": "",
+      "properties": {
+        "skipTrimReads": {
+          "type": "boolean",
+          "description": "Skip read trimming steps. Will use raw reads for all downstream steps, e.g. read mapping."
+        }
+      }
+    }
   },
   "allOf": [
-      {
-          "$ref": "#/defs/input_output_options"
-      },
-      {
-          "$ref": "#/defs/read_trim_filter_options"
-      },
-      {
-          "$ref": "#/defs/skip_steps_options"
-      }
+    {
+      "$ref": "#/defs/input_output_options"
+    },
+    {
+      "$ref": "#/defs/read_trim_filter_options"
+    },
+    {
+      "$ref": "#/defs/skip_steps_options"
+    }
   ]
 }

@@ -19,9 +19,6 @@ A Nextflow pipeline for base NGS analysis.
 | Parameter | Description | Type | Default | Required | Hidden |
 |-----------|-----------|-----------|-----------|-----------|-----------|
 | `adapterFasta` | Fasta file of adapters for read trimming. | `string` | ${projectDir}/assets/NO_FILE |  |  |
-| `r1_adapter` | `cutadapt` R1 adapter sequence. Passed to the `-a` argument of `cutadapt`. | `string` | AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGT |  |  |
-| `r2_adapter` | `cutadapt` R2 adapter sequence. Passed to the `-A` argument of `cutadapt`. | `string` | AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC |  |  |
-| `minimum_length` | `cutadapt` minimum length. Passed to the `-m` argument of `cutadapt`. | `integer` | 30 |  |  |
 
 ## Skip steps options
 
