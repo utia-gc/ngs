@@ -17,6 +17,7 @@ nav:
     - 'pipeline_config/index.md'
     - 'pipeline_config/arguments_to_processes.md'
     - 'pipeline_config/exploratory_profile.md'
+    - 'pipeline_config/params.md'
   - 'Contribute':
     - 'contribute/index.md'
     - 'contribute/development.md'

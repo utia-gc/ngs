@@ -15,6 +15,7 @@ Finally, we will give direction as to how the user can make use of our solution 
 
 ### [Quick Start](./quick_start/index.md)
 
+
 ### [Input / Output](input_output/index.md)
 
 - [What params do I need to run the pipeline?](input_output/required_params.md)
@@ -30,6 +31,8 @@ Finally, we will give direction as to how the user can make use of our solution 
 - [How do I run a step of the pipeline with the command line arguments that I want to use?](pipeline_config/arguments_to_processes.md)
 
 - [How do I make it easier to try out and evaluate new params or arguments?](pipeline_config/exploratory_profile.md)
+
+- [What parameters are available?](./pipeline_config/params.md)
 
 ### [Contribute](contribute/index.md)
 
