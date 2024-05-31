@@ -9,32 +9,11 @@
  * @return null
  */
 static void validateRequiredParams(params, log) {
-    validateProjectTitle(params, log)
     validateSamplesheet(params, log)
     validateGenome(params, log)
     validateAnnotations(params, log)
     validateTrimTool(params, log)
     validateMapTool(params, log)
-}
-
-
-/**
- * Validate project title
- *
- * Check that projectTitle param exists. Throw exit status 64 if it doesn't.
- *
- * @param params The params for the Nextflow pipeline.
- * @param log The Nextflow log object.
- *
- * @return null
- */
-static void validateProjectTitle(params, log) {
-    if (params.projectTitle) {
-        log.info "Project title: '${params.projectTitle}'"
-    } else {
-        log.error "Parameter 'projectTitle' is required but was not provided."
-        System.exit(64)
-    }
 }
 
 

@@ -6,7 +6,7 @@ A Nextflow pipeline for base NGS analysis.
 
 | Parameter | Description | Type | Default | Required | Hidden |
 |-----------|-----------|-----------|-----------|-----------|-----------|
-| `projectTitle` | A short title for the project. Used in naming files/directories. | `string` |  |  |  |
+| `projectTitle` | A short title for the project. Used in naming files/directories. | `string` |  | True |  |
 | `samplesheet` | Path to input samplesheet in CSV format. | `string` |  |  |  |
 | `genome` | A path or URL to the reference genome sequence file in fasta format. <details><summary>Help</summary><small>For reasons of reproducibility and portability we recommend using direct links to reference genome sequence files available through repositories such as RefSeq and Ensembl.</small></details>| `string` |  |  |  |
 | `annotations` | A path or URL to the reference genome annotations file in GTF format. <details><summary>Help</summary><small>For reasons of reproducibility and portability we recommend using direct links to reference annotation files available through repositories such as RefSeq and Ensembl.</small></details>| `string` |  |  |  |
