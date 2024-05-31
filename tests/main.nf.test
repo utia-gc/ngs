@@ -95,7 +95,9 @@ nextflow_pipeline {
 
 
     test("main.nf fails -- no input samplesheet.") {
+        tag 'nf-schema'
         tag 'validate'
+        tag 'current'
 
         when {
             params {
@@ -106,9 +108,62 @@ nextflow_pipeline {
         }
 
         then {
+            // nf-schema validateParameters() causes workflow failure with exit status 1 when required param(s) not supplied
             assert workflow.failed
-            assert workflow.exitStatus == 64
-            assert workflow.stdout.contains("ERROR ~ Parameter 'samplesheet' is required but was not provided.")
+            assert workflow.exitStatus == 1
+            // nf-schema validateParameters() throws error messages on stdout and stderr when required param(s) not supplied
+            assert workflow.stdout.contains("ERROR ~ Validation of pipeline parameters failed!")
+            assert workflow.stderr.contains("* Missing required parameter(s): samplesheet")
+        }
+
+    }
+
+
+    test("main.nf fails -- .txt file for `params.samplesheet`.") {
+        tag 'nf-schema'
+        tag 'validate'
+        tag 'current'
+
+        when {
+            params {
+                publishDirReports = "${outputDir}/reports"
+                publishDirData    = "${outputDir}/data"
+                samplesheet       = 'https://raw.githubusercontent.com/utia-gc/ngs-test/ngs/samplesheets/samplesheet_lanes_mix.txt'
+            }
+        }
+
+        then {
+            // nf-schema validateParameters() causes workflow failure with exit status 1 when required param(s) don't match pattern
+            assert workflow.failed
+            assert workflow.exitStatus == 1
+            // nf-schema validateParameters() throws error messages on stdout and stderr when required param(s) don't match pattern
+            assert workflow.stdout.contains("ERROR ~ Validation of pipeline parameters failed!")
+            assert workflow.stderr.contains("* --samplesheet (https://raw.githubusercontent.com/utia-gc/ngs-test/ngs/samplesheets/samplesheet_lanes_mix.txt): Samplesheet must be a .csv file with only alphanumeric characters, '.', '_', or '-' in file name.")
+        }
+
+    }
+
+
+    test("main.nf fails -- file name with spaces for `params.samplesheet`.") {
+        tag 'nf-schema'
+        tag 'validate'
+        tag 'current'
+
+        when {
+            params {
+                publishDirReports = "${outputDir}/reports"
+                publishDirData    = "${outputDir}/data"
+                samplesheet       = 'https://raw.githubusercontent.com/utia-gc/ngs-test/ngs/samplesheets/samplesheet%20lanes%20mix.csv'
+            }
+        }
+
+        then {
+            // nf-schema validateParameters() causes workflow failure with exit status 1 when required param(s) don't match pattern
+            assert workflow.failed
+            assert workflow.exitStatus == 1
+            // nf-schema validateParameters() throws error messages on stdout and stderr when required param(s) don't match pattern
+            assert workflow.stdout.contains("ERROR ~ Validation of pipeline parameters failed!")
+            assert workflow.stderr.contains("* --samplesheet (https://raw.githubusercontent.com/utia-gc/ngs-test/ngs/samplesheets/samplesheet%20lanes%20mix.csv): Samplesheet must be a .csv file with only alphanumeric characters, '.', '_', or '-' in file name.")
         }
 
     }

@@ -20,7 +20,8 @@
         "samplesheet": {
           "type": "string",
           "description": "Path to input samplesheet in CSV format.",
-          "pattern": "^\\S+\\.csv$"
+          "pattern": "^[a-zA-Z0-9._-]+\\.csv$",
+          "errorMessage": "Samplesheet must be a .csv file with only alphanumeric characters, '.', '_', or '-' in file name."
         },
         "genome": {
           "type": "string",
@@ -59,7 +60,7 @@
           "help_text": "This sets the default mode for publishing files. See the `mode` section of the [`publishDir` Nextflow docs](https://www.nextflow.io/docs/latest/process.html#publishdir) for details about the options."
         }
       },
-      "required": ["projectTitle"]
+      "required": ["projectTitle", "samplesheet"]
     },
     "read_trim_filter_options": {
       "title": "Read trim/filter options",
