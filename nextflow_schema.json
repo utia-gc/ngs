@@ -14,7 +14,8 @@
         "projectTitle": {
           "type": "string",
           "description": "A short title for the project. Used in naming files/directories.",
-          "pattern": "^\\S+$"
+          "pattern": "^[a-zA-Z0-9._-]+$",
+          "errorMessage": "Project title can ony contain alphanumeric characters, '.', '_', or '-'."
         },
         "samplesheet": {
           "type": "string",
