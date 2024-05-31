@@ -4,7 +4,7 @@ nextflow_pipeline {
     script "main.nf"
 
     test("main.nf prints help message") {
-        tag "nf-schema"
+        tag 'nf-schema'
 
         when {
             params {
@@ -23,8 +23,8 @@ nextflow_pipeline {
 
 
     test("main.nf fails -- no project title.") {
-        tag "nf-schema"
-        tag "validate"
+        tag 'nf-schema'
+        tag 'validate'
 
         when {
             params {
@@ -47,8 +47,8 @@ nextflow_pipeline {
 
 
     test("main.nf fails -- spaces in `params.projectTitle`.") {
-        tag "nf-schema"
-        tag "validate"
+        tag 'nf-schema'
+        tag 'validate'
 
         when {
             params {
@@ -59,10 +59,10 @@ nextflow_pipeline {
         }
 
         then {
-            // nf-schema validateParameters() causes workflow failure with exit status 1 when required param(s) not supplied
+            // nf-schema validateParameters() causes workflow failure with exit status 1 when required param(s) don't match pattern
             assert workflow.failed
             assert workflow.exitStatus == 1
-            // nf-schema validateParameters() throws error messages on stdout and stderr when required param(s) not supplied
+            // nf-schema validateParameters() throws error messages on stdout and stderr when required param(s) don't match pattern
             assert workflow.stdout.contains('ERROR ~ Validation of pipeline parameters failed!')
             assert workflow.stderr.contains("* --projectTitle (project title): Project title can ony contain alphanumeric characters, '.', '_', or '-'.")
         }
@@ -71,8 +71,8 @@ nextflow_pipeline {
 
 
     test("main.nf fails -- slashes in `params.projectTitle`.") {
-        tag "nf-schema"
-        tag "validate"
+        tag 'nf-schema'
+        tag 'validate'
 
         when {
             params {
@@ -83,10 +83,10 @@ nextflow_pipeline {
         }
 
         then {
-            // nf-schema validateParameters() causes workflow failure with exit status 1 when required param(s) not supplied
+            // nf-schema validateParameters() causes workflow failure with exit status 1 when required param(s) don't match pattern
             assert workflow.failed
             assert workflow.exitStatus == 1
-            // nf-schema validateParameters() throws error messages on stdout and stderr when required param(s) not supplied
+            // nf-schema validateParameters() throws error messages on stdout and stderr when required param(s) don't match pattern
             assert workflow.stdout.contains('ERROR ~ Validation of pipeline parameters failed!')
             assert workflow.stderr.contains("* --projectTitle (project/title): Project title can ony contain alphanumeric characters, '.', '_', or '-'.")
         }
@@ -95,7 +95,7 @@ nextflow_pipeline {
 
 
     test("main.nf fails -- no input samplesheet.") {
-        tag "validate"
+        tag 'validate'
 
         when {
             params {
@@ -115,7 +115,7 @@ nextflow_pipeline {
 
 
     test("main.nf fails -- no reference genome.") {
-        tag "validate"
+        tag 'validate'
 
         when {
             params {
@@ -135,7 +135,7 @@ nextflow_pipeline {
 
 
     test("main.nf fails -- no reference annotations.") {
-        tag "validate"
+        tag 'validate'
 
         when {
             params {
@@ -155,8 +155,8 @@ nextflow_pipeline {
 
 
     test("main.nf fails -- no trim tool.") {
-        tag "validate"
-        tag "tools"
+        tag 'validate'
+        tag 'tools'
 
         when {
             params {
@@ -178,8 +178,8 @@ nextflow_pipeline {
 
 
     test("main.nf fails -- invalid trim tool.") {
-        tag "validate"
-        tag "tools"
+        tag 'validate'
+        tag 'tools'
 
         when {
             params {
@@ -201,8 +201,8 @@ nextflow_pipeline {
 
 
     test("main.nf fails -- no map tool.") {
-        tag "validate"
-        tag "tools"
+        tag 'validate'
+        tag 'tools'
 
         when {
             params {
@@ -224,8 +224,8 @@ nextflow_pipeline {
 
 
     test("main.nf fails -- invalid map tool.") {
-        tag "validate"
-        tag "tools"
+        tag 'validate'
+        tag 'tools'
 
         when {
             params {
@@ -247,7 +247,7 @@ nextflow_pipeline {
 
 
     test("main.nf succeeds with default `nf_test` params") {
-        tag "full"
+        tag 'full'
 
         // instantiate helper objects
         def readsSELane1 = new ReadsSELane1()
@@ -328,7 +328,7 @@ nextflow_pipeline {
 
 
     test("main.nf succeeds with default `nf_test` params and uncompressed genome and annotation files.") {
-        tag "full"
+        tag 'full'
 
         // instantiate helper objects
         def readsSELane1 = new ReadsSELane1()
@@ -412,7 +412,7 @@ nextflow_pipeline {
 
 
     test("main.nf succeeds -- cutadapt.") {
-        tag "full"
+        tag 'full'
 
         // instantiate helper objects
         def readsSELane1 = new ReadsSELane1()
@@ -496,7 +496,7 @@ nextflow_pipeline {
 
 
     test("main.nf succeeds -- STAR.") {
-        tag "full"
+        tag 'full'
 
         // instantiate helper objects
         def readsSELane1 = new ReadsSELane1()
