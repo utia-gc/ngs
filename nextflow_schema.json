@@ -20,7 +20,7 @@
         "samplesheet": {
           "type": "string",
           "description": "Path to input samplesheet in CSV format.",
-          "pattern": "^[a-zA-Z0-9._-]+\\.csv$",
+          "pattern": "^([a-zA-Z0-9/._-]+\\.csv|(?:[a-zA-Z]+)://[a-zA-Z0-9./_-]+\\.csv)$",
           "errorMessage": "Samplesheet must be a .csv file with only alphanumeric characters, '.', '_', or '-' in file name."
         },
         "genome": {
