@@ -9,29 +9,8 @@
  * @return null
  */
 static void validateRequiredParams(params, log) {
-    validateSamplesheet(params, log)
     validateTrimTool(params, log)
     validateMapTool(params, log)
-}
-
-
-/**
- * Validate samplehseet
- *
- * Check that samplesheet param exists. Throw exit status 64 if it doesn't.
- *
- * @param params The params for the Nextflow pipeline.
- * @param log The Nextflow log object.
- *
- * @return null
- */
-static void validateSamplesheet(params, log) {
-    if (params.samplesheet) {
-        log.info "Using samplesheet '${params.samplesheet}'"
-    } else {
-        log.error "Parameter 'samplesheet' is required but was not provided."
-        System.exit(64)
-    }
 }
 
 
