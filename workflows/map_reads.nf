@@ -20,8 +20,8 @@ workflow MAP_READS {
         map_tool
 
     main:
-        switch( Tools.Map.valueOf(map_tool.toUpperCase()) ) {
-            case Tools.Map.BWAMEM2:
+        switch( map_tool.toUpperCase() ) {
+            case 'BWAMEM2':
                 Bwa_Mem2(
                     reads,
                     genome
@@ -29,7 +29,7 @@ workflow MAP_READS {
                 ch_alignments = Bwa_Mem2.out.alignments
                 break
 
-            case Tools.Map.STAR:
+            case 'STAR':
                 Star(
                     reads,
                     genome,

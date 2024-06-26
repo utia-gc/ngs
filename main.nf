@@ -31,9 +31,6 @@ if (params.help) {
 // Validate input parameters
 validateParameters()
 
-// Check for required parameters
-PipelineValidator.validateRequiredParams(params, log)
-
 workflow {
     PREPARE_INPUTS(
         file(params.samplesheet),
@@ -57,7 +54,7 @@ workflow {
         ch_reads_pre_align,
         ch_genome,
         ch_annotations,
-        params.tools.map
+        params.mapTool
     )
     ch_alignmentsIndividualSortedByCoord = MAP_READS.out.alignmentsIndividualSortedByCoord
     ch_alignmentsMergedSortedByCoord     = MAP_READS.out.alignmentsMergedSortedByCoord

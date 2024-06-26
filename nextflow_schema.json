@@ -84,6 +84,22 @@
       },
       "required": ["trimTool"]
     },
+    "mapping_parameters": {
+      "title": "Mapping parameters",
+      "type": "object",
+      "description": "",
+      "default": "",
+      "properties": {
+        "mapTool": {
+          "type": "string",
+          "default": "bwamem2",
+          "description": "Tool for mapping reads.",
+          "enum": ["bwamem2", "star"],
+          "errorMessage": "Map tool must be one of the valid options: [bwamem2, star]."
+        }
+      },
+      "required": ["mapTool"]
+    },
     "skip_steps_options": {
       "title": "Skip steps options",
       "type": "object",
@@ -103,6 +119,9 @@
     },
     {
       "$ref": "#/defs/read_trim_filter_options"
+    },
+    {
+      "$ref": "#/defs/mapping_parameters"
     },
     {
       "$ref": "#/defs/skip_steps_options"

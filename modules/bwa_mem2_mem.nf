@@ -35,7 +35,7 @@ process bwa_mem2_mem {
         String stemName = MetadataUtils.buildStemName(metadata)
 
         // build read group line
-        String rgLine = ReadGroup.buildRGLine(metadata.rgFields, Tools.Map.BWAMEM2)
+        String rgLine = ReadGroup.buildRGLine(metadata.rgFields, 'bwamem2')
 
         String args = new Args(task.ext).buildArgsString()
 

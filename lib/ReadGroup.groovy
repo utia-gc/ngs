@@ -16,12 +16,12 @@ import java.util.zip.GZIPInputStream
  */
 public static String buildRGLine(rgFields, tool) {
     String rgLine = ''
-    switch (tool) {
-        case Tools.Map.BWAMEM2:
+    switch (tool.toUpperCase()) {
+        case 'BWAMEM2':
             rgLine = buildBwaMem2RGLine(rgFields)
             break
 
-        case Tools.Map.STAR:
+        case 'STAR':
             rgLine = buildSTARRGLine(rgFields)
             break
     }
