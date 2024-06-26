@@ -14,7 +14,7 @@ workflow PROCESS_READS {
         if(!params.skipTrimReads) {
             Trim_Reads(
                 reads_raw,
-                params.tools.trim,
+                params.trimTool,
                 adapter_fasta
             )
             ch_reads_post_trim = Trim_Reads.out.reads_trim

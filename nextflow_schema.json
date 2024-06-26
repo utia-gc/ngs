@@ -68,13 +68,21 @@
       "description": "",
       "default": "",
       "properties": {
+        "trimTool": {
+          "type": "string",
+          "default": "fastp",
+          "description": "Tool for read trimming/filtering.",
+          "enum": ["fastp", "cutadapt"],
+          "errorMessage": "Trim tool must be one of the valid options: [fastp, cutadapt]."
+        },
         "adapterFasta": {
           "type": "string",
           "default": "${projectDir}/assets/NO_FILE",
           "description": "Fasta file of adapters for read trimming.",
           "help_text": "`cutadapt` does not currently work with an adapter fasta file."
         }
-      }
+      },
+      "required": ["trimTool"]
     },
     "skip_steps_options": {
       "title": "Skip steps options",

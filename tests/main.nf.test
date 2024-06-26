@@ -167,8 +167,8 @@ nextflow_pipeline {
 
 
     test("main.nf fails -- no reference genome.") {
+        tag 'nf-schema'
         tag 'validate'
-        tag 'current'
 
         when {
             params {
@@ -191,8 +191,8 @@ nextflow_pipeline {
 
 
     test("main.nf fails -- no reference annotations.") {
+        tag 'nf-schema'
         tag 'validate'
-        tag 'current'
 
         when {
             params {
@@ -215,6 +215,7 @@ nextflow_pipeline {
 
 
     test("main.nf fails -- no trim tool.") {
+        tag 'nf-schema'
         tag 'validate'
         tag 'tools'
 
@@ -222,22 +223,24 @@ nextflow_pipeline {
             params {
                 publishDirReports = "${outputDir}/reports"
                 publishDirData    = "${outputDir}/data"
-                tools {
-                    trim = null
-                }
+                trimTool          = null
             }
         }
 
         then {
+            // nf-schema validateParameters() causes workflow failure with exit status 1 when required param(s) don't match pattern
             assert workflow.failed
-            assert workflow.exitStatus == 64
-            assert workflow.stdout.contains("ERROR ~ Parameter 'tools.trim' is required but was not provided.")
+            assert workflow.exitStatus == 1
+            // nf-schema validateParameters() throws error messages on stdout and stderr when required param(s) don't match pattern
+            assert workflow.stdout.contains("ERROR ~ Validation of pipeline parameters failed!")
+            assert workflow.stderr.contains("* Missing required parameter(s): trimTool")
         }
 
     }
 
 
     test("main.nf fails -- invalid trim tool.") {
+        tag 'nf-schema'
         tag 'validate'
         tag 'tools'
 
@@ -245,16 +248,17 @@ nextflow_pipeline {
             params {
                 publishDirReports = "${outputDir}/reports"
                 publishDirData    = "${outputDir}/data"
-                tools {
-                    trim = 'bowtie2'
-                }
+                trimTool          = 'bowtie2'
             }
         }
 
         then {
+            // nf-schema validateParameters() causes workflow failure with exit status 1 when required param(s) don't match pattern
             assert workflow.failed
-            assert workflow.exitStatus == 64
-            assert workflow.stdout.contains("ERROR ~ 'bowtie2' is not a valid trim tool.")
+            assert workflow.exitStatus == 1
+            // nf-schema validateParameters() throws error messages on stdout and stderr when required param(s) don't match pattern
+            assert workflow.stdout.contains("ERROR ~ Validation of pipeline parameters failed!")
+            assert workflow.stderr.contains("* --trimTool (bowtie2): Trim tool must be one of the valid options: [fastp, cutadapt].")
         }
 
     }
@@ -482,11 +486,9 @@ nextflow_pipeline {
 
         when {
             params {
-                tools {
-                    trim = 'cutadapt'
-                }
                 publishDirReports = "${outputDir}/reports"
                 publishDirData    = "${outputDir}/data"
+                trimTool          = 'cutadapt'
             }
         }
 

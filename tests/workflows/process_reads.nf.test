@@ -13,9 +13,7 @@ nextflow_workflow {
             params {
                 publishDirReports = "${outputDir}/reports"
                 publishDirData    = "${outputDir}/data"
-                tools {
-                    trim = 'cutadapt'
-                }
+                trimTool          = 'cutadapt'
             }
             workflow {
                 """
@@ -87,9 +85,7 @@ nextflow_workflow {
             params {
                 publishDirReports = "${outputDir}/reports"
                 publishDirData    = "${outputDir}/data"
-                tools {
-                    trim = 'cutadapt'
-                }
+                trimTool          = 'cutadapt'
             }
             workflow {
                 """
@@ -161,9 +157,7 @@ nextflow_workflow {
             params {
                 publishDirReports = "${outputDir}/reports"
                 publishDirData    = "${outputDir}/data"
-                tools {
-                    trim = 'fastp'
-                }
+                trimTool          = 'fastp'
             }
             workflow {
                 """
@@ -235,9 +229,7 @@ nextflow_workflow {
             params {
                 publishDirReports = "${outputDir}/reports"
                 publishDirData    = "${outputDir}/data"
-                tools {
-                    trim = 'fastp'
-                }
+                trimTool          = 'fastp'
             }
             workflow {
                 """
@@ -309,9 +301,7 @@ nextflow_workflow {
             params {
                 publishDirReports = "${outputDir}/reports"
                 publishDirData    = "${outputDir}/data"
-                tools {
-                    trim = 'fastp'
-                }
+                trimTool          = 'fastp'
             }
             workflow {
                 """
@@ -383,9 +373,7 @@ nextflow_workflow {
             params {
                 publishDirReports = "${outputDir}/reports"
                 publishDirData    = "${outputDir}/data"
-                tools {
-                    trim = 'fastp'
-                }
+                trimTool          = 'fastp'
             }
             workflow {
                 """

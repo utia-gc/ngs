@@ -9,34 +9,7 @@
  * @return null
  */
 static void validateRequiredParams(params, log) {
-    validateTrimTool(params, log)
     validateMapTool(params, log)
-}
-
-
-/**
- * Validate trim tool.
- *
- * Check that trim tool param exists and is a valid trim tool.
- * Throw exit status 64 if otherwise.
- *
- * @param params The params for the Nextflow pipeline.
- * @param log The Nextflow log object.
- *
- * @return null
- */
-static void validateTrimTool(params, log) {
-    if (params.tools.trim) {
-        if (Tools.Trim.isTrimTool(params.tools.trim)) {
-            log.info "Using trim tool '${params.tools.trim}'"
-        } else {
-            log.error "'${params.tools.trim}' is not a valid trim tool."
-            System.exit(64)
-        }
-    } else {
-        log.error "Parameter 'tools.trim' is required but was not provided."
-        System.exit(64)
-    }
 }
 
 
