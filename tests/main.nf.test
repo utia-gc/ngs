@@ -97,7 +97,6 @@ nextflow_pipeline {
     test("main.nf fails -- no input samplesheet.") {
         tag 'nf-schema'
         tag 'validate'
-        tag 'current'
 
         when {
             params {
@@ -122,7 +121,6 @@ nextflow_pipeline {
     test("main.nf fails -- .txt file for `params.samplesheet`.") {
         tag 'nf-schema'
         tag 'validate'
-        tag 'current'
 
         when {
             params {
@@ -147,7 +145,6 @@ nextflow_pipeline {
     test("main.nf fails -- file name with spaces for `params.samplesheet`.") {
         tag 'nf-schema'
         tag 'validate'
-        tag 'current'
 
         when {
             params {
@@ -171,6 +168,7 @@ nextflow_pipeline {
 
     test("main.nf fails -- no reference genome.") {
         tag 'validate'
+        tag 'current'
 
         when {
             params {
@@ -181,9 +179,12 @@ nextflow_pipeline {
         }
 
         then {
+            // nf-schema validateParameters() causes workflow failure with exit status 1 when required param(s) don't match pattern
             assert workflow.failed
-            assert workflow.exitStatus == 64
-            assert workflow.stdout.contains("ERROR ~ Parameter 'genome' is required but was not provided.")
+            assert workflow.exitStatus == 1
+            // nf-schema validateParameters() throws error messages on stdout and stderr when required param(s) don't match pattern
+            assert workflow.stdout.contains("ERROR ~ Validation of pipeline parameters failed!")
+            assert workflow.stderr.contains("* Missing required parameter(s): genome")
         }
 
     }
@@ -191,6 +192,7 @@ nextflow_pipeline {
 
     test("main.nf fails -- no reference annotations.") {
         tag 'validate'
+        tag 'current'
 
         when {
             params {
@@ -201,9 +203,12 @@ nextflow_pipeline {
         }
 
         then {
+            // nf-schema validateParameters() causes workflow failure with exit status 1 when required param(s) don't match pattern
             assert workflow.failed
-            assert workflow.exitStatus == 64
-            assert workflow.stdout.contains("ERROR ~ Parameter 'annotations' is required but was not provided.")
+            assert workflow.exitStatus == 1
+            // nf-schema validateParameters() throws error messages on stdout and stderr when required param(s) don't match pattern
+            assert workflow.stdout.contains("ERROR ~ Validation of pipeline parameters failed!")
+            assert workflow.stderr.contains("* Missing required parameter(s): annotations")
         }
 
     }
