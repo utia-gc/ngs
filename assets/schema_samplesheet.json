@@ -13,8 +13,8 @@
         "meta": ["sampleName"]
       },
       "lane": {
-        "type": "string",
-        "errorMessage": "Sequencing lane for the library",
+        "type": "integer",
+        "errorMessage": "Sequencing lane for the library, must be 0-999",
         "meta": ["lane"]
       },
       "reads1": {

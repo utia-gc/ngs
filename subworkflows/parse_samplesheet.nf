@@ -55,6 +55,13 @@ def createSampleReadsChannel(meta, r1, r2) {
     // fill in required metadata
     metadata.trimStatus = "raw"
     metadata.readType   = r2.isEmpty() ? "single" : "paired"
+    if(metadata.lane) {
+        // update lane number to properly formatted string, i.e. exactly three digits padded with 0s if necessary
+        metadata.lane = MetadataUtils.padLaneWithZeros(metadata.lane)
+    } else {
+        // if no lane number, remove the lane key
+        metadata.remove('lane')
+    }
 
     // store reads in lists
     def reads1 = file(r1)

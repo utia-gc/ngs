@@ -1,243 +1,5 @@
 {
-    "Parse_Samplesheet successfully creates read channels from mixed single-end and paired-end samplesheet.": {
-        "content": [
-            {
-                "0": [
-                    [
-                        {
-                            "sampleName": "SRR1066657_GSM1299413_WT_NR_A",
-                            "lane": [
-                                
-                            ],
-                            "trimStatus": "raw",
-                            "readType": "single",
-                            "rgFields": {
-                                "ID": "SRR1066657_GSM1299413_WT_NR_A.[]",
-                                "SM": "SRR1066657_GSM1299413_WT_NR_A",
-                                "LB": "SRR1066657_GSM1299413_WT_NR_A",
-                                "PL": "ILLUMINA"
-                            }
-                        },
-                        "/trev-f/SRAlign-test/raw/rnaseq/data/reads/SRR1066657_GSM1299413_WT_NR_A_Saccharomyces_cerevisiae_RNA-Seq_50000.fastq.gz",
-                        "SRR1066657_GSM1299413_WT_NR_A_Saccharomyces_cerevisiae_RNA-Seq_50000.NOFILE:md5,d41d8cd98f00b204e9800998ecf8427e"
-                    ],
-                    [
-                        {
-                            "sampleName": "SRR1066658_GSM1299414_WT_NR_B",
-                            "lane": [
-                                
-                            ],
-                            "trimStatus": "raw",
-                            "readType": "single",
-                            "rgFields": {
-                                "ID": "SRR1066658_GSM1299414_WT_NR_B.[]",
-                                "SM": "SRR1066658_GSM1299414_WT_NR_B",
-                                "LB": "SRR1066658_GSM1299414_WT_NR_B",
-                                "PL": "ILLUMINA"
-                            }
-                        },
-                        "/trev-f/SRAlign-test/raw/rnaseq/data/reads/SRR1066658_GSM1299414_WT_NR_B_Saccharomyces_cerevisiae_RNA-Seq_50000.fastq.gz",
-                        "SRR1066658_GSM1299414_WT_NR_B_Saccharomyces_cerevisiae_RNA-Seq_50000.NOFILE:md5,d41d8cd98f00b204e9800998ecf8427e"
-                    ],
-                    [
-                        {
-                            "sampleName": "SRR6924569_GSM3073206_Saccharomyces_cerevisiae-AR_Biological_Repeat-2",
-                            "lane": [
-                                
-                            ],
-                            "trimStatus": "raw",
-                            "readType": "paired",
-                            "rgFields": {
-                                "ID": "SRR6924569_GSM3073206_Saccharomyces_cerevisiae-AR_Biological_Repeat-2.[]",
-                                "SM": "SRR6924569_GSM3073206_Saccharomyces_cerevisiae-AR_Biological_Repeat-2",
-                                "LB": "SRR6924569_GSM3073206_Saccharomyces_cerevisiae-AR_Biological_Repeat-2",
-                                "PL": "ILLUMINA"
-                            }
-                        },
-                        "/trev-f/SRAlign-test/raw/rnaseq/data/reads/SRR6924569_GSM3073206_Saccharomyces_cerevisiae-AR_Biological_Repeat-2_Saccharomyces_cerevisiae_RNA-Seq_1_50000.fastq.gz",
-                        "/trev-f/SRAlign-test/raw/rnaseq/data/reads/SRR6924569_GSM3073206_Saccharomyces_cerevisiae-AR_Biological_Repeat-2_Saccharomyces_cerevisiae_RNA-Seq_2_50000.fastq.gz"
-                    ],
-                    [
-                        {
-                            "sampleName": "SRR6924589_GSM3073211_Saccharomyces_cerevisiae-AN_Biological_Repeat-1",
-                            "lane": [
-                                
-                            ],
-                            "trimStatus": "raw",
-                            "readType": "paired",
-                            "rgFields": {
-                                "ID": "SRR6924589_GSM3073211_Saccharomyces_cerevisiae-AN_Biological_Repeat-1.[]",
-                                "SM": "SRR6924589_GSM3073211_Saccharomyces_cerevisiae-AN_Biological_Repeat-1",
-                                "LB": "SRR6924589_GSM3073211_Saccharomyces_cerevisiae-AN_Biological_Repeat-1",
-                                "PL": "ILLUMINA"
-                            }
-                        },
-                        "/trev-f/SRAlign-test/raw/rnaseq/data/reads/SRR6924589_GSM3073211_Saccharomyces_cerevisiae-AN_Biological_Repeat-1_Saccharomyces_cerevisiae_RNA-Seq_1_50000.fastq.gz",
-                        "/trev-f/SRAlign-test/raw/rnaseq/data/reads/SRR6924589_GSM3073211_Saccharomyces_cerevisiae-AN_Biological_Repeat-1_Saccharomyces_cerevisiae_RNA-Seq_2_50000.fastq.gz"
-                    ]
-                ],
-                "samples": [
-                    [
-                        {
-                            "sampleName": "SRR1066657_GSM1299413_WT_NR_A",
-                            "lane": [
-                                
-                            ],
-                            "trimStatus": "raw",
-                            "readType": "single",
-                            "rgFields": {
-                                "ID": "SRR1066657_GSM1299413_WT_NR_A.[]",
-                                "SM": "SRR1066657_GSM1299413_WT_NR_A",
-                                "LB": "SRR1066657_GSM1299413_WT_NR_A",
-                                "PL": "ILLUMINA"
-                            }
-                        },
-                        "/trev-f/SRAlign-test/raw/rnaseq/data/reads/SRR1066657_GSM1299413_WT_NR_A_Saccharomyces_cerevisiae_RNA-Seq_50000.fastq.gz",
-                        "SRR1066657_GSM1299413_WT_NR_A_Saccharomyces_cerevisiae_RNA-Seq_50000.NOFILE:md5,d41d8cd98f00b204e9800998ecf8427e"
-                    ],
-                    [
-                        {
-                            "sampleName": "SRR1066658_GSM1299414_WT_NR_B",
-                            "lane": [
-                                
-                            ],
-                            "trimStatus": "raw",
-                            "readType": "single",
-                            "rgFields": {
-                                "ID": "SRR1066658_GSM1299414_WT_NR_B.[]",
-                                "SM": "SRR1066658_GSM1299414_WT_NR_B",
-                                "LB": "SRR1066658_GSM1299414_WT_NR_B",
-                                "PL": "ILLUMINA"
-                            }
-                        },
-                        "/trev-f/SRAlign-test/raw/rnaseq/data/reads/SRR1066658_GSM1299414_WT_NR_B_Saccharomyces_cerevisiae_RNA-Seq_50000.fastq.gz",
-                        "SRR1066658_GSM1299414_WT_NR_B_Saccharomyces_cerevisiae_RNA-Seq_50000.NOFILE:md5,d41d8cd98f00b204e9800998ecf8427e"
-                    ],
-                    [
-                        {
-                            "sampleName": "SRR6924569_GSM3073206_Saccharomyces_cerevisiae-AR_Biological_Repeat-2",
-                            "lane": [
-                                
-                            ],
-                            "trimStatus": "raw",
-                            "readType": "paired",
-                            "rgFields": {
-                                "ID": "SRR6924569_GSM3073206_Saccharomyces_cerevisiae-AR_Biological_Repeat-2.[]",
-                                "SM": "SRR6924569_GSM3073206_Saccharomyces_cerevisiae-AR_Biological_Repeat-2",
-                                "LB": "SRR6924569_GSM3073206_Saccharomyces_cerevisiae-AR_Biological_Repeat-2",
-                                "PL": "ILLUMINA"
-                            }
-                        },
-                        "/trev-f/SRAlign-test/raw/rnaseq/data/reads/SRR6924569_GSM3073206_Saccharomyces_cerevisiae-AR_Biological_Repeat-2_Saccharomyces_cerevisiae_RNA-Seq_1_50000.fastq.gz",
-                        "/trev-f/SRAlign-test/raw/rnaseq/data/reads/SRR6924569_GSM3073206_Saccharomyces_cerevisiae-AR_Biological_Repeat-2_Saccharomyces_cerevisiae_RNA-Seq_2_50000.fastq.gz"
-                    ],
-                    [
-                        {
-                            "sampleName": "SRR6924589_GSM3073211_Saccharomyces_cerevisiae-AN_Biological_Repeat-1",
-                            "lane": [
-                                
-                            ],
-                            "trimStatus": "raw",
-                            "readType": "paired",
-                            "rgFields": {
-                                "ID": "SRR6924589_GSM3073211_Saccharomyces_cerevisiae-AN_Biological_Repeat-1.[]",
-                                "SM": "SRR6924589_GSM3073211_Saccharomyces_cerevisiae-AN_Biological_Repeat-1",
-                                "LB": "SRR6924589_GSM3073211_Saccharomyces_cerevisiae-AN_Biological_Repeat-1",
-                                "PL": "ILLUMINA"
-                            }
-                        },
-                        "/trev-f/SRAlign-test/raw/rnaseq/data/reads/SRR6924589_GSM3073211_Saccharomyces_cerevisiae-AN_Biological_Repeat-1_Saccharomyces_cerevisiae_RNA-Seq_1_50000.fastq.gz",
-                        "/trev-f/SRAlign-test/raw/rnaseq/data/reads/SRR6924589_GSM3073211_Saccharomyces_cerevisiae-AN_Biological_Repeat-1_Saccharomyces_cerevisiae_RNA-Seq_2_50000.fastq.gz"
-                    ]
-                ]
-            }
-        ],
-        "timestamp": "2024-07-22T11:58:43.858788385"
-    },
-    "Parse_Samplesheet successfully creates read channels from single-end samplesheet.": {
-        "content": [
-            {
-                "0": [
-                    [
-                        {
-                            "sampleName": "SRR1066657_GSM1299413_WT_NR_A",
-                            "lane": [
-                                
-                            ],
-                            "trimStatus": "raw",
-                            "readType": "single",
-                            "rgFields": {
-                                "ID": "SRR1066657_GSM1299413_WT_NR_A.[]",
-                                "SM": "SRR1066657_GSM1299413_WT_NR_A",
-                                "LB": "SRR1066657_GSM1299413_WT_NR_A",
-                                "PL": "ILLUMINA"
-                            }
-                        },
-                        "/trev-f/SRAlign-test/raw/rnaseq/data/reads/SRR1066657_GSM1299413_WT_NR_A_Saccharomyces_cerevisiae_RNA-Seq_50000.fastq.gz",
-                        "SRR1066657_GSM1299413_WT_NR_A_Saccharomyces_cerevisiae_RNA-Seq_50000.NOFILE:md5,d41d8cd98f00b204e9800998ecf8427e"
-                    ],
-                    [
-                        {
-                            "sampleName": "SRR1066658_GSM1299414_WT_NR_B",
-                            "lane": [
-                                
-                            ],
-                            "trimStatus": "raw",
-                            "readType": "single",
-                            "rgFields": {
-                                "ID": "SRR1066658_GSM1299414_WT_NR_B.[]",
-                                "SM": "SRR1066658_GSM1299414_WT_NR_B",
-                                "LB": "SRR1066658_GSM1299414_WT_NR_B",
-                                "PL": "ILLUMINA"
-                            }
-                        },
-                        "/trev-f/SRAlign-test/raw/rnaseq/data/reads/SRR1066658_GSM1299414_WT_NR_B_Saccharomyces_cerevisiae_RNA-Seq_50000.fastq.gz",
-                        "SRR1066658_GSM1299414_WT_NR_B_Saccharomyces_cerevisiae_RNA-Seq_50000.NOFILE:md5,d41d8cd98f00b204e9800998ecf8427e"
-                    ]
-                ],
-                "samples": [
-                    [
-                        {
-                            "sampleName": "SRR1066657_GSM1299413_WT_NR_A",
-                            "lane": [
-                                
-                            ],
-                            "trimStatus": "raw",
-                            "readType": "single",
-                            "rgFields": {
-                                "ID": "SRR1066657_GSM1299413_WT_NR_A.[]",
-                                "SM": "SRR1066657_GSM1299413_WT_NR_A",
-                                "LB": "SRR1066657_GSM1299413_WT_NR_A",
-                                "PL": "ILLUMINA"
-                            }
-                        },
-                        "/trev-f/SRAlign-test/raw/rnaseq/data/reads/SRR1066657_GSM1299413_WT_NR_A_Saccharomyces_cerevisiae_RNA-Seq_50000.fastq.gz",
-                        "SRR1066657_GSM1299413_WT_NR_A_Saccharomyces_cerevisiae_RNA-Seq_50000.NOFILE:md5,d41d8cd98f00b204e9800998ecf8427e"
-                    ],
-                    [
-                        {
-                            "sampleName": "SRR1066658_GSM1299414_WT_NR_B",
-                            "lane": [
-                                
-                            ],
-                            "trimStatus": "raw",
-                            "readType": "single",
-                            "rgFields": {
-                                "ID": "SRR1066658_GSM1299414_WT_NR_B.[]",
-                                "SM": "SRR1066658_GSM1299414_WT_NR_B",
-                                "LB": "SRR1066658_GSM1299414_WT_NR_B",
-                                "PL": "ILLUMINA"
-                            }
-                        },
-                        "/trev-f/SRAlign-test/raw/rnaseq/data/reads/SRR1066658_GSM1299414_WT_NR_B_Saccharomyces_cerevisiae_RNA-Seq_50000.fastq.gz",
-                        "SRR1066658_GSM1299414_WT_NR_B_Saccharomyces_cerevisiae_RNA-Seq_50000.NOFILE:md5,d41d8cd98f00b204e9800998ecf8427e"
-                    ]
-                ]
-            }
-        ],
-        "timestamp": "2024-07-22T11:58:26.931818614"
-    },
-    "Parse_Samplesheet successfully creates read channels with lanes and sample numbers -- SE + PE reads.": {
+    "Parse_Samplesheet successfully creates read channels with lanes -- mixed SE + PE reads.": {
         "content": [
             {
                 "0": [
@@ -374,89 +136,77 @@
                 ]
             }
         ],
-        "timestamp": "2024-07-22T11:58:54.692989982"
+        "timestamp": "2024-07-22T15:24:32.774002039"
     },
-    "Parse_Samplesheet successfully creates read channels from paired-end samplesheet.": {
+    "Parse_Samplesheet successfully creates read channels without lanes -- mixed SE + PE reads.": {
         "content": [
             {
                 "0": [
                     [
                         {
-                            "sampleName": "SRR6924569_GSM3073206_Saccharomyces_cerevisiae-AR_Biological_Repeat-2",
-                            "lane": [
-                                
-                            ],
+                            "sampleName": "SRR1066657",
                             "trimStatus": "raw",
-                            "readType": "paired",
+                            "readType": "single",
                             "rgFields": {
-                                "ID": "SRR6924569_GSM3073206_Saccharomyces_cerevisiae-AR_Biological_Repeat-2.[]",
-                                "SM": "SRR6924569_GSM3073206_Saccharomyces_cerevisiae-AR_Biological_Repeat-2",
-                                "LB": "SRR6924569_GSM3073206_Saccharomyces_cerevisiae-AR_Biological_Repeat-2",
+                                "ID": "SRR1066657",
+                                "SM": "SRR1066657",
+                                "LB": "SRR1066657",
                                 "PL": "ILLUMINA"
                             }
                         },
-                        "/trev-f/SRAlign-test/raw/rnaseq/data/reads/SRR6924569_GSM3073206_Saccharomyces_cerevisiae-AR_Biological_Repeat-2_Saccharomyces_cerevisiae_RNA-Seq_1_50000.fastq.gz",
-                        "/trev-f/SRAlign-test/raw/rnaseq/data/reads/SRR6924569_GSM3073206_Saccharomyces_cerevisiae-AR_Biological_Repeat-2_Saccharomyces_cerevisiae_RNA-Seq_2_50000.fastq.gz"
+                        "/utia-gc/ngs-test/raw/ngs/data/reads/raw/SRR1066657_S3_L001_R1_001.fastq.gz",
+                        "SRR1066657_S3_L001_R1_001.NOFILE:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ],
                     [
                         {
-                            "sampleName": "SRR6924589_GSM3073211_Saccharomyces_cerevisiae-AN_Biological_Repeat-1",
-                            "lane": [
-                                
-                            ],
+                            "sampleName": "SRR6924569",
                             "trimStatus": "raw",
                             "readType": "paired",
                             "rgFields": {
-                                "ID": "SRR6924589_GSM3073211_Saccharomyces_cerevisiae-AN_Biological_Repeat-1.[]",
-                                "SM": "SRR6924589_GSM3073211_Saccharomyces_cerevisiae-AN_Biological_Repeat-1",
-                                "LB": "SRR6924589_GSM3073211_Saccharomyces_cerevisiae-AN_Biological_Repeat-1",
+                                "ID": "SRR6924569",
+                                "SM": "SRR6924569",
+                                "LB": "SRR6924569",
                                 "PL": "ILLUMINA"
                             }
                         },
-                        "/trev-f/SRAlign-test/raw/rnaseq/data/reads/SRR6924589_GSM3073211_Saccharomyces_cerevisiae-AN_Biological_Repeat-1_Saccharomyces_cerevisiae_RNA-Seq_1_50000.fastq.gz",
-                        "/trev-f/SRAlign-test/raw/rnaseq/data/reads/SRR6924589_GSM3073211_Saccharomyces_cerevisiae-AN_Biological_Repeat-1_Saccharomyces_cerevisiae_RNA-Seq_2_50000.fastq.gz"
+                        "/utia-gc/ngs-test/raw/ngs/data/reads/raw/SRR6924569_S1_L001_R1_001.fastq.gz",
+                        "/utia-gc/ngs-test/raw/ngs/data/reads/raw/SRR6924569_S1_L001_R2_001.fastq.gz"
                     ]
                 ],
                 "samples": [
                     [
                         {
-                            "sampleName": "SRR6924569_GSM3073206_Saccharomyces_cerevisiae-AR_Biological_Repeat-2",
-                            "lane": [
-                                
-                            ],
+                            "sampleName": "SRR1066657",
                             "trimStatus": "raw",
-                            "readType": "paired",
+                            "readType": "single",
                             "rgFields": {
-                                "ID": "SRR6924569_GSM3073206_Saccharomyces_cerevisiae-AR_Biological_Repeat-2.[]",
-                                "SM": "SRR6924569_GSM3073206_Saccharomyces_cerevisiae-AR_Biological_Repeat-2",
-                                "LB": "SRR6924569_GSM3073206_Saccharomyces_cerevisiae-AR_Biological_Repeat-2",
+                                "ID": "SRR1066657",
+                                "SM": "SRR1066657",
+                                "LB": "SRR1066657",
                                 "PL": "ILLUMINA"
                             }
                         },
-                        "/trev-f/SRAlign-test/raw/rnaseq/data/reads/SRR6924569_GSM3073206_Saccharomyces_cerevisiae-AR_Biological_Repeat-2_Saccharomyces_cerevisiae_RNA-Seq_1_50000.fastq.gz",
-                        "/trev-f/SRAlign-test/raw/rnaseq/data/reads/SRR6924569_GSM3073206_Saccharomyces_cerevisiae-AR_Biological_Repeat-2_Saccharomyces_cerevisiae_RNA-Seq_2_50000.fastq.gz"
+                        "/utia-gc/ngs-test/raw/ngs/data/reads/raw/SRR1066657_S3_L001_R1_001.fastq.gz",
+                        "SRR1066657_S3_L001_R1_001.NOFILE:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ],
                     [
                         {
-                            "sampleName": "SRR6924589_GSM3073211_Saccharomyces_cerevisiae-AN_Biological_Repeat-1",
-                            "lane": [
-                                
-                            ],
+                            "sampleName": "SRR6924569",
                             "trimStatus": "raw",
                             "readType": "paired",
                             "rgFields": {
-                                "ID": "SRR6924589_GSM3073211_Saccharomyces_cerevisiae-AN_Biological_Repeat-1.[]",
-                                "SM": "SRR6924589_GSM3073211_Saccharomyces_cerevisiae-AN_Biological_Repeat-1",
-                                "LB": "SRR6924589_GSM3073211_Saccharomyces_cerevisiae-AN_Biological_Repeat-1",
+                                "ID": "SRR6924569",
+                                "SM": "SRR6924569",
+                                "LB": "SRR6924569",
                                 "PL": "ILLUMINA"
                             }
                         },
-                        "/trev-f/SRAlign-test/raw/rnaseq/data/reads/SRR6924589_GSM3073211_Saccharomyces_cerevisiae-AN_Biological_Repeat-1_Saccharomyces_cerevisiae_RNA-Seq_1_50000.fastq.gz",
-                        "/trev-f/SRAlign-test/raw/rnaseq/data/reads/SRR6924589_GSM3073211_Saccharomyces_cerevisiae-AN_Biological_Repeat-1_Saccharomyces_cerevisiae_RNA-Seq_2_50000.fastq.gz"
+                        "/utia-gc/ngs-test/raw/ngs/data/reads/raw/SRR6924569_S1_L001_R1_001.fastq.gz",
+                        "/utia-gc/ngs-test/raw/ngs/data/reads/raw/SRR6924569_S1_L001_R2_001.fastq.gz"
                     ]
                 ]
             }
         ],
-        "timestamp": "2024-07-22T11:58:34.790629372"
+        "timestamp": "2024-07-22T15:35:04.639003219"
     }
 }

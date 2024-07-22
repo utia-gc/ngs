@@ -35,3 +35,21 @@ static LinkedHashMap intersectListOfMetadata(metadataList) {
 
     return metadataIntersection
 }
+
+
+/**
+ * Pad the lane number with 0s to form a lane number that conforms to Illumina's fastq name standards.
+ *
+ * Illumina fastq files contain a lane number formatted as LXYZ where XYZ is always a string of three digits.
+ * In most cases the lane number is 1, 2, 3, or 4, so the lane number in the file name is padded with 0s, e.g. L001, L002, etc.
+ * This method convertions the lane number from an integer to a string that is padded with the appropriate amount of 0s.
+ *
+ * @param lane Integer lane number
+ *
+ * @return String lane number that is three characters long and padded by 0s if necessary.
+ */
+static String padLaneWithZeros(lane) {
+  def numberZerosToAdd = 3 - lane.toString().length()
+  
+  return "0" * numberZerosToAdd + lane.toString()
+}
