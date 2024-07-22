@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "utia-gc/ngs params.samplesheet schema",
+  "description": "Schema for the samplesheet used as input to utia-gc/ngs",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "properties": {
+      "sampleName": {
+        "type": "string",
+        "pattern": "^\\S+$",
+        "errorMessage": "Sample name must be provided and cannot contain spaces",
+        "meta": ["sampleName"]
+      },
+      "lane": {
+        "type": "string",
+        "errorMessage": "Sequencing lane for the library",
+        "meta": ["lane"]
+      },
+      "reads1": {
+        "type": "string",
+        "pattern": "^\\S+\\.f(ast)?q\\.gz$",
+        "format": "file-path",
+        "errorMessage": "FastQ file for reads 1 must be provided, cannot contain spaces and must have extension '.fq.gz' or '.fastq.gz'"
+      },
+      "reads2": {
+          "type": "string",
+          "pattern": "^\\S+\\.f(ast)?q\\.gz$",
+          "format": "file-path",
+          "errorMessage": "FastQ file for reads 2 cannot contain spaces and must have extension '.fq.gz' or '.fastq.gz'"
+      }
+    }
+  }
+}

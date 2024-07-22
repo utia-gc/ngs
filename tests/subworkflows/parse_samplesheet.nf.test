@@ -216,11 +216,11 @@ nextflow_workflow {
                 with(get(0)) {
                     // test metadata
                     with(get(0)) {
-                        assert sampleName   == 'SRR1066657'
-                        assert readType     == 'single'
-                        assert sampleNumber == '3'
-                        assert lane         == '001'
-                        assert rgFields       == readsSELane1.getRGFields()
+                        assert sampleName == 'SRR1066657'
+                        assert readType   == 'single'
+                        assert lane       == '001'
+                        assert trimStatus == 'raw'
+                        assert rgFields   == readsSELane1.getRGFields()
                     }
                     // test R1
                     assert get(1) ==~ /^.*\/SRR1066657_S3_L001_R1_001\.fastq\.gz/
@@ -230,11 +230,11 @@ nextflow_workflow {
                 with(get(1)) {
                     // test metadata
                     with(get(0)) {
-                        assert sampleName   == 'SRR1066657'
-                        assert readType     == 'single'
-                        assert sampleNumber == '3'
-                        assert lane         == '002'
-                        assert rgFields       == readsSELane2.getRGFields()
+                        assert sampleName == 'SRR1066657'
+                        assert readType   == 'single'
+                        assert lane       == '002'
+                        assert trimStatus == 'raw'
+                        assert rgFields   == readsSELane2.getRGFields()
                     }
                     // test R1
                     assert get(1) ==~ /^.*\/SRR1066657_S3_L002_R1_001\.fastq\.gz/
@@ -244,11 +244,11 @@ nextflow_workflow {
                 with(get(2)) {
                     // test metadata
                     with(get(0)) {
-                        assert sampleName   == 'SRR6924569'
-                        assert readType     == 'paired'
-                        assert sampleNumber == '1'
-                        assert lane         == '001'
-                        assert rgFields       == readsPELane1.getRGFields()
+                        assert sampleName == 'SRR6924569'
+                        assert readType   == 'paired'
+                        assert lane       == '001'
+                        assert trimStatus == 'raw'
+                        assert rgFields   == readsPELane1.getRGFields()
                     }
                     // test R1
                     assert get(1) ==~ /^.*\/SRR6924569_S1_L001_R1_001\.fastq\.gz/
@@ -258,11 +258,11 @@ nextflow_workflow {
                 with(get(3)) {
                     // test metadata
                     with(get(0)) {
-                        assert sampleName   == 'SRR6924569'
-                        assert readType     == 'paired'
-                        assert sampleNumber == '1'
-                        assert lane         == '002'
-                        assert rgFields       == readsPELane2.getRGFields()
+                        assert sampleName == 'SRR6924569'
+                        assert readType   == 'paired'
+                        assert lane       == '002'
+                        assert trimStatus == 'raw'
+                        assert rgFields   == readsPELane2.getRGFields()
                     }
                     // test R1
                     assert get(1) ==~ /^.*\/SRR6924569_S1_L002_R1_001\.fastq\.gz/

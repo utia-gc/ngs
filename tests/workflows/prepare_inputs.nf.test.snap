@@ -6,10 +6,13 @@
                     [
                         {
                             "sampleName": "SRR1066657_GSM1299413_WT_NR_A",
+                            "lane": [
+                                
+                            ],
                             "trimStatus": "raw",
                             "readType": "single",
                             "rgFields": {
-                                "ID": "SRR1066657_GSM1299413_WT_NR_A.null",
+                                "ID": "SRR1066657_GSM1299413_WT_NR_A.[]",
                                 "SM": "SRR1066657_GSM1299413_WT_NR_A",
                                 "LB": "SRR1066657_GSM1299413_WT_NR_A",
                                 "PL": "ILLUMINA"
@@ -21,10 +24,13 @@
                     [
                         {
                             "sampleName": "SRR1066658_GSM1299414_WT_NR_B",
+                            "lane": [
+                                
+                            ],
                             "trimStatus": "raw",
                             "readType": "single",
                             "rgFields": {
-                                "ID": "SRR1066658_GSM1299414_WT_NR_B.null",
+                                "ID": "SRR1066658_GSM1299414_WT_NR_B.[]",
                                 "SM": "SRR1066658_GSM1299414_WT_NR_B",
                                 "LB": "SRR1066658_GSM1299414_WT_NR_B",
                                 "PL": "ILLUMINA"
@@ -36,10 +42,13 @@
                     [
                         {
                             "sampleName": "SRR6924569_GSM3073206_Saccharomyces_cerevisiae-AR_Biological_Repeat-2",
+                            "lane": [
+                                
+                            ],
                             "trimStatus": "raw",
                             "readType": "paired",
                             "rgFields": {
-                                "ID": "SRR6924569_GSM3073206_Saccharomyces_cerevisiae-AR_Biological_Repeat-2.null",
+                                "ID": "SRR6924569_GSM3073206_Saccharomyces_cerevisiae-AR_Biological_Repeat-2.[]",
                                 "SM": "SRR6924569_GSM3073206_Saccharomyces_cerevisiae-AR_Biological_Repeat-2",
                                 "LB": "SRR6924569_GSM3073206_Saccharomyces_cerevisiae-AR_Biological_Repeat-2",
                                 "PL": "ILLUMINA"
@@ -51,10 +60,13 @@
                     [
                         {
                             "sampleName": "SRR6924589_GSM3073211_Saccharomyces_cerevisiae-AN_Biological_Repeat-1",
+                            "lane": [
+                                
+                            ],
                             "trimStatus": "raw",
                             "readType": "paired",
                             "rgFields": {
-                                "ID": "SRR6924589_GSM3073211_Saccharomyces_cerevisiae-AN_Biological_Repeat-1.null",
+                                "ID": "SRR6924589_GSM3073211_Saccharomyces_cerevisiae-AN_Biological_Repeat-1.[]",
                                 "SM": "SRR6924589_GSM3073211_Saccharomyces_cerevisiae-AN_Biological_Repeat-1",
                                 "LB": "SRR6924589_GSM3073211_Saccharomyces_cerevisiae-AN_Biological_Repeat-1",
                                 "PL": "ILLUMINA"
@@ -86,10 +98,13 @@
                     [
                         {
                             "sampleName": "SRR1066657_GSM1299413_WT_NR_A",
+                            "lane": [
+                                
+                            ],
                             "trimStatus": "raw",
                             "readType": "single",
                             "rgFields": {
-                                "ID": "SRR1066657_GSM1299413_WT_NR_A.null",
+                                "ID": "SRR1066657_GSM1299413_WT_NR_A.[]",
                                 "SM": "SRR1066657_GSM1299413_WT_NR_A",
                                 "LB": "SRR1066657_GSM1299413_WT_NR_A",
                                 "PL": "ILLUMINA"
@@ -101,10 +116,13 @@
                     [
                         {
                             "sampleName": "SRR1066658_GSM1299414_WT_NR_B",
+                            "lane": [
+                                
+                            ],
                             "trimStatus": "raw",
                             "readType": "single",
                             "rgFields": {
-                                "ID": "SRR1066658_GSM1299414_WT_NR_B.null",
+                                "ID": "SRR1066658_GSM1299414_WT_NR_B.[]",
                                 "SM": "SRR1066658_GSM1299414_WT_NR_B",
                                 "LB": "SRR1066658_GSM1299414_WT_NR_B",
                                 "PL": "ILLUMINA"
@@ -116,10 +134,13 @@
                     [
                         {
                             "sampleName": "SRR6924569_GSM3073206_Saccharomyces_cerevisiae-AR_Biological_Repeat-2",
+                            "lane": [
+                                
+                            ],
                             "trimStatus": "raw",
                             "readType": "paired",
                             "rgFields": {
-                                "ID": "SRR6924569_GSM3073206_Saccharomyces_cerevisiae-AR_Biological_Repeat-2.null",
+                                "ID": "SRR6924569_GSM3073206_Saccharomyces_cerevisiae-AR_Biological_Repeat-2.[]",
                                 "SM": "SRR6924569_GSM3073206_Saccharomyces_cerevisiae-AR_Biological_Repeat-2",
                                 "LB": "SRR6924569_GSM3073206_Saccharomyces_cerevisiae-AR_Biological_Repeat-2",
                                 "PL": "ILLUMINA"
@@ -131,10 +152,13 @@
                     [
                         {
                             "sampleName": "SRR6924589_GSM3073211_Saccharomyces_cerevisiae-AN_Biological_Repeat-1",
+                            "lane": [
+                                
+                            ],
                             "trimStatus": "raw",
                             "readType": "paired",
                             "rgFields": {
-                                "ID": "SRR6924589_GSM3073211_Saccharomyces_cerevisiae-AN_Biological_Repeat-1.null",
+                                "ID": "SRR6924589_GSM3073211_Saccharomyces_cerevisiae-AN_Biological_Repeat-1.[]",
                                 "SM": "SRR6924589_GSM3073211_Saccharomyces_cerevisiae-AN_Biological_Repeat-1",
                                 "LB": "SRR6924589_GSM3073211_Saccharomyces_cerevisiae-AN_Biological_Repeat-1",
                                 "PL": "ILLUMINA"
@@ -146,6 +170,6 @@
                 ]
             }
         ],
-        "timestamp": "2023-10-31T15:52:40.448480406"
+        "timestamp": "2024-07-22T11:59:07.291185319"
     }
 }
