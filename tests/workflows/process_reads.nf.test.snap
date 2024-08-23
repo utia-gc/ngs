@@ -10,8 +10,8 @@
                         "readType": "paired",
                         "trimStatus": "trimmed"
                     },
-                    "SRR6924569_L001_trimmed_R1.fastq.gz:md5,1025b1a273fee2b51bd597f519ebbe86",
-                    "SRR6924569_L001_trimmed_R2.fastq.gz:md5,3c3451e122dcf82b1be4a4526519fcc7"
+                    "SRR6924569_L001_trimmed_R1.fastq.gz:md5,43155463ca75fd43719d7f53ff4c7245",
+                    "SRR6924569_L001_trimmed_R2.fastq.gz:md5,4594a366575b59d38e2496c3ebbd6c07"
                 ],
                 [
                     {
@@ -21,12 +21,16 @@
                         "readType": "paired",
                         "trimStatus": "trimmed"
                     },
-                    "SRR6924569_L002_trimmed_R1.fastq.gz:md5,0a8a869af34fd3f2c45b01d29b031c8f",
-                    "SRR6924569_L002_trimmed_R2.fastq.gz:md5,5308d8b5e743b06434c3fa27776d34b6"
+                    "SRR6924569_L002_trimmed_R1.fastq.gz:md5,6a1f03d172b16055f1649deff74f091f",
+                    "SRR6924569_L002_trimmed_R2.fastq.gz:md5,ee1de89c2b899f584f65626827f74f10"
                 ]
             ]
         ],
-        "timestamp": "2023-10-19T13:29:30.171909727"
+        "meta": {
+            "nf-test": "0.9.0",
+            "nextflow": "23.10.1"
+        },
+        "timestamp": "2024-08-23T16:45:07.120719347"
     },
     "PROCESS_READS trims reads by default -- cutadapt + SE reads.": {
         "content": [
@@ -39,7 +43,7 @@
                         "readType": "single",
                         "trimStatus": "trimmed"
                     },
-                    "SRR1066657_L001_trimmed_R1.fastq.gz:md5,0cf552582764f49d0eb969ffb0950ed4",
+                    "SRR1066657_L001_trimmed_R1.fastq.gz:md5,c628a67ac81573079efc5c6ab313edf4",
                     "SRR1066657_L001_trimmed_R2.NOFILE:md5,d41d8cd98f00b204e9800998ecf8427e"
                 ],
                 [
@@ -50,12 +54,16 @@
                         "readType": "single",
                         "trimStatus": "trimmed"
                     },
-                    "SRR1066657_L002_trimmed_R1.fastq.gz:md5,c1ea5e2cbe17ba4c407d653af99fe2e9",
+                    "SRR1066657_L002_trimmed_R1.fastq.gz:md5,d8a6946fa34ddc03932ab23b910a622b",
                     "SRR1066657_L002_trimmed_R2.NOFILE:md5,d41d8cd98f00b204e9800998ecf8427e"
                 ]
             ]
         ],
-        "timestamp": "2023-10-19T13:29:18.699389544"
+        "meta": {
+            "nf-test": "0.9.0",
+            "nextflow": "23.10.1"
+        },
+        "timestamp": "2024-08-23T16:44:57.386290162"
     },
     "PROCESS_READS trims reads by default -- fastp +  PE reads + adapter fasta.": {
         "content": [
@@ -68,8 +76,8 @@
                         "readType": "paired",
                         "trimStatus": "trimmed"
                     },
-                    "SRR6924569_L001_trimmed_R1.fastq.gz:md5,a26de658644febb1260fd56d2690c01c",
-                    "SRR6924569_L001_trimmed_R2.fastq.gz:md5,569eb9ca4d935f290fc1e4a88fa9433d"
+                    "SRR6924569_L001_trimmed_R1.fastq.gz:md5,8aa724807a5f1c787ece1c5f1e1b4e1f",
+                    "SRR6924569_L001_trimmed_R2.fastq.gz:md5,fa5d0be90eaba718ba1048dc1ca4027c"
                 ],
                 [
                     {
@@ -79,12 +87,16 @@
                         "readType": "paired",
                         "trimStatus": "trimmed"
                     },
-                    "SRR6924569_L002_trimmed_R1.fastq.gz:md5,6e2a56e47473c780daa199df58946de5",
-                    "SRR6924569_L002_trimmed_R2.fastq.gz:md5,223d1bceba20b0d047555d5c990cecf4"
+                    "SRR6924569_L002_trimmed_R1.fastq.gz:md5,b1136714d1bdfaec240ab749ccd313f8",
+                    "SRR6924569_L002_trimmed_R2.fastq.gz:md5,999180d76b59a03cfc5a0b92b3fa4285"
                 ]
             ]
         ],
-        "timestamp": "2024-03-04T12:45:05.238609193"
+        "meta": {
+            "nf-test": "0.9.0",
+            "nextflow": "23.10.1"
+        },
+        "timestamp": "2024-08-23T16:45:47.080772548"
     },
     "PROCESS_READS trims reads by default -- fastp +  PE reads.": {
         "content": [
@@ -97,8 +109,8 @@
                         "readType": "paired",
                         "trimStatus": "trimmed"
                     },
-                    "SRR6924569_L001_trimmed_R1.fastq.gz:md5,92338c4ea608209b461a6d747fc272bb",
-                    "SRR6924569_L001_trimmed_R2.fastq.gz:md5,ffc0f8521e55d3f76548fc0da8b2f728"
+                    "SRR6924569_L001_trimmed_R1.fastq.gz:md5,d039428aeeaed7409cbe9f357df2ea49",
+                    "SRR6924569_L001_trimmed_R2.fastq.gz:md5,52bb6a4d21c88014ceb20af871c162c0"
                 ],
                 [
                     {
@@ -108,12 +120,16 @@
                         "readType": "paired",
                         "trimStatus": "trimmed"
                     },
-                    "SRR6924569_L002_trimmed_R1.fastq.gz:md5,9a0fa56bcd727f8b74e6be982dafe605",
-                    "SRR6924569_L002_trimmed_R2.fastq.gz:md5,4f4ff327daa6b0c6e2daa2679c9ef894"
+                    "SRR6924569_L002_trimmed_R1.fastq.gz:md5,b5098eb3c0f0d03a1cb4d6c73611848b",
+                    "SRR6924569_L002_trimmed_R2.fastq.gz:md5,eb2193b62d9f346b840e9a1e22b92450"
                 ]
             ]
         ],
-        "timestamp": "2023-10-31T13:44:10.791981151"
+        "meta": {
+            "nf-test": "0.9.0",
+            "nextflow": "23.10.1"
+        },
+        "timestamp": "2024-08-23T16:45:25.493448863"
     },
     "PROCESS_READS trims reads by default -- fastp + SE reads.": {
         "content": [
@@ -126,7 +142,7 @@
                         "readType": "single",
                         "trimStatus": "trimmed"
                     },
-                    "SRR1066657_L001_trimmed_R1.fastq.gz:md5,fd66b28bfdc8dbc6888912de7bcebd92",
+                    "SRR1066657_L001_trimmed_R1.fastq.gz:md5,dcc871a89deb4f6848918e2e14f511ec",
                     "SRR1066657_L001_trimmed_R2.NOFILE:md5,d41d8cd98f00b204e9800998ecf8427e"
                 ],
                 [
@@ -137,12 +153,16 @@
                         "readType": "single",
                         "trimStatus": "trimmed"
                     },
-                    "SRR1066657_L002_trimmed_R1.fastq.gz:md5,450f10949d14764d502384fdc415f8e1",
+                    "SRR1066657_L002_trimmed_R1.fastq.gz:md5,d52bc859986ff0bf250cffbcb3b3f2df",
                     "SRR1066657_L002_trimmed_R2.NOFILE:md5,d41d8cd98f00b204e9800998ecf8427e"
                 ]
             ]
         ],
-        "timestamp": "2023-10-31T13:43:53.539783212"
+        "meta": {
+            "nf-test": "0.9.0",
+            "nextflow": "23.10.1"
+        },
+        "timestamp": "2024-08-23T16:45:15.708692861"
     },
     "PROCESS_READS trims reads by default -- fastp + SE reads + adapter fasta.": {
         "content": [
@@ -155,7 +175,7 @@
                         "readType": "single",
                         "trimStatus": "trimmed"
                     },
-                    "SRR1066657_L001_trimmed_R1.fastq.gz:md5,4259524899c6389b75cf20739402e65c",
+                    "SRR1066657_L001_trimmed_R1.fastq.gz:md5,94064a8eefdb349a2a7a16840bac19ac",
                     "SRR1066657_L001_trimmed_R2.NOFILE:md5,d41d8cd98f00b204e9800998ecf8427e"
                 ],
                 [
@@ -166,11 +186,15 @@
                         "readType": "single",
                         "trimStatus": "trimmed"
                     },
-                    "SRR1066657_L002_trimmed_R1.fastq.gz:md5,2836e123b310a6648977a47d817b27a8",
+                    "SRR1066657_L002_trimmed_R1.fastq.gz:md5,b67efb095e88504573aa6cd3d0c80271",
                     "SRR1066657_L002_trimmed_R2.NOFILE:md5,d41d8cd98f00b204e9800998ecf8427e"
                 ]
             ]
         ],
-        "timestamp": "2024-03-04T12:52:07.061456232"
+        "meta": {
+            "nf-test": "0.9.0",
+            "nextflow": "23.10.1"
+        },
+        "timestamp": "2024-08-23T16:45:36.132528933"
     }
 }
