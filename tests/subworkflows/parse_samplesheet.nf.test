@@ -6,7 +6,6 @@ nextflow_workflow {
 
     test("Parse_Samplesheet fails -- sampleNames missing.") {
         tag 'nf-schema'
-        tag 'current'
 
         when {
             params {
