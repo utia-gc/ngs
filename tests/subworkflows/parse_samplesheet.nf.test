@@ -125,6 +125,102 @@ nextflow_workflow {
 
     }
 
+
+    test("Parse_Samplesheet successfully creates read channels with old style (three-digit) lanes -- mixed SE + PE reads.") {
+        tag 'nf-schema'
+
+        // instantiate helper objects
+        def readsSELane1 = new ReadsSELane1()
+        def readsSELane2 = new ReadsSELane2()
+        def readsPELane1 = new ReadsPELane1()
+        def readsPELane2 = new ReadsPELane2()
+
+        when {
+            params {
+                publishDirReports = "${outputDir}/reports"
+                publishDirData    = "${outputDir}/data"
+            }
+            workflow {
+                """
+                input[0] = "${projectDir}/tests/data/samplesheets/mixed-ends_three-digit-lanes.csv"
+                """
+            }
+        }
+
+        then {
+            // test workflow success
+            assert workflow.success
+
+            // test expected number samples
+            assert workflow.out.samples.size() == 4
+
+            // test expected samples
+            with(workflow.out.samples) {
+                with(get(0)) {
+                    // test metadata
+                    with(get(0)) {
+                        assert sampleName == 'SRR1066657'
+                        assert readType   == 'single'
+                        assert lane       == '001'
+                        assert trimStatus == 'raw'
+                        assert rgFields   == readsSELane1.getRGFields()
+                    }
+                    // test R1
+                    assert get(1) ==~ /^.*\/SRR1066657_S3_L001_R1_001\.fastq\.gz/
+                    // test R2
+                    assert get(2) ==~ /^.*\/SRR1066657_S3_L001_R1_001\.NOFILE/
+                }
+                with(get(1)) {
+                    // test metadata
+                    with(get(0)) {
+                        assert sampleName == 'SRR1066657'
+                        assert readType   == 'single'
+                        assert lane       == '002'
+                        assert trimStatus == 'raw'
+                        assert rgFields   == readsSELane2.getRGFields()
+                    }
+                    // test R1
+                    assert get(1) ==~ /^.*\/SRR1066657_S3_L002_R1_001\.fastq\.gz/
+                    // test R2
+                    assert get(2) ==~ /^.*\/SRR1066657_S3_L002_R1_001\.NOFILE/
+                }
+                with(get(2)) {
+                    // test metadata
+                    with(get(0)) {
+                        assert sampleName == 'SRR6924569'
+                        assert readType   == 'paired'
+                        assert lane       == '001'
+                        assert trimStatus == 'raw'
+                        assert rgFields   == readsPELane1.getRGFields()
+                    }
+                    // test R1
+                    assert get(1) ==~ /^.*\/SRR6924569_S1_L001_R1_001\.fastq\.gz/
+                    // test R2
+                    assert get(2) ==~ /^.*\/SRR6924569_S1_L001_R2_001\.fastq\.gz/
+                }
+                with(get(3)) {
+                    // test metadata
+                    with(get(0)) {
+                        assert sampleName == 'SRR6924569'
+                        assert readType   == 'paired'
+                        assert lane       == '002'
+                        assert trimStatus == 'raw'
+                        assert rgFields   == readsPELane2.getRGFields()
+                    }
+                    // test R1
+                    assert get(1) ==~ /^.*\/SRR6924569_S1_L002_R1_001\.fastq\.gz/
+                    // test R2
+                    assert get(2) ==~ /^.*\/SRR6924569_S1_L002_R2_001\.fastq\.gz/
+                }
+            }
+
+            // test reproducibility
+            assert snapshot(workflow.out).match()
+        }
+
+    }
+
+
     test("Parse_Samplesheet successfully creates read channels without lanes -- mixed SE + PE reads.") {
         tag 'nf-schema'
 

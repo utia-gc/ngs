@@ -14,8 +14,8 @@
         "meta": "sampleName"
       },
       "lane": {
-        "type": "integer",
-        "errorMessage": "Sequencing lane for the library, must be 0-999",
+        "type": ["integer", "string"],
+        "errorMessage": "Sequencing lane for the library, must be 0-999. Also excepts literal three digit lane numbers, e.g. '001'",
         "meta": "lane"
       },
       "reads1": {

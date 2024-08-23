@@ -1,4 +1,147 @@
 {
+    "Parse_Samplesheet successfully creates read channels with old style (three-digit) lanes -- mixed SE + PE reads.": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "sampleName": "SRR1066657",
+                            "lane": "001",
+                            "trimStatus": "raw",
+                            "readType": "single",
+                            "rgFields": {
+                                "ID": "SRR1066657.001",
+                                "SM": "SRR1066657",
+                                "LB": "SRR1066657",
+                                "PL": "ILLUMINA"
+                            }
+                        },
+                        "/utia-gc/ngs-test/raw/ngs/data/reads/raw/SRR1066657_S3_L001_R1_001.fastq.gz",
+                        "SRR1066657_S3_L001_R1_001.NOFILE:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ],
+                    [
+                        {
+                            "sampleName": "SRR1066657",
+                            "lane": "002",
+                            "trimStatus": "raw",
+                            "readType": "single",
+                            "rgFields": {
+                                "ID": "SRR1066657.002",
+                                "SM": "SRR1066657",
+                                "LB": "SRR1066657",
+                                "PL": "ILLUMINA"
+                            }
+                        },
+                        "/utia-gc/ngs-test/raw/ngs/data/reads/raw/SRR1066657_S3_L002_R1_001.fastq.gz",
+                        "SRR1066657_S3_L002_R1_001.NOFILE:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ],
+                    [
+                        {
+                            "sampleName": "SRR6924569",
+                            "lane": "001",
+                            "trimStatus": "raw",
+                            "readType": "paired",
+                            "rgFields": {
+                                "ID": "SRR6924569.001",
+                                "SM": "SRR6924569",
+                                "LB": "SRR6924569",
+                                "PL": "ILLUMINA"
+                            }
+                        },
+                        "/utia-gc/ngs-test/raw/ngs/data/reads/raw/SRR6924569_S1_L001_R1_001.fastq.gz",
+                        "/utia-gc/ngs-test/raw/ngs/data/reads/raw/SRR6924569_S1_L001_R2_001.fastq.gz"
+                    ],
+                    [
+                        {
+                            "sampleName": "SRR6924569",
+                            "lane": "002",
+                            "trimStatus": "raw",
+                            "readType": "paired",
+                            "rgFields": {
+                                "ID": "SRR6924569.002",
+                                "SM": "SRR6924569",
+                                "LB": "SRR6924569",
+                                "PL": "ILLUMINA"
+                            }
+                        },
+                        "/utia-gc/ngs-test/raw/ngs/data/reads/raw/SRR6924569_S1_L002_R1_001.fastq.gz",
+                        "/utia-gc/ngs-test/raw/ngs/data/reads/raw/SRR6924569_S1_L002_R2_001.fastq.gz"
+                    ]
+                ],
+                "samples": [
+                    [
+                        {
+                            "sampleName": "SRR1066657",
+                            "lane": "001",
+                            "trimStatus": "raw",
+                            "readType": "single",
+                            "rgFields": {
+                                "ID": "SRR1066657.001",
+                                "SM": "SRR1066657",
+                                "LB": "SRR1066657",
+                                "PL": "ILLUMINA"
+                            }
+                        },
+                        "/utia-gc/ngs-test/raw/ngs/data/reads/raw/SRR1066657_S3_L001_R1_001.fastq.gz",
+                        "SRR1066657_S3_L001_R1_001.NOFILE:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ],
+                    [
+                        {
+                            "sampleName": "SRR1066657",
+                            "lane": "002",
+                            "trimStatus": "raw",
+                            "readType": "single",
+                            "rgFields": {
+                                "ID": "SRR1066657.002",
+                                "SM": "SRR1066657",
+                                "LB": "SRR1066657",
+                                "PL": "ILLUMINA"
+                            }
+                        },
+                        "/utia-gc/ngs-test/raw/ngs/data/reads/raw/SRR1066657_S3_L002_R1_001.fastq.gz",
+                        "SRR1066657_S3_L002_R1_001.NOFILE:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ],
+                    [
+                        {
+                            "sampleName": "SRR6924569",
+                            "lane": "001",
+                            "trimStatus": "raw",
+                            "readType": "paired",
+                            "rgFields": {
+                                "ID": "SRR6924569.001",
+                                "SM": "SRR6924569",
+                                "LB": "SRR6924569",
+                                "PL": "ILLUMINA"
+                            }
+                        },
+                        "/utia-gc/ngs-test/raw/ngs/data/reads/raw/SRR6924569_S1_L001_R1_001.fastq.gz",
+                        "/utia-gc/ngs-test/raw/ngs/data/reads/raw/SRR6924569_S1_L001_R2_001.fastq.gz"
+                    ],
+                    [
+                        {
+                            "sampleName": "SRR6924569",
+                            "lane": "002",
+                            "trimStatus": "raw",
+                            "readType": "paired",
+                            "rgFields": {
+                                "ID": "SRR6924569.002",
+                                "SM": "SRR6924569",
+                                "LB": "SRR6924569",
+                                "PL": "ILLUMINA"
+                            }
+                        },
+                        "/utia-gc/ngs-test/raw/ngs/data/reads/raw/SRR6924569_S1_L002_R1_001.fastq.gz",
+                        "/utia-gc/ngs-test/raw/ngs/data/reads/raw/SRR6924569_S1_L002_R2_001.fastq.gz"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.0",
+            "nextflow": "23.10.1"
+        },
+        "timestamp": "2024-08-23T15:12:04.647702627"
+    },
     "Parse_Samplesheet successfully creates read channels with lanes -- mixed SE + PE reads.": {
         "content": [
             {
@@ -136,6 +279,10 @@
                 ]
             }
         ],
+        "meta": {
+            "nf-test": "0.9.0",
+            "nextflow": "23.10.1"
+        },
         "timestamp": "2024-07-22T15:24:32.774002039"
     },
     "Parse_Samplesheet successfully creates read channels without lanes -- mixed SE + PE reads.": {
@@ -207,6 +354,10 @@
                 ]
             }
         ],
+        "meta": {
+            "nf-test": "0.9.0",
+            "nextflow": "23.10.1"
+        },
         "timestamp": "2024-07-22T15:35:04.639003219"
     }
 }
