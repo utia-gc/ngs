@@ -4,7 +4,37 @@ nextflow_workflow {
     script "subworkflows/parse_samplesheet.nf"
     workflow "Parse_Samplesheet"
 
+    test("Parse_Samplesheet fails -- sampleNames missing.") {
+        tag 'nf-schema'
+        tag 'current'
+
+        when {
+            params {
+                publishDirReports = "${outputDir}/reports"
+                publishDirData    = "${outputDir}/data"
+            }
+            workflow {
+                """
+                input[0] = "${projectDir}/tests/data/samplesheets/invalid/sampleName-missing.csv"
+                """
+            }
+        }
+
+        then {
+            // nf-schema samplesheetToList() causes workflow failure with exit status 1 when samplesheet requirements aren't met
+            assert workflow.failed
+            assert workflow.exitStatus == 1
+            // nf-schema samplesheetToList() throws error messages on stdout and stderr when required param(s) not supplied
+            assert workflow.stdout.contains("ERROR ~ Validation of samplesheet failed!")
+            assert workflow.stderr.contains("-> Entry 2: Missing required field(s): sampleName")
+        }
+
+    }
+
+
     test("Parse_Samplesheet successfully creates read channels with lanes -- mixed SE + PE reads.") {
+        tag 'nf-schema'
+
         // instantiate helper objects
         def readsSELane1 = new ReadsSELane1()
         def readsSELane2 = new ReadsSELane2()
@@ -97,6 +127,8 @@ nextflow_workflow {
     }
 
     test("Parse_Samplesheet successfully creates read channels without lanes -- mixed SE + PE reads.") {
+        tag 'nf-schema'
+
         // instantiate helper objects
         def readsSELane1 = new ReadsSELane1()
         def readsPELane1 = new ReadsPELane1()
