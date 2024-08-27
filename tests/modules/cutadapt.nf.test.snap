@@ -10,16 +10,12 @@
                         "readType": "paired",
                         "trimStatus": "raw"
                     },
-                    "SRR6924569_L001_trimmed_R1.fastq.gz:md5,43155463ca75fd43719d7f53ff4c7245",
-                    "SRR6924569_L001_trimmed_R2.fastq.gz:md5,4594a366575b59d38e2496c3ebbd6c07"
+                    "SRR6924569_L001_trimmed_R1.fastq.gz:md5,1025b1a273fee2b51bd597f519ebbe86",
+                    "SRR6924569_L001_trimmed_R2.fastq.gz:md5,3c3451e122dcf82b1be4a4526519fcc7"
                 ]
             ]
         ],
-        "meta": {
-            "nf-test": "0.9.0",
-            "nextflow": "23.10.1"
-        },
-        "timestamp": "2024-08-23T16:44:17.367268357"
+        "timestamp": "2023-10-20T09:58:03.190239815"
     },
     "cutadapt trims reads -- SE reads.": {
         "content": [
@@ -32,15 +28,11 @@
                         "readType": "single",
                         "trimStatus": "raw"
                     },
-                    "SRR1066657_L001_trimmed_R1.fastq.gz:md5,c628a67ac81573079efc5c6ab313edf4",
+                    "SRR1066657_L001_trimmed_R1.fastq.gz:md5,0cf552582764f49d0eb969ffb0950ed4",
                     "SRR1066657_L001_trimmed_R2.NOFILE:md5,d41d8cd98f00b204e9800998ecf8427e"
                 ]
             ]
         ],
-        "meta": {
-            "nf-test": "0.9.0",
-            "nextflow": "23.10.1"
-        },
-        "timestamp": "2024-08-23T16:44:08.676955836"
+        "timestamp": "2023-10-20T09:57:52.475155518"
     }
 }

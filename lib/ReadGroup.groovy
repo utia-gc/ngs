@@ -79,7 +79,7 @@ static LinkedHashMap buildRGFields(metadata, matcher) {
         rgFields += ['ID': "${matcher.group('instrument')}_${matcher.group('runNumber')}_${matcher.group('flowcellID')}.${matcher.group('lane')}"]
         rgFields += ['PU': "${matcher.group('flowcellID')}.${matcher.group('lane')}.${matcher.group('index')}"]
     } else {
-        rgFields += ['ID': metadata.lane ? "${metadata.sampleName}.${metadata.lane}" : "${metadata.sampleName}"]
+        rgFields += ['ID': "${metadata.sampleName}.${metadata.lane}"]
     }
 
     // add more straightforwardly determined dynamic fields

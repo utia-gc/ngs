@@ -4,8 +4,7 @@ nextflow_workflow {
     script "subworkflows/parse_samplesheet.nf"
     workflow "Parse_Samplesheet"
 
-    test("Parse_Samplesheet fails -- sampleNames missing.") {
-        tag 'nf-schema'
+    test("Parse_Samplesheet successfully creates read channels from single-end samplesheet.") {
 
         when {
             params {
@@ -14,228 +13,7 @@ nextflow_workflow {
             }
             workflow {
                 """
-                input[0] = "${projectDir}/tests/data/samplesheets/invalid/sampleName-missing.csv"
-                """
-            }
-        }
-
-        then {
-            // nf-schema samplesheetToList() causes workflow failure with exit status 1 when samplesheet requirements aren't met
-            assert workflow.failed
-            assert workflow.exitStatus == 1
-            // nf-schema samplesheetToList() throws error messages on stdout and stderr when required param(s) not supplied
-            assert workflow.stdout.contains("ERROR ~ Validation of samplesheet failed!")
-            assert workflow.stderr.contains("-> Entry 2: Missing required field(s): sampleName")
-        }
-
-    }
-
-
-    test("Parse_Samplesheet successfully creates read channels with lanes -- mixed SE + PE reads.") {
-        tag 'nf-schema'
-
-        // instantiate helper objects
-        def readsSELane1 = new ReadsSELane1()
-        def readsSELane2 = new ReadsSELane2()
-        def readsPELane1 = new ReadsPELane1()
-        def readsPELane2 = new ReadsPELane2()
-
-        when {
-            params {
-                publishDirReports = "${outputDir}/reports"
-                publishDirData    = "${outputDir}/data"
-            }
-            workflow {
-                """
-                input[0] = "${projectDir}/tests/data/samplesheets/mixed-ends_lanes.csv"
-                """
-            }
-        }
-
-        then {
-            // test workflow success
-            assert workflow.success
-
-            // test expected number samples
-            assert workflow.out.samples.size() == 4
-
-            // test expected samples
-            with(workflow.out.samples) {
-                with(get(0)) {
-                    // test metadata
-                    with(get(0)) {
-                        assert sampleName == 'SRR1066657'
-                        assert readType   == 'single'
-                        assert lane       == '001'
-                        assert trimStatus == 'raw'
-                        assert rgFields   == readsSELane1.getRGFields()
-                    }
-                    // test R1
-                    assert get(1) ==~ /^.*\/SRR1066657_S3_L001_R1_001\.fastq\.gz/
-                    // test R2
-                    assert get(2) ==~ /^.*\/SRR1066657_S3_L001_R1_001\.NOFILE/
-                }
-                with(get(1)) {
-                    // test metadata
-                    with(get(0)) {
-                        assert sampleName == 'SRR1066657'
-                        assert readType   == 'single'
-                        assert lane       == '002'
-                        assert trimStatus == 'raw'
-                        assert rgFields   == readsSELane2.getRGFields()
-                    }
-                    // test R1
-                    assert get(1) ==~ /^.*\/SRR1066657_S3_L002_R1_001\.fastq\.gz/
-                    // test R2
-                    assert get(2) ==~ /^.*\/SRR1066657_S3_L002_R1_001\.NOFILE/
-                }
-                with(get(2)) {
-                    // test metadata
-                    with(get(0)) {
-                        assert sampleName == 'SRR6924569'
-                        assert readType   == 'paired'
-                        assert lane       == '001'
-                        assert trimStatus == 'raw'
-                        assert rgFields   == readsPELane1.getRGFields()
-                    }
-                    // test R1
-                    assert get(1) ==~ /^.*\/SRR6924569_S1_L001_R1_001\.fastq\.gz/
-                    // test R2
-                    assert get(2) ==~ /^.*\/SRR6924569_S1_L001_R2_001\.fastq\.gz/
-                }
-                with(get(3)) {
-                    // test metadata
-                    with(get(0)) {
-                        assert sampleName == 'SRR6924569'
-                        assert readType   == 'paired'
-                        assert lane       == '002'
-                        assert trimStatus == 'raw'
-                        assert rgFields   == readsPELane2.getRGFields()
-                    }
-                    // test R1
-                    assert get(1) ==~ /^.*\/SRR6924569_S1_L002_R1_001\.fastq\.gz/
-                    // test R2
-                    assert get(2) ==~ /^.*\/SRR6924569_S1_L002_R2_001\.fastq\.gz/
-                }
-            }
-
-            // test reproducibility
-            assert snapshot(workflow.out).match()
-        }
-
-    }
-
-
-    test("Parse_Samplesheet successfully creates read channels with old style (three-digit) lanes -- mixed SE + PE reads.") {
-        tag 'nf-schema'
-
-        // instantiate helper objects
-        def readsSELane1 = new ReadsSELane1()
-        def readsSELane2 = new ReadsSELane2()
-        def readsPELane1 = new ReadsPELane1()
-        def readsPELane2 = new ReadsPELane2()
-
-        when {
-            params {
-                publishDirReports = "${outputDir}/reports"
-                publishDirData    = "${outputDir}/data"
-            }
-            workflow {
-                """
-                input[0] = "${projectDir}/tests/data/samplesheets/mixed-ends_three-digit-lanes.csv"
-                """
-            }
-        }
-
-        then {
-            // test workflow success
-            assert workflow.success
-
-            // test expected number samples
-            assert workflow.out.samples.size() == 4
-
-            // test expected samples
-            with(workflow.out.samples) {
-                with(get(0)) {
-                    // test metadata
-                    with(get(0)) {
-                        assert sampleName == 'SRR1066657'
-                        assert readType   == 'single'
-                        assert lane       == '001'
-                        assert trimStatus == 'raw'
-                        assert rgFields   == readsSELane1.getRGFields()
-                    }
-                    // test R1
-                    assert get(1) ==~ /^.*\/SRR1066657_S3_L001_R1_001\.fastq\.gz/
-                    // test R2
-                    assert get(2) ==~ /^.*\/SRR1066657_S3_L001_R1_001\.NOFILE/
-                }
-                with(get(1)) {
-                    // test metadata
-                    with(get(0)) {
-                        assert sampleName == 'SRR1066657'
-                        assert readType   == 'single'
-                        assert lane       == '002'
-                        assert trimStatus == 'raw'
-                        assert rgFields   == readsSELane2.getRGFields()
-                    }
-                    // test R1
-                    assert get(1) ==~ /^.*\/SRR1066657_S3_L002_R1_001\.fastq\.gz/
-                    // test R2
-                    assert get(2) ==~ /^.*\/SRR1066657_S3_L002_R1_001\.NOFILE/
-                }
-                with(get(2)) {
-                    // test metadata
-                    with(get(0)) {
-                        assert sampleName == 'SRR6924569'
-                        assert readType   == 'paired'
-                        assert lane       == '001'
-                        assert trimStatus == 'raw'
-                        assert rgFields   == readsPELane1.getRGFields()
-                    }
-                    // test R1
-                    assert get(1) ==~ /^.*\/SRR6924569_S1_L001_R1_001\.fastq\.gz/
-                    // test R2
-                    assert get(2) ==~ /^.*\/SRR6924569_S1_L001_R2_001\.fastq\.gz/
-                }
-                with(get(3)) {
-                    // test metadata
-                    with(get(0)) {
-                        assert sampleName == 'SRR6924569'
-                        assert readType   == 'paired'
-                        assert lane       == '002'
-                        assert trimStatus == 'raw'
-                        assert rgFields   == readsPELane2.getRGFields()
-                    }
-                    // test R1
-                    assert get(1) ==~ /^.*\/SRR6924569_S1_L002_R1_001\.fastq\.gz/
-                    // test R2
-                    assert get(2) ==~ /^.*\/SRR6924569_S1_L002_R2_001\.fastq\.gz/
-                }
-            }
-
-            // test reproducibility
-            assert snapshot(workflow.out).match()
-        }
-
-    }
-
-
-    test("Parse_Samplesheet successfully creates read channels without lanes -- mixed SE + PE reads.") {
-        tag 'nf-schema'
-
-        // instantiate helper objects
-        def readsSELane1 = new ReadsSELane1()
-        def readsPELane1 = new ReadsPELane1()
-
-        when {
-            params {
-                publishDirReports = "${outputDir}/reports"
-                publishDirData    = "${outputDir}/data"
-            }
-            workflow {
-                """
-                input[0] = "${projectDir}/tests/data/samplesheets/mixed-ends_no-lanes.csv"
+                input[0] = "https://github.com/utia-gc/ngs-test/raw/ngs/samplesheets/samplesheet_se.csv"
                 """
             }
         }
@@ -252,14 +30,197 @@ nextflow_workflow {
                 with(get(0)) {
                     // test metadata
                     with(get(0)) {
-                        assert sampleName == 'SRR1066657'
+                        assert sampleName == 'SRR1066657_GSM1299413_WT_NR_A'
                         assert readType   == 'single'
-                        assert lane       == null
-                        assert trimStatus == 'raw'
-                        // strip lane number info from expected RG ID field
-                        def expectedRGFields = readsSELane1.getRGFields()
-                        expectedRGFields.ID = expectedRGFields.ID.replaceFirst(/\.\d{3}$/, "")
-                        assert rgFields   == expectedRGFields
+                    }
+                    // test R1
+                    assert get(1) ==~ /^.*\/SRR1066657_GSM1299413_WT_NR_A_Saccharomyces_cerevisiae_RNA-Seq_50000\.fastq\.gz/
+                    // test R2
+                    assert get(2) ==~ /^.*\/SRR1066657_GSM1299413_WT_NR_A_Saccharomyces_cerevisiae_RNA-Seq_50000\.NOFILE/
+                }
+                with(get(1)) {
+                    // test metadata
+                    with(get(0)) {
+                        assert sampleName == 'SRR1066658_GSM1299414_WT_NR_B'
+                        assert readType   == 'single'
+                    }
+                    // test R1
+                    assert get(1) ==~ /^.*\/SRR1066658_GSM1299414_WT_NR_B_Saccharomyces_cerevisiae_RNA-Seq_50000\.fastq\.gz/
+                    // test R2
+                    assert get(2) ==~ /^.*\/SRR1066658_GSM1299414_WT_NR_B_Saccharomyces_cerevisiae_RNA-Seq_50000\.NOFILE/
+                }
+            }
+
+            // test reproducibility
+            assert snapshot(workflow.out).match()
+        }
+
+    }
+
+    test("Parse_Samplesheet successfully creates read channels from paired-end samplesheet.") {
+
+        when {
+            params {
+                publishDirReports = "${outputDir}/reports"
+                publishDirData    = "${outputDir}/data"
+            }
+            workflow {
+                """
+                input[0] = "https://github.com/utia-gc/ngs-test/raw/ngs/samplesheets/samplesheet_pe.csv"
+                """
+            }
+        }
+
+        then {
+            // test workflow success
+            assert workflow.success
+
+            // test expected number samples
+            assert workflow.out.samples.size() == 2
+
+            // test expected samples
+            with(workflow.out.samples) {
+                with(get(0)) {
+                    // test metadata
+                    with(get(0)) {
+                        assert sampleName == 'SRR6924569_GSM3073206_Saccharomyces_cerevisiae-AR_Biological_Repeat-2'
+                        assert readType   == 'paired'
+                    }
+                    // test R1
+                    assert get(1) ==~ /^.*\/SRR6924569_GSM3073206_Saccharomyces_cerevisiae-AR_Biological_Repeat-2_Saccharomyces_cerevisiae_RNA-Seq_1_50000\.fastq\.gz/
+                    // test R2
+                    assert get(2) ==~ /^.*\/SRR6924569_GSM3073206_Saccharomyces_cerevisiae-AR_Biological_Repeat-2_Saccharomyces_cerevisiae_RNA-Seq_2_50000\.fastq\.gz/
+                }
+                with(get(1)) {
+                    // test metadata
+                    with(get(0)) {
+                        assert sampleName == 'SRR6924589_GSM3073211_Saccharomyces_cerevisiae-AN_Biological_Repeat-1'
+                        assert readType   == 'paired'
+                    }
+                    // test R1
+                    assert get(1) ==~ /^.*\/SRR6924589_GSM3073211_Saccharomyces_cerevisiae-AN_Biological_Repeat-1_Saccharomyces_cerevisiae_RNA-Seq_1_50000\.fastq\.gz/
+                    // test R2
+                    assert get(2) ==~ /^.*\/SRR6924589_GSM3073211_Saccharomyces_cerevisiae-AN_Biological_Repeat-1_Saccharomyces_cerevisiae_RNA-Seq_2_50000\.fastq\.gz/
+                }
+            }
+
+            // test reproducibility
+            assert snapshot(workflow.out).match()
+        }
+
+    }
+
+    test("Parse_Samplesheet successfully creates read channels from mixed single-end and paired-end samplesheet.") {
+
+        when {
+            params {
+                publishDirReports = "${outputDir}/reports"
+                publishDirData    = "${outputDir}/data"
+            }
+            workflow {
+                """
+                input[0] = "https://github.com/utia-gc/ngs-test/raw/ngs/samplesheets/samplesheet_mix.csv"
+                """
+            }
+        }
+
+        then {
+            // test workflow success
+            assert workflow.success
+
+            // test expected number samples
+            assert workflow.out.samples.size() == 4
+
+            // test expected samples
+            with(workflow.out.samples) {
+                with(get(0)) {
+                    // test metadata
+                    with(get(0)) {
+                        assert sampleName == 'SRR1066657_GSM1299413_WT_NR_A'
+                        assert readType   == 'single'
+                    }
+                    // test R1
+                    assert get(1) ==~ /^.*\/SRR1066657_GSM1299413_WT_NR_A_Saccharomyces_cerevisiae_RNA-Seq_50000\.fastq\.gz/
+                    // test R2
+                    assert get(2) ==~ /^.*\/SRR1066657_GSM1299413_WT_NR_A_Saccharomyces_cerevisiae_RNA-Seq_50000\.NOFILE/
+                }
+                with(get(1)) {
+                    // test metadata
+                    with(get(0)) {
+                        assert sampleName == 'SRR1066658_GSM1299414_WT_NR_B'
+                        assert readType   == 'single'
+                    }
+                    // test R1
+                    assert get(1) ==~ /^.*\/SRR1066658_GSM1299414_WT_NR_B_Saccharomyces_cerevisiae_RNA-Seq_50000\.fastq\.gz/
+                    // test R2
+                    assert get(2) ==~ /^.*\/SRR1066658_GSM1299414_WT_NR_B_Saccharomyces_cerevisiae_RNA-Seq_50000\.NOFILE/
+                }
+                with(get(2)) {
+                    // test metadata
+                    with(get(0)) {
+                        assert sampleName == 'SRR6924569_GSM3073206_Saccharomyces_cerevisiae-AR_Biological_Repeat-2'
+                        assert readType   == 'paired'
+                    }
+                    // test R1
+                    assert get(1) ==~ /^.*\/SRR6924569_GSM3073206_Saccharomyces_cerevisiae-AR_Biological_Repeat-2_Saccharomyces_cerevisiae_RNA-Seq_1_50000\.fastq\.gz/
+                    // test R2
+                    assert get(2) ==~ /^.*\/SRR6924569_GSM3073206_Saccharomyces_cerevisiae-AR_Biological_Repeat-2_Saccharomyces_cerevisiae_RNA-Seq_2_50000\.fastq\.gz/
+                }
+                with(get(3)) {
+                    // test metadata
+                    with(get(0)) {
+                        assert sampleName == 'SRR6924589_GSM3073211_Saccharomyces_cerevisiae-AN_Biological_Repeat-1'
+                        assert readType   == 'paired'
+                    }
+                    // test R1
+                    assert get(1) ==~ /^.*\/SRR6924589_GSM3073211_Saccharomyces_cerevisiae-AN_Biological_Repeat-1_Saccharomyces_cerevisiae_RNA-Seq_1_50000\.fastq\.gz/
+                    // test R2
+                    assert get(2) ==~ /^.*\/SRR6924589_GSM3073211_Saccharomyces_cerevisiae-AN_Biological_Repeat-1_Saccharomyces_cerevisiae_RNA-Seq_2_50000\.fastq\.gz/
+                }
+            }
+
+            // test reproducibility
+            assert snapshot(workflow.out).match()
+        }
+
+    }
+
+    test("Parse_Samplesheet successfully creates read channels with lanes and sample numbers -- SE + PE reads.") {
+        // instantiate helper objects
+        def readsSELane1 = new ReadsSELane1()
+        def readsSELane2 = new ReadsSELane2()
+        def readsPELane1 = new ReadsPELane1()
+        def readsPELane2 = new ReadsPELane2()
+
+        when {
+            params {
+                publishDirReports = "${outputDir}/reports"
+                publishDirData    = "${outputDir}/data"
+            }
+            workflow {
+                """
+                input[0] = "https://github.com/utia-gc/ngs-test/raw/ngs/samplesheets/samplesheet_lanes_mix.csv"
+                """
+            }
+        }
+
+        then {
+            // test workflow success
+            assert workflow.success
+
+            // test expected number samples
+            assert workflow.out.samples.size() == 4
+
+            // test expected samples
+            with(workflow.out.samples) {
+                with(get(0)) {
+                    // test metadata
+                    with(get(0)) {
+                        assert sampleName   == 'SRR1066657'
+                        assert readType     == 'single'
+                        assert sampleNumber == '3'
+                        assert lane         == '001'
+                        assert rgFields       == readsSELane1.getRGFields()
                     }
                     // test R1
                     assert get(1) ==~ /^.*\/SRR1066657_S3_L001_R1_001\.fastq\.gz/
@@ -269,19 +230,44 @@ nextflow_workflow {
                 with(get(1)) {
                     // test metadata
                     with(get(0)) {
-                        assert sampleName == 'SRR6924569'
-                        assert readType   == 'paired'
-                        assert lane       == null
-                        assert trimStatus == 'raw'
-                        // strip lane number info from expected RG ID field
-                        def expectedRGFields = readsPELane1.getRGFields()
-                        expectedRGFields.ID = expectedRGFields.ID.replaceFirst(/\.\d{3}$/, "")
-                        assert rgFields   == expectedRGFields
+                        assert sampleName   == 'SRR1066657'
+                        assert readType     == 'single'
+                        assert sampleNumber == '3'
+                        assert lane         == '002'
+                        assert rgFields       == readsSELane2.getRGFields()
+                    }
+                    // test R1
+                    assert get(1) ==~ /^.*\/SRR1066657_S3_L002_R1_001\.fastq\.gz/
+                    // test R2
+                    assert get(2) ==~ /^.*\/SRR1066657_S3_L002_R1_001\.NOFILE/
+                }
+                with(get(2)) {
+                    // test metadata
+                    with(get(0)) {
+                        assert sampleName   == 'SRR6924569'
+                        assert readType     == 'paired'
+                        assert sampleNumber == '1'
+                        assert lane         == '001'
+                        assert rgFields       == readsPELane1.getRGFields()
                     }
                     // test R1
                     assert get(1) ==~ /^.*\/SRR6924569_S1_L001_R1_001\.fastq\.gz/
                     // test R2
                     assert get(2) ==~ /^.*\/SRR6924569_S1_L001_R2_001\.fastq\.gz/
+                }
+                with(get(3)) {
+                    // test metadata
+                    with(get(0)) {
+                        assert sampleName   == 'SRR6924569'
+                        assert readType     == 'paired'
+                        assert sampleNumber == '1'
+                        assert lane         == '002'
+                        assert rgFields       == readsPELane2.getRGFields()
+                    }
+                    // test R1
+                    assert get(1) ==~ /^.*\/SRR6924569_S1_L002_R1_001\.fastq\.gz/
+                    // test R2
+                    assert get(2) ==~ /^.*\/SRR6924569_S1_L002_R2_001\.fastq\.gz/
                 }
             }
 
