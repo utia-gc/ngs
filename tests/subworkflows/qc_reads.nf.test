@@ -44,7 +44,7 @@ nextflow_workflow {
                     ]
                 )
                 input[2] = Channel.of( file("${readsLane1.getTrimLogCutadapt()}") )
-                input[3] = Channel.of( file("${refs.getGenomeIndex()}") )
+                input[3] = Channel.of( file("${projectDir}/${refs.getGenomeIndex()}") )
                 """
             }
         }
@@ -106,7 +106,7 @@ nextflow_workflow {
                     ]
                 )
                 input[2] = Channel.of( file("${readsLane1.getTrimLogCutadapt()}") )
-                input[3] = Channel.of( file("${refs.getGenomeIndex()}") )
+                input[3] = Channel.of( file("${projectDir}/${refs.getGenomeIndex()}") )
                 """
             }
         }
@@ -170,7 +170,7 @@ nextflow_workflow {
                     ]
                 )
                 input[2] = Channel.of( file("${readsLane1.getTrimLogFastp()}") )
-                input[3] = Channel.of( file("${refs.getGenomeIndex()}") )
+                input[3] = Channel.of( file("${projectDir}/${refs.getGenomeIndex()}") )
                 """
             }
         }
@@ -232,7 +232,7 @@ nextflow_workflow {
                     ]
                 )
                 input[2] = Channel.of( file("${readsLane1.getTrimLogFastp()}") )
-                input[3] = Channel.of( file("${refs.getGenomeIndex()}") )
+                input[3] = Channel.of( file("${projectDir}/${refs.getGenomeIndex()}") )
                 """
             }
         }

@@ -15,7 +15,7 @@ nextflow_process {
             }
             process {
                 """
-                input[0] = file("${refs.getGenome()}")
+                input[0] = file("${projectDir}/${refs.getGenome()}")
                 """
             }
         }

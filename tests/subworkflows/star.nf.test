@@ -33,8 +33,8 @@ nextflow_workflow {
                     file("${readsLane1.getR1()}"),
                     file("${readsLane1.getR2()}")
                 ]
-                input[1] = file("${refs.getGenome()}")
-                input[2] = file("${refs.getGTF()}")
+                input[1] = file("${projectDir}/${refs.getGenome()}")
+                input[2] = file("${projectDir}/${refs.getGTF()}")
                 """
             }
         }
@@ -86,8 +86,8 @@ nextflow_workflow {
                     file("${readsLane1.getR1()}"),
                     file("${readsLane1.getR2()}")
                 ]
-                input[1] = file("${refs.getGenome()}")
-                input[2] = file("${refs.getGTF()}")
+                input[1] = file("${projectDir}/${refs.getGenome()}")
+                input[2] = file("${projectDir}/${refs.getGTF()}")
                 """
             }
         }

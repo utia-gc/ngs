@@ -409,8 +409,8 @@ nextflow_pipeline {
             params {
                 publishDirReports = "${outputDir}/reports"
                 publishDirData    = "${outputDir}/data"
-                genome            = "${refs.getGenome()}"
-                annotations       = "${refs.getGTF()}"
+                genome            = "${projectDir}/${refs.getGenome()}"
+                annotations       = "${projectDir}/${refs.getGTF()}"
             }
         }
 

@@ -22,31 +22,39 @@
                 ]
             }
         ],
+        "meta": {
+            "nf-test": "0.9.0",
+            "nextflow": "23.10.1"
+        },
         "timestamp": "2023-09-27T15:44:42+0000"
     },
     "Prepare_Refs successfully emits uncompressed genome and GTF files when uncompressed inputs are given.": {
         "content": [
             {
                 "0": [
-                    "/utia-gc/ngs-test/raw/ngs/data/references/R64-1-1/genome_I.fa"
+                    "genome_I.fa:md5,e050100d0a9a7d06a8accf8424ad0d98"
                 ],
                 "1": [
                     "genome_I.fa.fai:md5,2cd76d936cbfa386b14154506c2041b2"
                 ],
                 "2": [
-                    "/utia-gc/ngs-test/raw/ngs/data/references/R64-1-1/annotations_I.gtf"
+                    "annotations_I.gtf:md5,61525d86cb937e0fe5b349215c50498c"
                 ],
                 "annotations": [
-                    "/utia-gc/ngs-test/raw/ngs/data/references/R64-1-1/annotations_I.gtf"
+                    "annotations_I.gtf:md5,61525d86cb937e0fe5b349215c50498c"
                 ],
                 "genome": [
-                    "/utia-gc/ngs-test/raw/ngs/data/references/R64-1-1/genome_I.fa"
+                    "genome_I.fa:md5,e050100d0a9a7d06a8accf8424ad0d98"
                 ],
                 "genome_index": [
                     "genome_I.fa.fai:md5,2cd76d936cbfa386b14154506c2041b2"
                 ]
             }
         ],
-        "timestamp": "2023-09-27T15:44:42+0000"
+        "meta": {
+            "nf-test": "0.9.0",
+            "nextflow": "23.10.1"
+        },
+        "timestamp": "2024-08-27T15:52:19.490221634"
     }
 }

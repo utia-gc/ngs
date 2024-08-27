@@ -51,8 +51,8 @@ nextflow_workflow {
                         file("${readsLane2.getR2()}")
                     ]
                 )
-                input[1] = file("${refs.getGenome()}")
-                input[2] = file("${refs.getGTF()}")
+                input[1] = file("${projectDir}/${refs.getGenome()}")
+                input[2] = file("${projectDir}/${refs.getGTF()}")
                 input[3] = "bwamem2"
                 """
             }
@@ -154,8 +154,8 @@ nextflow_workflow {
                         file("${readsLane2.getR2()}")
                     ]
                 )
-                input[1] = file("${refs.getGenome()}")
-                input[2] = file("${refs.getGTF()}")
+                input[1] = file("${projectDir}/${refs.getGenome()}")
+                input[2] = file("${projectDir}/${refs.getGTF()}")
                 input[3] = "bwamem2"
                 """
             }
@@ -257,8 +257,8 @@ nextflow_workflow {
                         file("${readsLane2.getR2()}")
                     ]
                 )
-                input[1] = file("${refs.getGenome()}")
-                input[2] = file("${refs.getGTF()}")
+                input[1] = file("${projectDir}/${refs.getGenome()}")
+                input[2] = file("${projectDir}/${refs.getGTF()}")
                 input[3] = "star"
                 """
             }
@@ -360,8 +360,8 @@ nextflow_workflow {
                         file("${readsLane2.getR2()}")
                     ]
                 )
-                input[1] = file("${refs.getGenome()}")
-                input[2] = file("${refs.getGTF()}")
+                input[1] = file("${projectDir}/${refs.getGenome()}")
+                input[2] = file("${projectDir}/${refs.getGTF()}")
                 input[3] = "star"
                 """
             }

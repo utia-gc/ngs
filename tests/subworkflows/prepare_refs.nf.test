@@ -15,8 +15,8 @@ nextflow_workflow {
             }
             workflow {
                 """
-                input[0] = file("${refs.getGenomeGzip()}")
-                input[1] = file("${refs.getGTFGzip()}")
+                input[0] = file("${projectDir}/${refs.getGenomeGzip()}")
+                input[1] = file("${projectDir}/${refs.getGTFGzip()}")
                 """
             }
         }
@@ -64,8 +64,8 @@ nextflow_workflow {
             }
             workflow {
                 """
-                input[0] = file("${refs.getGenome()}")
-                input[1] = file("${refs.getGTF()}")
+                input[0] = file("${projectDir}/${refs.getGenome()}")
+                input[1] = file("${projectDir}/${refs.getGTF()}")
                 """
             }
         }

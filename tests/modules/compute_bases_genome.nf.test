@@ -15,7 +15,7 @@ nextflow_process {
             }
             process {
                 """
-                input[0] = file("${refs.getGenomeIndex()}")
+                input[0] = file("${projectDir}/${refs.getGenomeIndex()}")
                 """
             }
         }
@@ -43,7 +43,7 @@ nextflow_process {
             }
             process {
                 """
-                input[0] = file("https://github.com/utia-gc/ngs-test/raw/b34247fcd38695c8a07abdb8fa521424920a97db/data/references/GCF_002263795.3_ARS-UCD2.0_genomic.fna.fai")
+                input[0] = file("${projectDir}/tests/data/references/GCF_002263795.3_ARS-UCD2.0_genomic.fna.fai")
                 """
             }
         }
