@@ -1,0 +1,4 @@
+[submodule "tests/data"]
+	path = tests/data
+	url = https://github.com/utia-gc/ngs-test
+	branch = ngs
