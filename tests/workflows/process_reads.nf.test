@@ -25,8 +25,8 @@ nextflow_workflow {
                             lane:         "${readsLane1.getLane()}",
                             readType:     "${readsLane1.getReadType()}"
                         ],
-                        file("${readsLane1.getR1()}"),
-                        file("${readsLane1.getR2()}")
+                        file("${projectDir}/${readsLane1.getR1()}"),
+                        file("${projectDir}/${readsLane1.getR2()}")
                     ],
                     [
                         [
@@ -35,8 +35,8 @@ nextflow_workflow {
                             lane:         "${readsLane2.getLane()}",
                             readType:     "${readsLane2.getReadType()}"
                         ],
-                        file("${readsLane2.getR1()}"),
-                        file("${readsLane2.getR2()}")
+                        file("${projectDir}/${readsLane2.getR1()}"),
+                        file("${projectDir}/${readsLane2.getR2()}")
                     ]
                 )
                 input[1] = file("${projectDir}/assets/NO_FILE")
@@ -97,8 +97,8 @@ nextflow_workflow {
                             lane:         "${readsLane1.getLane()}",
                             readType:     "${readsLane1.getReadType()}"
                         ],
-                        file("${readsLane1.getR1()}"),
-                        file("${readsLane1.getR2()}")
+                        file("${projectDir}/${readsLane1.getR1()}"),
+                        file("${projectDir}/${readsLane1.getR2()}")
                     ],
                     [
                         [
@@ -107,8 +107,8 @@ nextflow_workflow {
                             lane:         "${readsLane2.getLane()}",
                             readType:     "${readsLane2.getReadType()}"
                         ],
-                        file("${readsLane2.getR1()}"),
-                        file("${readsLane2.getR2()}")
+                        file("${projectDir}/${readsLane2.getR1()}"),
+                        file("${projectDir}/${readsLane2.getR2()}")
                     ]
                 )
                 input[1] = file("${projectDir}/assets/NO_FILE")
@@ -169,8 +169,8 @@ nextflow_workflow {
                             lane:         "${readsLane1.getLane()}",
                             readType:     "${readsLane1.getReadType()}"
                         ],
-                        file("${readsLane1.getR1()}"),
-                        file("${readsLane1.getR2()}")
+                        file("${projectDir}/${readsLane1.getR1()}"),
+                        file("${projectDir}/${readsLane1.getR2()}")
                     ],
                     [
                         [
@@ -179,8 +179,8 @@ nextflow_workflow {
                             lane:         "${readsLane2.getLane()}",
                             readType:     "${readsLane2.getReadType()}"
                         ],
-                        file("${readsLane2.getR1()}"),
-                        file("${readsLane2.getR2()}")
+                        file("${projectDir}/${readsLane2.getR1()}"),
+                        file("${projectDir}/${readsLane2.getR2()}")
                     ]
                 )
                 input[1] = file("${projectDir}/assets/NO_FILE")
@@ -241,8 +241,8 @@ nextflow_workflow {
                             lane:         "${readsLane1.getLane()}",
                             readType:     "${readsLane1.getReadType()}"
                         ],
-                        file("${readsLane1.getR1()}"),
-                        file("${readsLane1.getR2()}")
+                        file("${projectDir}/${readsLane1.getR1()}"),
+                        file("${projectDir}/${readsLane1.getR2()}")
                     ],
                     [
                         [
@@ -251,8 +251,8 @@ nextflow_workflow {
                             lane:         "${readsLane2.getLane()}",
                             readType:     "${readsLane2.getReadType()}"
                         ],
-                        file("${readsLane2.getR1()}"),
-                        file("${readsLane2.getR2()}")
+                        file("${projectDir}/${readsLane2.getR1()}"),
+                        file("${projectDir}/${readsLane2.getR2()}")
                     ]
                 )
                 input[1] = file("${projectDir}/assets/NO_FILE")
@@ -313,8 +313,8 @@ nextflow_workflow {
                             lane:         "${readsLane1.getLane()}",
                             readType:     "${readsLane1.getReadType()}"
                         ],
-                        file("${readsLane1.getR1()}"),
-                        file("${readsLane1.getR2()}")
+                        file("${projectDir}/${readsLane1.getR1()}"),
+                        file("${projectDir}/${readsLane1.getR2()}")
                     ],
                     [
                         [
@@ -323,8 +323,8 @@ nextflow_workflow {
                             lane:         "${readsLane2.getLane()}",
                             readType:     "${readsLane2.getReadType()}"
                         ],
-                        file("${readsLane2.getR1()}"),
-                        file("${readsLane2.getR2()}")
+                        file("${projectDir}/${readsLane2.getR1()}"),
+                        file("${projectDir}/${readsLane2.getR2()}")
                     ]
                 )
                 input[1] = file("${projectDir}/tests/assets/sample_adapters.fasta")
@@ -385,8 +385,8 @@ nextflow_workflow {
                             lane:         "${readsLane1.getLane()}",
                             readType:     "${readsLane1.getReadType()}"
                         ],
-                        file("${readsLane1.getR1()}"),
-                        file("${readsLane1.getR2()}")
+                        file("${projectDir}/${readsLane1.getR1()}"),
+                        file("${projectDir}/${readsLane1.getR2()}")
                     ],
                     [
                         [
@@ -395,8 +395,8 @@ nextflow_workflow {
                             lane:         "${readsLane2.getLane()}",
                             readType:     "${readsLane2.getReadType()}"
                         ],
-                        file("${readsLane2.getR1()}"),
-                        file("${readsLane2.getR2()}")
+                        file("${projectDir}/${readsLane2.getR1()}"),
+                        file("${projectDir}/${readsLane2.getR2()}")
                     ]
                 )
                 input[1] = file("${projectDir}/tests/assets/sample_adapters.fasta")

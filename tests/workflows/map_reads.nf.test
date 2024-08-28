@@ -31,8 +31,8 @@ nextflow_workflow {
                                 PL: "${readsLane1.getRGFields().get('PL')}",
                             ]
                         ],
-                        file("${readsLane1.getR1()}"),
-                        file("${readsLane1.getR2()}")
+                        file("${projectDir}/${readsLane1.getR1()}"),
+                        file("${projectDir}/${readsLane1.getR2()}")
                     ],
                     [
                         [
@@ -47,8 +47,8 @@ nextflow_workflow {
                                 PL: "${readsLane2.getRGFields().get('PL')}",
                             ]
                         ],
-                        file("${readsLane2.getR1()}"),
-                        file("${readsLane2.getR2()}")
+                        file("${projectDir}/${readsLane2.getR1()}"),
+                        file("${projectDir}/${readsLane2.getR2()}")
                     ]
                 )
                 input[1] = file("${projectDir}/${refs.getGenome()}")
@@ -134,8 +134,8 @@ nextflow_workflow {
                                 PL: "${readsLane1.getRGFields().get('PL')}",
                             ]
                         ],
-                        file("${readsLane1.getR1()}"),
-                        file("${readsLane1.getR2()}")
+                        file("${projectDir}/${readsLane1.getR1()}"),
+                        file("${projectDir}/${readsLane1.getR2()}")
                     ],
                     [
                         [
@@ -150,8 +150,8 @@ nextflow_workflow {
                                 PL: "${readsLane2.getRGFields().get('PL')}",
                             ]
                         ],
-                        file("${readsLane2.getR1()}"),
-                        file("${readsLane2.getR2()}")
+                        file("${projectDir}/${readsLane2.getR1()}"),
+                        file("${projectDir}/${readsLane2.getR2()}")
                     ]
                 )
                 input[1] = file("${projectDir}/${refs.getGenome()}")
@@ -237,8 +237,8 @@ nextflow_workflow {
                                 PL: "${readsLane1.getRGFields().get('PL')}",
                             ]
                         ],
-                        file("${readsLane1.getR1()}"),
-                        file("${readsLane1.getR2()}")
+                        file("${projectDir}/${readsLane1.getR1()}"),
+                        file("${projectDir}/${readsLane1.getR2()}")
                     ],
                     [
                         [
@@ -253,8 +253,8 @@ nextflow_workflow {
                                 PL: "${readsLane2.getRGFields().get('PL')}",
                             ]
                         ],
-                        file("${readsLane2.getR1()}"),
-                        file("${readsLane2.getR2()}")
+                        file("${projectDir}/${readsLane2.getR1()}"),
+                        file("${projectDir}/${readsLane2.getR2()}")
                     ]
                 )
                 input[1] = file("${projectDir}/${refs.getGenome()}")
@@ -340,8 +340,8 @@ nextflow_workflow {
                                 PL: "${readsLane1.getRGFields().get('PL')}",
                             ]
                         ],
-                        file("${readsLane1.getR1()}"),
-                        file("${readsLane1.getR2()}")
+                        file("${projectDir}/${readsLane1.getR1()}"),
+                        file("${projectDir}/${readsLane1.getR2()}")
                     ],
                     [
                         [
@@ -356,8 +356,8 @@ nextflow_workflow {
                                 PL: "${readsLane2.getRGFields().get('PL')}",
                             ]
                         ],
-                        file("${readsLane2.getR1()}"),
-                        file("${readsLane2.getR2()}")
+                        file("${projectDir}/${readsLane2.getR1()}"),
+                        file("${projectDir}/${readsLane2.getR2()}")
                     ]
                 )
                 input[1] = file("${projectDir}/${refs.getGenome()}")

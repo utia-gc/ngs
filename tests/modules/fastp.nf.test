@@ -23,8 +23,8 @@ nextflow_process {
                         readType:     "${readsLane1.getReadType()}",
                         trimStatus:   "raw",
                     ],
-                    file("${readsLane1.getR1()}"),
-                    file("${readsLane1.getR2()}")
+                    file("${projectDir}/${readsLane1.getR1()}"),
+                    file("${projectDir}/${readsLane1.getR2()}")
                 ]
                 input[1] = file("${projectDir}/assets/NO_FILE")
                 """
@@ -74,8 +74,8 @@ nextflow_process {
                         readType:     "${readsLane1.getReadType()}",
                         trimStatus:   "raw",
                     ],
-                        file("${readsLane1.getR1()}"),
-                        file("${readsLane1.getR2()}")
+                        file("${projectDir}/${readsLane1.getR1()}"),
+                        file("${projectDir}/${readsLane1.getR2()}")
                 ]
                 input[1] = file("${projectDir}/assets/NO_FILE")
                 """
@@ -126,8 +126,8 @@ nextflow_process {
                         readType:     "${readsLane1.getReadType()}",
                         trimStatus:   "raw",
                     ],
-                    file("${readsLane1.getR1()}"),
-                    file("${readsLane1.getR2()}")
+                    file("${projectDir}/${readsLane1.getR1()}"),
+                    file("${projectDir}/${readsLane1.getR2()}")
                 ]
                 input[1] = file("${projectDir}/tests/assets/sample_adapters.fasta")
                 """
@@ -178,8 +178,8 @@ nextflow_process {
                         readType:     "${readsLane1.getReadType()}",
                         trimStatus:   "raw",
                     ],
-                        file("${readsLane1.getR1()}"),
-                        file("${readsLane1.getR2()}")
+                        file("${projectDir}/${readsLane1.getR1()}"),
+                        file("${projectDir}/${readsLane1.getR2()}")
                 ]
                 input[1] = file("${projectDir}/tests/assets/sample_adapters.fasta")
                 """
