@@ -13,7 +13,7 @@ class ReadsSELane1 extends Reads {
         "tests/data/reads/raw/SRR1066657_S3_L001_R1_001.fastq.gz.NOFILE"
     ]
     LinkedHashMap trimLogs = [
-        cutadapt: 'https://github.com/utia-gc/ngs-test/raw/ngs/data/reads/trimmed/cutadapt/SRR1066657_L001_cutadapt-log.txt',
-        fastp:    'https://github.com/utia-gc/ngs-test/raw/ngs/data/reads/trimmed/fastp/SRR1066657_L001_fastp.json',
+        cutadapt: 'tests/data/reads/trimmed/cutadapt/SRR1066657_L001_cutadapt-log.txt',
+        fastp:    'tests/data/reads/trimmed/fastp/SRR1066657_L001_fastp.json',
     ]
 }
