@@ -5,6 +5,8 @@ nextflow_process {
     process "multiqc"
 
     test("multiqc should run on MultiQC test data.") {
+        // instantiate helper objects
+        def readsLane1 = new ReadsSELane1()
 
         when {
             params {
@@ -14,10 +16,10 @@ nextflow_process {
             process {
                 """
                 input[0] = [
-                    file("https://github.com/utia-gc/ngs-test/raw/ngs/data/reads/trimmed/cutadapt/SRR1066657_L001_cutadapt-log.txt"),
-                    file("https://github.com/utia-gc/ngs-test/raw/ngs/data/reads/trimmed/fastp/SRR1066657_L001_fastp.json")
+                    file("${projectDir}/${readsLane1.getTrimLogCutadapt()}"),
+                    file("${projectDir}/${readsLane1.getTrimLogFastp()}")
                 ]
-                input[1] = file("https://github.com/utia-gc/ngs-test/raw/ngs/conf/multiqc_config.yaml")
+                input[1] = file("${projectDir}/tests/data/conf/multiqc_config.yaml")
                 input[2] = "multiqc"
                 """
             }
