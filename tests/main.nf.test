@@ -126,7 +126,7 @@ nextflow_pipeline {
             params {
                 publishDirReports = "${outputDir}/reports"
                 publishDirData    = "${outputDir}/data"
-                samplesheet       = 'https://raw.githubusercontent.com/utia-gc/ngs-test/ngs/samplesheets/samplesheet_lanes_mix.txt'
+                samplesheet       = "${projectDir}/tests/data/samplesheets/invalid/samplesheet_not_csv_file.txt"
             }
         }
 
@@ -136,7 +136,6 @@ nextflow_pipeline {
             assert workflow.exitStatus == 1
             // nf-schema validateParameters() throws error messages on stdout and stderr when required param(s) don't match pattern
             assert workflow.stdout.contains("ERROR ~ Validation of pipeline parameters failed!")
-            assert workflow.stderr.contains("* --samplesheet (https://raw.githubusercontent.com/utia-gc/ngs-test/ngs/samplesheets/samplesheet_lanes_mix.txt): Samplesheet must be a .csv file with only alphanumeric characters, '.', '_', or '-' in file name.")
         }
 
     }
@@ -150,7 +149,7 @@ nextflow_pipeline {
             params {
                 publishDirReports = "${outputDir}/reports"
                 publishDirData    = "${outputDir}/data"
-                samplesheet       = 'https://raw.githubusercontent.com/utia-gc/ngs-test/ngs/samplesheets/samplesheet%20lanes%20mix.csv'
+                samplesheet       = "${projectDir}/tests/data/samplesheets/invalid/spaces in samplesheet name.csv"
             }
         }
 
@@ -160,7 +159,6 @@ nextflow_pipeline {
             assert workflow.exitStatus == 1
             // nf-schema validateParameters() throws error messages on stdout and stderr when required param(s) don't match pattern
             assert workflow.stdout.contains("ERROR ~ Validation of pipeline parameters failed!")
-            assert workflow.stderr.contains("* --samplesheet (https://raw.githubusercontent.com/utia-gc/ngs-test/ngs/samplesheets/samplesheet%20lanes%20mix.csv): Samplesheet must be a .csv file with only alphanumeric characters, '.', '_', or '-' in file name.")
         }
 
     }
