@@ -34,3 +34,21 @@ I typically use the HTTPS.
         Supplying the `--recurse-submodules` argument to `git clone` will clone the correct repository into `tests/data` so that you can run tests.
 
         If you don't clone submodules at this step it's possible to do this later, but it's easier to do it at this project setup unless you have a reason not to.
+
+## Change pipeline name
+
+One of the first changes that needs to be made is updating the pipeline name throughout the repo.
+
+In most places this isn't strictly necessary as the repository name is primarily found in comments and the docs, but it's still best to update it at this point, otherwise you'll probably forget to update it ever which will create confusion down the line.
+
+How exactly you do this depends on your environment and what you find easiest.
+I typically in the IDE VS Code, and I like the Find in file feature that it has available in the file explorer paine for searching and replacing.
+`grep`ping for the old repo name and manually editing files is another fine solution.
+
+!!! warning "Don't blindly find and replace"
+
+    I very explicitly recommend not doing a blind, automated search and replace with a tool like `sed` or in the IDE of your choice.
+    You never know what exactly is being found and replaced in those cases, so you can accidentally break something.
+    For example, if you blindly replace all instances of `ngs` in your repo with `atacseq` then an important reference to a `settings.config` file would instead reference `settiatacseq.py` and wreak who knows what havoc.
+
+    Take a few minutes to do things by hand -- it's better to set things up correctly to begin with.
