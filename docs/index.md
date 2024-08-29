@@ -46,5 +46,5 @@ There is no such thing as a dumb question!
 
 We also kindly ask that you report any bugs you may come across and make any feature requests in the issues page as well.
 
-[repo_home]: https://github.com/utia-gc/ngs
-[repo_issues]: https://github.com/utia-gc/ngs/issues
+[repo_home]: https://github.com/utia-gc/diff-chip-seq
+[repo_issues]: https://github.com/utia-gc/diff-chip-seq/issues

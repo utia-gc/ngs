@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name={{ cookiecutter.project_slug }}_ngs
+#SBATCH --job-name={{ cookiecutter.project_slug }}_diff-chip-seq
 #SBATCH --cpus-per-task=1
 #SBATCH --mem=3GB
 #SBATCH --time=03-00:00:00
@@ -20,11 +20,11 @@ export NXF_OPTS="-Xms500M -Xmx2G"
 export NXF_ANSI_LOG=false
 
 # install/update the pipeline
-nextflow pull utia-gc/ngs
+nextflow pull utia-gc/diff-chip-seq
 
 # run pipeline
-nextflow run utia-gc/ngs \
+nextflow run utia-gc/diff-chip-seq \
     -revision main \
     -profile condo_trowan1,exploratory \
     -config config/nextflow.config \
-    -params-file config/params_ngs.yaml
+    -params-file config/params_diff-chip-seq.yaml

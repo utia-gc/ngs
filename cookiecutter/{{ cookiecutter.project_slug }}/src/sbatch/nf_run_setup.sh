@@ -20,10 +20,10 @@ export NXF_OPTS="-Xms500M -Xmx2G"
 export NXF_ANSI_LOG=false
 
 # install/update the pipeline
-nextflow pull utia-gc/ngs
+nextflow pull utia-gc/diff-chip-seq
 
 # run pipeline
-nextflow run utia-gc/ngs \
+nextflow run utia-gc/diff-chip-seq \
     -main-script setup.nf \
     -revision main \
     -profile condo_trowan1 \

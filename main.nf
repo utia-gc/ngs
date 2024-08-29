@@ -1,8 +1,8 @@
 /*
 ---------------------------------------------------------------------
-    utia-gc/ngs
+    utia-gc/diff-chip-seq
 ---------------------------------------------------------------------
-https://github.com/utia-gc/ngs
+https://github.com/utia-gc/diff-chip-seq
 */
 
 nextflow.enable.dsl=2
@@ -24,7 +24,7 @@ include { paramsHelp; validateParameters } from 'plugin/nf-schema'
 
 // Print help message with typical command line usage for the pipeline
 if (params.help) {
-    log.info paramsHelp('nextflow run utia-gc/ngs -params-file params.yaml')
+    log.info paramsHelp('nextflow run utia-gc/diff-chip-seq -params-file params.yaml')
     exit 0
 }
 

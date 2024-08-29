@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "utia-gc/ngs params.samplesheet schema",
-  "description": "Schema for the samplesheet used as input to utia-gc/ngs",
+  "title": "utia-gc/diff-chip-seq params.samplesheet schema",
+  "description": "Schema for the samplesheet used as input to utia-gc/diff-chip-seq",
   "type": "array",
   "items": {
     "type": "object",

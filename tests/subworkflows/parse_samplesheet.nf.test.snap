@@ -16,7 +16,7 @@
                                 "PL": "ILLUMINA"
                             }
                         },
-                        "/utia-gc/ngs-test/raw/ngs/reads/raw/SRR1066657_S3_L001_R1_001.fastq.gz",
+                        "/utia-gc/ngs-test/raw/diff-chip-seq/reads/raw/SRR1066657_S3_L001_R1_001.fastq.gz",
                         "SRR1066657_S3_L001_R1_001.NOFILE:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ],
                     [
@@ -32,7 +32,7 @@
                                 "PL": "ILLUMINA"
                             }
                         },
-                        "/utia-gc/ngs-test/raw/ngs/reads/raw/SRR1066657_S3_L002_R1_001.fastq.gz",
+                        "/utia-gc/ngs-test/raw/diff-chip-seq/reads/raw/SRR1066657_S3_L002_R1_001.fastq.gz",
                         "SRR1066657_S3_L002_R1_001.NOFILE:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ],
                     [
@@ -48,8 +48,8 @@
                                 "PL": "ILLUMINA"
                             }
                         },
-                        "/utia-gc/ngs-test/raw/ngs/reads/raw/SRR6924569_S1_L001_R1_001.fastq.gz",
-                        "/utia-gc/ngs-test/raw/ngs/reads/raw/SRR6924569_S1_L001_R2_001.fastq.gz"
+                        "/utia-gc/ngs-test/raw/diff-chip-seq/reads/raw/SRR6924569_S1_L001_R1_001.fastq.gz",
+                        "/utia-gc/ngs-test/raw/diff-chip-seq/reads/raw/SRR6924569_S1_L001_R2_001.fastq.gz"
                     ],
                     [
                         {
@@ -64,8 +64,8 @@
                                 "PL": "ILLUMINA"
                             }
                         },
-                        "/utia-gc/ngs-test/raw/ngs/reads/raw/SRR6924569_S1_L002_R1_001.fastq.gz",
-                        "/utia-gc/ngs-test/raw/ngs/reads/raw/SRR6924569_S1_L002_R2_001.fastq.gz"
+                        "/utia-gc/ngs-test/raw/diff-chip-seq/reads/raw/SRR6924569_S1_L002_R1_001.fastq.gz",
+                        "/utia-gc/ngs-test/raw/diff-chip-seq/reads/raw/SRR6924569_S1_L002_R2_001.fastq.gz"
                     ]
                 ],
                 "samples": [
@@ -82,7 +82,7 @@
                                 "PL": "ILLUMINA"
                             }
                         },
-                        "/utia-gc/ngs-test/raw/ngs/reads/raw/SRR1066657_S3_L001_R1_001.fastq.gz",
+                        "/utia-gc/ngs-test/raw/diff-chip-seq/reads/raw/SRR1066657_S3_L001_R1_001.fastq.gz",
                         "SRR1066657_S3_L001_R1_001.NOFILE:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ],
                     [
@@ -98,7 +98,7 @@
                                 "PL": "ILLUMINA"
                             }
                         },
-                        "/utia-gc/ngs-test/raw/ngs/reads/raw/SRR1066657_S3_L002_R1_001.fastq.gz",
+                        "/utia-gc/ngs-test/raw/diff-chip-seq/reads/raw/SRR1066657_S3_L002_R1_001.fastq.gz",
                         "SRR1066657_S3_L002_R1_001.NOFILE:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ],
                     [
@@ -114,8 +114,8 @@
                                 "PL": "ILLUMINA"
                             }
                         },
-                        "/utia-gc/ngs-test/raw/ngs/reads/raw/SRR6924569_S1_L001_R1_001.fastq.gz",
-                        "/utia-gc/ngs-test/raw/ngs/reads/raw/SRR6924569_S1_L001_R2_001.fastq.gz"
+                        "/utia-gc/ngs-test/raw/diff-chip-seq/reads/raw/SRR6924569_S1_L001_R1_001.fastq.gz",
+                        "/utia-gc/ngs-test/raw/diff-chip-seq/reads/raw/SRR6924569_S1_L001_R2_001.fastq.gz"
                     ],
                     [
                         {
@@ -130,8 +130,8 @@
                                 "PL": "ILLUMINA"
                             }
                         },
-                        "/utia-gc/ngs-test/raw/ngs/reads/raw/SRR6924569_S1_L002_R1_001.fastq.gz",
-                        "/utia-gc/ngs-test/raw/ngs/reads/raw/SRR6924569_S1_L002_R2_001.fastq.gz"
+                        "/utia-gc/ngs-test/raw/diff-chip-seq/reads/raw/SRR6924569_S1_L002_R1_001.fastq.gz",
+                        "/utia-gc/ngs-test/raw/diff-chip-seq/reads/raw/SRR6924569_S1_L002_R2_001.fastq.gz"
                     ]
                 ]
             }
@@ -140,7 +140,7 @@
             "nf-test": "0.9.0",
             "nextflow": "23.10.1"
         },
-        "timestamp": "2024-08-28T10:34:42.032924605"
+        "timestamp": "2024-08-29T15:06:32.995521193"
     },
     "Parse_Samplesheet successfully creates read channels with lanes -- mixed SE + PE reads.": {
         "content": [
@@ -159,7 +159,7 @@
                                 "PL": "ILLUMINA"
                             }
                         },
-                        "/utia-gc/ngs-test/raw/ngs/reads/raw/SRR1066657_S3_L001_R1_001.fastq.gz",
+                        "/utia-gc/ngs-test/raw/diff-chip-seq/reads/raw/SRR1066657_S3_L001_R1_001.fastq.gz",
                         "SRR1066657_S3_L001_R1_001.NOFILE:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ],
                     [
@@ -175,7 +175,7 @@
                                 "PL": "ILLUMINA"
                             }
                         },
-                        "/utia-gc/ngs-test/raw/ngs/reads/raw/SRR1066657_S3_L002_R1_001.fastq.gz",
+                        "/utia-gc/ngs-test/raw/diff-chip-seq/reads/raw/SRR1066657_S3_L002_R1_001.fastq.gz",
                         "SRR1066657_S3_L002_R1_001.NOFILE:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ],
                     [
@@ -191,8 +191,8 @@
                                 "PL": "ILLUMINA"
                             }
                         },
-                        "/utia-gc/ngs-test/raw/ngs/reads/raw/SRR6924569_S1_L001_R1_001.fastq.gz",
-                        "/utia-gc/ngs-test/raw/ngs/reads/raw/SRR6924569_S1_L001_R2_001.fastq.gz"
+                        "/utia-gc/ngs-test/raw/diff-chip-seq/reads/raw/SRR6924569_S1_L001_R1_001.fastq.gz",
+                        "/utia-gc/ngs-test/raw/diff-chip-seq/reads/raw/SRR6924569_S1_L001_R2_001.fastq.gz"
                     ],
                     [
                         {
@@ -207,8 +207,8 @@
                                 "PL": "ILLUMINA"
                             }
                         },
-                        "/utia-gc/ngs-test/raw/ngs/reads/raw/SRR6924569_S1_L002_R1_001.fastq.gz",
-                        "/utia-gc/ngs-test/raw/ngs/reads/raw/SRR6924569_S1_L002_R2_001.fastq.gz"
+                        "/utia-gc/ngs-test/raw/diff-chip-seq/reads/raw/SRR6924569_S1_L002_R1_001.fastq.gz",
+                        "/utia-gc/ngs-test/raw/diff-chip-seq/reads/raw/SRR6924569_S1_L002_R2_001.fastq.gz"
                     ]
                 ],
                 "samples": [
@@ -225,7 +225,7 @@
                                 "PL": "ILLUMINA"
                             }
                         },
-                        "/utia-gc/ngs-test/raw/ngs/reads/raw/SRR1066657_S3_L001_R1_001.fastq.gz",
+                        "/utia-gc/ngs-test/raw/diff-chip-seq/reads/raw/SRR1066657_S3_L001_R1_001.fastq.gz",
                         "SRR1066657_S3_L001_R1_001.NOFILE:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ],
                     [
@@ -241,7 +241,7 @@
                                 "PL": "ILLUMINA"
                             }
                         },
-                        "/utia-gc/ngs-test/raw/ngs/reads/raw/SRR1066657_S3_L002_R1_001.fastq.gz",
+                        "/utia-gc/ngs-test/raw/diff-chip-seq/reads/raw/SRR1066657_S3_L002_R1_001.fastq.gz",
                         "SRR1066657_S3_L002_R1_001.NOFILE:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ],
                     [
@@ -257,8 +257,8 @@
                                 "PL": "ILLUMINA"
                             }
                         },
-                        "/utia-gc/ngs-test/raw/ngs/reads/raw/SRR6924569_S1_L001_R1_001.fastq.gz",
-                        "/utia-gc/ngs-test/raw/ngs/reads/raw/SRR6924569_S1_L001_R2_001.fastq.gz"
+                        "/utia-gc/ngs-test/raw/diff-chip-seq/reads/raw/SRR6924569_S1_L001_R1_001.fastq.gz",
+                        "/utia-gc/ngs-test/raw/diff-chip-seq/reads/raw/SRR6924569_S1_L001_R2_001.fastq.gz"
                     ],
                     [
                         {
@@ -273,8 +273,8 @@
                                 "PL": "ILLUMINA"
                             }
                         },
-                        "/utia-gc/ngs-test/raw/ngs/reads/raw/SRR6924569_S1_L002_R1_001.fastq.gz",
-                        "/utia-gc/ngs-test/raw/ngs/reads/raw/SRR6924569_S1_L002_R2_001.fastq.gz"
+                        "/utia-gc/ngs-test/raw/diff-chip-seq/reads/raw/SRR6924569_S1_L002_R1_001.fastq.gz",
+                        "/utia-gc/ngs-test/raw/diff-chip-seq/reads/raw/SRR6924569_S1_L002_R2_001.fastq.gz"
                     ]
                 ]
             }
@@ -283,7 +283,7 @@
             "nf-test": "0.9.0",
             "nextflow": "23.10.1"
         },
-        "timestamp": "2024-08-28T10:34:28.31941392"
+        "timestamp": "2024-08-29T15:06:24.747407579"
     },
     "Parse_Samplesheet successfully creates read channels without lanes -- mixed SE + PE reads.": {
         "content": [
@@ -301,7 +301,7 @@
                                 "PL": "ILLUMINA"
                             }
                         },
-                        "/utia-gc/ngs-test/raw/ngs/reads/raw/SRR1066657_S3_L001_R1_001.fastq.gz",
+                        "/utia-gc/ngs-test/raw/diff-chip-seq/reads/raw/SRR1066657_S3_L001_R1_001.fastq.gz",
                         "SRR1066657_S3_L001_R1_001.NOFILE:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ],
                     [
@@ -316,8 +316,8 @@
                                 "PL": "ILLUMINA"
                             }
                         },
-                        "/utia-gc/ngs-test/raw/ngs/reads/raw/SRR6924569_S1_L001_R1_001.fastq.gz",
-                        "/utia-gc/ngs-test/raw/ngs/reads/raw/SRR6924569_S1_L001_R2_001.fastq.gz"
+                        "/utia-gc/ngs-test/raw/diff-chip-seq/reads/raw/SRR6924569_S1_L001_R1_001.fastq.gz",
+                        "/utia-gc/ngs-test/raw/diff-chip-seq/reads/raw/SRR6924569_S1_L001_R2_001.fastq.gz"
                     ]
                 ],
                 "samples": [
@@ -333,7 +333,7 @@
                                 "PL": "ILLUMINA"
                             }
                         },
-                        "/utia-gc/ngs-test/raw/ngs/reads/raw/SRR1066657_S3_L001_R1_001.fastq.gz",
+                        "/utia-gc/ngs-test/raw/diff-chip-seq/reads/raw/SRR1066657_S3_L001_R1_001.fastq.gz",
                         "SRR1066657_S3_L001_R1_001.NOFILE:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ],
                     [
@@ -348,8 +348,8 @@
                                 "PL": "ILLUMINA"
                             }
                         },
-                        "/utia-gc/ngs-test/raw/ngs/reads/raw/SRR6924569_S1_L001_R1_001.fastq.gz",
-                        "/utia-gc/ngs-test/raw/ngs/reads/raw/SRR6924569_S1_L001_R2_001.fastq.gz"
+                        "/utia-gc/ngs-test/raw/diff-chip-seq/reads/raw/SRR6924569_S1_L001_R1_001.fastq.gz",
+                        "/utia-gc/ngs-test/raw/diff-chip-seq/reads/raw/SRR6924569_S1_L001_R2_001.fastq.gz"
                     ]
                 ]
             }
@@ -358,6 +358,6 @@
             "nf-test": "0.9.0",
             "nextflow": "23.10.1"
         },
-        "timestamp": "2024-08-28T10:34:55.033759146"
+        "timestamp": "2024-08-29T15:06:40.292504861"
     }
 }
