@@ -14,3 +14,23 @@ The easiest way to create a new pipeline is to make a fork of the existing pipel
     If you aren't logged in you will be redirected to the login page where you must either login or create a GitHub account if you don't have one already.
 4. Follow the prompts to create your fork with your desired pipeline name and description.
     I recommend only copying the `main` branch, which should be selected by default.
+
+## Make a local clone of your pipeline repository
+
+To effectively edit your pipeline, make a local clone of your pipeline's repository on the computer where you will develop your pipeline (your development environment).
+
+1. Copy your pipeline URL -- Click the green `Code` button in the top right of your pipeline repo code page and copy the URL.
+I typically use the HTTPS.
+2. Open a terminal session in your development environment and navigate to the directory where you want to create the clone of your pipeline repo.
+3. Clone your pipeline repo:
+
+    ``` bash title="Terminal"
+    git clone --recurse-submodules <repository-URL>
+    ```
+
+    !!! note "`--recurse-submodules`"
+
+        All local test data is located in `tests/data` which is setup as a [git submodule](https://git-scm.com/book/en/v2/Git-Tools-Submodules).
+        Supplying the `--recurse-submodules` argument to `git clone` will clone the correct repository into `tests/data` so that you can run tests.
+
+        If you don't clone submodules at this step it's possible to do this later, but it's easier to do it at this project setup unless you have a reason not to.

@@ -82,6 +82,8 @@ plugins:
   - macros
 
 markdown_extensions:
+  - admonition
+  - pymdownx.details
   # Enable code syntax highlighting and source code inclusion from other files
   - pymdownx.highlight:
       anchor_linenums: true
