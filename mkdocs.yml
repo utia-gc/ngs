@@ -20,6 +20,7 @@ nav:
     - 'pipeline_config/params.md'
   - 'Contribute':
     - 'contribute/index.md'
+    - 'contribute/documentation.md'
     - 'contribute/development.md'
 
 theme:
