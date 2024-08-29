@@ -1,6 +1,6 @@
-site_name: utia-gc/ngs
-site_url: https://utia-gc.github.io/ngs/
-repo_url: https://github.com/utia-gc/ngs
+site_name: utia-gc/diff-chip-seq
+site_url: https://utia-gc.github.io/diff-chip-seq/
+repo_url: https://github.com/utia-gc/diff-chip-seq
 edit_uri: edit/main/docs
 
 nav:
@@ -91,7 +91,7 @@ markdown_extensions:
 
 extra:
   pipeline:
-    name: utia-gc/ngs
+    name: utia-gc/diff-chip-seq
     revision: main
   version:
     provider: mike
