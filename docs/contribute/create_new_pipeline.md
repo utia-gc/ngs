@@ -52,3 +52,31 @@ I typically in the IDE VS Code, and I like the Find in file feature that it has 
     For example, if you blindly replace all instances of `ngs` in your repo with `atacseq` then an important reference to a `settings.config` file would instead reference `settiatacseq.py` and wreak who knows what havoc.
 
     Take a few minutes to do things by hand -- it's better to set things up correctly to begin with.
+
+## Setup virtual environment
+
+Developing your pipeline will involve a few Python tools, and Python best practices demands the use of virtual environments.
+
+1. Create the virtual environment.
+I recommend using the `venv` module to create a virtual environment in the `.venv` directory.
+This module does everything we need and ships with Python and therefore doesn't require any additional installations.
+
+    ``` bash title="Terminal"
+    python3 -m venv .venv
+    ```
+
+2. Activate the virtual environment.
+You should activate your virtual environment every time you develop in this repository.
+A good IDE like VS Code can handle this for you so that activation is automated.
+
+    ``` bash title="Terminal"
+    source .venv/bin/activate
+    ```
+
+3. Install packages into the virtual environment
+Now that your virtual environment is setup, all that's left to do is install the necessary packages in your environment so that you can use them.
+This is easy to do with the `requirements.txt` that is forked and cloned inside your new pipeline repo.
+
+    ``` bash title="Terminal"
+    python3 -m pip install -r requirements.txt
+    ```
