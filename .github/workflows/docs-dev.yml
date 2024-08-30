@@ -28,17 +28,17 @@ jobs:
             mkdocs-material-
       - run: pip install mkdocs-material mike mkdocs-macros-plugin
       - run: |
-        # prevent step from failing on nonzero exit code
-        set +e
-        mike deploy --push --update-aliases dev
-        # set default version for mike to point to
-        # default to the latest version if it exists
-        # if no latest, then default to the dev version
-        git ls-tree gh-pages | grep -q "latest" -
-        if [ "${?}" -eq 1 ]
-        then
-          default_mike_version="dev"
-        else
-          default_mike_version="latest"
-        fi
-        mike set-default "${default_mike_version}"
+          # prevent step from failing on nonzero exit code
+          set +e
+          mike deploy --push --update-aliases dev
+          # set default version for mike to point to
+          # default to the latest version if it exists
+          # if no latest, then default to the dev version
+          git ls-tree gh-pages | grep -q "latest" -
+          if [ "${?}" -eq 1 ]
+          then
+            default_mike_version="dev"
+          else
+            default_mike_version="latest"
+          fi
+          mike set-default "${default_mike_version}"
