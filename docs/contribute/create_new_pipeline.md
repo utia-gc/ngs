@@ -118,3 +118,12 @@ Visit that link to make sure everything looks as expected.
 
 Once you have verified the site looks good, don't forget to update the links to the docs in your repo's About section (top right of the Code page).
 This is also a good time to verify that the link to the full documentation in the README correctly points to your docs pages.
+
+## Conclusion
+
+By the end of this tutorial you should have the following:
+
+* A remote GitHub repository for your new pipeline forked off of `{{ pipeline.name }}`.
+* A clone of your GitHub repo in your preferred development environment with a virtual environment created and activated.
+* A working documentation website on GitHub Pages.
+* All references throughout the pipeline and docs should have your pipeline name instead of `{{ pipeline.name }}`.
