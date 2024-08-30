@@ -80,3 +80,44 @@ This is easy to do with the `requirements.txt` that is forked and cloned inside 
     ``` bash title="Terminal"
     python3 -m pip install -r requirements.txt
     ```
+
+## Deploy documentation
+
+Documentation for `{{ pipeline.name }}` is deployed on GitHub Pages from a branch that is maintained by GitHub Actions.
+This means that you set up document deployment once and you shouldn't have to think about manually deploying documentation again.
+
+1. Enable GitHub actions in your repo
+
+    1. Navigate to your pipeline repo on GitHub
+    2. Select the `Actions` tab
+    3. If there is a message saying Actions have been disabled, click the big green button in the center of the screen to enable actions.
+
+2. Make `gh-pages` branch.
+The easiest way to deploy your docs to GitHub Pages will be to deploy them from a branch, specifically the `gh-pages` branch (1) .
+{ .annotate }
+
+    1. There is nothing special about this branch name other than the fact that it is the branch name for the docs that get built by MkDocs when the GitHub Action runs.
+    We strongly recommend using the `gh-pages` branch name for this reason.
+
+The easiest way to do this is to simply make a new commit and push it to your main branch.
+This will trigger the GitHub Action for building the dev version of your docs.
+When the workflow is completed, check your repo on GitHub and verify that a `gh-pages` branch (1) exists.
+{ .annotate }
+
+    1. This branch will be on your remote repository on GitHub, and I recommend leaving it there.
+    You won't have much of a reason to create a local copy and edit it since this branch will be constantly rebuilt and redeployed as you make new commits on `origin/main` and create release branches.
+
+3. Set GitHub Pages to deploy from a branch.
+
+    1. From your repository home page, go to the pages settings: `Settings` > `Pages`
+    2. Under "Build and deployment" select Source: "Deploy from a branch" (should be selected by default)
+    3. Under Branch select `gh-pages`, then "/ (root)"
+    4. Click `Save`
+
+4. Update the docs link in the sidebar and README.
+It will likely take a few minutes for GitHub Pages to integrate changes from the deployment branch to the actual website.
+Once your site is live, the `Settings` > `Pages` page will have a link to your docs site.
+Visit that link to make sure everything looks as expected.
+
+Once you have verified the site looks good, don't forget to update the links to the docs in your repo's About section (top right of the Code page).
+This is also a good time to verify that the link to the full documentation in the README correctly points to your docs pages.
