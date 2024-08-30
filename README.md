@@ -61,7 +61,6 @@ flowchart LR
         Depth
     "}
     bwa_mem2{"bwa-mem2"}
-    STAR{"STAR"}
     samtools_sort{"
         samtools
         sort
@@ -101,7 +100,6 @@ flowchart LR
     end
     subgraph map_reads["Map Reads"]
     bwa_mem2
-    STAR
     end
     subgraph publish_reports["Publish Reports"]
     reads_mqc

@@ -20,10 +20,6 @@ public static String buildRGLine(rgFields, tool) {
         case 'BWAMEM2':
             rgLine = buildBwaMem2RGLine(rgFields)
             break
-
-        case 'STAR':
-            rgLine = buildSTARRGLine(rgFields)
-            break
     }
 
     return rgLine
@@ -46,22 +42,6 @@ private static String buildBwaMem2RGLine(rgFields) {
     return rgLineElements.join('\t')
 }
 
-/**
- * Build the read group line for STAR from a map of read group fields.
- *
- * @params LinkedHashMap rgFields A map of read group fields as tag:value pairs. First field must be ID.
- *
- * @return String Read group line for STAR.
- */
-private static String buildSTARRGLine(rgFields) {
-    ArrayList rgLineElements = []
-
-    rgFields.each { tag, value ->
-        rgLineElements += "${tag}:${value}"
-    }
-
-    return rgLineElements.join(' ')
-}
 
 /**
  * Build the read group fields from sample metadata and matcher data from the sequence identifier.

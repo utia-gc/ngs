@@ -1,6 +1,5 @@
 include { Bwa_Mem2            } from '../subworkflows/bwa_mem2.nf'
 include { Group_Alignments    } from '../subworkflows/group_alignments.nf'
-include { Star                } from '../subworkflows/star.nf'
 include { gatk_MarkDuplicates } from '../modules/gatk_MarkDuplicates.nf'
 include { gatk_MergeSamFiles  } from '../modules/gatk_MergeSamFiles.nf'
 include { samtools_sort_index } from '../modules/samtools_sort_index.nf'
@@ -28,14 +27,6 @@ workflow MAP_READS {
                 )
                 ch_alignments = Bwa_Mem2.out.alignments
                 break
-
-            case 'STAR':
-                Star(
-                    reads,
-                    genome,
-                    annotationsGTF
-                )
-                ch_alignments = Star.out.alignments
         }
 
         samtools_sort_index(ch_alignments)

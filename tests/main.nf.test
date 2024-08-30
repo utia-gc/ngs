@@ -306,7 +306,7 @@ nextflow_pipeline {
             assert workflow.exitStatus == 1
             // nf-schema validateParameters() throws error messages on stdout and stderr when required param(s) don't match pattern
             assert workflow.stdout.contains("ERROR ~ Validation of pipeline parameters failed!")
-            assert workflow.stderr.contains("* --mapTool (trimmomatic): Map tool must be one of the valid options: [bwamem2, star].")
+            assert workflow.stderr.contains("* --mapTool (trimmomatic): Map tool must be one of the valid options: [bwamem2].")
         }
 
     }
