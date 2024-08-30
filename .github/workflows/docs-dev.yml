@@ -27,10 +27,10 @@ jobs:
           restore-keys: |
             mkdocs-material-
       - run: pip install mkdocs-material mike mkdocs-macros-plugin
+      - run: mike deploy --push --update-aliases dev
       - run: |
           # prevent step from failing on nonzero exit code
           set +e
-          mike deploy --push --update-aliases dev
           # set default version for mike to point to
           # default to the latest version if it exists
           # if no latest, then default to the dev version

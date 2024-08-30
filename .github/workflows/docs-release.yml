@@ -27,6 +27,5 @@ jobs:
           restore-keys: |
             mkdocs-material-
       - run: pip install mkdocs-material mike mkdocs-macros-plugin
-      - run: |
-          mike deploy --push --update-aliases ${{ github.ref_name }} latest
-          mike set-default --push latest
+      - run: mike deploy --push --update-aliases ${{ github.ref_name }} latest
+      - run: mike set-default --push latest
