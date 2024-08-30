@@ -41,4 +41,4 @@ jobs:
           else
             default_mike_version="latest"
           fi
-          mike set-default "${default_mike_version}"
+          mike set-default --push "${default_mike_version}"
