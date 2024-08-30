@@ -94,17 +94,14 @@ This means that you set up document deployment once and you shouldn't have to th
 
 2. Make `gh-pages` branch.
 The easiest way to deploy your docs to GitHub Pages will be to deploy them from a branch, specifically the `gh-pages` branch (1) .
+The easiest way to do this is to simply make a new commit and push it to your main branch.
+This will trigger the GitHub Action for building the dev version of your docs.
+When the workflow is completed, check your repo on GitHub and verify that a `gh-pages` branch (2) exists.
 { .annotate }
 
     1. There is nothing special about this branch name other than the fact that it is the branch name for the docs that get built by MkDocs when the GitHub Action runs.
     We strongly recommend using the `gh-pages` branch name for this reason.
-
-The easiest way to do this is to simply make a new commit and push it to your main branch.
-This will trigger the GitHub Action for building the dev version of your docs.
-When the workflow is completed, check your repo on GitHub and verify that a `gh-pages` branch (1) exists.
-{ .annotate }
-
-    1. This branch will be on your remote repository on GitHub, and I recommend leaving it there.
+    2. This branch will be on your remote repository on GitHub, and I recommend leaving it there.
     You won't have much of a reason to create a local copy and edit it since this branch will be constantly rebuilt and redeployed as you make new commits on `origin/main` and create release branches.
 
 3. Set GitHub Pages to deploy from a branch.
