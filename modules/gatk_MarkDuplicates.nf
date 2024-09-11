@@ -10,7 +10,7 @@ process gatk_MarkDuplicates {
     publishDir(
         path:    "${params.publishDirData}/alignments",
         mode:    "${params.publishMode}",
-        pattern: "${metadata.sampleName}.bam{,.bai}"
+        pattern: "${stemName}.bam{,.bai}"
     )
 
     input:
@@ -22,14 +22,16 @@ process gatk_MarkDuplicates {
     script:
         String args = new Args(task.ext).buildArgsString()
 
+        stemName = MetadataUtils.buildStemName(metadata)
+
         """
         gatk MarkDuplicates \
             --INPUT ${bam} \
-            --METRICS_FILE ${metadata.sampleName}_MarkDuplicates-metrics.txt \
-            --OUTPUT ${metadata.sampleName}.bam \
+            --METRICS_FILE ${stemName}_MarkDuplicates-metrics.txt \
+            --OUTPUT ${stemName}.bam \
             --CREATE_INDEX \
             ${args}
 
-        mv ${metadata.sampleName}.bai ${metadata.sampleName}.bam.bai
+        mv ${stemName}.bai ${stemName}.bam.bai
         """
 }

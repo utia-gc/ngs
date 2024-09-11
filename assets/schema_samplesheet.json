@@ -5,7 +5,7 @@
   "type": "array",
   "items": {
     "type": "object",
-    "required": ["sampleName"],
+    "required": ["sampleName", "replicate", "target", "controlType"],
     "properties": {
       "sampleName": {
         "type": "string",
@@ -18,17 +18,45 @@
         "errorMessage": "Sequencing lane for the library, must be 0-999. Also excepts literal three digit lane numbers, e.g. '001'",
         "meta": "lane"
       },
-      "reads1": {
+      "replicate": {
+        "type": ["integer", "string"],
+        "errorMessage": "Replicate ID for the library.",
+        "meta": "replicate"
+      },
+      "target": {
+        "type": "string",
+        "errorMessage": "Target molecule for the ChIP library.",
+        "meta": "target"
+      },
+      "controlType": {
+        "type": "string",
+        "enum": ["none", "input", "mock"],
+        "errorMessage": "Type of control library for the ChIP library. Must be one of: [none, input, mock].",
+        "meta": "controlType"
+      },
+      "chipReads1": {
         "type": "string",
         "pattern": "^\\S+\\.f(ast)?q\\.gz$",
         "format": "file-path",
-        "errorMessage": "FastQ file for reads 1 must be provided, cannot contain spaces and must have extension '.fq.gz' or '.fastq.gz'"
+        "errorMessage": "Gzipped FastQ file for reads 1 for ChIP library cannot contain spaces and must have extension '.fq.gz' or '.fastq.gz'"
       },
-      "reads2": {
+      "chipReads2": {
         "type": "string",
         "pattern": "^\\S+\\.f(ast)?q\\.gz$",
           "format": "file-path",
-          "errorMessage": "FastQ file for reads 2 cannot contain spaces and must have extension '.fq.gz' or '.fastq.gz'"
+          "errorMessage": "Gzipped FastQ file for reads 2 for ChIP library cannot contain spaces and must have extension '.fq.gz' or '.fastq.gz'"
+      },
+      "controlReads1": {
+        "type": "string",
+        "pattern": "^\\S+\\.f(ast)?q\\.gz$",
+        "format": "file-path",
+        "errorMessage": "Gzipped FastQ file for reads 1 for control library cannot contain spaces and must have extension '.fq.gz' or '.fastq.gz'"
+      },
+      "controlReads2": {
+        "type": "string",
+        "pattern": "^\\S+\\.f(ast)?q\\.gz$",
+          "format": "file-path",
+          "errorMessage": "Gzipped FastQ file for reads 2 for control library cannot contain spaces and must have extension '.fq.gz' or '.fastq.gz'"
       }
     }
   }

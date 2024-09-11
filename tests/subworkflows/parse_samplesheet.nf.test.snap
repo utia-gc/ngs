@@ -1,137 +1,169 @@
 {
-    "Parse_Samplesheet successfully creates read channels with old style (three-digit) lanes -- mixed SE + PE reads.": {
+    "Parse_Samplesheet successfully creates read channels with lanes -- PE ChIP libraries w/ PE controls.": {
         "content": [
             {
                 "0": [
                     [
                         {
-                            "sampleName": "SRR1066657",
+                            "sampleName": "wt_ip1",
                             "lane": "001",
+                            "replicate": "1",
+                            "target": "FLAG-IP1",
+                            "controlType": "input",
                             "trimStatus": "raw",
-                            "readType": "single",
-                            "rgFields": {
-                                "ID": "SRR1066657.001",
-                                "SM": "SRR1066657",
-                                "LB": "SRR1066657",
-                                "PL": "ILLUMINA"
-                            }
-                        },
-                        "/utia-gc/ngs-test/raw/diff-chip-seq/reads/raw/SRR1066657_S3_L001_R1_001.fastq.gz",
-                        "SRR1066657_S3_L001_R1_001.NOFILE:md5,d41d8cd98f00b204e9800998ecf8427e"
-                    ],
-                    [
-                        {
-                            "sampleName": "SRR1066657",
-                            "lane": "002",
-                            "trimStatus": "raw",
-                            "readType": "single",
-                            "rgFields": {
-                                "ID": "SRR1066657.002",
-                                "SM": "SRR1066657",
-                                "LB": "SRR1066657",
-                                "PL": "ILLUMINA"
-                            }
-                        },
-                        "/utia-gc/ngs-test/raw/diff-chip-seq/reads/raw/SRR1066657_S3_L002_R1_001.fastq.gz",
-                        "SRR1066657_S3_L002_R1_001.NOFILE:md5,d41d8cd98f00b204e9800998ecf8427e"
-                    ],
-                    [
-                        {
-                            "sampleName": "SRR6924569",
-                            "lane": "001",
-                            "trimStatus": "raw",
+                            "mode": "chip",
                             "readType": "paired",
                             "rgFields": {
-                                "ID": "SRR6924569.001",
-                                "SM": "SRR6924569",
-                                "LB": "SRR6924569",
+                                "ID": "wt_ip1.001",
+                                "SM": "wt_ip1",
+                                "LB": "wt_ip1",
                                 "PL": "ILLUMINA"
                             }
                         },
-                        "/utia-gc/ngs-test/raw/diff-chip-seq/reads/raw/SRR6924569_S1_L001_R1_001.fastq.gz",
-                        "/utia-gc/ngs-test/raw/diff-chip-seq/reads/raw/SRR6924569_S1_L001_R2_001.fastq.gz"
+                        "/utia-gc/ngs-test/raw/diff-chip-seq/reads/raw/wt_antiflag_ip1_rep1_S1_L001_R1_001.fastq.gz",
+                        "/utia-gc/ngs-test/raw/diff-chip-seq/reads/raw/wt_antiflag_ip1_rep1_S1_L001_R2_001.fastq.gz"
                     ],
                     [
                         {
-                            "sampleName": "SRR6924569",
-                            "lane": "002",
+                            "sampleName": "wt_ip1",
+                            "lane": "001",
+                            "replicate": "1",
+                            "target": "FLAG-IP1",
+                            "controlType": "input",
                             "trimStatus": "raw",
+                            "mode": "control",
                             "readType": "paired",
                             "rgFields": {
-                                "ID": "SRR6924569.002",
-                                "SM": "SRR6924569",
-                                "LB": "SRR6924569",
+                                "ID": "wt_ip1.001",
+                                "SM": "wt_ip1",
+                                "LB": "wt_ip1",
                                 "PL": "ILLUMINA"
                             }
                         },
-                        "/utia-gc/ngs-test/raw/diff-chip-seq/reads/raw/SRR6924569_S1_L002_R1_001.fastq.gz",
-                        "/utia-gc/ngs-test/raw/diff-chip-seq/reads/raw/SRR6924569_S1_L002_R2_001.fastq.gz"
+                        "/utia-gc/ngs-test/raw/diff-chip-seq/reads/raw/wt_input_ip1_rep1_S1_L001_R1_001.fastq.gz",
+                        "/utia-gc/ngs-test/raw/diff-chip-seq/reads/raw/wt_input_ip1_rep1_S1_L001_R2_001.fastq.gz"
+                    ],
+                    [
+                        {
+                            "sampleName": "wt_ip1",
+                            "lane": "001",
+                            "replicate": "2",
+                            "target": "FLAG-IP1",
+                            "controlType": "input",
+                            "trimStatus": "raw",
+                            "mode": "chip",
+                            "readType": "paired",
+                            "rgFields": {
+                                "ID": "wt_ip1.001",
+                                "SM": "wt_ip1",
+                                "LB": "wt_ip1",
+                                "PL": "ILLUMINA"
+                            }
+                        },
+                        "/utia-gc/ngs-test/raw/diff-chip-seq/reads/raw/wt_antiflag_ip1_rep2_S1_L001_R1_001.fastq.gz",
+                        "/utia-gc/ngs-test/raw/diff-chip-seq/reads/raw/wt_antiflag_ip1_rep2_S1_L001_R2_001.fastq.gz"
+                    ],
+                    [
+                        {
+                            "sampleName": "wt_ip1",
+                            "lane": "001",
+                            "replicate": "2",
+                            "target": "FLAG-IP1",
+                            "controlType": "input",
+                            "trimStatus": "raw",
+                            "mode": "control",
+                            "readType": "paired",
+                            "rgFields": {
+                                "ID": "wt_ip1.001",
+                                "SM": "wt_ip1",
+                                "LB": "wt_ip1",
+                                "PL": "ILLUMINA"
+                            }
+                        },
+                        "/utia-gc/ngs-test/raw/diff-chip-seq/reads/raw/wt_input_ip1_rep2_S1_L001_R1_001.fastq.gz",
+                        "/utia-gc/ngs-test/raw/diff-chip-seq/reads/raw/wt_input_ip1_rep2_S1_L001_R2_001.fastq.gz"
                     ]
                 ],
                 "samples": [
                     [
                         {
-                            "sampleName": "SRR1066657",
+                            "sampleName": "wt_ip1",
                             "lane": "001",
+                            "replicate": "1",
+                            "target": "FLAG-IP1",
+                            "controlType": "input",
                             "trimStatus": "raw",
-                            "readType": "single",
-                            "rgFields": {
-                                "ID": "SRR1066657.001",
-                                "SM": "SRR1066657",
-                                "LB": "SRR1066657",
-                                "PL": "ILLUMINA"
-                            }
-                        },
-                        "/utia-gc/ngs-test/raw/diff-chip-seq/reads/raw/SRR1066657_S3_L001_R1_001.fastq.gz",
-                        "SRR1066657_S3_L001_R1_001.NOFILE:md5,d41d8cd98f00b204e9800998ecf8427e"
-                    ],
-                    [
-                        {
-                            "sampleName": "SRR1066657",
-                            "lane": "002",
-                            "trimStatus": "raw",
-                            "readType": "single",
-                            "rgFields": {
-                                "ID": "SRR1066657.002",
-                                "SM": "SRR1066657",
-                                "LB": "SRR1066657",
-                                "PL": "ILLUMINA"
-                            }
-                        },
-                        "/utia-gc/ngs-test/raw/diff-chip-seq/reads/raw/SRR1066657_S3_L002_R1_001.fastq.gz",
-                        "SRR1066657_S3_L002_R1_001.NOFILE:md5,d41d8cd98f00b204e9800998ecf8427e"
-                    ],
-                    [
-                        {
-                            "sampleName": "SRR6924569",
-                            "lane": "001",
-                            "trimStatus": "raw",
+                            "mode": "chip",
                             "readType": "paired",
                             "rgFields": {
-                                "ID": "SRR6924569.001",
-                                "SM": "SRR6924569",
-                                "LB": "SRR6924569",
+                                "ID": "wt_ip1.001",
+                                "SM": "wt_ip1",
+                                "LB": "wt_ip1",
                                 "PL": "ILLUMINA"
                             }
                         },
-                        "/utia-gc/ngs-test/raw/diff-chip-seq/reads/raw/SRR6924569_S1_L001_R1_001.fastq.gz",
-                        "/utia-gc/ngs-test/raw/diff-chip-seq/reads/raw/SRR6924569_S1_L001_R2_001.fastq.gz"
+                        "/utia-gc/ngs-test/raw/diff-chip-seq/reads/raw/wt_antiflag_ip1_rep1_S1_L001_R1_001.fastq.gz",
+                        "/utia-gc/ngs-test/raw/diff-chip-seq/reads/raw/wt_antiflag_ip1_rep1_S1_L001_R2_001.fastq.gz"
                     ],
                     [
                         {
-                            "sampleName": "SRR6924569",
-                            "lane": "002",
+                            "sampleName": "wt_ip1",
+                            "lane": "001",
+                            "replicate": "1",
+                            "target": "FLAG-IP1",
+                            "controlType": "input",
                             "trimStatus": "raw",
+                            "mode": "control",
                             "readType": "paired",
                             "rgFields": {
-                                "ID": "SRR6924569.002",
-                                "SM": "SRR6924569",
-                                "LB": "SRR6924569",
+                                "ID": "wt_ip1.001",
+                                "SM": "wt_ip1",
+                                "LB": "wt_ip1",
                                 "PL": "ILLUMINA"
                             }
                         },
-                        "/utia-gc/ngs-test/raw/diff-chip-seq/reads/raw/SRR6924569_S1_L002_R1_001.fastq.gz",
-                        "/utia-gc/ngs-test/raw/diff-chip-seq/reads/raw/SRR6924569_S1_L002_R2_001.fastq.gz"
+                        "/utia-gc/ngs-test/raw/diff-chip-seq/reads/raw/wt_input_ip1_rep1_S1_L001_R1_001.fastq.gz",
+                        "/utia-gc/ngs-test/raw/diff-chip-seq/reads/raw/wt_input_ip1_rep1_S1_L001_R2_001.fastq.gz"
+                    ],
+                    [
+                        {
+                            "sampleName": "wt_ip1",
+                            "lane": "001",
+                            "replicate": "2",
+                            "target": "FLAG-IP1",
+                            "controlType": "input",
+                            "trimStatus": "raw",
+                            "mode": "chip",
+                            "readType": "paired",
+                            "rgFields": {
+                                "ID": "wt_ip1.001",
+                                "SM": "wt_ip1",
+                                "LB": "wt_ip1",
+                                "PL": "ILLUMINA"
+                            }
+                        },
+                        "/utia-gc/ngs-test/raw/diff-chip-seq/reads/raw/wt_antiflag_ip1_rep2_S1_L001_R1_001.fastq.gz",
+                        "/utia-gc/ngs-test/raw/diff-chip-seq/reads/raw/wt_antiflag_ip1_rep2_S1_L001_R2_001.fastq.gz"
+                    ],
+                    [
+                        {
+                            "sampleName": "wt_ip1",
+                            "lane": "001",
+                            "replicate": "2",
+                            "target": "FLAG-IP1",
+                            "controlType": "input",
+                            "trimStatus": "raw",
+                            "mode": "control",
+                            "readType": "paired",
+                            "rgFields": {
+                                "ID": "wt_ip1.001",
+                                "SM": "wt_ip1",
+                                "LB": "wt_ip1",
+                                "PL": "ILLUMINA"
+                            }
+                        },
+                        "/utia-gc/ngs-test/raw/diff-chip-seq/reads/raw/wt_input_ip1_rep2_S1_L001_R1_001.fastq.gz",
+                        "/utia-gc/ngs-test/raw/diff-chip-seq/reads/raw/wt_input_ip1_rep2_S1_L001_R2_001.fastq.gz"
                     ]
                 ]
             }
@@ -140,224 +172,6 @@
             "nf-test": "0.9.0",
             "nextflow": "23.10.1"
         },
-        "timestamp": "2024-08-30T12:26:18.269241202"
-    },
-    "Parse_Samplesheet successfully creates read channels with lanes -- mixed SE + PE reads.": {
-        "content": [
-            {
-                "0": [
-                    [
-                        {
-                            "sampleName": "SRR1066657",
-                            "lane": "001",
-                            "trimStatus": "raw",
-                            "readType": "single",
-                            "rgFields": {
-                                "ID": "SRR1066657.001",
-                                "SM": "SRR1066657",
-                                "LB": "SRR1066657",
-                                "PL": "ILLUMINA"
-                            }
-                        },
-                        "/utia-gc/ngs-test/raw/diff-chip-seq/reads/raw/SRR1066657_S3_L001_R1_001.fastq.gz",
-                        "SRR1066657_S3_L001_R1_001.NOFILE:md5,d41d8cd98f00b204e9800998ecf8427e"
-                    ],
-                    [
-                        {
-                            "sampleName": "SRR1066657",
-                            "lane": "002",
-                            "trimStatus": "raw",
-                            "readType": "single",
-                            "rgFields": {
-                                "ID": "SRR1066657.002",
-                                "SM": "SRR1066657",
-                                "LB": "SRR1066657",
-                                "PL": "ILLUMINA"
-                            }
-                        },
-                        "/utia-gc/ngs-test/raw/diff-chip-seq/reads/raw/SRR1066657_S3_L002_R1_001.fastq.gz",
-                        "SRR1066657_S3_L002_R1_001.NOFILE:md5,d41d8cd98f00b204e9800998ecf8427e"
-                    ],
-                    [
-                        {
-                            "sampleName": "SRR6924569",
-                            "lane": "001",
-                            "trimStatus": "raw",
-                            "readType": "paired",
-                            "rgFields": {
-                                "ID": "SRR6924569.001",
-                                "SM": "SRR6924569",
-                                "LB": "SRR6924569",
-                                "PL": "ILLUMINA"
-                            }
-                        },
-                        "/utia-gc/ngs-test/raw/diff-chip-seq/reads/raw/SRR6924569_S1_L001_R1_001.fastq.gz",
-                        "/utia-gc/ngs-test/raw/diff-chip-seq/reads/raw/SRR6924569_S1_L001_R2_001.fastq.gz"
-                    ],
-                    [
-                        {
-                            "sampleName": "SRR6924569",
-                            "lane": "002",
-                            "trimStatus": "raw",
-                            "readType": "paired",
-                            "rgFields": {
-                                "ID": "SRR6924569.002",
-                                "SM": "SRR6924569",
-                                "LB": "SRR6924569",
-                                "PL": "ILLUMINA"
-                            }
-                        },
-                        "/utia-gc/ngs-test/raw/diff-chip-seq/reads/raw/SRR6924569_S1_L002_R1_001.fastq.gz",
-                        "/utia-gc/ngs-test/raw/diff-chip-seq/reads/raw/SRR6924569_S1_L002_R2_001.fastq.gz"
-                    ]
-                ],
-                "samples": [
-                    [
-                        {
-                            "sampleName": "SRR1066657",
-                            "lane": "001",
-                            "trimStatus": "raw",
-                            "readType": "single",
-                            "rgFields": {
-                                "ID": "SRR1066657.001",
-                                "SM": "SRR1066657",
-                                "LB": "SRR1066657",
-                                "PL": "ILLUMINA"
-                            }
-                        },
-                        "/utia-gc/ngs-test/raw/diff-chip-seq/reads/raw/SRR1066657_S3_L001_R1_001.fastq.gz",
-                        "SRR1066657_S3_L001_R1_001.NOFILE:md5,d41d8cd98f00b204e9800998ecf8427e"
-                    ],
-                    [
-                        {
-                            "sampleName": "SRR1066657",
-                            "lane": "002",
-                            "trimStatus": "raw",
-                            "readType": "single",
-                            "rgFields": {
-                                "ID": "SRR1066657.002",
-                                "SM": "SRR1066657",
-                                "LB": "SRR1066657",
-                                "PL": "ILLUMINA"
-                            }
-                        },
-                        "/utia-gc/ngs-test/raw/diff-chip-seq/reads/raw/SRR1066657_S3_L002_R1_001.fastq.gz",
-                        "SRR1066657_S3_L002_R1_001.NOFILE:md5,d41d8cd98f00b204e9800998ecf8427e"
-                    ],
-                    [
-                        {
-                            "sampleName": "SRR6924569",
-                            "lane": "001",
-                            "trimStatus": "raw",
-                            "readType": "paired",
-                            "rgFields": {
-                                "ID": "SRR6924569.001",
-                                "SM": "SRR6924569",
-                                "LB": "SRR6924569",
-                                "PL": "ILLUMINA"
-                            }
-                        },
-                        "/utia-gc/ngs-test/raw/diff-chip-seq/reads/raw/SRR6924569_S1_L001_R1_001.fastq.gz",
-                        "/utia-gc/ngs-test/raw/diff-chip-seq/reads/raw/SRR6924569_S1_L001_R2_001.fastq.gz"
-                    ],
-                    [
-                        {
-                            "sampleName": "SRR6924569",
-                            "lane": "002",
-                            "trimStatus": "raw",
-                            "readType": "paired",
-                            "rgFields": {
-                                "ID": "SRR6924569.002",
-                                "SM": "SRR6924569",
-                                "LB": "SRR6924569",
-                                "PL": "ILLUMINA"
-                            }
-                        },
-                        "/utia-gc/ngs-test/raw/diff-chip-seq/reads/raw/SRR6924569_S1_L002_R1_001.fastq.gz",
-                        "/utia-gc/ngs-test/raw/diff-chip-seq/reads/raw/SRR6924569_S1_L002_R2_001.fastq.gz"
-                    ]
-                ]
-            }
-        ],
-        "meta": {
-            "nf-test": "0.9.0",
-            "nextflow": "23.10.1"
-        },
-        "timestamp": "2024-08-30T12:26:11.308777023"
-    },
-    "Parse_Samplesheet successfully creates read channels without lanes -- mixed SE + PE reads.": {
-        "content": [
-            {
-                "0": [
-                    [
-                        {
-                            "sampleName": "SRR1066657",
-                            "trimStatus": "raw",
-                            "readType": "single",
-                            "rgFields": {
-                                "ID": "SRR1066657",
-                                "SM": "SRR1066657",
-                                "LB": "SRR1066657",
-                                "PL": "ILLUMINA"
-                            }
-                        },
-                        "/utia-gc/ngs-test/raw/diff-chip-seq/reads/raw/SRR1066657_S3_L001_R1_001.fastq.gz",
-                        "SRR1066657_S3_L001_R1_001.NOFILE:md5,d41d8cd98f00b204e9800998ecf8427e"
-                    ],
-                    [
-                        {
-                            "sampleName": "SRR6924569",
-                            "trimStatus": "raw",
-                            "readType": "paired",
-                            "rgFields": {
-                                "ID": "SRR6924569",
-                                "SM": "SRR6924569",
-                                "LB": "SRR6924569",
-                                "PL": "ILLUMINA"
-                            }
-                        },
-                        "/utia-gc/ngs-test/raw/diff-chip-seq/reads/raw/SRR6924569_S1_L001_R1_001.fastq.gz",
-                        "/utia-gc/ngs-test/raw/diff-chip-seq/reads/raw/SRR6924569_S1_L001_R2_001.fastq.gz"
-                    ]
-                ],
-                "samples": [
-                    [
-                        {
-                            "sampleName": "SRR1066657",
-                            "trimStatus": "raw",
-                            "readType": "single",
-                            "rgFields": {
-                                "ID": "SRR1066657",
-                                "SM": "SRR1066657",
-                                "LB": "SRR1066657",
-                                "PL": "ILLUMINA"
-                            }
-                        },
-                        "/utia-gc/ngs-test/raw/diff-chip-seq/reads/raw/SRR1066657_S3_L001_R1_001.fastq.gz",
-                        "SRR1066657_S3_L001_R1_001.NOFILE:md5,d41d8cd98f00b204e9800998ecf8427e"
-                    ],
-                    [
-                        {
-                            "sampleName": "SRR6924569",
-                            "trimStatus": "raw",
-                            "readType": "paired",
-                            "rgFields": {
-                                "ID": "SRR6924569",
-                                "SM": "SRR6924569",
-                                "LB": "SRR6924569",
-                                "PL": "ILLUMINA"
-                            }
-                        },
-                        "/utia-gc/ngs-test/raw/diff-chip-seq/reads/raw/SRR6924569_S1_L001_R1_001.fastq.gz",
-                        "/utia-gc/ngs-test/raw/diff-chip-seq/reads/raw/SRR6924569_S1_L001_R2_001.fastq.gz"
-                    ]
-                ]
-            }
-        ],
-        "meta": {
-            "nf-test": "0.9.0",
-            "nextflow": "23.10.1"
-        },
-        "timestamp": "2024-08-30T12:26:25.300980837"
+        "timestamp": "2024-09-05T14:46:13.291739899"
     }
 }

@@ -9,8 +9,14 @@ static String buildStemName(LinkedHashMap metadata) {
     // the stem name must start with the sample name
     ArrayList stemNameComponents = [metadata.sampleName]
 
+    // if the sample metadata contains all the chip information, add it
+    if (metadata.mode == 'control') stemNameComponents += metadata.controlType
+    if (metadata.mode == 'chip') stemNameComponents += metadata.mode
+    if (metadata.target) stemNameComponents += metadata.target
+    if (metadata.replicate) stemNameComponents += "rep${metadata.replicate}"
+
     // add lane number to stem name if it exists
-    if(metadata.lane) stemNameComponents += "L${metadata.lane}"
+    if (metadata.lane) stemNameComponents += "L${metadata.lane}"
 
     return stemNameComponents.join('_')
 }
@@ -34,6 +40,7 @@ static LinkedHashMap intersectListOfMetadata(metadataList) {
     metadataIntersection.removeAll { k,v -> k == 'lane' }
 
     return metadataIntersection
+
 }
 
 

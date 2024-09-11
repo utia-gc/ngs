@@ -2,7 +2,23 @@ abstract class Reads {
     public getSampleName() {
         this.metadata.sampleName
     }
-    
+
+    public getReplicate() {
+        this.metadata.replicate
+    }
+
+    public getTarget() {
+        this.metadata.target
+    }
+
+    public getMode() {
+        this.metadata.mode
+    }
+
+    public getControlType() {
+        this.metadata.controlType
+    }
+
     public getSampleNumber() {
         this.metadata.sampleNumber
     }
@@ -33,7 +49,36 @@ abstract class Reads {
      * @return String fastq stem name.
      */
     public getStemName() {
-        "${this.getSampleName()}_L${this.getLane()}"
+        // if the sample metadata contains all the chip information, build the root of the stem name with it
+        def stemNameRoot = (this.mode && this.target && this.replicate)
+            ? "${this.getSampleName()}_${(this.getMode() == 'control') ? this.getControlType() : this.getMode()}_${this.getTarget()}_rep${this.getReplicate()}"
+            : this.getSampleName()
+
+        // if the sample metadata contains the lane info, add it to the root of the stem name
+        def stemName = (this.lane)
+            ? "${stemNameRoot}_L${this.getLane()}"
+            : stemNameRoot
+
+        return stemName
+    }
+
+
+    /**
+     * Get the stem name of a fastq file without the lane information.
+     * 
+     * Get the stem name of a fastq file. 
+     * For fastq files that follow Illumina naming conventions this should be the same as '<SampleName>'.
+     * @see https://support.illumina.com/help/BaseSpace_OLH_009008/Content/Source/Informatics/BS/NamingConvention_FASTQ-files-swBS.htm
+     *
+     * @return String fastq stem name.
+     */
+    public getStemNameWithoutLane() {
+        // if the sample metadata contains all the chip information, build the root of the stem name with it
+        def stemName = (this.mode && this.target && this.replicate)
+            ? "${this.getSampleName()}_${(this.getMode() == 'control') ? this.getControlType() : this.getMode()}_${this.getTarget()}_rep${this.getReplicate()}"
+            : this.getSampleName()
+
+        return stemName
     }
 
     public getRGFields() {

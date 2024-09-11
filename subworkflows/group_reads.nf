@@ -5,7 +5,7 @@ workflow Group_Reads {
     main:
         reads
             .map { metadata, reads1, reads2 ->
-                [ metadata.sampleName, metadata, reads1, reads2 ]
+                [ buildReadsGroupKey(metadata), metadata, reads1, reads2 ]
             }
             .groupTuple()
             .map { sampleNameKey, metadata, reads1, reads2 ->
@@ -24,3 +24,18 @@ workflow Group_Reads {
     emit:
         reads_grouped = ch_reads_grouped
 }
+
+
+String buildReadsGroupKey(metadata) {
+    // the grouping key beings with the sample name
+    ArrayList readsGroupKeyComponents = [metadata.sampleName]
+
+    // if the sample metadata contains all the chip information, add it
+    if (metadata.mode == 'control') readsGroupKeyComponents += metadata.controlType
+    if (metadata.mode == 'chip') readsGroupKeyComponents += metadata.mode
+    if (metadata.target) readsGroupKeyComponents += metadata.target
+    if (metadata.replicate) readsGroupKeyComponents += "rep${metadata.replicate}"
+
+    return readsGroupKeyComponents.join('_')
+}
+

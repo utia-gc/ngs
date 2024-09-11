@@ -149,5 +149,6 @@ null
 *.code-workspace
 
 # Files needed only for development
-/tests/data
+/sandbox
 /src
+/tests/data
