@@ -12,7 +12,9 @@ static String buildStemName(LinkedHashMap metadata) {
     // if the sample metadata contains all the chip information, add it
     if (metadata.mode == 'control') stemNameComponents += metadata.controlType
     if (metadata.mode == 'chip') stemNameComponents += metadata.mode
-    if (metadata.target) stemNameComponents += metadata.target
+    if (metadata.target && metadata.mode) stemNameComponents += metadata.target
+    // for peak calling, where mode is removed and I want to have 'target-vs-controlType when there is a control type'
+    if (metadata.target && !metadata.mode) stemNameComponents += (metadata.controlType == "none") ? metadata.target : "${metadata.target}-vs-${metadata.controlType}"
     if (metadata.replicate) stemNameComponents += "rep${metadata.replicate}"
 
     // add lane number to stem name if it exists

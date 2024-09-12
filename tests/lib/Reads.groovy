@@ -81,6 +81,28 @@ abstract class Reads {
         return stemName
     }
 
+
+    /**
+     * Get the stem name for peak calls.
+     * 
+     * Get the stem name of a fastq file. 
+     * For fastq files that follow Illumina naming conventions this should be the same as '<SampleName>'.
+     * @see https://support.illumina.com/help/BaseSpace_OLH_009008/Content/Source/Informatics/BS/NamingConvention_FASTQ-files-swBS.htm
+     *
+     * @return String fastq stem name.
+     */
+    public getStemNamePeakCalls() {
+        // the stem name must start with the sample name
+        ArrayList stemNameComponents = [metadata.sampleName]
+        // add target info and control if applicable
+        stemNameComponents += (metadata.controlType == "none") ? metadata.target : "${metadata.target}-vs-${metadata.controlType}"
+        // add replicate info
+        if (metadata.replicate) stemNameComponents += "rep${metadata.replicate}"
+
+        return stemNameComponents.join('_')
+    }
+
+
     public getRGFields() {
         [
             'ID': "${this.getSampleName()}.${this.getLane()}",

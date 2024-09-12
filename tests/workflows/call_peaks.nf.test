@@ -1,0 +1,64 @@
+nextflow_workflow {
+
+    name "Test Workflow CALL_PEAKS"
+    script "workflows/call_peaks.nf"
+    workflow "CALL_PEAKS"
+
+    test("CALL_PEAKS calls peaks for paired ChIP and Input files -- macs3.") {
+        // instantiate helper objects
+        def readsChIPPERep1Lane1  = new ReadsChIPPERep1Lane1()
+        def readsInputPERep1Lane1 = new ReadsInputPERep1Lane1()
+        def refs = new RefsEnsembl()
+
+
+        when {
+            params {
+                publishDirReports = "${outputDir}/reports"
+                publishDirData    = "${outputDir}/data"
+            }
+            workflow {
+                """
+                input[0] = Channel.of(
+                    [
+                        [
+                            sampleName:   "${readsChIPPERep1Lane1.getSampleName()}",
+                            lane:         "${readsChIPPERep1Lane1.getLane()}",
+                            replicate:    "${readsChIPPERep1Lane1.getReplicate()}",
+                            target:       "${readsChIPPERep1Lane1.getTarget()}",
+                            mode:         "${readsChIPPERep1Lane1.getMode()}",
+                            controlType:  "${readsChIPPERep1Lane1.getControlType()}",
+                            readType:     "${readsChIPPERep1Lane1.getReadType()}",
+                            rgFields:     "${readsChIPPERep1Lane1.getRGFields()}",
+                        ],
+                        file("${projectDir}/${readsChIPPERep1Lane1.getR1()}"),
+                        file("${projectDir}/${readsChIPPERep1Lane1.getR2()}")
+                    ],
+                    [
+                        [
+                            sampleName:   "${readsInputPERep1Lane1.getSampleName()}",
+                            lane:         "${readsInputPERep1Lane1.getLane()}",
+                            replicate:    "${readsInputPERep1Lane1.getReplicate()}",
+                            target:       "${readsInputPERep1Lane1.getTarget()}",
+                            mode:         "${readsInputPERep1Lane1.getMode()}",
+                            controlType:  "${readsInputPERep1Lane1.getControlType()}",
+                            readType:     "${readsInputPERep1Lane1.getReadType()}",
+                            rgFields:     "${readsInputPERep1Lane1.getRGFields()}",
+                        ],
+                        file("${projectDir}/${readsInputPERep1Lane1.getR1()}"),
+                        file("${projectDir}/${readsInputPERep1Lane1.getR2()}")
+                    ],
+                )
+                input[1] = file("${projectDir}/${refs.getGenome()}")
+                """
+            }
+        }
+
+        then {
+            // test workflow status
+            assert workflow.success
+            assert workflow.trace.succeeded().size() == 1
+        }
+
+    }
+
+}

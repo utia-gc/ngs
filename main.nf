@@ -14,6 +14,7 @@ nextflow.enable.dsl=2
 */
 
 // Include custom workflows
+include { CALL_PEAKS     } from "./workflows/call_peaks.nf"
 include { CHECK_QUALITY  } from "./workflows/check_quality.nf"
 include { MAP_READS      } from "./workflows/map_reads.nf"
 include { PREPARE_INPUTS } from "./workflows/prepare_inputs.nf"
@@ -60,12 +61,19 @@ workflow {
     ch_alignmentsMergedSortedByCoord     = MAP_READS.out.alignmentsMergedSortedByCoord
     ch_alignmentsMergedSortedByName      = MAP_READS.out.alignmentsMergedSortedByName
 
+    CALL_PEAKS(
+        ch_alignmentsMergedSortedByCoord,
+        ch_genome
+    )
+    ch_callPeaksLog = CALL_PEAKS.out.callPeaksLog
+
     CHECK_QUALITY(
         ch_reads_raw,
         ch_reads_pre_align,
         ch_trim_log,
         ch_genome_index,
         ch_alignmentsIndividualSortedByCoord,
-        ch_alignmentsMergedSortedByCoord
+        ch_alignmentsMergedSortedByCoord,
+        ch_callPeaksLog
     )
 }
