@@ -8,6 +8,8 @@ nextflow_workflow {
         // instantiate helper objects
         def readsChIPPERep1Lane1  = new ReadsChIPPERep1Lane1()
         def readsInputPERep1Lane1 = new ReadsInputPERep1Lane1()
+        def readsChIPPERep2Lane1  = new ReadsChIPPERep2Lane1()
+        def readsInputPERep2Lane1 = new ReadsInputPERep2Lane1()
         def refs = new RefsEnsembl()
 
 
@@ -30,8 +32,22 @@ nextflow_workflow {
                             readType:     "${readsChIPPERep1Lane1.getReadType()}",
                             rgFields:     "${readsChIPPERep1Lane1.getRGFields()}",
                         ],
-                        file("${projectDir}/${readsChIPPERep1Lane1.getR1()}"),
-                        file("${projectDir}/${readsChIPPERep1Lane1.getR2()}")
+                        file("${projectDir}/${readsChIPPERep1Lane1.getBam()}"),
+                        file("${projectDir}/${readsChIPPERep1Lane1.getBamIndex()}")
+                    ],
+                    [
+                        [
+                            sampleName:   "${readsChIPPERep2Lane1.getSampleName()}",
+                            lane:         "${readsChIPPERep2Lane1.getLane()}",
+                            replicate:    "${readsChIPPERep2Lane1.getReplicate()}",
+                            target:       "${readsChIPPERep2Lane1.getTarget()}",
+                            mode:         "${readsChIPPERep2Lane1.getMode()}",
+                            controlType:  "${readsChIPPERep2Lane1.getControlType()}",
+                            readType:     "${readsChIPPERep2Lane1.getReadType()}",
+                            rgFields:     "${readsChIPPERep2Lane1.getRGFields()}",
+                        ],
+                        file("${projectDir}/${readsChIPPERep2Lane1.getBam()}"),
+                        file("${projectDir}/${readsChIPPERep2Lane1.getBamIndex()}")
                     ],
                     [
                         [
@@ -44,8 +60,22 @@ nextflow_workflow {
                             readType:     "${readsInputPERep1Lane1.getReadType()}",
                             rgFields:     "${readsInputPERep1Lane1.getRGFields()}",
                         ],
-                        file("${projectDir}/${readsInputPERep1Lane1.getR1()}"),
-                        file("${projectDir}/${readsInputPERep1Lane1.getR2()}")
+                        file("${projectDir}/${readsInputPERep1Lane1.getBam()}"),
+                        file("${projectDir}/${readsInputPERep1Lane1.getBamIndex()}")
+                    ],
+                    [
+                        [
+                            sampleName:   "${readsInputPERep2Lane1.getSampleName()}",
+                            lane:         "${readsInputPERep2Lane1.getLane()}",
+                            replicate:    "${readsInputPERep2Lane1.getReplicate()}",
+                            target:       "${readsInputPERep2Lane1.getTarget()}",
+                            mode:         "${readsInputPERep2Lane1.getMode()}",
+                            controlType:  "${readsInputPERep2Lane1.getControlType()}",
+                            readType:     "${readsInputPERep2Lane1.getReadType()}",
+                            rgFields:     "${readsInputPERep2Lane1.getRGFields()}",
+                        ],
+                        file("${projectDir}/${readsInputPERep2Lane1.getBam()}"),
+                        file("${projectDir}/${readsInputPERep2Lane1.getBamIndex()}")
                     ],
                 )
                 input[1] = file("${projectDir}/${refs.getGenome()}")
@@ -56,7 +86,37 @@ nextflow_workflow {
         then {
             // test workflow status
             assert workflow.success
-            assert workflow.trace.succeeded().size() == 1
+            assert workflow.trace.succeeded().size() == 3
+
+            // test peak calling logs for each peak set
+            with(workflow.out.callPeaksLog) {
+                // test rep1 files
+                assert size() == 2
+                with(get(0)) {
+                    assert size() == 2
+                    // test peak calling log
+                    String sampleName = [
+                        readsChIPPERep1Lane1.getSampleName(),
+                        "${readsChIPPERep1Lane1.getTarget()}-vs-${readsChIPPERep1Lane1.getControlType()}",
+                        "rep${readsChIPPERep1Lane1.getReplicate()}",
+                    ].join('_')
+                    assert get(1) ==~ /^.*\/${sampleName}_peaks\.xls/
+                }
+                // test rep2 files
+                with(get(1)) {
+                    assert size() == 2
+                    // test peak calling log
+                    String sampleName = [
+                        readsChIPPERep2Lane1.getSampleName(),
+                        "${readsChIPPERep2Lane1.getTarget()}-vs-${readsChIPPERep2Lane1.getControlType()}",
+                        "rep${readsChIPPERep2Lane1.getReplicate()}",
+                    ].join('_')
+                    assert get(1) ==~ /^.*\/${sampleName}_peaks\.xls/
+                }
+            }
+
+            // test reproducibility
+            assert snapshot(workflow.out).match()
         }
 
     }

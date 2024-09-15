@@ -1,0 +1,61 @@
+{
+    "CALL_PEAKS calls peaks for paired ChIP and Input files -- macs3.": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "sampleName": "wt_ip1",
+                            "replicate": "1",
+                            "target": "FLAG-IP1",
+                            "controlType": "input",
+                            "readType": "paired",
+                            "rgFields": "[ID:wt_ip1.001, SM:wt_ip1, LB:wt_ip1, PL:ILLUMINA]"
+                        },
+                        "wt_ip1_FLAG-IP1-vs-input_rep1_peaks.xls:md5,bbc047e4f6aeea092061e3be16850ec3"
+                    ],
+                    [
+                        {
+                            "sampleName": "wt_ip1",
+                            "replicate": "2",
+                            "target": "FLAG-IP1",
+                            "controlType": "input",
+                            "readType": "paired",
+                            "rgFields": "[ID:wt_ip1.001, SM:wt_ip1, LB:wt_ip1, PL:ILLUMINA]"
+                        },
+                        "wt_ip1_FLAG-IP1-vs-input_rep2_peaks.xls:md5,4c980aef92bfab1c11bdc1e5378c9e27"
+                    ]
+                ],
+                "callPeaksLog": [
+                    [
+                        {
+                            "sampleName": "wt_ip1",
+                            "replicate": "1",
+                            "target": "FLAG-IP1",
+                            "controlType": "input",
+                            "readType": "paired",
+                            "rgFields": "[ID:wt_ip1.001, SM:wt_ip1, LB:wt_ip1, PL:ILLUMINA]"
+                        },
+                        "wt_ip1_FLAG-IP1-vs-input_rep1_peaks.xls:md5,bbc047e4f6aeea092061e3be16850ec3"
+                    ],
+                    [
+                        {
+                            "sampleName": "wt_ip1",
+                            "replicate": "2",
+                            "target": "FLAG-IP1",
+                            "controlType": "input",
+                            "readType": "paired",
+                            "rgFields": "[ID:wt_ip1.001, SM:wt_ip1, LB:wt_ip1, PL:ILLUMINA]"
+                        },
+                        "wt_ip1_FLAG-IP1-vs-input_rep2_peaks.xls:md5,4c980aef92bfab1c11bdc1e5378c9e27"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.0",
+            "nextflow": "23.10.1"
+        },
+        "timestamp": "2024-09-15T18:07:01.051949619"
+    }
+}

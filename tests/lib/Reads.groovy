@@ -39,6 +39,14 @@ abstract class Reads {
         this.reads[1]
     }
 
+    public getBam() {
+        this.bam
+    }
+
+    public getBamIndex() {
+        this.bamIndex
+    }
+
     /**
      * Get the stem name of a fastq file.
      * 
