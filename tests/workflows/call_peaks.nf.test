@@ -86,7 +86,7 @@ nextflow_workflow {
         then {
             // test workflow status
             assert workflow.success
-            assert workflow.trace.succeeded().size() == 3
+            assert workflow.trace.succeeded().size() == 7
 
             // test peak calling logs for each peak set
             with(workflow.out.callPeaksLog) {

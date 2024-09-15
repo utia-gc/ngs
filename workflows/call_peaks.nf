@@ -1,5 +1,6 @@
 include { khmer_unique_kmers } from '../modules/khmer/unique_kmers'
 include { macs3_callpeak     } from '../modules/macs3/callpeak'
+include { samtools_view      } from '../modules/samtools/view'
 
 
 workflow CALL_PEAKS {
@@ -11,8 +12,12 @@ workflow CALL_PEAKS {
         // compute effective genome size
         khmer_unique_kmers(genome)
 
+        // filter mappings
+        samtools_view(alignments)
+        ch_mappings = samtools_view.out.bamFilteredIndexed
+
         // Pair ChIP and control samples for each sampleName - target - controlType - replica pair
-        alignments
+        ch_mappings
             // separate into chip and control channels
             .branch { metadata, bam, bai ->
                 chip: metadata.mode == "chip"
