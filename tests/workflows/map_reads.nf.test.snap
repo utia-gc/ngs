@@ -16,8 +16,8 @@
                                 "PL": "ILLUMINA"
                             }
                         },
-                        "SRR1066657_L001.bam:md5,0f8b62185e1d8f6f90df99c640adbf67",
-                        "SRR1066657_L001.bam.bai:md5,1eee988255ed4674c6552cb7ac6e8466"
+                        "SRR1066657_L001.bam:md5,52fd4eec1980b85d90f2c5e53ede2e70",
+                        "SRR1066657_L001.bam.bai:md5,b88dfc9aef03eaa37ce61884dfc7edf1"
                     ],
                     [
                         {
@@ -32,8 +32,8 @@
                                 "PL": "ILLUMINA"
                             }
                         },
-                        "SRR1066657_L002.bam:md5,cdba3bef17e244b99611aa139172ac91",
-                        "SRR1066657_L002.bam.bai:md5,b6c6793471485d2384e554bd5c34b552"
+                        "SRR1066657_L002.bam:md5,45d692ba66f500f3925cd762b3222306",
+                        "SRR1066657_L002.bam.bai:md5,5912782b78df6afd57cafe4ecf8ac2a3"
                     ]
                 ],
                 "1": [
@@ -43,8 +43,8 @@
                             "sampleNumber": "3",
                             "readType": "single"
                         },
-                        "SRR1066657.bam:md5,10041771e833e3547a8cb7cecc32993f",
-                        "SRR1066657.bam.bai:md5,8b8cde26505c765567a71c84d74d8024"
+                        "SRR1066657.bam:md5,a0fe6ff991f9440fee8271b19f0fcc1d",
+                        "SRR1066657.bam.bai:md5,708f0b7423153e1df75d8c549a79eadf"
                     ]
                 ],
                 "2": [
@@ -54,7 +54,7 @@
                             "sampleNumber": "3",
                             "readType": "single"
                         },
-                        "SRR1066657.bam:md5,f1c973925ec2345043792ea737ff907b"
+                        "SRR1066657.bam:md5,818f1484f97853a425c2cc6f5283b51d"
                     ]
                 ],
                 "alignmentsIndividualSortedByCoord": [
@@ -71,8 +71,8 @@
                                 "PL": "ILLUMINA"
                             }
                         },
-                        "SRR1066657_L001.bam:md5,0f8b62185e1d8f6f90df99c640adbf67",
-                        "SRR1066657_L001.bam.bai:md5,1eee988255ed4674c6552cb7ac6e8466"
+                        "SRR1066657_L001.bam:md5,52fd4eec1980b85d90f2c5e53ede2e70",
+                        "SRR1066657_L001.bam.bai:md5,b88dfc9aef03eaa37ce61884dfc7edf1"
                     ],
                     [
                         {
@@ -87,8 +87,8 @@
                                 "PL": "ILLUMINA"
                             }
                         },
-                        "SRR1066657_L002.bam:md5,cdba3bef17e244b99611aa139172ac91",
-                        "SRR1066657_L002.bam.bai:md5,b6c6793471485d2384e554bd5c34b552"
+                        "SRR1066657_L002.bam:md5,45d692ba66f500f3925cd762b3222306",
+                        "SRR1066657_L002.bam.bai:md5,5912782b78df6afd57cafe4ecf8ac2a3"
                     ]
                 ],
                 "alignmentsMergedSortedByCoord": [
@@ -98,8 +98,8 @@
                             "sampleNumber": "3",
                             "readType": "single"
                         },
-                        "SRR1066657.bam:md5,10041771e833e3547a8cb7cecc32993f",
-                        "SRR1066657.bam.bai:md5,8b8cde26505c765567a71c84d74d8024"
+                        "SRR1066657.bam:md5,a0fe6ff991f9440fee8271b19f0fcc1d",
+                        "SRR1066657.bam.bai:md5,708f0b7423153e1df75d8c549a79eadf"
                     ]
                 ],
                 "alignmentsMergedSortedByName": [
@@ -109,12 +109,16 @@
                             "sampleNumber": "3",
                             "readType": "single"
                         },
-                        "SRR1066657.bam:md5,f1c973925ec2345043792ea737ff907b"
+                        "SRR1066657.bam:md5,818f1484f97853a425c2cc6f5283b51d"
                     ]
                 ]
             }
         ],
-        "timestamp": "2024-04-02T10:20:42.412114832"
+        "meta": {
+            "nf-test": "0.9.0",
+            "nextflow": "23.10.1"
+        },
+        "timestamp": "2024-10-14T13:23:22.572151058"
     },
     "MAP_READS maps reads to a reference genome and outputs sorted BAMs -- bwa-mem2 + SE reads.": {
         "content": [
@@ -231,6 +235,10 @@
                 ]
             }
         ],
+        "meta": {
+            "nf-test": "0.9.0",
+            "nextflow": "23.10.1"
+        },
         "timestamp": "2024-04-02T10:19:05.063904655"
     },
     "MAP_READS maps reads to a reference genome and outputs sorted BAMs -- bwa-mem2 + PE reads.": {
@@ -348,6 +356,10 @@
                 ]
             }
         ],
+        "meta": {
+            "nf-test": "0.9.0",
+            "nextflow": "23.10.1"
+        },
         "timestamp": "2024-04-02T10:19:34.770717278"
     },
     "MAP_READS maps reads to a reference genome and outputs sorted BAMs -- STAR + PE reads.": {
@@ -367,8 +379,8 @@
                                 "PL": "ILLUMINA"
                             }
                         },
-                        "SRR6924569_L001.bam:md5,db2eb799f85c990330072ac144a3fda7",
-                        "SRR6924569_L001.bam.bai:md5,3ae89ff70b99f63d301c609205d72e2d"
+                        "SRR6924569_L001.bam:md5,f668f0165b11dcfdc1b77f30e49c18e0",
+                        "SRR6924569_L001.bam.bai:md5,92c89667958a43cff6214ad001c34295"
                     ],
                     [
                         {
@@ -383,8 +395,8 @@
                                 "PL": "ILLUMINA"
                             }
                         },
-                        "SRR6924569_L002.bam:md5,2849ef3715e17b3d12bade2640572c12",
-                        "SRR6924569_L002.bam.bai:md5,500fc27daf882d2899f25e08091bf409"
+                        "SRR6924569_L002.bam:md5,a72ec9b11095615109c53edf85fc8f99",
+                        "SRR6924569_L002.bam.bai:md5,9d00b0227b3fddfcedb27ee378626a43"
                     ]
                 ],
                 "1": [
@@ -394,8 +406,8 @@
                             "sampleNumber": "1",
                             "readType": "paired"
                         },
-                        "SRR6924569.bam:md5,abceb043c99b9b8e2968cb82d507a29a",
-                        "SRR6924569.bam.bai:md5,60f1f00a5aae097e9893dd7cebb86a62"
+                        "SRR6924569.bam:md5,46ec4fa7aeb200d7728634eee26c05d3",
+                        "SRR6924569.bam.bai:md5,9a8c6eefb8e6862504251178188d746e"
                     ]
                 ],
                 "2": [
@@ -405,7 +417,7 @@
                             "sampleNumber": "1",
                             "readType": "paired"
                         },
-                        "SRR6924569.bam:md5,af115edc918e3aea88563fda1987b90b"
+                        "SRR6924569.bam:md5,1783acbc678063053294393e96555301"
                     ]
                 ],
                 "alignmentsIndividualSortedByCoord": [
@@ -422,8 +434,8 @@
                                 "PL": "ILLUMINA"
                             }
                         },
-                        "SRR6924569_L001.bam:md5,db2eb799f85c990330072ac144a3fda7",
-                        "SRR6924569_L001.bam.bai:md5,3ae89ff70b99f63d301c609205d72e2d"
+                        "SRR6924569_L001.bam:md5,f668f0165b11dcfdc1b77f30e49c18e0",
+                        "SRR6924569_L001.bam.bai:md5,92c89667958a43cff6214ad001c34295"
                     ],
                     [
                         {
@@ -438,8 +450,8 @@
                                 "PL": "ILLUMINA"
                             }
                         },
-                        "SRR6924569_L002.bam:md5,2849ef3715e17b3d12bade2640572c12",
-                        "SRR6924569_L002.bam.bai:md5,500fc27daf882d2899f25e08091bf409"
+                        "SRR6924569_L002.bam:md5,a72ec9b11095615109c53edf85fc8f99",
+                        "SRR6924569_L002.bam.bai:md5,9d00b0227b3fddfcedb27ee378626a43"
                     ]
                 ],
                 "alignmentsMergedSortedByCoord": [
@@ -449,8 +461,8 @@
                             "sampleNumber": "1",
                             "readType": "paired"
                         },
-                        "SRR6924569.bam:md5,abceb043c99b9b8e2968cb82d507a29a",
-                        "SRR6924569.bam.bai:md5,60f1f00a5aae097e9893dd7cebb86a62"
+                        "SRR6924569.bam:md5,46ec4fa7aeb200d7728634eee26c05d3",
+                        "SRR6924569.bam.bai:md5,9a8c6eefb8e6862504251178188d746e"
                     ]
                 ],
                 "alignmentsMergedSortedByName": [
@@ -460,11 +472,15 @@
                             "sampleNumber": "1",
                             "readType": "paired"
                         },
-                        "SRR6924569.bam:md5,af115edc918e3aea88563fda1987b90b"
+                        "SRR6924569.bam:md5,1783acbc678063053294393e96555301"
                     ]
                 ]
             }
         ],
-        "timestamp": "2024-04-02T10:24:39.637400944"
+        "meta": {
+            "nf-test": "0.9.0",
+            "nextflow": "23.10.1"
+        },
+        "timestamp": "2024-10-14T13:27:17.097652102"
     }
 }

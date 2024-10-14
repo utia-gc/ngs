@@ -16,7 +16,7 @@
                                 "PL": "ILLUMINA"
                             }
                         },
-                        "SRR6924569_L001_Aligned.out.sam:md5,9da9e8e690cec3daed1f984d1d3077c4"
+                        "SRR6924569_L001_Aligned.out.sam:md5,645f250c180cc36c5898053e2e4eb6b5"
                     ]
                 ],
                 "alignments": [
@@ -33,12 +33,16 @@
                                 "PL": "ILLUMINA"
                             }
                         },
-                        "SRR6924569_L001_Aligned.out.sam:md5,9da9e8e690cec3daed1f984d1d3077c4"
+                        "SRR6924569_L001_Aligned.out.sam:md5,645f250c180cc36c5898053e2e4eb6b5"
                     ]
                 ]
             }
         ],
-        "timestamp": "2023-10-30T11:50:00.875088039"
+        "meta": {
+            "nf-test": "0.9.0",
+            "nextflow": "23.10.1"
+        },
+        "timestamp": "2024-10-14T13:21:23.672617765"
     },
     "Star builds index and aligns reads -- SE reads.": {
         "content": [
@@ -57,7 +61,7 @@
                                 "PL": "ILLUMINA"
                             }
                         },
-                        "SRR1066657_L001_Aligned.out.sam:md5,368220688fe7cec495fede5748e075c4"
+                        "SRR1066657_L001_Aligned.out.sam:md5,7399b4b60d585f02ae3db8a3e3867ea9"
                     ]
                 ],
                 "alignments": [
@@ -74,11 +78,15 @@
                                 "PL": "ILLUMINA"
                             }
                         },
-                        "SRR1066657_L001_Aligned.out.sam:md5,368220688fe7cec495fede5748e075c4"
+                        "SRR1066657_L001_Aligned.out.sam:md5,7399b4b60d585f02ae3db8a3e3867ea9"
                     ]
                 ]
             }
         ],
-        "timestamp": "2023-10-30T11:46:19.80524137"
+        "meta": {
+            "nf-test": "0.9.0",
+            "nextflow": "23.10.1"
+        },
+        "timestamp": "2024-10-14T13:17:38.173270027"
     }
 }
