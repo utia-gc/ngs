@@ -65,7 +65,11 @@ workflow QC_Reads {
             .concat(trim_log)
             .concat(ch_sequencing_depth_raw)
             .concat(ch_sequencing_depth_prealign)
-            .collect()
+            .collect(
+                sort: { a, b ->
+                    a.name <=> b.name
+                }
+            )
 
         multiqc_reads(
             ch_multiqc_reads,

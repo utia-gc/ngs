@@ -23,7 +23,11 @@ workflow QC_Alignments {
             .concat(samtools_stats.out.samtools_IS)
             .concat(samtools_stats.out.samtools_COV)
             // .concat(map_log)
-            .collect( sort: true )
+            .collect(
+                sort: { a, b ->
+                    a.name <=> b.name
+                }
+            )
 
         multiqc_alignments(
             ch_multiqc_alignments,

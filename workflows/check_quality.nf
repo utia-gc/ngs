@@ -30,7 +30,11 @@ workflow CHECK_QUALITY {
         ch_multiqc_full = Channel.empty()
             .concat(ch_multiqc_reads)
             .concat(ch_multiqc_alignments)
-            .collect( sort: true )
+            .collect(
+                sort: { a, b ->
+                    a.name <=> b.name
+                }
+            )
         multiqc_full(
             ch_multiqc_full,
             file("${projectDir}/assets/multiqc_config.yaml"),
