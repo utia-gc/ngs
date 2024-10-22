@@ -25,7 +25,7 @@ process fastp {
         String stemName = MetadataUtils.buildStemName(metadata)
         String reads1NewName = "${stemName}_${metadata.trimStatus}_R1.fastq.gz"
 
-        String args = new Args(task.ext).buildArgsString()
+        String args = new Args(argsDefault: task.ext.argsDefault, argsDynamic: task.ext.argsDynamic, argsUser: task.ext.argsUser).buildArgsString()
 
         if(metadata.readType == 'single') {
             """

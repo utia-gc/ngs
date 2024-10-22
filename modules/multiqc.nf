@@ -22,7 +22,7 @@ process multiqc {
         path "${fileName}_data/*", hidden: true, emit: data
 
     script:
-        String args = new Args(task.ext).buildArgsString()
+        String args = new Args(argsDefault: task.ext.argsDefault, argsDynamic: task.ext.argsDynamic, argsUser: task.ext.argsUser).buildArgsString()
 
         """
         multiqc \

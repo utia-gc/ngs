@@ -20,7 +20,7 @@ process gatk_MarkDuplicates {
         tuple val(metadata), path('*.bam'), path('*.bam.bai'), emit: bamMarkDupIndexed
 
     script:
-        String args = new Args(task.ext).buildArgsString()
+        String args = new Args(argsDefault: task.ext.argsDefault, argsDynamic: task.ext.argsDynamic, argsUser: task.ext.argsUser).buildArgsString()
 
         """
         gatk MarkDuplicates \

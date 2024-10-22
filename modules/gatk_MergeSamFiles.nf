@@ -21,7 +21,7 @@ process gatk_MergeSamFiles {
             "--INPUT ${bam}" 
         }.join(' ')
 
-        String args = new Args(task.ext).buildArgsString()
+        String args = new Args(argsDefault: task.ext.argsDefault, argsDynamic: task.ext.argsDynamic, argsUser: task.ext.argsUser).buildArgsString()
 
         """
         gatk MergeSamFiles \

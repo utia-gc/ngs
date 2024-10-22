@@ -23,7 +23,7 @@ process fastqc {
     script:
         String reads1NewName = "${MetadataUtils.buildStemName(metadata)}_${metadata.trimStatus}_R1.fastq.gz"
 
-        String args = new Args(task.ext).buildArgsString()
+        String args = new Args(argsDefault: task.ext.argsDefault, argsDynamic: task.ext.argsDynamic, argsUser: task.ext.argsUser).buildArgsString()
 
         if(metadata.readType == 'single') {
             """

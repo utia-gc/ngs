@@ -37,7 +37,7 @@ process bwa_mem2_mem {
         // build read group line
         String rgLine = ReadGroup.buildRGLine(metadata.rgFields, 'bwamem2')
 
-        String args = new Args(task.ext).buildArgsString()
+        String args = new Args(argsDefault: task.ext.argsDefault, argsDynamic: task.ext.argsDynamic, argsUser: task.ext.argsUser).buildArgsString()
 
         """
         bwa-mem2 mem \

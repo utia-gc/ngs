@@ -34,7 +34,7 @@ process star_runMapping {
         // build read group line
         String rgLine = ReadGroup.buildRGLine(metadata.rgFields, 'star')
 
-        String args = new Args(task.ext).buildArgsString()
+        String args = new Args(argsDefault: task.ext.argsDefault, argsDynamic: task.ext.argsDynamic, argsUser: task.ext.argsUser).buildArgsString()
         
         """
         STAR \
