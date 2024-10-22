@@ -34,6 +34,8 @@ Finally, we will give direction as to how the user can make use of our solution 
 
 - [What parameters are available?](./pipeline_config/params.md)
 
+- [How do I change the resource limitations of the pipeline?](./pipeline_config/resource_limits.md)
+
 ### [Contribute](contribute/index.md)
 
 - [How can I contribute to the pipeline code or documentation?](contribute/development.md)
