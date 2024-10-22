@@ -16,7 +16,7 @@ class Args {
     /**
      * Construct the Args class using maps from the ext directive namespace for a task.
      */
-    Args(ext) {
+    Args(Map ext) {
         this.defaults = ext.argsDefault ?: new LinkedHashMap<String, String>()
         this.dynamics = ext.argsDynamic ?: new LinkedHashMap<String, String>()
         this.users    = ext.argsUser    ?: new LinkedHashMap<String, String>()
