@@ -1,4 +1,4 @@
 readsSources: ""
 readsDest: "data/reads/raw"
-samplesheet: "data/samplesheets/samplesheet.csv"
+samplesheet: "config/samplesheets/samplesheet.csv"
 decode: "config/samplesheets/decode.csv"
