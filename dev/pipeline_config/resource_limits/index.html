@@ -8,26 +8,24 @@
       
       
       
-        <link rel="canonical" href="https://utia-gc.github.io/ngs/dev/">
+        <link rel="canonical" href="https://utia-gc.github.io/ngs/dev/pipeline_config/resource_limits/">
       
       
       
-        <link rel="next" href="quick_start/">
       
-      
-      <link rel="icon" href="assets/images/favicon.png">
+      <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.42">
     
     
       
-        <title>utia-gc/ngs</title>
+        <title>Resource limits - utia-gc/ngs</title>
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.0253249f.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.0253249f.min.css">
       
         
-        <link rel="stylesheet" href="assets/stylesheets/palette.06af60db.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
       
       
 
@@ -46,7 +44,7 @@
       
     
     
-    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -72,7 +70,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#utia-gcngs" class="md-skip">
+        <a href="#resource-limits" class="md-skip">
           Skip to content
         </a>
       
@@ -90,7 +88,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="." title="utia-gc/ngs" class="md-header__button md-logo" aria-label="utia-gc/ngs" data-md-component="logo">
+    <a href="../.." title="utia-gc/ngs" class="md-header__button md-logo" aria-label="utia-gc/ngs" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -110,7 +108,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Home
+              Resource limits
             
           </span>
         </div>
@@ -220,11 +218,9 @@
         
   
   
-    
   
-  
-    <li class="md-tabs__item md-tabs__item--active">
-      <a href="." class="md-tabs__link">
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
         
   
     
@@ -243,7 +239,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="quick_start/" class="md-tabs__link">
+        <a href="../../quick_start/" class="md-tabs__link">
           
   
     
@@ -263,7 +259,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="input_output/" class="md-tabs__link">
+        <a href="../../input_output/" class="md-tabs__link">
           
   
     
@@ -283,7 +279,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="pipeline_config/" class="md-tabs__link">
+        <a href="../" class="md-tabs__link">
           
   
     
@@ -303,7 +299,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="contribute/" class="md-tabs__link">
+        <a href="../../contribute/" class="md-tabs__link">
           
   
     
@@ -338,7 +334,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="." title="utia-gc/ngs" class="md-nav__button md-logo" aria-label="utia-gc/ngs" data-md-component="logo">
+    <a href="../.." title="utia-gc/ngs" class="md-nav__button md-logo" aria-label="utia-gc/ngs" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -365,30 +361,10 @@
       
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    Home
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="." class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -397,95 +373,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#structure-of-the-docs" class="md-nav__link">
-    <span class="md-ellipsis">
-      Structure of the docs
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#questions" class="md-nav__link">
-    <span class="md-ellipsis">
-      Questions
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Questions">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#quick-start" class="md-nav__link">
-    <span class="md-ellipsis">
-      Quick Start
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#input-output" class="md-nav__link">
-    <span class="md-ellipsis">
-      Input / Output
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#pipeline-configuration" class="md-nav__link">
-    <span class="md-ellipsis">
-      Pipeline Configuration
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#contribute" class="md-nav__link">
-    <span class="md-ellipsis">
-      Contribute
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#problems-with-code-and-docs" class="md-nav__link">
-    <span class="md-ellipsis">
-      Problems with code and docs
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -518,7 +405,7 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="quick_start/" class="md-nav__link ">
+            <a href="../../quick_start/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -582,7 +469,7 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="input_output/" class="md-nav__link ">
+            <a href="../../input_output/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -615,7 +502,7 @@
   
   
     <li class="md-nav__item">
-      <a href="input_output/project_setup/" class="md-nav__link">
+      <a href="../../input_output/project_setup/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -636,7 +523,7 @@
   
   
     <li class="md-nav__item">
-      <a href="input_output/required_params/" class="md-nav__link">
+      <a href="../../input_output/required_params/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -657,7 +544,7 @@
   
   
     <li class="md-nav__item">
-      <a href="input_output/samplesheet_format/" class="md-nav__link">
+      <a href="../../input_output/samplesheet_format/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -678,7 +565,7 @@
   
   
     <li class="md-nav__item">
-      <a href="input_output/outputs/" class="md-nav__link">
+      <a href="../../input_output/outputs/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -733,7 +620,7 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="pipeline_config/" class="md-nav__link ">
+            <a href="../" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -766,7 +653,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pipeline_config/arguments_to_processes/" class="md-nav__link">
+      <a href="../arguments_to_processes/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -787,7 +674,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pipeline_config/exploratory_profile/" class="md-nav__link">
+      <a href="../exploratory_profile/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -808,7 +695,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pipeline_config/params/" class="md-nav__link">
+      <a href="../params/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -863,7 +750,7 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="contribute/" class="md-nav__link ">
+            <a href="../../contribute/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -896,7 +783,7 @@
   
   
     <li class="md-nav__item">
-      <a href="contribute/create_new_pipeline/" class="md-nav__link">
+      <a href="../../contribute/create_new_pipeline/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -917,7 +804,7 @@
   
   
     <li class="md-nav__item">
-      <a href="contribute/documentation/" class="md-nav__link">
+      <a href="../../contribute/documentation/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -938,7 +825,7 @@
   
   
     <li class="md-nav__item">
-      <a href="contribute/development/" class="md-nav__link">
+      <a href="../../contribute/development/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -986,69 +873,27 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#structure-of-the-docs" class="md-nav__link">
+  <a href="#problem" class="md-nav__link">
     <span class="md-ellipsis">
-      Structure of the docs
+      Problem
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#questions" class="md-nav__link">
+  <a href="#solution" class="md-nav__link">
     <span class="md-ellipsis">
-      Questions
+      Solution
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Questions">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#quick-start" class="md-nav__link">
-    <span class="md-ellipsis">
-      Quick Start
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#input-output" class="md-nav__link">
-    <span class="md-ellipsis">
-      Input / Output
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#pipeline-configuration" class="md-nav__link">
-    <span class="md-ellipsis">
-      Pipeline Configuration
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#contribute" class="md-nav__link">
-    <span class="md-ellipsis">
-      Contribute
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#problems-with-code-and-docs" class="md-nav__link">
+  <a href="#usage" class="md-nav__link">
     <span class="md-ellipsis">
-      Problems with code and docs
+      Usage
     </span>
   </a>
   
@@ -1069,7 +914,7 @@
                   
 
   
-    <a href="https://github.com/utia-gc/ngs/edit/main/docs/index.md" title="Edit this page" class="md-content__button md-icon">
+    <a href="https://github.com/utia-gc/ngs/edit/main/docs/pipeline_config/resource_limits.md" title="Edit this page" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75z"/></svg>
     </a>
@@ -1078,62 +923,37 @@
     
       
     
-    <a href="https://github.com/utia-gc/ngs/raw/main/docs/index.md" title="View source of this page" class="md-content__button md-icon">
+    <a href="https://github.com/utia-gc/ngs/raw/main/docs/pipeline_config/resource_limits.md" title="View source of this page" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0 8a5 5 0 0 1-5-5 5 5 0 0 1 5-5 5 5 0 0 1 5 5 5 5 0 0 1-5 5m0-12.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5"/></svg>
     </a>
   
 
 
-<h1 id="utia-gcngs"><code>utia-gc/ngs</code></h1>
-<p>Welcome to the <a href="https://github.com/utia-gc/ngs"><code>utia-gc/ngs</code></a> documentation!</p>
-<h2 id="structure-of-the-docs">Structure of the docs</h2>
-<p>These docs are mainly setup in a question and answer format, typically from the perspective of a user who has decided to run the pipeline and is asking themself a question starting with "How do I... ?"</p>
-<p>In order to properly answer these questions, we will take on each in turn and state why it is a problem that we felt the need to address in our pipeline.
-From there, we will describe the solution in as plain terms as possible so that the user has a mental model of what the pipeline is actually doing.
-Where possible, we will also point to a place in the pipeline code where the solution is implemented; this way the user can compare their mental model of the solution with the way the solution is actually written.
-Finally, we will give direction as to how the user can make use of our solution to ensure their pipeline run works as intended.</p>
-<h2 id="questions">Questions</h2>
-<h3 id="quick-start"><a href="quick_start/">Quick Start</a></h3>
-<h3 id="input-output"><a href="input_output/">Input / Output</a></h3>
-<ul>
-<li>
-<p><a href="input_output/required_params/">What params do I need to run the pipeline?</a></p>
-</li>
-<li>
-<p><a href="input_output/samplesheet_format/">How do I format the input samplesheet?</a></p>
-</li>
-<li>
-<p><a href="input_output/outputs/">What outputs will I get from the pipeline?</a></p>
-</li>
-<li>
-<p><a href="input_output/project_setup/">How should I setup my project?</a></p>
-</li>
-</ul>
-<h3 id="pipeline-configuration"><a href="pipeline_config/">Pipeline Configuration</a></h3>
-<ul>
-<li>
-<p><a href="pipeline_config/arguments_to_processes/">How do I run a step of the pipeline with the command line arguments that I want to use?</a></p>
-</li>
-<li>
-<p><a href="pipeline_config/exploratory_profile/">How do I make it easier to try out and evaluate new params or arguments?</a></p>
-</li>
-<li>
-<p><a href="pipeline_config/params/">What parameters are available?</a></p>
-</li>
-<li>
-<p><a href="pipeline_config/resource_limits/">How do I change the resource limitations of the pipeline?</a></p>
-</li>
-</ul>
-<h3 id="contribute"><a href="contribute/">Contribute</a></h3>
-<ul>
-<li><a href="contribute/development/">How can I contribute to the pipeline code or documentation?</a></li>
-</ul>
-<h2 id="problems-with-code-and-docs">Problems with code and docs</h2>
-<p>Since these docs are written and maintained by the pipeline developers, there will be many great questions from the users that need answers but which we haven't thought of asking.
-In this case, please open a new issue in the <a href="https://github.com/utia-gc/ngs/issues">main repo issues page</a> so that we can make sure the pipeline is useful to and usable by everyone.
-There is no such thing as a dumb question!</p>
-<p>We also kindly ask that you report any bugs you may come across and make any feature requests in the issues page as well.</p>
+<h1 id="resource-limits">Resource limits</h1>
+<h2 id="problem">Problem</h2>
+<p>How do I change the resource limitations of the pipeline?</p>
+<p>Different systems and variations of pipelines will require different computational resources, e.g. numbers of CPUs, amounts of memory, and time.
+Capping resource usage so that jobs don't fail for requesting more than the system can reserve is an important way to keep pipelines useful across a variety of computing systems.</p>
+<h2 id="solution">Solution</h2>
+<p>As of version 24.04.0, Nextflow makes it easy to cap resource requests through use of the <a href="https://www.nextflow.io/docs/latest/reference/process.html#resourcelimits"><code>resourceLimits</code> process directive</a>.</p>
+<h2 id="usage">Usage</h2>
+<p>To set resource limits for a pipeline run, simply set the <code>resourceLimits</code> process directive in a Nextflow configuration file, and pass that configuration file to the pipeline run:</p>
+<div class="language-groovy highlight"><span class="filename">nextflow.config</span><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">process</span><span class="w"> </span><span class="o">{</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="cm">/*</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="cm">    Resource request configs</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="cm">    */</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">    </span><span class="n">resourceLimits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">        </span><span class="nl">cpus:</span><span class="w">   </span><span class="mi">12</span><span class="o">,</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">        </span><span class="nl">memory:</span><span class="w"> </span><span class="mi">32</span><span class="o">.</span><span class="na">GB</span><span class="o">,</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">        </span><span class="nl">time:</span><span class="w">   </span><span class="mi">48</span><span class="o">.</span><span class="na">hour</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">    </span><span class="o">]</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="o">}</span>
+</span></code></pre></div>
+<div class="language-bash highlight"><span class="filename">Terminal</span><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>nextflow<span class="w"> </span>run<span class="w"> </span>utia-gc/ngs<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">   </span>-revision<span class="w"> </span>main<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">   </span>-config<span class="w"> </span>nextflow.config
+</span></code></pre></div>
 
 
 
@@ -1186,10 +1006,10 @@ There is no such thing as a dumb question!</p>
     </div>
     
     
-    <script id="__config" type="application/json">{"base": ".", "features": ["navigation.tracking", "navigation.tabs", "navigation.path", "navigation.indexes", "toc.follow", "navigation.top", "search.highlight", "search.share", "content.action.edit", "content.action.view", "content.code.copy", "content.code.annotate"], "search": "assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"alias": true, "provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tracking", "navigation.tabs", "navigation.path", "navigation.indexes", "toc.follow", "navigation.top", "search.highlight", "search.share", "content.action.edit", "content.action.view", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"alias": true, "provider": "mike"}}</script>
     
     
-      <script src="assets/javascripts/bundle.83f73b43.min.js"></script>
+      <script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>
       
     
   </body>
