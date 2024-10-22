@@ -7,6 +7,7 @@
     "project_name": "{{ cookiecutter.project_date }} {{ cookiecutter.project_owner_last }} {{ cookiecutter.project_organism }} {{ cookiecutter.project_brief }} {{ cookiecutter.project_type }}",
     "project_slug": "{{ cookiecutter.project_date }}-{{ cookiecutter.project_owner_last|lower }}-{{ cookiecutter.project_organism|lower|replace(' ', '-') }}-{{ cookiecutter.project_brief|lower|replace(' ', '_') }}-{{ cookiecutter.project_type|lower|replace(' ', '_') }}",
     "project_purpose": "Analyze NGS data.",
+    "pipeline_revision": ["main", "v0.0.0.9000"],
     "email": "",
     "author": "",
     "slurm_account": "",
@@ -21,8 +22,9 @@
         "project_name": "Project name formed from inputs above.",
         "project_slug": "Project slug formed from inputs above.",
         "project_purpose": "Brief description of project purpose. Used for README.",
-        "author": "Project author name. Used for README.",
+        "pipeline_revision": "The pipeline revision (version) to use.",
         "email": "Email address. Used for README and SBATCH `--mail-user` header.",
+        "author": "Project author name. Used for README.",
         "slurm_account": "SLURM project account. Used for SBATCH `--account` header.",
         "slurm_partition": "SLURM partition. Used for SBATCH `--partition` header.",
         "slurm_qos": "SLURM QOS. Used for SBATCH `--qos` header."

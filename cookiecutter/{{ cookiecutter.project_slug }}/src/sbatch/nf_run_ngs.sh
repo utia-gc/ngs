@@ -24,7 +24,7 @@ nextflow pull utia-gc/ngs
 
 # run pipeline
 nextflow run utia-gc/ngs \
-    -revision main \
+    -revision {{ cookiecutter.pipeline_revision }} \
     -profile condo_trowan1,exploratory \
     -config config/nextflow/ngs.config \
     -params-file config/nextflow/params_ngs.yaml
