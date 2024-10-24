@@ -53,15 +53,28 @@ workflow WRITE_SAMPLESHEET {
         copiedFastqPairs
             .map { stemName, reads ->
                 def stemNameInfo = captureFastqStemNameInfo(stemName)
-                "${decodeMap.get(stemNameInfo.sampleName) ?: stemNameInfo.sampleName},${stemNameInfo.lane},${reads[0]},${reads[1] ?: ''}"
+
+                def sampleName = decodeMap.get(stemNameInfo.sampleName) ?: stemNameInfo.sampleName
+                def lane       = stemNameInfo.lane
+                def reads1     = reads[0]
+                def reads2     = reads[1] ?: ''
+
+                return [sampleName, lane, reads1, reads2].join(',')
             }
             .collectFile(
                 name: samplesheet.name,
                 newLine: true,
                 storeDir: samplesheet.parent,
                 sort: true,
-                seed: 'sampleName,lane,reads1,reads2'
+                seed: buildSamplesheetHeader()
             )
+}
+
+
+String buildSamplesheetHeader() {
+    ArrayList header = ['sampleName', 'lane', 'reads1', 'reads2']
+
+    return header.join(',')
 }
 
 
