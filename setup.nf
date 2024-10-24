@@ -16,73 +16,76 @@ workflow {
         }
     }
 
-    readsSources = validateReadsSources(params.readsSources)
-    readsDest    = file(params.readsDest)
+    fastqPairs = Channel
+        .fromFilePairs(params.readsSources, checkIfExists: true, size: -1)
+        .dump(tag: 'fastq file pairs', pretty: true)
 
-    COPY_READS(
-        readsSources,
-        readsDest,
-        decodeTable
+    COPY_FASTQS(
+        fastqPairs,
+        file(params.readsDest),
+        params.overwrite
     )
 
-    samplesheet = file(params.samplesheet)
-
     WRITE_SAMPLESHEET(
-        readsDest,
-        samplesheet,
+        COPY_FASTQS.out.copiedFastqPairs,
+        file(params.samplesheet),
         decodeTable
     )
 }
 
 
-workflow COPY_READS {
+workflow COPY_FASTQS {
     take:
-        source_reads_dirs
-        destination_reads_dir
-        decode_table
+        fastqPairs
+        destinationDir
+        overwrite
 
     main:
         // make the destination directory
-        destination_reads_dir.mkdirs()
+        destinationDir.mkdirs()
 
-        // combine patterns to match
-        def combinedPatterns = decode_table.keySet().toList().join('|')
-        log.info "Patterns to search for matches: ${combinedPatterns}"
+        // iterate through all fastq file pairs
+        fastqPairs.map { fastqPrefix, fastqs ->
+            ArrayList fastqCopiedPaths = []
 
-        // iterate through all fastq.gz files in source directories
-        source_reads_dirs.each { sourceReadsDir ->
-            sourceReadsDir.eachFileMatch(~/.*(${combinedPatterns}).*\.fastq\.gz/) { fastq ->
-                // copy fastq file to destination directory if it does not already exist in the destination directory
-                if (isExtantInDestination(fastq, destination_reads_dir)) {
-                    log.info "fastq file '${fastq}' already exists in '${destination_reads_dir}'. Did not copy."
+            // Either copy or skip copying each fastq file
+            fastqs.each { fastq ->
+                // Skip copying the fastq file if it already exists in the destination directory and overwriting is turned off.
+                if (existsInDestination(fastq, destinationDir) && !overwrite) {
+                    log.info "fastq file '${fastq}' already exists in '${destinationDir}' and `params.overwrite` = false. Did not copy."
+                    // add the copied fastq name to the list
+                    fastqCopiedPaths << destinationDir.resolve(fastq.name)
                     return
                 } else {
-                    def fastqDestPath = fastq.copyTo(destination_reads_dir)
+                    // Copy the fastq file
+                    def fastqDestPath = fastq.copyTo(destinationDir)
                     log.info "Copied fastq file '${fastq}' --> '${fastqDestPath}'"
+                    // add the copied fastq name to the list
+                    fastqCopiedPaths << fastqDestPath
                 }
             }
+            return [fastqPrefix, fastqCopiedPaths]
         }
+        .tap { copiedFastqPairs }
+        .dump(tag: "Copied fastqs", pretty: true)
+
+    emit:
+        copiedFastqPairs = copiedFastqPairs
 }
 
 
 workflow WRITE_SAMPLESHEET {
     take:
-        reads_dir
+        copiedFastqPairs
         samplesheet
-        decode_table
+        decodeTable
 
     main:
-        // create channel of read pairs
-        Channel
-            .fromFilePairs("${reads_dir}/*_R{1,2}_001.fastq.gz", size: -1, checkIfExists: true)
-            .set { ch_readPairs }
-        ch_readPairs.dump(tag: "ch_readPairs")
-
         // cast ch_readPairs to a map and write to a file
-        ch_readPairs
+        copiedFastqPairs
             .map { stemName, reads ->
                 def stemNameInfo = captureFastqStemNameInfo(stemName)
-                "${decode_table.get(stemNameInfo.sampleName) ?: stemNameInfo.sampleName},${stemNameInfo.lane},${reads[0]},${reads[1] ?: ''}"
+                "${decodeTable.get(stemNameInfo.sampleName) ?: stemNameInfo.sampleName},${stemNameInfo.lane},${reads[0]},${reads[1] ?: ''}"
             }
             .collectFile(
                 name: samplesheet.name,
@@ -99,39 +102,13 @@ def captureFastqStemNameInfo(String stemName) {
     def fastqMatcher = (stemName =~ capturePattern)
 
     if (fastqMatcher.find()) {
-        stemNameInfo = [:]
+        LinkedHashMap stemNameInfo = [:]
         stemNameInfo.put('sampleName', fastqMatcher.group(1))
-        // stemNameInfo.put('sampleNumber', fastqMatcher.group(2))
         stemNameInfo.put('lane', fastqMatcher.group(3))
 
         return stemNameInfo
     } else {
         log.error "fastq file stem manes do not "
-    }
-}
-
-
-/**
- * Validate reads source directories.
- *
- * @param  readsSources The params.readsSources argument
- * @return              A list of files to the paths specified in readsSources.
- */
-def validateReadsSources(readsSources) {
-    if (readsSources instanceof List) {
-        // if readsSources is a list of strings, return a list containing file objects of those strings
-        if (readsSources.every { it instanceof String }) {
-            return readsSources.collect { file(it, checkIfExists: true) }
-        }
-        else {
-            throw new IllegalArgumentException("params.readsSources is a list but contains non-string elements. Must be a list of valid paths or a single valid path.")
-        }
-    } else if (readsSources instanceof String) {
-        // if readsSources is a string, return a list containing a file object of that string
-        return [file(readsSources, checkIfExists: true)]
-    } else {
-        // if readsSources is neither a list of strings nor a string, throw an expection
-        throw new IllegalArgumentException("params.readsSources must be a list of valid paths or a single valid path.")
     }
 }
 
@@ -143,6 +120,6 @@ def validateReadsSources(readsSources) {
  * @param destinationDir The desination directory to check for the source file name.
  * @return               `true` if the source file exists in the destination directory.
  */
-boolean isExtantInDestination(sourceFile, destinationDir) {
+boolean existsInDestination(sourceFile, destinationDir) {
     return destinationDir.resolve(sourceFile.name).exists()
 }
