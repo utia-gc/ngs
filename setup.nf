@@ -1,6 +1,8 @@
 workflow {
     LinkedHashMap decodeMap = buildSampleNameDecodeMap(file(params.decode))
 
+    println "Decode Map: ${decodeMap}"
+
     fastqPairs = Channel
         .fromFilePairs(params.readsSources, checkIfExists: true, size: -1)
         .dump(tag: 'fastq file pairs', pretty: true)
@@ -53,6 +55,7 @@ workflow WRITE_SAMPLESHEET {
         copiedFastqPairs
             .map { stemName, reads ->
                 def stemNameInfo = captureFastqStemNameInfo(stemName)
+                println "Stem Name Info for ${stemName}: ${stemNameInfo}"
                 "${decodeMap.get(stemNameInfo.sampleName) ?: stemNameInfo.sampleName},${stemNameInfo.lane},${reads[0]},${reads[1] ?: ''}"
             }
             .collectFile(
@@ -115,12 +118,9 @@ def buildSampleNameDecodeMap(decode) {
             return
         }
 
-        def splitLine = line.split(',')
-        if (splitLine[0] == params.project) {
-            def readsName = splitLine[1]
-            def sampleName = (splitLine.size() == 3) ? splitLine[2] : ''
-            decodeMap.put(readsName, sampleName)
-        }
+        // split CSV lines and build map from sample name as it exists in fastq file name (column 1) to desired sample name (column 2)
+        def (fastqSampleName, sampleName) = line.split(',')
+        decodeMap.put(fastqSampleName, sampleName)
     }
 
     return decodeMap
