@@ -1,8 +1,6 @@
 workflow {
     LinkedHashMap decodeMap = buildSampleNameDecodeMap(file(params.decode))
 
-    println "Decode Map: ${decodeMap}"
-
     fastqPairs = Channel
         .fromFilePairs(params.readsSources, checkIfExists: true, size: -1)
         .dump(tag: 'fastq file pairs', pretty: true)
@@ -55,7 +53,6 @@ workflow WRITE_SAMPLESHEET {
         copiedFastqPairs
             .map { stemName, reads ->
                 def stemNameInfo = captureFastqStemNameInfo(stemName)
-                println "Stem Name Info for ${stemName}: ${stemNameInfo}"
                 "${decodeMap.get(stemNameInfo.sampleName) ?: stemNameInfo.sampleName},${stemNameInfo.lane},${reads[0]},${reads[1] ?: ''}"
             }
             .collectFile(
