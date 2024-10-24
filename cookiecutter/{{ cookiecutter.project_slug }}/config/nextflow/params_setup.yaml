@@ -1,4 +1,5 @@
-readsSources: ""
+readsSources: 
+  - "{{ cookiecutter.reads_source_dir }}/*_R{1,2}_001.fastq.gz"
 readsDest: "data/reads/raw"
 samplesheet: "config/samplesheets/samplesheet.csv"
 decode: "config/samplesheets/sample-name-decode.csv"
