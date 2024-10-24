@@ -84,8 +84,9 @@ workflow WRITE_SAMPLESHEET {
 /**
  * Make translation table of read names to sample name.
  *
- * @param  decode The Path to build the decode map from. First column is the sample name as found in the fastq file. Second column is the desired sample name.
- * @return        LinkedHashMap with keys as fastq sample names, and values as sample names.
+ * @param decode The Path to build the decode map from. First column is the sample name as found in the fastq file. Second column is the desired sample name.
+ *
+ * @return LinkedHashMap with keys as fastq sample names, and values as sample names.
  */
 def buildSampleNameDecodeMap(decode) {
     // make translation table of read names to sample name
@@ -108,19 +109,32 @@ def buildSampleNameDecodeMap(decode) {
 }
 
 
+/**
+ * Capture information about the fastq file from the stem name, i.e. the part of the file name matched with Channel.fromFastqPairs.
+ *
+ * This function seeks to match information from the fastq stem name against the conventional name output by Illumina bcl2fastq, that is: '<SampleName>_S<SampleNumber>_L<LaneNumber>'.
+ * This function returns a map with keys 'sampleName' and 'lane'.
+ * For stemNames that match the conventional Illumina fastq name format, the sampleName value is the matched SampleName portion of the stemName, and the lane values is the matched LaneNumber portion.
+ * If the stemName does not match Illumina's conventional format, the whole stemName is set as the sampleName value, and the lane value is set to an empty string.
+ *
+ * @param stemName String of the stemName from the fastq file name
+ *
+ * @return LinkedHashMap with 'sampleName' and 'lane' keys.
+ */
 def captureFastqStemNameInfo(String stemName) {
     def capturePattern = /(.*)_S(\d+)_L(\d{3})/
     def fastqMatcher = (stemName =~ capturePattern)
 
+    LinkedHashMap stemNameInfo = [:]
     if (fastqMatcher.find()) {
-        LinkedHashMap stemNameInfo = [:]
         stemNameInfo.put('sampleName', fastqMatcher.group(1))
         stemNameInfo.put('lane', fastqMatcher.group(3))
-
-        return stemNameInfo
     } else {
-        log.error "fastq file stem manes do not "
+        stemNameInfo.put('sampleName', stemName)
+        stemNameInfo.put('lane', '')
     }
+
+    return stemNameInfo
 }
 
 
