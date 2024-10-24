@@ -1,20 +1,5 @@
 workflow {
-    // make translation table of read names to sample name
-    decode = file(params.decode)
-    decodeTable = [:]
-    decode.eachLine { line, number ->
-        // skip first line since it's header
-        if (number == 1) {
-            return
-        }
-
-        def splitLine = line.split(',')
-        if (splitLine[0] == params.project) {
-            def readsName = splitLine[1]
-            def sampleName = (splitLine.size() == 3) ? splitLine[2] : ''
-            decodeTable.put(readsName, sampleName)
-        }
-    }
+    LinkedHashMap decodeMap = buildSampleNameDecodeMap(file(params.decode))
 
     fastqPairs = Channel
         .fromFilePairs(params.readsSources, checkIfExists: true, size: -1)
@@ -29,7 +14,7 @@ workflow {
     WRITE_SAMPLESHEET(
         COPY_FASTQS.out.copiedFastqPairs,
         file(params.samplesheet),
-        decodeTable
+        decodeMap
     )
 }
 
@@ -78,14 +63,14 @@ workflow WRITE_SAMPLESHEET {
     take:
         copiedFastqPairs
         samplesheet
-        decodeTable
+        decodeMap
 
     main:
         // cast ch_readPairs to a map and write to a file
         copiedFastqPairs
             .map { stemName, reads ->
                 def stemNameInfo = captureFastqStemNameInfo(stemName)
-                "${decodeTable.get(stemNameInfo.sampleName) ?: stemNameInfo.sampleName},${stemNameInfo.lane},${reads[0]},${reads[1] ?: ''}"
+                "${decodeMap.get(stemNameInfo.sampleName) ?: stemNameInfo.sampleName},${stemNameInfo.lane},${reads[0]},${reads[1] ?: ''}"
             }
             .collectFile(
                 name: samplesheet.name,
@@ -94,6 +79,32 @@ workflow WRITE_SAMPLESHEET {
                 sort: true,
                 seed: 'sampleName,lane,reads1,reads2'
             )
+}
+
+/**
+ * Make translation table of read names to sample name.
+ *
+ * @param  decode The Path to build the decode map from. First column is the sample name as found in the fastq file. Second column is the desired sample name.
+ * @return        LinkedHashMap with keys as fastq sample names, and values as sample names.
+ */
+def buildSampleNameDecodeMap(decode) {
+    // make translation table of read names to sample name
+    LinkedHashMap decodeMap = [:]
+    decode.eachLine { line, number ->
+        // skip first line since it's header
+        if (number == 1) {
+            return
+        }
+
+        def splitLine = line.split(',')
+        if (splitLine[0] == params.project) {
+            def readsName = splitLine[1]
+            def sampleName = (splitLine.size() == 3) ? splitLine[2] : ''
+            decodeMap.put(readsName, sampleName)
+        }
+    }
+
+    return decodeMap
 }
 
 
