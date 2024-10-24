@@ -31,24 +31,7 @@ workflow COPY_FASTQS {
 
         // iterate through all fastq file pairs
         fastqPairs.map { fastqPrefix, fastqs ->
-            ArrayList fastqCopiedPaths = []
-
-            // Either copy or skip copying each fastq file
-            fastqs.each { fastq ->
-                // Skip copying the fastq file if it already exists in the destination directory and overwriting is turned off.
-                if (existsInDestination(fastq, destinationDir) && !overwrite) {
-                    log.info "fastq file '${fastq}' already exists in '${destinationDir}' and `params.overwrite` = false. Did not copy."
-                    // add the copied fastq name to the list
-                    fastqCopiedPaths << destinationDir.resolve(fastq.name)
-                    return
-                } else {
-                    // Copy the fastq file
-                    def fastqDestPath = fastq.copyTo(destinationDir)
-                    log.info "Copied fastq file '${fastq}' --> '${fastqDestPath}'"
-                    // add the copied fastq name to the list
-                    fastqCopiedPaths << fastqDestPath
-                }
-            }
+            ArrayList fastqCopiedPaths = copyFastqs(fastqs, destinationDir, overwrite)
             return [fastqPrefix, fastqCopiedPaths]
         }
         .tap { copiedFastqPairs }
@@ -80,6 +63,41 @@ workflow WRITE_SAMPLESHEET {
                 seed: 'sampleName,lane,reads1,reads2'
             )
 }
+
+
+/**
+ * Copy fastq files into the specified destination directory.
+ *
+ * @param fastqs        Collection of fastq files to be copied.
+ * @param desinationDir Path destination directory to copy fastq files into.
+ * @param overwrite     Boolean for whether or not to replace the fastq files if they already exist in the destination directory.
+ *
+ * @return ArrayList of fastq file paths in the destination directory. Even if files were not copied, e.g. because they already exist, the path to them in the desination directory is added to the list.
+ */
+ArrayList copyFastqs(fastqs, destinationDir, overwrite) {
+    // keep track of the paths fastqs have been copied to
+    ArrayList fastqCopiedPaths = []
+
+    // Either copy or skip copying each fastq file
+    fastqs.each { fastq ->
+        // Skip copying the fastq file if it already exists in the destination directory and overwriting is turned off.
+        if (existsInDestination(fastq, destinationDir) && !overwrite) {
+            log.info "fastq file '${fastq}' already exists in '${destinationDir}' and `params.overwrite` = false. Did not copy."
+            // add the copied fastq name to the list
+            fastqCopiedPaths << destinationDir.resolve(fastq.name)
+            return
+        } else {
+            // Copy the fastq file
+            def fastqDestPath = fastq.copyTo(destinationDir)
+            log.info "Copied fastq file '${fastq}' --> '${fastqDestPath}'"
+            // add the copied fastq name to the list
+            fastqCopiedPaths << fastqDestPath
+        }
+    }
+
+    return fastqCopiedPaths
+}
+
 
 /**
  * Make translation table of read names to sample name.
