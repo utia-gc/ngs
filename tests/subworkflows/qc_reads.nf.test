@@ -7,6 +7,8 @@ nextflow_workflow {
     def refs = new RefsEnsembl()
 
     test("QC_Reads reports QC for raw and prealigned reads -- cutadapt + SE reads.") {
+        tag 'check_quality'
+
         // instantiate helper objects
         def readsLane1 = new ReadsSELane1()
         
@@ -52,6 +54,13 @@ nextflow_workflow {
         then {
             // test workflow status
             assert workflow.success
+            /*
+                Count number succeeded tasks:
+                    - 1: Count bases in genome
+                    - 1: MultiQC
+                    - 2 * (n fastq pairs): FastQC -- Raw and prealigned
+                    - 2 * (n samples): Count bases in reads -- Raw and prealigned
+            */
             assert workflow.trace.succeeded().size() == 6
 
             // test output for full MultiQC
@@ -69,6 +78,8 @@ nextflow_workflow {
     }
 
     test("QC_Reads reports QC for raw and prealigned reads -- cutadapt + PE reads.") {
+        tag 'check_quality'
+
         // instantiate helper objects
         def readsLane1 = new ReadsPELane1()
         
@@ -114,6 +125,13 @@ nextflow_workflow {
         then {
             // test workflow status
             assert workflow.success
+            /*
+                Count number succeeded tasks:
+                    - 1: Count bases in genome
+                    - 1: MultiQC
+                    - 2 * (n fastq pairs): FastQC -- Raw and prealigned
+                    - 2 * (n samples): Count bases in reads -- Raw and prealigned
+            */
             assert workflow.trace.succeeded().size() == 6
 
             // test output for full MultiQC
@@ -133,6 +151,8 @@ nextflow_workflow {
     }
 
     test("QC_Reads reports QC for raw and prealigned reads -- fastp + SE reads.") {
+        tag 'check_quality'
+
         // instantiate helper objects
         def readsLane1 = new ReadsSELane1()
         
@@ -178,6 +198,13 @@ nextflow_workflow {
         then {
             // test workflow status
             assert workflow.success
+            /*
+                Count number succeeded tasks:
+                    - 1: Count bases in genome
+                    - 1: MultiQC
+                    - 2 * (n fastq pairs): FastQC -- Raw and prealigned
+                    - 2 * (n samples): Count bases in reads -- Raw and prealigned
+            */
             assert workflow.trace.succeeded().size() == 6
 
             // test output for full MultiQC
@@ -195,6 +222,8 @@ nextflow_workflow {
     }
 
     test("QC_Reads reports QC for raw and prealigned reads -- fastp + PE reads.") {
+        tag 'check_quality'
+
         // instantiate helper objects
         def readsLane1 = new ReadsPELane1()
         
@@ -240,6 +269,13 @@ nextflow_workflow {
         then {
             // test workflow status
             assert workflow.success
+            /*
+                Count number succeeded tasks:
+                    - 1: Count bases in genome
+                    - 1: MultiQC
+                    - 2 * (n fastq pairs): FastQC -- Raw and prealigned
+                    - 2 * (n samples): Count bases in reads -- Raw and prealigned
+            */
             assert workflow.trace.succeeded().size() == 6
 
             // test output for full MultiQC
@@ -253,6 +289,78 @@ nextflow_workflow {
                 assert get(4) ==~ /^.*\/${readsLane1.getStemName()}_fastp.json/
                 assert get(5) ==~ /^.*\/${readsLane1.getSampleName()}_raw_seq-depth.tsv/
                 assert get(6) ==~ /^.*\/${readsLane1.getSampleName()}_prealign_seq-depth.tsv/
+            }
+        }
+
+    }
+
+    test("QC_Reads reports QC for raw and prealigned reads -- fastp + PE reads + skip raw and prealigned read depth.") {
+        tag 'check_quality'
+        tag 'current'
+
+        // instantiate helper objects
+        def readsLane1 = new ReadsPELane1()
+        
+        when {
+            params {
+                publishDirReports     = "${outputDir}/reports"
+                publishDirData        = "${outputDir}/data"
+                skipRawReadDepth      = true
+                skipPrealignReadDepth = true
+            }
+            workflow {
+                """
+                input[0] = Channel.of(
+                    [
+                        [
+                            sampleName:   "${readsLane1.getSampleName()}",
+                            sampleNumber: "${readsLane1.getSampleNumber()}",
+                            lane:         "${readsLane1.getLane()}",
+                            readType:     "${readsLane1.getReadType()}",
+                            trimStatus:   "raw",
+                        ],
+                        file("${projectDir}/${readsLane1.getR1()}"),
+                        file("${projectDir}/${readsLane1.getR2()}")
+                    ]
+                )
+                input[1] = Channel.of(
+                    [
+                        [
+                            sampleName:   "${readsLane1.getSampleName()}",
+                            sampleNumber: "${readsLane1.getSampleNumber()}",
+                            lane:         "${readsLane1.getLane()}",
+                            readType:     "${readsLane1.getReadType()}",
+                            trimStatus:   "trimmed",
+                        ],
+                        file("${projectDir}/${readsLane1.getR1()}"),
+                        file("${projectDir}/${readsLane1.getR2()}")
+                    ]
+                )
+                input[2] = Channel.of( file("${projectDir}/${readsLane1.getTrimLogFastp()}") )
+                input[3] = Channel.of( file("${projectDir}/${refs.getGenomeIndex()}") )
+                """
+            }
+        }
+
+        then {
+            // test workflow status
+            assert workflow.success
+            /*
+                Count number succeeded tasks:
+                    - 1: MultiQC
+                    - 2 * (n fastq pairs): FastQC -- Raw and prealigned
+            */
+            assert workflow.trace.succeeded().size() == 3
+
+            // test output for full MultiQC
+            assert workflow.out.multiqc
+            with(workflow.out.multiqc.get(0)) {
+                assert size() == 7
+                assert get(0) ==~ /^.*\/${readsLane1.getStemName()}_raw_R1_fastqc.zip/
+                assert get(1) ==~ /^.*\/${readsLane1.getStemName()}_raw_R2_fastqc.zip/
+                assert get(2) ==~ /^.*\/${readsLane1.getStemName()}_trimmed_R1_fastqc.zip/
+                assert get(3) ==~ /^.*\/${readsLane1.getStemName()}_trimmed_R2_fastqc.zip/
+                assert get(4) ==~ /^.*\/${readsLane1.getStemName()}_fastp.json/
             }
         }
 
