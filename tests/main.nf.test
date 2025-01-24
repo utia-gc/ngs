@@ -331,7 +331,36 @@ nextflow_pipeline {
         then {
             // test workflow status
             assert workflow.success
-            assert workflow.trace.succeeded().size() == 48
+            /*
+                Count number succeeded tasks:
+                    Check quality:
+                        - 1: Count bases in genome
+                        - 3: MultiQC -- Reads, mappings, full
+                        - 2 * (n fastq pairs): FastQC -- Raw and prealigned
+                        - 2 * (n fastq pairs): Samtools idxstats and flagstat
+                        - 2 * (n samples): Count bases in reads -- Raw and prealigned
+                        - 1 * (n samples): Samtools stats
+                    Map reads:
+                        - 1: Build reference genome index
+                        - 1 * (n fastq pairs): Map reads
+                        - 1 * (n fastq pairs): Sort and index SAMs
+                        - 3 * (n samples): Merge SAM, Mark dups, Sort by name
+                    Prepare inputs:
+                        - 2: Unzip genome and annotations
+                        - 1: Index fasta
+                    Process reads:
+                        - 1 * (n fastq pairs): Trim reads
+            */
+            Integer expectedSucceededTraces = new TraceSucceededMainWorkflow(
+                [
+                    constants: 8,
+                    nFastqPairs: 4,
+                    fastqPairsTasks: 7,
+                    nSamples: 2,
+                    samplesTasks: 6,
+                ]
+            ).size()
+            assert workflow.trace.succeeded().size() == expectedSucceededTraces
 
             // test raw FastQC html reports and zip files published to reports dir
             assert path("${params.publishDirReports}/.fastqc/${readsSELane1.getStemName()}_raw_R1_fastqc.html").exists()
@@ -415,7 +444,35 @@ nextflow_pipeline {
         then {
             // test workflow status
             assert workflow.success
-            assert workflow.trace.succeeded().size() == 46
+            /*
+                Count number succeeded tasks:
+                    Check quality:
+                        - 1: Count bases in genome
+                        - 3: MultiQC -- Reads, mappings, full
+                        - 2 * (n fastq pairs): FastQC -- Raw and prealigned
+                        - 2 * (n fastq pairs): Samtools idxstats and flagstat
+                        - 2 * (n samples): Count bases in reads -- Raw and prealigned
+                        - 1 * (n samples): Samtools stats
+                    Map reads:
+                        - 1: Build reference genome index
+                        - 1 * (n fastq pairs): Map reads
+                        - 1 * (n fastq pairs): Sort and index SAMs
+                        - 3 * (n samples): Merge SAM, Mark dups, Sort by name
+                    Prepare inputs:
+                        - 1: Index fasta
+                    Process reads:
+                        - 1 * (n fastq pairs): Trim reads
+            */
+            Integer expectedSucceededTraces = new TraceSucceededMainWorkflow(
+                [
+                    constants: 6,
+                    nFastqPairs: 4,
+                    fastqPairsTasks: 7,
+                    nSamples: 2,
+                    samplesTasks: 6,
+                ]
+            ).size()
+            assert workflow.trace.succeeded().size() == expectedSucceededTraces
 
             // test raw FastQC html reports and zip files published to reports dir
             assert path("${params.publishDirReports}/.fastqc/${readsSELane1.getStemName()}_raw_R1_fastqc.html").exists()
@@ -497,7 +554,36 @@ nextflow_pipeline {
         then {
             // test workflow status
             assert workflow.success
-            assert workflow.trace.succeeded().size() == 48
+            /*
+                Count number succeeded tasks:
+                    Check quality:
+                        - 1: Count bases in genome
+                        - 3: MultiQC -- Reads, mappings, full
+                        - 2 * (n fastq pairs): FastQC -- Raw and prealigned
+                        - 2 * (n fastq pairs): Samtools idxstats and flagstat
+                        - 2 * (n samples): Count bases in reads -- Raw and prealigned
+                        - 1 * (n samples): Samtools stats
+                    Map reads:
+                        - 1: Build reference genome index
+                        - 1 * (n fastq pairs): Map reads
+                        - 1 * (n fastq pairs): Sort and index SAMs
+                        - 3 * (n samples): Merge SAM, Mark dups, Sort by name
+                    Prepare inputs:
+                        - 2: Unzip genome and annotations
+                        - 1: Index fasta
+                    Process reads:
+                        - 1 * (n fastq pairs): Trim reads
+            */
+            Integer expectedSucceededTraces = new TraceSucceededMainWorkflow(
+                [
+                    constants: 8,
+                    nFastqPairs: 4,
+                    fastqPairsTasks: 7,
+                    nSamples: 2,
+                    samplesTasks: 6,
+                ]
+            ).size()
+            assert workflow.trace.succeeded().size() == expectedSucceededTraces
 
             // test raw FastQC html reports and zip files published to reports dir
             assert path("${params.publishDirReports}/.fastqc/${readsSELane1.getStemName()}_raw_R1_fastqc.html").exists()
@@ -579,7 +665,36 @@ nextflow_pipeline {
         then {
             // test workflow status
             assert workflow.success
-            assert workflow.trace.succeeded().size() == 48
+                        /*
+                Count number succeeded tasks:
+                    Check quality:
+                        - 1: Count bases in genome
+                        - 3: MultiQC -- Reads, mappings, full
+                        - 2 * (n fastq pairs): FastQC -- Raw and prealigned
+                        - 2 * (n fastq pairs): Samtools idxstats and flagstat
+                        - 2 * (n samples): Count bases in reads -- Raw and prealigned
+                        - 1 * (n samples): Samtools stats
+                    Map reads:
+                        - 1: Build reference genome index
+                        - 1 * (n fastq pairs): Map reads
+                        - 1 * (n fastq pairs): Sort and index SAMs
+                        - 3 * (n samples): Merge SAM, Mark dups, Sort by name
+                    Prepare inputs:
+                        - 2: Unzip genome and annotations
+                        - 1: Index fasta
+                    Process reads:
+                        - 1 * (n fastq pairs): Trim reads
+            */
+            Integer expectedSucceededTraces = new TraceSucceededMainWorkflow(
+                [
+                    constants: 8,
+                    nFastqPairs: 4,
+                    fastqPairsTasks: 7,
+                    nSamples: 2,
+                    samplesTasks: 6,
+                ]
+            ).size()
+            assert workflow.trace.succeeded().size() == expectedSucceededTraces
 
             // test raw FastQC html reports and zip files published to reports dir
             assert path("${params.publishDirReports}/.fastqc/${readsSELane1.getStemName()}_raw_R1_fastqc.html").exists()
