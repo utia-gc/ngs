@@ -109,6 +109,14 @@
         "skipTrimReads": {
           "type": "boolean",
           "description": "Skip read trimming steps. Will use raw reads for all downstream steps, e.g. read mapping."
+        },
+        "skipRawReadDepth": {
+          "type": "boolean",
+          "description": "Skip computing read depth for raw reads."
+        },
+        "skipPrealignReadDepth": {
+          "type": "boolean",
+          "description": "Skip computing read depth for prealign reads."
         }
       }
     }
