@@ -67,11 +67,11 @@ nextflow_workflow {
             assert workflow.out.multiqc
             with(workflow.out.multiqc.get(0)) {
                 assert size() == 5
-                assert get(0) ==~ /^.*\/${readsLane1.getStemName()}_raw_R1_fastqc.zip/
-                assert get(1) ==~ /^.*\/${readsLane1.getStemName()}_trimmed_R1_fastqc.zip/
-                assert get(2) ==~ /^.*\/${readsLane1.getStemName()}_cutadapt-log.txt/
-                assert get(3) ==~ /^.*\/${readsLane1.getSampleName()}_raw_seq-depth.tsv/
-                assert get(4) ==~ /^.*\/${readsLane1.getSampleName()}_prealign_seq-depth.tsv/
+                assert get(0) ==~ /^.*\/${readsLane1.getStemName()}_cutadapt-log.txt/
+                assert get(1) ==~ /^.*\/${readsLane1.getStemName()}_raw_R1_fastqc.zip/
+                assert get(2) ==~ /^.*\/${readsLane1.getStemName()}_trimmed_R1_fastqc.zip/
+                assert get(3) ==~ /^.*\/${readsLane1.getSampleName()}_prealign_seq-depth.tsv/
+                assert get(4) ==~ /^.*\/${readsLane1.getSampleName()}_raw_seq-depth.tsv/
             }
         }
 
@@ -138,13 +138,13 @@ nextflow_workflow {
             assert workflow.out.multiqc
             with(workflow.out.multiqc.get(0)) {
                 assert size() == 7
-                assert get(0) ==~ /^.*\/${readsLane1.getStemName()}_raw_R1_fastqc.zip/
-                assert get(1) ==~ /^.*\/${readsLane1.getStemName()}_raw_R2_fastqc.zip/
-                assert get(2) ==~ /^.*\/${readsLane1.getStemName()}_trimmed_R1_fastqc.zip/
-                assert get(3) ==~ /^.*\/${readsLane1.getStemName()}_trimmed_R2_fastqc.zip/
-                assert get(4) ==~ /^.*\/${readsLane1.getStemName()}_cutadapt-log.txt/
-                assert get(5) ==~ /^.*\/${readsLane1.getSampleName()}_raw_seq-depth.tsv/
-                assert get(6) ==~ /^.*\/${readsLane1.getSampleName()}_prealign_seq-depth.tsv/
+                assert get(0) ==~ /^.*\/${readsLane1.getStemName()}_cutadapt-log.txt/
+                assert get(1) ==~ /^.*\/${readsLane1.getStemName()}_raw_R1_fastqc.zip/
+                assert get(2) ==~ /^.*\/${readsLane1.getStemName()}_raw_R2_fastqc.zip/
+                assert get(3) ==~ /^.*\/${readsLane1.getStemName()}_trimmed_R1_fastqc.zip/
+                assert get(4) ==~ /^.*\/${readsLane1.getStemName()}_trimmed_R2_fastqc.zip/
+                assert get(5) ==~ /^.*\/${readsLane1.getSampleName()}_prealign_seq-depth.tsv/
+                assert get(6) ==~ /^.*\/${readsLane1.getSampleName()}_raw_seq-depth.tsv/
             }
         }
 
@@ -211,11 +211,11 @@ nextflow_workflow {
             assert workflow.out.multiqc
             with(workflow.out.multiqc.get(0)) {
                 assert size() == 5
-                assert get(0) ==~ /^.*\/${readsLane1.getStemName()}_raw_R1_fastqc.zip/
-                assert get(1) ==~ /^.*\/${readsLane1.getStemName()}_trimmed_R1_fastqc.zip/
-                assert get(2) ==~ /^.*\/${readsLane1.getStemName()}_fastp.json/
-                assert get(3) ==~ /^.*\/${readsLane1.getSampleName()}_raw_seq-depth.tsv/
-                assert get(4) ==~ /^.*\/${readsLane1.getSampleName()}_prealign_seq-depth.tsv/
+                assert get(0) ==~ /^.*\/${readsLane1.getStemName()}_fastp.json/
+                assert get(1) ==~ /^.*\/${readsLane1.getStemName()}_raw_R1_fastqc.zip/
+                assert get(2) ==~ /^.*\/${readsLane1.getStemName()}_trimmed_R1_fastqc.zip/
+                assert get(3) ==~ /^.*\/${readsLane1.getSampleName()}_prealign_seq-depth.tsv/
+                assert get(4) ==~ /^.*\/${readsLane1.getSampleName()}_raw_seq-depth.tsv/
             }
         }
 
@@ -282,13 +282,13 @@ nextflow_workflow {
             assert workflow.out.multiqc
             with(workflow.out.multiqc.get(0)) {
                 assert size() == 7
-                assert get(0) ==~ /^.*\/${readsLane1.getStemName()}_raw_R1_fastqc.zip/
-                assert get(1) ==~ /^.*\/${readsLane1.getStemName()}_raw_R2_fastqc.zip/
-                assert get(2) ==~ /^.*\/${readsLane1.getStemName()}_trimmed_R1_fastqc.zip/
-                assert get(3) ==~ /^.*\/${readsLane1.getStemName()}_trimmed_R2_fastqc.zip/
-                assert get(4) ==~ /^.*\/${readsLane1.getStemName()}_fastp.json/
-                assert get(5) ==~ /^.*\/${readsLane1.getSampleName()}_raw_seq-depth.tsv/
-                assert get(6) ==~ /^.*\/${readsLane1.getSampleName()}_prealign_seq-depth.tsv/
+                assert get(0) ==~ /^.*\/${readsLane1.getStemName()}_fastp.json/
+                assert get(1) ==~ /^.*\/${readsLane1.getStemName()}_raw_R1_fastqc.zip/
+                assert get(2) ==~ /^.*\/${readsLane1.getStemName()}_raw_R2_fastqc.zip/
+                assert get(3) ==~ /^.*\/${readsLane1.getStemName()}_trimmed_R1_fastqc.zip/
+                assert get(4) ==~ /^.*\/${readsLane1.getStemName()}_trimmed_R2_fastqc.zip/
+                assert get(5) ==~ /^.*\/${readsLane1.getSampleName()}_prealign_seq-depth.tsv/
+                assert get(6) ==~ /^.*\/${readsLane1.getSampleName()}_raw_seq-depth.tsv/
             }
         }
 
