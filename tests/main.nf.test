@@ -780,7 +780,6 @@ nextflow_pipeline {
             /*
                 Count number succeeded tasks:
                     Check quality:
-                        - 1: Count bases in genome
                         - 3: MultiQC -- Reads, mappings, full
                         - 2 * (n fastq pairs): FastQC -- Raw and prealigned
                         - 2 * (n fastq pairs): Samtools idxstats and flagstat
@@ -799,7 +798,7 @@ nextflow_pipeline {
             */
             Integer expectedSucceededTraces = new TraceSucceededMainWorkflow(
                 [
-                    constants: 8,
+                    constants: 7,
                     nFastqPairs: 4,
                     fastqPairsTasks: 7,
                     nSamples: 2,

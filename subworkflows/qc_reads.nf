@@ -18,53 +18,68 @@ workflow QC_Reads {
         fastqc_raw(reads_raw)
         fastqc_prealign(reads_prealign)
 
-        compute_bases_genome(genome_index)
-        ch_bases_genome = compute_bases_genome.out.bases
+        // Compute number of bases in genome if some read depth step is not skipped
+        if (params.skipRawReadDepth && params.skipPrealignReadDepth) {
+            ch_basesGenome = Channel.empty()
+        } else {
+            compute_bases_genome(genome_index)
+            ch_basesGenome = compute_bases_genome.out.bases
+        }
 
-        // Count bases in raw reads
-        Group_Reads_Raw(reads_raw)
-        compute_bases_raw(Group_Reads_Raw.out.reads_grouped)
-        // Compute sequencing depth for raw reads
-        // Sequencing depth = total number of bases in reads for a sample / total number of bases in the reference genome
-        compute_bases_raw.out.bases
-            .combine(ch_bases_genome)
-            .map { metadata, basesInReads, basesInGenome ->
-                [ metadata, Long.valueOf(basesInReads) / Long.valueOf(basesInGenome) ]
-            }
-            // write sequencing depth to a file for input to MultiQC
-            .collectFile() { metadata, depth ->
-                [
-                    "${metadata.sampleName}_raw_seq-depth.tsv",
-                    "Sample Name\tDepth\n${metadata.sampleName}\t${depth}"
-                ]
-            }
-            .set { ch_sequencing_depth_raw }
+        // Compute read depth of raw reads
+        if (params.skipRawReadDepth) {
+            ch_sequencingDepthRaw = Channel.empty()
+        } else {
+            // Count bases in raw reads
+            Group_Reads_Raw(reads_raw)
+            compute_bases_raw(Group_Reads_Raw.out.reads_grouped)
+            // Compute sequencing depth for raw reads
+            // Sequencing depth = total number of bases in reads for a sample / total number of bases in the reference genome
+            compute_bases_raw.out.bases
+                .combine(ch_basesGenome)
+                .map { metadata, basesInReads, basesInGenome ->
+                    [ metadata, Long.valueOf(basesInReads) / Long.valueOf(basesInGenome) ]
+                }
+                // write sequencing depth to a file for input to MultiQC
+                .collectFile() { metadata, depth ->
+                    [
+                        "${metadata.sampleName}_raw_seq-depth.tsv",
+                        "Sample Name\tDepth\n${metadata.sampleName}\t${depth}"
+                    ]
+                }
+                .set { ch_sequencingDepthRaw }
+        }
 
-        // Count bases in prealign reads
-        Group_Reads_Prealign(reads_prealign)
-        compute_bases_prealign(Group_Reads_Prealign.out.reads_grouped)
-        // Compute sequencing depth for prealign reads
-        // Sequencing depth = total number of bases in reads for a sample / total number of bases in the reference genome
-        compute_bases_prealign.out.bases
-            .combine(ch_bases_genome)
-            .map { metadata, basesInReads, basesInGenome ->
-                [ metadata, Long.valueOf(basesInReads) / Long.valueOf(basesInGenome) ]
-            }
-            // write sequencing depth to a file for input to MultiQC
-            .collectFile() { metadata, depth ->
-                [
-                    "${metadata.sampleName}_prealign_seq-depth.tsv",
-                    "Sample Name\tDepth\n${metadata.sampleName}\t${depth}"
-                ]
-            }
-            .set { ch_sequencing_depth_prealign }
+        // Compute read depth of prealign reads
+        if (params.skipPrealignReadDepth) {
+            ch_sequencingDepthPrealign = Channel.empty()
+        } else {
+            // Count bases in prealign reads
+            Group_Reads_Prealign(reads_prealign)
+            compute_bases_prealign(Group_Reads_Prealign.out.reads_grouped)
+            // Compute sequencing depth for prealign reads
+            // Sequencing depth = total number of bases in reads for a sample / total number of bases in the reference genome
+            compute_bases_prealign.out.bases
+                .combine(ch_basesGenome)
+                .map { metadata, basesInReads, basesInGenome ->
+                    [ metadata, Long.valueOf(basesInReads) / Long.valueOf(basesInGenome) ]
+                }
+                // write sequencing depth to a file for input to MultiQC
+                .collectFile() { metadata, depth ->
+                    [
+                        "${metadata.sampleName}_prealign_seq-depth.tsv",
+                        "Sample Name\tDepth\n${metadata.sampleName}\t${depth}"
+                    ]
+                }
+                .set { ch_sequencingDepthPrealign }
+        }
 
         ch_multiqc_reads = Channel.empty()
             .concat(fastqc_raw.out.zip)
             .concat(fastqc_prealign.out.zip)
             .concat(trim_log)
-            .concat(ch_sequencing_depth_raw)
-            .concat(ch_sequencing_depth_prealign)
+            .concat(ch_sequencingDepthRaw)
+            .concat(ch_sequencingDepthPrealign)
             .collect(
                 sort: { a, b ->
                     a.name <=> b.name
