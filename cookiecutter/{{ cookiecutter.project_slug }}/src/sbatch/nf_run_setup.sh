@@ -26,7 +26,6 @@ export NXF_OPTS="-Xms500M -Xmx2G"
 export NXF_ANSI_LOG=false
 
 # install/update the pipeline
-# install/update the pipeline
 nextflow \
     pull \
         -revision "${revision}" \
