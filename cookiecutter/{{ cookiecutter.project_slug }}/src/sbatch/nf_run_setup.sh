@@ -15,17 +15,29 @@
 set -u
 set -e
 
+#######################################
+# Constants
+#######################################
+# pipeline revision to use
+readonly revision="{{ cookiecutter.pipeline_revision }}"
+
 # set nextflow options for execution via slurm
 export NXF_OPTS="-Xms500M -Xmx2G"
 export NXF_ANSI_LOG=false
 
 # install/update the pipeline
-nextflow pull utia-gc/ngs
+# install/update the pipeline
+nextflow \
+    pull \
+        -revision "${revision}" \
+    utia-gc/ngs
 
 # run pipeline
-nextflow run utia-gc/ngs \
-    -main-script setup.nf \
-    -revision {{ cookiecutter.pipeline_revision }} \
-    -profile condo_trowan1 \
-    -config config/nextflow/setup.config \
-    -params-file config/nextflow/params_setup.yaml
+nextflow -log .cache/nf_logs/setup.log \
+    run \
+        -main-script setup.nf \
+        -revision "${revision}" \
+        -profile condo_trowan1 \
+        -config config/nextflow/setup.config \
+        -params-file config/nextflow/params_setup.yaml \
+    utia-gc/ngs
