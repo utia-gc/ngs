@@ -18,7 +18,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.5">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.7">
     
     
       
@@ -1009,10 +1009,10 @@
 
 <h1 id="exploratory">Exploratory</h1>
 <h2 id="the-exploratory-profile">The <code>exploratory</code> profile</h2>
-<p>Analysis of single cell RNA-seq data frequently requires an exploratory stage that involves iterating through various parameter options and scrutinizing their effects on important QC metrics before settling on a final set of parameters.
+<p>Analysis of NGS data frequently requires an exploratory stage that involves iterating through various parameter options and scrutinizing their effects on important QC metrics before settling on a final set of parameters.
 To help facilitate this crucial process, we have included an <code>exploratory</code> profile option which implements the following features:</p>
 <ul>
-<li>Data and reports are published within time-stamped subdirectories of <code>exploratory</code> structured as follows: <code>&lt;current working directory&gt;/exploratory/&lt;timestamp&gt;_&lt;project title&gt;</code>. This allows the user to see a chronological log of their changes and gives the option to put a brief description of changes in the project title.</li>
+<li>Data and reports are published within time-stamped subdirectories of <code>exploratory</code> structured as follows: <code>&lt;current working directory&gt;/exploratory/&lt;timestamp&gt;_&lt;project title&gt;_&lt;exploratory tag&gt;</code>. This allows the user to see a chronological log of their changes and gives the option to put a brief description of changes in the output directory by using the <code>exploratoryTag</code> parameter.</li>
 <li>Results are published as symbolic links as opposed to the default behavior of copying published results. This prevents the user's working directory from being bloated with duplicates of data.</li>
 <li>Sets the <code>-resume</code> flag in Nextflow through the profile so that it does not need to be supplied at the command line. This allows for faster iteration and exploration as results from intensive processes are used from their cached location instead of being reproduced.
 For more info on Nextflow's resume feature, checkout these articles on <a href="https://www.nextflow.io/blog/2019/demystifying-nextflow-resume.html">demistifying</a> and <a href="https://www.nextflow.io/blog/2019/troubleshooting-nextflow-resume.html">troubleshooting</a> Nextflow resume.</li>
@@ -1025,8 +1025,9 @@ This serves the dual purpose of saving time by not repeating logged tasks while 
 <div class="language-bash highlight"><span class="filename">Terminal</span><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>nextflow<span class="w"> </span>run<span class="w"> </span>utia-gc/ngs<span class="w"> </span><span class="se">\</span>
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">   </span>-revision<span class="w"> </span>main<span class="w"> </span><span class="se">\</span>
 </span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">   </span>-profile<span class="w"> </span>exploratory
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">   </span>--exploratoryTag<span class="w"> </span><span class="s2">&quot;defaults&quot;</span>
 </span></code></pre></div>
-<p>Once you have settled on an optimal set of parameters, rerun the pipeline without the <code>exploratory</code> profile:</p>
+<p>Once you have settled on an optimal set of parameters, rerun the pipeline without the <code>exploratory</code> profile but with the <code>resume</code> flag set:</p>
 <div class="language-bash highlight"><span class="filename">Terminal</span><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>nextflow<span class="w"> </span>run<span class="w"> </span>utia-gc/ngs<span class="w"> </span><span class="se">\</span>
 </span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">   </span>-revision<span class="w"> </span>main<span class="w"> </span><span class="se">\</span>
 </span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">   </span>-resume
@@ -1093,7 +1094,7 @@ For example, to resume from a run named 'boring_euler':</p>
     <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tracking", "navigation.tabs", "navigation.path", "navigation.indexes", "toc.follow", "navigation.top", "search.highlight", "search.share", "content.action.edit", "content.action.view", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"alias": true, "provider": "mike"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.f1b6f286.min.js"></script>
+      <script src="../../assets/javascripts/bundle.c8b220af.min.js"></script>
       
     
   </body>
