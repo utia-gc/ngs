@@ -1,12 +1,29 @@
 workflow {
     LinkedHashMap decodeMap = buildSampleNameDecodeMap(file(params.decode))
 
-    fastqPairs = Channel
+    Channel
         .fromFilePairs(params.readsSources, checkIfExists: true, size: -1)
-        .dump(tag: 'fastq file pairs', pretty: true)
+        /* Filter samples into buckets of excluded or retained samples
+        Excluded samples go into the first bucket with a condition they violate.
+        Otherwise, they fall down into the retained bucket.
+        */
+        .branch { fastqPrefix, fastqs ->
+            /* capture excluded samples */
+            // exclude fastq pair if they are Undetermined reads and the Undetermined reads are set to be excluded
+            undetermined: params.excludeUndetermined && fastqPrefix.startsWithIgnoreCase('Undetermined')
+            /* capture retained samples */
+            retained: true
+        }
+        .set { ch_fastqPairs }
+
+    // log warnings for excluded samples
+    ch_fastqPairs.undetermined
+        .map { fastqPrefix, fastqs ->
+            log.warn("FASTQ FILE PAIR EXCLUSION: '${fastqPrefix}' excluded from analysis for being Undetermined reads files. Set `params.excludeUndetermined` to false to prevent exclusion of Undetermined reads files.")
+        }
 
     COPY_FASTQS(
-        fastqPairs,
+        ch_fastqPairs.retained,
         file(params.readsDest),
         params.overwrite,
         params.fastqCopyMode
