@@ -142,6 +142,53 @@
         },
         "timestamp": "2024-08-28T10:34:42.032924605"
     },
+    "Parse_Samplesheet successfully creates read channels and skips sample when reads1 file has no reads -- SE reads.": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "sampleName": "SRR1066657",
+                            "lane": "001",
+                            "trimStatus": "raw",
+                            "readType": "single",
+                            "rgFields": {
+                                "ID": "SRR1066657.001",
+                                "SM": "SRR1066657",
+                                "LB": "SRR1066657",
+                                "PL": "ILLUMINA"
+                            }
+                        },
+                        "/utia-gc/ngs-test/raw/ngs/reads/raw/SRR1066657_S3_L001_R1_001.fastq.gz",
+                        "SRR1066657_S3_L001_R1_001.NOFILE:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "samples": [
+                    [
+                        {
+                            "sampleName": "SRR1066657",
+                            "lane": "001",
+                            "trimStatus": "raw",
+                            "readType": "single",
+                            "rgFields": {
+                                "ID": "SRR1066657.001",
+                                "SM": "SRR1066657",
+                                "LB": "SRR1066657",
+                                "PL": "ILLUMINA"
+                            }
+                        },
+                        "/utia-gc/ngs-test/raw/ngs/reads/raw/SRR1066657_S3_L001_R1_001.fastq.gz",
+                        "SRR1066657_S3_L001_R1_001.NOFILE:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.0",
+            "nextflow": "24.10.6"
+        },
+        "timestamp": "2025-12-09T16:23:13.063028328"
+    },
     "Parse_Samplesheet successfully creates read channels with lanes -- mixed SE + PE reads.": {
         "content": [
             {

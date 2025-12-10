@@ -16,27 +16,48 @@ workflow Parse_Samplesheet {
     main:
         Channel
             // use nf-schema to handle samplesheet parsing
+            // and create a channel of parsed samplesheet rows
             .fromList(
                 samplesheetToList(samplesheet, "${projectDir}/assets/schema_samplesheet.json")
             )
-            /*
-                Reshape nf-schema output to format I want.
-                This gives a shape of:
-                [
-                    metadata map,
-                    [ reads1 fastq file ],
-                    [ reads2 fastq file ]
-                ]
-                This general shape is passed into pretty much everything downstream that takes reads in fastq format.
+            /* Filter samples into buckets of excluded or retained samples
+            Excluded samples go into the first bucket with a condition they violate.
+            Otherwise, they fall down into the retained bucket.
             */
+            .branch { meta, reads1, reads2 ->
+                // capture excluded samples
+                // exclude sample if the reads1 file is empty
+                reads1IsEmpty: isEmpty(file(reads1))
+                // catch retained samples
+                retained: true
+            }
+            .set { ch_parsedSamplesheetRows }
+
+        /* Reshape nf-schema output for retained samples to desired shape.
+        This gives a shape of:
+            [
+                metadata map,
+                [ reads1 fastq file ],
+                [ reads2 fastq file ]
+            ]
+        This general shape is passed into pretty much everything downstream that takes reads in fastq format.
+        */
+        ch_parsedSamplesheetRows.retained
             .map { meta, reads1, reads2 ->
                 createSampleReadsChannel(meta, reads1, reads2)
             }
             .set { ch_samples }
 
+        // log warnings for excluded samples
+        ch_parsedSamplesheetRows.reads1IsEmpty
+            .map { meta, reads, reads2 ->
+                log.warn("SAMPLE EXCLUSION: '${MetadataUtils.buildStemName(meta)}' excluded from analysis for empty reads1 file.")
+            }
+
     emit:
         samples = ch_samples
 }
+
 
 /**
  * Create a list of metadata and reads from the output of nf-schema `samplesheetToList`.
@@ -81,4 +102,38 @@ def createSampleReadsChannel(meta, r1, r2) {
     metadata.rgFields = ReadGroup.buildRGFields(metadata, sequenceIdentifierMatcher)
 
     return [ metadata, reads1, reads2 ]
+}
+
+
+/**
+ * Determine whether or not a file is empty
+ *
+ * This method is necessary because the Path.isEmpty() method returns false for gzip compressed files.
+ *
+ * @param fq A Path for a fastq file
+ *
+ * @return A boolean indicating whether or not the fastq file is empty.
+*/
+def isEmpty(Path fq) {
+    // set decimal representation of first byte of empty file
+    def emptyDecimal = -1
+    def firstByteOfFastq = readFirstByte(fq)
+
+    return firstByteOfFastq == emptyDecimal
+}
+
+
+/**
+ * Read the first byte of a gzip compressed file.
+ *
+ * @param f A Path object for a gzip compressed file.
+ *
+ * @return An integer representation of the first byte of the file.
+*/
+def readFirstByte(Path f) {
+    f.withInputStream { fis ->
+        new java.util.zip.GZIPInputStream(fis).withStream { gis ->
+            return gis.read()
+        }
+    }
 }

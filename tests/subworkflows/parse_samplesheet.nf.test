@@ -291,4 +291,54 @@ nextflow_workflow {
 
     }
 
+
+    test("Parse_Samplesheet successfully creates read channels and skips sample when reads1 file has no reads -- SE reads.") {
+        tag 'nf-schema'
+
+        // instantiate helper objects
+        def readsSELane1 = new ReadsSELane1()
+
+        when {
+            params {
+                publishDirReports = "${outputDir}/reports"
+                publishDirData    = "${outputDir}/data"
+            }
+            workflow {
+                """
+                input[0] = "${projectDir}/tests/data/samplesheets/single-ends_empty-reads1.csv"
+                """
+            }
+        }
+
+        then {
+            // test workflow success
+            assert workflow.success
+
+            // test expected number samples
+            assert workflow.out.samples.size() == 1
+
+            // test expected samples
+            with(workflow.out.samples) {
+                with(get(0)) {
+                    // test metadata
+                    with(get(0)) {
+                        assert sampleName == 'SRR1066657'
+                        assert readType   == 'single'
+                        assert lane       == '001'
+                        assert trimStatus == 'raw'
+                        assert rgFields   == readsSELane1.getRGFields()
+                    }
+                    // test R1
+                    assert get(1) ==~ /^.*\/SRR1066657_S3_L001_R1_001\.fastq\.gz/
+                    // test R2
+                    assert get(2) ==~ /^.*\/SRR1066657_S3_L001_R1_001\.NOFILE/
+                }
+            }
+
+            // test reproducibility
+            assert snapshot(workflow.out).match()
+        }
+
+    }
+
 }
