@@ -5,6 +5,8 @@ nextflow_workflow {
     workflow "MAP_READS"
 
     test("MAP_READS maps reads to a reference genome and outputs sorted BAMs -- bwa-mem2 + SE reads.") {
+        tag 'current'
+
         // instantiate helper objects
         def readsLane1 = new ReadsSELane1()
         def readsLane2 = new ReadsSELane2()
@@ -108,6 +110,8 @@ nextflow_workflow {
     }
 
     test("MAP_READS maps reads to a reference genome and outputs sorted BAMs -- bwa-mem2 + PE reads.") {
+        tag 'current'
+
         // instantiate helper objects
         def readsLane1 = new ReadsPELane1()
         def readsLane2 = new ReadsPELane2()
@@ -211,6 +215,8 @@ nextflow_workflow {
     }
 
     test("MAP_READS maps reads to a reference genome and outputs sorted BAMs -- STAR + SE reads.") {
+        tag 'current'
+
         // instantiate helper objects
         def readsLane1 = new ReadsSELane1()
         def readsLane2 = new ReadsSELane2()
@@ -314,6 +320,8 @@ nextflow_workflow {
     }
 
     test("MAP_READS maps reads to a reference genome and outputs sorted BAMs -- STAR + PE reads.") {
+        tag 'current'
+
         // instantiate helper objects
         def readsLane1 = new ReadsPELane1()
         def readsLane2 = new ReadsPELane2()

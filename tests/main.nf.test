@@ -757,7 +757,6 @@ nextflow_pipeline {
 
     test("main.nf succeeds -- skip raw and prealigned read depth") {
         tag 'full'
-        tag 'current'
 
         // instantiate helper objects
         def readsSELane1 = new ReadsSELane1()
