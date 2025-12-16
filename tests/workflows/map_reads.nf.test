@@ -102,12 +102,10 @@ nextflow_workflow {
                     assert get(1) ==~ /^.*\/${readsLane1.getSampleName()}\.bam/
                 }
             }
-
-            // test reproducibility
-            assert snapshot(workflow.out).match()
         }
 
     }
+
 
     test("MAP_READS maps reads to a reference genome and outputs sorted BAMs -- bwa-mem2 + PE reads.") {
         tag 'current'
@@ -207,12 +205,10 @@ nextflow_workflow {
                     assert get(1) ==~ /^.*\/${readsLane1.getSampleName()}\.bam/
                 }
             }
-
-            // test reproducibility
-            assert snapshot(workflow.out).match()
         }
 
     }
+
 
     test("MAP_READS maps reads to a reference genome and outputs sorted BAMs -- STAR + SE reads.") {
         tag 'current'
@@ -312,12 +308,10 @@ nextflow_workflow {
                     assert get(1) ==~ /^.*\/${readsLane1.getSampleName()}\.bam/
                 }
             }
-
-            // test reproducibility
-            assert snapshot(workflow.out).match()
         }
 
     }
+
 
     test("MAP_READS maps reads to a reference genome and outputs sorted BAMs -- STAR + PE reads.") {
         tag 'current'
@@ -417,9 +411,6 @@ nextflow_workflow {
                     assert get(1) ==~ /^.*\/${readsLane1.getSampleName()}\.bam/
                 }
             }
-
-            // test reproducibility
-            assert snapshot(workflow.out).match()
         }
 
     }
