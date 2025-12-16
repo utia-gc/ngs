@@ -14,7 +14,7 @@ process gatk_MarkDuplicates {
     )
 
     input:
-        tuple val(metadata), path(bam)
+        tuple val(metadata), path(bam), path(bai)
 
     output:
         tuple val(metadata), path('*.bam'), path('*.bam.bai'), emit: bamMarkDupIndexed

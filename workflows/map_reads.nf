@@ -42,11 +42,14 @@ workflow MAP_READS {
         samtools_sort_index(ch_alignments)
         ch_alignmentsIndividualSortedByCoord = samtools_sort_index.out.bamSortedIndexed
 
-        // merge alignments by sample and mark duplicates
+        // merge alignments by sample
         ch_alignmentsIndividualSortedByCoord 
             | Group_Alignments
             | gatk_MergeSamFiles
-            | gatk_MarkDuplicates
+        ch_alignmentsMergedSortedByCoord = gatk_MergeSamFiles.out.bamMergedIndexed
+
+        // mark duplicates
+        gatk_MarkDuplicates(ch_alignmentsMergedSortedByCoord)
         ch_alignmentsMergedSortedByCoordDupMarked = gatk_MarkDuplicates.out.bamMarkDupIndexed
 
         // sort alignments by name
