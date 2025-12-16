@@ -38,14 +38,23 @@ workflow MAP_READS {
                 ch_alignments = Star.out.alignments
         }
 
+        // sort and index alignments
         samtools_sort_index(ch_alignments)
-          | Group_Alignments
-          | gatk_MergeSamFiles
-          | gatk_MarkDuplicates
-          | samtools_sort_name
+        ch_alignmentsIndividualSortedByCoord = samtools_sort_index.out.bamSortedIndexed
+
+        // merge alignments by sample and mark duplicates
+        ch_alignmentsIndividualSortedByCoord 
+            | Group_Alignments
+            | gatk_MergeSamFiles
+            | gatk_MarkDuplicates
+        ch_alignmentsMergedSortedByCoordDupMarked = gatk_MarkDuplicates.out.bamMarkDupIndexed
+
+        // sort alignments by name
+        samtools_sort_name(ch_alignmentsMergedSortedByCoordDupMarked)
+        ch_alignmentsMergedSortedByName = samtools_sort_name.out.bamSortedByName
 
     emit:
-        alignmentsIndividualSortedByCoord = samtools_sort_index.out.bamSortedIndexed
-        alignmentsMergedSortedByCoord     = gatk_MarkDuplicates.out.bamMarkDupIndexed
-        alignmentsMergedSortedByName      = samtools_sort_name.out.bamSortedByName
+        alignmentsIndividualSortedByCoord = ch_alignmentsIndividualSortedByCoord
+        alignmentsMergedSortedByCoord     = ch_alignmentsMergedSortedByCoordDupMarked
+        alignmentsMergedSortedByName      = ch_alignmentsMergedSortedByName
 }
