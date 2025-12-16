@@ -18,6 +18,7 @@ workflow MAP_READS {
         genome
         annotationsGTF
         map_tool
+        skipMarkDuplicates
 
     main:
         switch( map_tool.toUpperCase() ) {
@@ -49,15 +50,19 @@ workflow MAP_READS {
         ch_alignmentsMergedSortedByCoord = gatk_MergeSamFiles.out.bamMergedIndexed
 
         // mark duplicates
-        gatk_MarkDuplicates(ch_alignmentsMergedSortedByCoord)
-        ch_alignmentsMergedSortedByCoordDupMarked = gatk_MarkDuplicates.out.bamMarkDupIndexed
+        if (!skipMarkDuplicates) {
+            gatk_MarkDuplicates(gatk_MergeSamFiles.out.bamMergedIndexed)
+            ch_alignmentsMergedSortedByCoord = gatk_MarkDuplicates.out.bamMarkDupIndexed
+        } else {
+            ch_alignmentsMergedSortedByCoord = gatk_MergeSamFiles.out.bamMergedIndexed
+        }
 
         // sort alignments by name
-        samtools_sort_name(ch_alignmentsMergedSortedByCoordDupMarked)
+        samtools_sort_name(ch_alignmentsMergedSortedByCoord)
         ch_alignmentsMergedSortedByName = samtools_sort_name.out.bamSortedByName
 
     emit:
         alignmentsIndividualSortedByCoord = ch_alignmentsIndividualSortedByCoord
-        alignmentsMergedSortedByCoord     = ch_alignmentsMergedSortedByCoordDupMarked
+        alignmentsMergedSortedByCoord     = ch_alignmentsMergedSortedByCoord
         alignmentsMergedSortedByName      = ch_alignmentsMergedSortedByName
 }
