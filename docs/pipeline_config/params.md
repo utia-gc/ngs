@@ -37,3 +37,4 @@ Options to skip pipeline execution steps.
 | `skipTrimReads` | Skip read trimming steps. Will use raw reads for all downstream steps, e.g. read mapping. | `boolean` |  |  |  |
 | `skipRawReadDepth` | Skip computing read depth for raw reads. | `boolean` |  |  |  |
 | `skipPrealignReadDepth` | Skip computing read depth for prealign reads. | `boolean` |  |  |  |
+| `skipMarkDuplicates` | Skip marking duplicates in mapped reads files. | `boolean` |  |  |  |

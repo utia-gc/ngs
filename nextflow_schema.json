@@ -64,12 +64,7 @@
           "description": "Tag to add to the end of the exploratory directory name to describe what's being explored. Use in conjunction with the `exploratory` profile."
         }
       },
-      "required": [
-        "projectTitle",
-        "samplesheet",
-        "genome",
-        "annotations"
-      ]
+      "required": ["projectTitle", "samplesheet", "genome", "annotations"]
     },
     "read_trim_filter_options": {
       "title": "Read trim/filter options",
@@ -81,10 +76,7 @@
           "type": "string",
           "default": "fastp",
           "description": "Tool for read trimming/filtering.",
-          "enum": [
-            "fastp",
-            "cutadapt"
-          ],
+          "enum": ["fastp", "cutadapt"],
           "errorMessage": "Trim tool must be one of the valid options: [fastp, cutadapt]."
         },
         "adapterFasta": {
@@ -94,9 +86,7 @@
           "help_text": "`cutadapt` does not currently work with an adapter fasta file."
         }
       },
-      "required": [
-        "trimTool"
-      ]
+      "required": ["trimTool"]
     },
     "mapping_parameters": {
       "title": "Mapping parameters",
@@ -108,16 +98,11 @@
           "type": "string",
           "default": "bwamem2",
           "description": "Tool for mapping reads.",
-          "enum": [
-            "bwamem2",
-            "star"
-          ],
+          "enum": ["bwamem2", "star"],
           "errorMessage": "Map tool must be one of the valid options: [bwamem2, star]."
         }
       },
-      "required": [
-        "mapTool"
-      ]
+      "required": ["mapTool"]
     },
     "skip_steps_options": {
       "title": "Skip steps options",
@@ -136,6 +121,10 @@
         "skipPrealignReadDepth": {
           "type": "boolean",
           "description": "Skip computing read depth for prealign reads."
+        },
+        "skipMarkDuplicates": {
+          "type": "boolean",
+          "description": "Skip marking duplicates in mapped reads files."
         }
       }
     }
