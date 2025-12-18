@@ -5,7 +5,6 @@ nextflow_workflow {
     workflow "MAP_READS"
 
     test("MAP_READS maps reads to a reference genome and outputs sorted BAMs -- bwa-mem2 + SE reads.") {
-        tag 'current'
         tag 'bwamem2'
 
         // instantiate helper objects
@@ -111,7 +110,6 @@ nextflow_workflow {
 
 
     test("MAP_READS maps reads to a reference genome and outputs sorted BAMs -- bwa-mem2 + PE reads.") {
-        tag 'current'
         tag 'bwamem2'
 
         // instantiate helper objects
@@ -217,7 +215,6 @@ nextflow_workflow {
 
 
     test("MAP_READS maps reads to a reference genome and outputs sorted BAMs -- STAR + SE reads.") {
-        tag 'current'
         tag 'star'
 
         // instantiate helper objects
@@ -323,7 +320,6 @@ nextflow_workflow {
 
 
     test("MAP_READS maps reads to a reference genome and outputs sorted BAMs -- STAR + PE reads.") {
-        tag 'current'
         tag 'star'
 
         // instantiate helper objects
@@ -428,7 +424,6 @@ nextflow_workflow {
     }
 
     test("MAP_READS maps reads to a reference genome and outputs sorted BAMs -- bwa-mem2 + SE reads + skip mark duplicates.") {
-        tag 'current'
         tag 'bwamem2'
 
         // instantiate helper objects
