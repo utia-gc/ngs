@@ -10,7 +10,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Breaking
 
 - Requires Nextflow >=25.10
+- Requires nf-core/tools >=v3.3.1
 
 ### Changed
 
 - Began migration to workflow outputs
+- Depends nf-schema v2.6.1

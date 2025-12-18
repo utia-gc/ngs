@@ -39,8 +39,8 @@ nextflow_pipeline {
             assert workflow.failed
             assert workflow.exitStatus == 1
             // nf-schema validateParameters() throws error messages on stdout and stderr when required param(s) not supplied
-            assert workflow.stdout.contains("ERROR ~ Validation of pipeline parameters failed!")
-            assert workflow.stderr.contains("* Missing required parameter(s): projectTitle")
+            assert workflow.stdout.contains('ERROR ~ Validation of pipeline parameters failed!')
+            assert workflow.stderr.contains('* Missing required parameter(s): projectTitle')
         }
 
     }
@@ -64,7 +64,7 @@ nextflow_pipeline {
             assert workflow.exitStatus == 1
             // nf-schema validateParameters() throws error messages on stdout and stderr when required param(s) don't match pattern
             assert workflow.stdout.contains('ERROR ~ Validation of pipeline parameters failed!')
-            assert workflow.stderr.contains("* --projectTitle (project title): Project title can ony contain alphanumeric characters, '.', '_', or '-'.")
+            assert workflow.stderr.contains('''* --projectTitle (project title): "project title" does not match regular expression [^[a-zA-Z0-9._-]+$] (Project title can only contain alphanumeric characters, '.', '_', or '-'.)''')
         }
 
     }
@@ -88,7 +88,7 @@ nextflow_pipeline {
             assert workflow.exitStatus == 1
             // nf-schema validateParameters() throws error messages on stdout and stderr when required param(s) don't match pattern
             assert workflow.stdout.contains('ERROR ~ Validation of pipeline parameters failed!')
-            assert workflow.stderr.contains("* --projectTitle (project/title): Project title can ony contain alphanumeric characters, '.', '_', or '-'.")
+            assert workflow.stderr.contains('''* --projectTitle (project/title): "project/title" does not match regular expression [^[a-zA-Z0-9._-]+$] (Project title can only contain alphanumeric characters, '.', '_', or '-'.)''')
         }
 
     }
@@ -111,8 +111,8 @@ nextflow_pipeline {
             assert workflow.failed
             assert workflow.exitStatus == 1
             // nf-schema validateParameters() throws error messages on stdout and stderr when required param(s) not supplied
-            assert workflow.stdout.contains("ERROR ~ Validation of pipeline parameters failed!")
-            assert workflow.stderr.contains("* Missing required parameter(s): samplesheet")
+            assert workflow.stdout.contains('ERROR ~ Validation of pipeline parameters failed!')
+            assert workflow.stderr.contains('* Missing required parameter(s): samplesheet')
         }
 
     }
@@ -135,7 +135,7 @@ nextflow_pipeline {
             assert workflow.failed
             assert workflow.exitStatus == 1
             // nf-schema validateParameters() throws error messages on stdout and stderr when required param(s) don't match pattern
-            assert workflow.stdout.contains("ERROR ~ Validation of pipeline parameters failed!")
+            assert workflow.stdout.contains('ERROR ~ Validation of pipeline parameters failed!')
         }
 
     }
@@ -158,7 +158,7 @@ nextflow_pipeline {
             assert workflow.failed
             assert workflow.exitStatus == 1
             // nf-schema validateParameters() throws error messages on stdout and stderr when required param(s) don't match pattern
-            assert workflow.stdout.contains("ERROR ~ Validation of pipeline parameters failed!")
+            assert workflow.stdout.contains('ERROR ~ Validation of pipeline parameters failed!')
         }
 
     }
@@ -181,8 +181,8 @@ nextflow_pipeline {
             assert workflow.failed
             assert workflow.exitStatus == 1
             // nf-schema validateParameters() throws error messages on stdout and stderr when required param(s) don't match pattern
-            assert workflow.stdout.contains("ERROR ~ Validation of pipeline parameters failed!")
-            assert workflow.stderr.contains("* Missing required parameter(s): genome")
+            assert workflow.stdout.contains('ERROR ~ Validation of pipeline parameters failed!')
+            assert workflow.stderr.contains('* Missing required parameter(s): genome')
         }
 
     }
@@ -205,8 +205,8 @@ nextflow_pipeline {
             assert workflow.failed
             assert workflow.exitStatus == 1
             // nf-schema validateParameters() throws error messages on stdout and stderr when required param(s) don't match pattern
-            assert workflow.stdout.contains("ERROR ~ Validation of pipeline parameters failed!")
-            assert workflow.stderr.contains("* Missing required parameter(s): annotations")
+            assert workflow.stdout.contains('ERROR ~ Validation of pipeline parameters failed!')
+            assert workflow.stderr.contains('* Missing required parameter(s): annotations')
         }
 
     }
@@ -230,8 +230,8 @@ nextflow_pipeline {
             assert workflow.failed
             assert workflow.exitStatus == 1
             // nf-schema validateParameters() throws error messages on stdout and stderr when required param(s) don't match pattern
-            assert workflow.stdout.contains("ERROR ~ Validation of pipeline parameters failed!")
-            assert workflow.stderr.contains("* Missing required parameter(s): trimTool")
+            assert workflow.stdout.contains('ERROR ~ Validation of pipeline parameters failed!')
+            assert workflow.stderr.contains('* Missing required parameter(s): trimTool')
         }
 
     }
@@ -255,8 +255,8 @@ nextflow_pipeline {
             assert workflow.failed
             assert workflow.exitStatus == 1
             // nf-schema validateParameters() throws error messages on stdout and stderr when required param(s) don't match pattern
-            assert workflow.stdout.contains("ERROR ~ Validation of pipeline parameters failed!")
-            assert workflow.stderr.contains("* --trimTool (bowtie2): Trim tool must be one of the valid options: [fastp, cutadapt].")
+            assert workflow.stdout.contains('ERROR ~ Validation of pipeline parameters failed!')
+            assert workflow.stderr.contains('* --trimTool (bowtie2): Expected any of [[fastp, cutadapt]] (Trim tool must be one of the valid options.)')
         }
 
     }
@@ -280,8 +280,8 @@ nextflow_pipeline {
             assert workflow.failed
             assert workflow.exitStatus == 1
             // nf-schema validateParameters() throws error messages on stdout and stderr when required param(s) don't match pattern
-            assert workflow.stdout.contains("ERROR ~ Validation of pipeline parameters failed!")
-            assert workflow.stderr.contains("* Missing required parameter(s): mapTool")
+            assert workflow.stdout.contains('ERROR ~ Validation of pipeline parameters failed!')
+            assert workflow.stderr.contains('* Missing required parameter(s): mapTool')
         }
 
     }
@@ -305,8 +305,8 @@ nextflow_pipeline {
             assert workflow.failed
             assert workflow.exitStatus == 1
             // nf-schema validateParameters() throws error messages on stdout and stderr when required param(s) don't match pattern
-            assert workflow.stdout.contains("ERROR ~ Validation of pipeline parameters failed!")
-            assert workflow.stderr.contains("* --mapTool (trimmomatic): Map tool must be one of the valid options: [bwamem2, star].")
+            assert workflow.stdout.contains('ERROR ~ Validation of pipeline parameters failed!')
+            assert workflow.stderr.contains('* --mapTool (trimmomatic): Expected any of [[bwamem2, star]] (Map tool must be one of the valid options.)')
         }
 
     }
