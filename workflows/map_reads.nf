@@ -18,6 +18,7 @@ workflow MAP_READS {
         genome
         annotationsGTF
         map_tool
+        skipMarkDuplicates
 
     main:
         switch( map_tool.toUpperCase() ) {
@@ -38,14 +39,30 @@ workflow MAP_READS {
                 ch_alignments = Star.out.alignments
         }
 
+        // sort and index alignments
         samtools_sort_index(ch_alignments)
-          | Group_Alignments
-          | gatk_MergeSamFiles
-          | gatk_MarkDuplicates
-          | samtools_sort_name
+        ch_alignmentsIndividualSortedByCoord = samtools_sort_index.out.bamSortedIndexed
+
+        // merge alignments by sample
+        ch_alignmentsIndividualSortedByCoord 
+            | Group_Alignments
+            | gatk_MergeSamFiles
+        ch_alignmentsMergedSortedByCoord = gatk_MergeSamFiles.out.bamMergedIndexed
+
+        // mark duplicates
+        if (!skipMarkDuplicates) {
+            gatk_MarkDuplicates(gatk_MergeSamFiles.out.bamMergedIndexed)
+            ch_alignmentsMergedSortedByCoord = gatk_MarkDuplicates.out.bamMarkDupIndexed
+        } else {
+            ch_alignmentsMergedSortedByCoord = gatk_MergeSamFiles.out.bamMergedIndexed
+        }
+
+        // sort alignments by name
+        samtools_sort_name(ch_alignmentsMergedSortedByCoord)
+        ch_alignmentsMergedSortedByName = samtools_sort_name.out.bamSortedByName
 
     emit:
-        alignmentsIndividualSortedByCoord = samtools_sort_index.out.bamSortedIndexed
-        alignmentsMergedSortedByCoord     = gatk_MarkDuplicates.out.bamMarkDupIndexed
-        alignmentsMergedSortedByName      = samtools_sort_name.out.bamSortedByName
+        alignmentsIndividualSortedByCoord = ch_alignmentsIndividualSortedByCoord
+        alignmentsMergedSortedByCoord     = ch_alignmentsMergedSortedByCoord
+        alignmentsMergedSortedByName      = ch_alignmentsMergedSortedByName
 }

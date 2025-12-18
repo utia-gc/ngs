@@ -7,14 +7,8 @@ process gatk_MarkDuplicates {
     label 'big_mem'
     label 'med_time'
 
-    publishDir(
-        path:    "${params.publishDirData}/alignments",
-        mode:    "${params.publishMode}",
-        pattern: "${metadata.sampleName}.bam{,.bai}"
-    )
-
     input:
-        tuple val(metadata), path(bam)
+        tuple val(metadata), path(bam), path(bai)
 
     output:
         tuple val(metadata), path('*.bam'), path('*.bam.bai'), emit: bamMarkDupIndexed

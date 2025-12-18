@@ -20,53 +20,58 @@ include { PREPARE_INPUTS } from "./workflows/prepare_inputs.nf"
 include { PROCESS_READS  } from "./workflows/process_reads.nf"
 
 // Include plugin helper functions
-include { paramsHelp; validateParameters } from 'plugin/nf-schema'
-
-// Print help message with typical command line usage for the pipeline
-if (params.help) {
-    log.info paramsHelp('nextflow run utia-gc/ngs -params-file params.yaml')
-    exit 0
-}
+include { validateParameters } from 'plugin/nf-schema'
 
 // Validate input parameters
 validateParameters()
 
 workflow {
-    PREPARE_INPUTS(
-        file(params.samplesheet),
-        file(params.genome),
-        file(params.annotations)
-    )
-    ch_reads_raw    = PREPARE_INPUTS.out.samples
-    ch_reads_raw.dump(tag: "ch_reads_raw")
-    ch_genome       = PREPARE_INPUTS.out.genome
-    ch_genome_index = PREPARE_INPUTS.out.genome_index
-    ch_annotations  = PREPARE_INPUTS.out.annotations
+    main:
+        PREPARE_INPUTS(
+            file(params.samplesheet),
+            file(params.genome),
+            file(params.annotations)
+        )
+        ch_reads_raw    = PREPARE_INPUTS.out.samples
+        ch_reads_raw.dump(tag: "ch_reads_raw")
+        ch_genome       = PREPARE_INPUTS.out.genome
+        ch_genome_index = PREPARE_INPUTS.out.genome_index
+        ch_annotations  = PREPARE_INPUTS.out.annotations
 
-    PROCESS_READS(
-        ch_reads_raw,
-        file(params.adapterFasta)
-    )
-    ch_reads_pre_align = PROCESS_READS.out.reads_pre_align
-    ch_trim_log        = PROCESS_READS.out.trim_log
+        PROCESS_READS(
+            ch_reads_raw,
+            file(params.adapterFasta)
+        )
+        ch_reads_pre_align = PROCESS_READS.out.reads_pre_align
+        ch_trim_log        = PROCESS_READS.out.trim_log
 
-    MAP_READS(
-        ch_reads_pre_align,
-        ch_genome,
-        ch_annotations,
-        params.mapTool
-    )
-    ch_alignmentsIndividualSortedByCoord = MAP_READS.out.alignmentsIndividualSortedByCoord
-    ch_alignmentsMergedSortedByCoord     = MAP_READS.out.alignmentsMergedSortedByCoord
-    ch_alignmentsMergedSortedByName      = MAP_READS.out.alignmentsMergedSortedByName
+        MAP_READS(
+            ch_reads_pre_align,
+            ch_genome,
+            ch_annotations,
+            params.mapTool,
+            params.skipMarkDuplicates
+        )
+        ch_alignmentsIndividualSortedByCoord = MAP_READS.out.alignmentsIndividualSortedByCoord
+        ch_alignmentsMergedSortedByCoord     = MAP_READS.out.alignmentsMergedSortedByCoord
+        ch_alignmentsMergedSortedByName      = MAP_READS.out.alignmentsMergedSortedByName
 
-    CHECK_QUALITY(
-        ch_reads_raw,
-        ch_reads_pre_align,
-        ch_trim_log,
-        ch_genome_index,
-        ch_alignmentsIndividualSortedByCoord,
-        ch_alignmentsMergedSortedByCoord,
-        "${params.projectTitle}"
-    )
+        CHECK_QUALITY(
+            ch_reads_raw,
+            ch_reads_pre_align,
+            ch_trim_log,
+            ch_genome_index,
+            ch_alignmentsIndividualSortedByCoord,
+            ch_alignmentsMergedSortedByCoord,
+            "${params.projectTitle}"
+        )
+
+    publish:
+        alignmentsMergedSortedByCoord = ch_alignmentsMergedSortedByCoord
+}
+
+output {
+    alignmentsMergedSortedByCoord {
+        path { file(workflow.outputDir).relativize(file("${params.publishDirData}/alignments")).toString() }
+    }
 }

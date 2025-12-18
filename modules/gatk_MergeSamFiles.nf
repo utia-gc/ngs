@@ -11,7 +11,7 @@ process gatk_MergeSamFiles {
         tuple val(metadata), path(bams), path(bais)
 
     output:
-        tuple val(metadata), path('*_merged.bam'), emit: bamMerged
+        tuple val(metadata), path('*.bam'), path('*.bam.bai'), emit: bamMergedIndexed
 
     script:
         // create the string of INPUT arguments
@@ -27,7 +27,10 @@ process gatk_MergeSamFiles {
         gatk MergeSamFiles \\
             ${inputs} \\
             --OUTPUT ${metadata.sampleName}_merged.bam \\
+            --CREATE_INDEX \\
             --TMP_DIR \${PWD} \\
             ${args}
+
+        mv ${metadata.sampleName}_merged.bai ${metadata.sampleName}_merged.bam.bai
         """
 }

@@ -7,7 +7,7 @@
  * @emit bases number of bases in reference genome.
  */
 process compute_bases_reads {
-    tag "${stemName}"
+    tag "${MetadataUtils.buildStemName(metadata)}"
 
     label 'base'
 
@@ -22,7 +22,6 @@ process compute_bases_reads {
         tuple val(metadata), stdout, emit: bases
 
     script:
-        String stemName = MetadataUtils.buildStemName(metadata)
         String reads = (metadata.readType == 'single') ? "${reads1}" : "${reads1} ${reads2}"
 
         """

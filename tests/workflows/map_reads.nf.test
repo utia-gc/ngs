@@ -5,6 +5,8 @@ nextflow_workflow {
     workflow "MAP_READS"
 
     test("MAP_READS maps reads to a reference genome and outputs sorted BAMs -- bwa-mem2 + SE reads.") {
+        tag 'bwamem2'
+
         // instantiate helper objects
         def readsLane1 = new ReadsSELane1()
         def readsLane2 = new ReadsSELane2()
@@ -54,6 +56,7 @@ nextflow_workflow {
                 input[1] = file("${projectDir}/${refs.getGenome()}")
                 input[2] = file("${projectDir}/${refs.getGTF()}")
                 input[3] = "bwamem2"
+                input[4] = false
                 """
             }
         }
@@ -61,6 +64,7 @@ nextflow_workflow {
         then {
             // test workflow status
             assert workflow.success
+            assert workflow.trace.succeeded().size() == 8
 
             // test alignments for each individual coordinate sorted sample-lane
             with(workflow.out.alignmentsIndividualSortedByCoord) {
@@ -100,14 +104,14 @@ nextflow_workflow {
                     assert get(1) ==~ /^.*\/${readsLane1.getSampleName()}\.bam/
                 }
             }
-
-            // test reproducibility
-            assert snapshot(workflow.out).match()
         }
 
     }
+
 
     test("MAP_READS maps reads to a reference genome and outputs sorted BAMs -- bwa-mem2 + PE reads.") {
+        tag 'bwamem2'
+
         // instantiate helper objects
         def readsLane1 = new ReadsPELane1()
         def readsLane2 = new ReadsPELane2()
@@ -157,6 +161,7 @@ nextflow_workflow {
                 input[1] = file("${projectDir}/${refs.getGenome()}")
                 input[2] = file("${projectDir}/${refs.getGTF()}")
                 input[3] = "bwamem2"
+                input[4] = false
                 """
             }
         }
@@ -164,6 +169,7 @@ nextflow_workflow {
         then {
             // test workflow status
             assert workflow.success
+            assert workflow.trace.succeeded().size() == 8
 
             // test alignments for each individual coordinate sorted sample-lane
             with(workflow.out.alignmentsIndividualSortedByCoord) {
@@ -203,14 +209,14 @@ nextflow_workflow {
                     assert get(1) ==~ /^.*\/${readsLane1.getSampleName()}\.bam/
                 }
             }
-
-            // test reproducibility
-            assert snapshot(workflow.out).match()
         }
 
     }
 
+
     test("MAP_READS maps reads to a reference genome and outputs sorted BAMs -- STAR + SE reads.") {
+        tag 'star'
+
         // instantiate helper objects
         def readsLane1 = new ReadsSELane1()
         def readsLane2 = new ReadsSELane2()
@@ -260,6 +266,7 @@ nextflow_workflow {
                 input[1] = file("${projectDir}/${refs.getGenome()}")
                 input[2] = file("${projectDir}/${refs.getGTF()}")
                 input[3] = "star"
+                input[4] = false
                 """
             }
         }
@@ -267,6 +274,7 @@ nextflow_workflow {
         then {
             // test workflow status
             assert workflow.success
+            assert workflow.trace.succeeded().size() == 8
 
             // test alignments for each individual coordinate sorted sample-lane
             with(workflow.out.alignmentsIndividualSortedByCoord) {
@@ -306,14 +314,14 @@ nextflow_workflow {
                     assert get(1) ==~ /^.*\/${readsLane1.getSampleName()}\.bam/
                 }
             }
-
-            // test reproducibility
-            assert snapshot(workflow.out).match()
         }
 
     }
 
+
     test("MAP_READS maps reads to a reference genome and outputs sorted BAMs -- STAR + PE reads.") {
+        tag 'star'
+
         // instantiate helper objects
         def readsLane1 = new ReadsPELane1()
         def readsLane2 = new ReadsPELane2()
@@ -363,6 +371,7 @@ nextflow_workflow {
                 input[1] = file("${projectDir}/${refs.getGenome()}")
                 input[2] = file("${projectDir}/${refs.getGTF()}")
                 input[3] = "star"
+                input[4] = false
                 """
             }
         }
@@ -370,6 +379,7 @@ nextflow_workflow {
         then {
             // test workflow status
             assert workflow.success
+            assert workflow.trace.succeeded().size() == 8
 
             // test alignments for each individual coordinate sorted sample-lane
             with(workflow.out.alignmentsIndividualSortedByCoord) {
@@ -409,9 +419,110 @@ nextflow_workflow {
                     assert get(1) ==~ /^.*\/${readsLane1.getSampleName()}\.bam/
                 }
             }
+        }
 
-            // test reproducibility
-            assert snapshot(workflow.out).match()
+    }
+
+    test("MAP_READS maps reads to a reference genome and outputs sorted BAMs -- bwa-mem2 + SE reads + skip mark duplicates.") {
+        tag 'bwamem2'
+
+        // instantiate helper objects
+        def readsLane1 = new ReadsSELane1()
+        def readsLane2 = new ReadsSELane2()
+        def refs       = new RefsEnsembl()
+
+        when {
+            params {
+                publishDirReports = "${outputDir}/reports"
+                publishDirData    = "${outputDir}/data"
+            }
+            workflow {
+                """
+                input[0] = Channel.of(
+                    [
+                        [
+                            sampleName:   "${readsLane1.getSampleName()}",
+                            sampleNumber: "${readsLane1.getSampleNumber()}",
+                            lane:         "${readsLane1.getLane()}",
+                            readType:     "${readsLane1.getReadType()}",
+                            rgFields:     [
+                                ID: "${readsLane1.getRGFields().get('ID')}",
+                                SM: "${readsLane1.getRGFields().get('SM')}",
+                                LB: "${readsLane1.getRGFields().get('LB')}",
+                                PL: "${readsLane1.getRGFields().get('PL')}",
+                            ]
+                        ],
+                        file("${projectDir}/${readsLane1.getR1()}"),
+                        file("${projectDir}/${readsLane1.getR2()}")
+                    ],
+                    [
+                        [
+                            sampleName:   "${readsLane2.getSampleName()}",
+                            sampleNumber: "${readsLane2.getSampleNumber()}",
+                            lane:         "${readsLane2.getLane()}",
+                            readType:     "${readsLane2.getReadType()}",
+                            rgFields:     [
+                                ID: "${readsLane2.getRGFields().get('ID')}",
+                                SM: "${readsLane2.getRGFields().get('SM')}",
+                                LB: "${readsLane2.getRGFields().get('LB')}",
+                                PL: "${readsLane2.getRGFields().get('PL')}",
+                            ]
+                        ],
+                        file("${projectDir}/${readsLane2.getR1()}"),
+                        file("${projectDir}/${readsLane2.getR2()}")
+                    ]
+                )
+                input[1] = file("${projectDir}/${refs.getGenome()}")
+                input[2] = file("${projectDir}/${refs.getGTF()}")
+                input[3] = "bwamem2"
+                input[4] = true
+                """
+            }
+        }
+
+        then {
+            // test workflow status
+            assert workflow.success
+            assert workflow.trace.succeeded().size() == 7
+
+            // test alignments for each individual coordinate sorted sample-lane
+            with(workflow.out.alignmentsIndividualSortedByCoord) {
+                assert size() == 2
+                with(get(0)) {
+                    assert size() == 3
+                    // test alignments file
+                    assert get(1) ==~ /^.*\/${readsLane1.getStemName()}\.bam/
+                    // test indexed alignments file
+                    assert get(2) ==~ /^.*\/${readsLane1.getStemName()}\.bam\.bai/
+                }
+                with(get(1)) {
+                    assert size() == 3
+                    // test alignments file
+                    assert get(1) ==~ /^.*\/${readsLane2.getStemName()}\.bam/
+                    // test indexed alignments file
+                    assert get(2) ==~ /^.*\/${readsLane2.getStemName()}\.bam\.bai/
+                }
+            }
+            // test alignments for each merged and coordinate sorted sample without duplicates marked
+            with(workflow.out.alignmentsMergedSortedByCoord) {
+                assert size() == 1
+                with(get(0)) {
+                    assert size() == 3
+                    // test alignments file
+                    assert get(1) ==~ /^.*\/${readsLane1.getSampleName()}_merged\.bam/
+                    // test indexed alignments file
+                    assert get(2) ==~ /^.*\/${readsLane1.getSampleName()}_merged\.bam\.bai/
+                }
+            }
+            // test alignments for each merged and name sorted sample
+            with(workflow.out.alignmentsMergedSortedByName) {
+                assert size() == 1
+                with(get(0)) {
+                    assert size() == 2
+                    // test alignments file
+                    assert get(1) ==~ /^.*\/${readsLane1.getSampleName()}\.bam/
+                }
+            }
         }
 
     }

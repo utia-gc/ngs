@@ -5,7 +5,7 @@
  * @emit bamSortedByName the BAM sorted by name of format [metadata, BAM].
  */
 process samtools_sort_name {
-    tag "${stemName}"
+    tag "${MetadataUtils.buildStemName(metadata)}"
 
     label 'samtools'
 
@@ -17,10 +17,10 @@ process samtools_sort_name {
         tuple val(metadata), path(bam), path(bai)
 
     output:
-        tuple val(metadata), path("output/*.bam"), emit:bamSortedByName
+        tuple val(metadata), path('output/*.bam'), emit:bamSortedByName
 
-    shell:
-        stemName = MetadataUtils.buildStemName(metadata)
+    script:
+        def stemName = MetadataUtils.buildStemName(metadata)
 
         """
         # make a directory for output to avoid name clashes

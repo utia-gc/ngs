@@ -296,7 +296,6 @@ nextflow_workflow {
 
     test("QC_Reads reports QC for raw and prealigned reads -- fastp + PE reads + skip raw and prealigned read depth.") {
         tag 'check_quality'
-        tag 'current'
 
         // instantiate helper objects
         def readsLane1 = new ReadsPELane1()
