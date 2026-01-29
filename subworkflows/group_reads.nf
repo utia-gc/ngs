@@ -3,7 +3,7 @@ workflow Group_Reads {
         reads
 
     main:
-        reads
+        ch_reads_grouped = reads
             .map { metadata, reads1, reads2 ->
                 [ metadata.sampleName, metadata, reads1, reads2 ]
             }
@@ -19,7 +19,6 @@ workflow Group_Reads {
 
                 [ metadataIntersection, reads1Sorted, reads2Sorted ]
             }
-            .set { ch_reads_grouped }
 
     emit:
         reads_grouped = ch_reads_grouped

@@ -4,17 +4,18 @@ include { Trim_Reads } from "../subworkflows/trim_reads.nf"
  * Workflow to process reads.
  * Reads should be trimmed and concatenated here, if necessary.
  */
-
 workflow PROCESS_READS {
     take:
         reads_raw
         adapter_fasta
+        trimTool
+        skipTrimReads
 
     main:
-        if(!params.skipTrimReads) {
+        if(!skipTrimReads) {
             Trim_Reads(
                 reads_raw,
-                params.trimTool,
+                trimTool,
                 adapter_fasta
             )
             ch_reads_post_trim = Trim_Reads.out.reads_trim

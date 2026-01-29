@@ -32,13 +32,12 @@ workflow Trim_Reads {
         }
 
         // update trim status in metadata
-        ch_reads_trim
+        ch_reads_trim_updated = ch_reads_trim
             .map { metadata, reads1, reads2 ->
                 def meta = metadata.clone()
                 meta.put('trimStatus', 'trimmed')
                 [ meta, reads1, reads2 ]
             }
-            .set { ch_reads_trim_updated }
 
     emit:
         reads_trim = ch_reads_trim_updated

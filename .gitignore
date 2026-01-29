@@ -141,7 +141,7 @@ test/results/*
 # nf-test
 .nf-test
 null
-/.tap
+/*.tap
 /data
 /reports
 

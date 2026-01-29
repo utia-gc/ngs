@@ -35,7 +35,7 @@ workflow QC_Reads {
             compute_bases_raw(Group_Reads_Raw.out.reads_grouped)
             // Compute sequencing depth for raw reads
             // Sequencing depth = total number of bases in reads for a sample / total number of bases in the reference genome
-            compute_bases_raw.out.bases
+            ch_sequencingDepthRaw = compute_bases_raw.out.bases
                 .combine(ch_basesGenome)
                 .map { metadata, basesInReads, basesInGenome ->
                     [ metadata, Long.valueOf(basesInReads) / Long.valueOf(basesInGenome) ]
@@ -47,7 +47,6 @@ workflow QC_Reads {
                         "Sample Name\tDepth\n${metadata.sampleName}\t${depth}"
                     ]
                 }
-                .set { ch_sequencingDepthRaw }
         }
 
         // Compute read depth of prealign reads
@@ -59,7 +58,7 @@ workflow QC_Reads {
             compute_bases_prealign(Group_Reads_Prealign.out.reads_grouped)
             // Compute sequencing depth for prealign reads
             // Sequencing depth = total number of bases in reads for a sample / total number of bases in the reference genome
-            compute_bases_prealign.out.bases
+            ch_sequencingDepthPrealign = compute_bases_prealign.out.bases
                 .combine(ch_basesGenome)
                 .map { metadata, basesInReads, basesInGenome ->
                     [ metadata, Long.valueOf(basesInReads) / Long.valueOf(basesInGenome) ]
@@ -71,7 +70,6 @@ workflow QC_Reads {
                         "Sample Name\tDepth\n${metadata.sampleName}\t${depth}"
                     ]
                 }
-                .set { ch_sequencingDepthPrealign }
         }
 
         ch_multiqc_reads = Channel.empty()

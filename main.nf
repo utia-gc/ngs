@@ -40,7 +40,9 @@ workflow {
 
         PROCESS_READS(
             ch_reads_raw,
-            file(params.adapterFasta)
+            file(params.adapterFasta),
+            params.trimTool,
+            params.skipTrimReads
         )
         ch_reads_pre_align = PROCESS_READS.out.reads_pre_align
         ch_trim_log        = PROCESS_READS.out.trim_log

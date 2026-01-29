@@ -4,42 +4,65 @@ nextflow_workflow {
     script "workflows/process_reads.nf"
     workflow "PROCESS_READS"
 
-    test("PROCESS_READS trims reads by default -- cutadapt + SE reads.") {
+    test("PROCESS_READS trims reads by default -- cutadapt.") {
         // instantiate helper objects
-        def readsLane1 = new ReadsSELane1()
-        def readsLane2 = new ReadsSELane2()
+        def readsSELane1 = new ReadsSELane1()
+        def readsSELane2 = new ReadsSELane2()
+        def readsPELane1 = new ReadsPELane1()
+        def readsPELane2 = new ReadsPELane2()
 
         when {
             params {
                 publishDirReports = "${outputDir}/reports"
                 publishDirData    = "${outputDir}/data"
-                trimTool          = 'cutadapt'
             }
             workflow {
                 """
                 input[0] = Channel.of(
                     [
                         [
-                            sampleName:   "${readsLane1.getSampleName()}",
-                            sampleNumber: "${readsLane1.getSampleNumber()}",
-                            lane:         "${readsLane1.getLane()}",
-                            readType:     "${readsLane1.getReadType()}"
+                            sampleName:   "${readsSELane1.getSampleName()}",
+                            sampleNumber: "${readsSELane1.getSampleNumber()}",
+                            lane:         "${readsSELane1.getLane()}",
+                            readType:     "${readsSELane1.getReadType()}"
                         ],
-                        file("${projectDir}/${readsLane1.getR1()}"),
-                        file("${projectDir}/${readsLane1.getR2()}")
+                        file("${projectDir}/${readsSELane1.getR1()}"),
+                        file("${projectDir}/${readsSELane1.getR2()}")
                     ],
                     [
                         [
-                            sampleName:   "${readsLane2.getSampleName()}",
-                            sampleNumber: "${readsLane2.getSampleNumber()}",
-                            lane:         "${readsLane2.getLane()}",
-                            readType:     "${readsLane2.getReadType()}"
+                            sampleName:   "${readsSELane2.getSampleName()}",
+                            sampleNumber: "${readsSELane2.getSampleNumber()}",
+                            lane:         "${readsSELane2.getLane()}",
+                            readType:     "${readsSELane2.getReadType()}"
                         ],
-                        file("${projectDir}/${readsLane2.getR1()}"),
-                        file("${projectDir}/${readsLane2.getR2()}")
-                    ]
+                        file("${projectDir}/${readsSELane2.getR1()}"),
+                        file("${projectDir}/${readsSELane2.getR2()}")
+                    ],
+                    [
+                        [
+                            sampleName:   "${readsPELane1.getSampleName()}",
+                            sampleNumber: "${readsPELane1.getSampleNumber()}",
+                            lane:         "${readsPELane1.getLane()}",
+                            readType:     "${readsPELane1.getReadType()}"
+                        ],
+                        file("${projectDir}/${readsPELane1.getR1()}"),
+                        file("${projectDir}/${readsPELane1.getR2()}")
+                    ],
+                    [
+                        [
+                            sampleName:   "${readsPELane2.getSampleName()}",
+                            sampleNumber: "${readsPELane2.getSampleNumber()}",
+                            lane:         "${readsPELane2.getLane()}",
+                            readType:     "${readsPELane2.getReadType()}"
+                        ],
+                        file("${projectDir}/${readsPELane2.getR1()}"),
+                        file("${projectDir}/${readsPELane2.getR2()}")
+                    ],
                 )
                 input[1] = file("${projectDir}/assets/NO_FILE")
+                input[2] = 'cutadapt'
+                input[3] = false
                 """
             }
         }
@@ -47,71 +70,105 @@ nextflow_workflow {
         then {
             // test workflow status
             assert workflow.success
-            assert workflow.trace.succeeded().size() == 2
+            assert workflow.trace.succeeded().size() == 4
 
             // test read trimming and concatenation
             with(workflow.out.reads_pre_align) {
-                assert size() == 2
+                assert size() == 4
                 with(get(0)) {
                     assert size() == 3
-                    assert get(1) ==~ /^.*\/${readsLane1.getStemName()}_trimmed_R1\.fastq\.gz/
-                    assert get(2) ==~ /^.*\/${readsLane1.getStemName()}_trimmed_R2\.NOFILE/
+                    assert get(1) ==~ /^.*\/${readsSELane1.getStemName()}_trimmed_R1\.fastq\.gz/
+                    assert get(2) ==~ /^.*\/${readsSELane1.getStemName()}_trimmed_R2\.NOFILE/
                 }
                 with(get(1)) {
                     assert size() == 3
-                    assert get(1) ==~ /^.*\/${readsLane2.getStemName()}_trimmed_R1\.fastq\.gz/
-                    assert get(2) ==~ /^.*\/${readsLane2.getStemName()}_trimmed_R2\.NOFILE/
+                    assert get(1) ==~ /^.*\/${readsSELane2.getStemName()}_trimmed_R1\.fastq\.gz/
+                    assert get(2) ==~ /^.*\/${readsSELane2.getStemName()}_trimmed_R2\.NOFILE/
+                }
+                with(get(2)) {
+                    assert size() == 3
+                    assert get(1) ==~ /^.*\/${readsPELane1.getStemName()}_trimmed_R1\.fastq\.gz/
+                    assert get(2) ==~ /^.*\/${readsPELane1.getStemName()}_trimmed_R2\.fastq\.gz/
+                }
+                with(get(3)) {
+                    assert size() == 3
+                    assert get(1) ==~ /^.*\/${readsPELane2.getStemName()}_trimmed_R1\.fastq\.gz/
+                    assert get(2) ==~ /^.*\/${readsPELane2.getStemName()}_trimmed_R2\.fastq\.gz/
                 }
             }
             assert snapshot(workflow.out.reads_pre_align).match()
 
             // test read trimming log
             with(workflow.out.trim_log) {
-                assert size() == 2
-                assert get(0) ==~ /^.*\/${readsLane1.getStemName()}_cutadapt-log\.txt/
-                assert get(1) ==~ /^.*\/${readsLane2.getStemName()}_cutadapt-log\.txt/
+                assert size() == 4
+                assert get(0) ==~ /^.*\/${readsSELane1.getStemName()}_cutadapt-log\.txt/
+                assert get(1) ==~ /^.*\/${readsSELane2.getStemName()}_cutadapt-log\.txt/
+                assert get(2) ==~ /^.*\/${readsPELane1.getStemName()}_cutadapt-log\.txt/
+                assert get(3) ==~ /^.*\/${readsPELane2.getStemName()}_cutadapt-log\.txt/
             }
         }
-
     }
 
 
-    test("PROCESS_READS trims reads by default -- cutadapt + PE reads.") {
+    test("PROCESS_READS trims reads by default -- fastp.") {
         // instantiate helper objects
-        def readsLane1 = new ReadsPELane1()
-        def readsLane2 = new ReadsPELane2()
+        def readsSELane1 = new ReadsSELane1()
+        def readsSELane2 = new ReadsSELane2()
+        def readsPELane1 = new ReadsPELane1()
+        def readsPELane2 = new ReadsPELane2()
 
         when {
             params {
                 publishDirReports = "${outputDir}/reports"
                 publishDirData    = "${outputDir}/data"
-                trimTool          = 'cutadapt'
             }
             workflow {
                 """
                 input[0] = Channel.of(
                     [
                         [
-                            sampleName:   "${readsLane1.getSampleName()}",
-                            sampleNumber: "${readsLane1.getSampleNumber()}",
-                            lane:         "${readsLane1.getLane()}",
-                            readType:     "${readsLane1.getReadType()}"
+                            sampleName:   "${readsSELane1.getSampleName()}",
+                            sampleNumber: "${readsSELane1.getSampleNumber()}",
+                            lane:         "${readsSELane1.getLane()}",
+                            readType:     "${readsSELane1.getReadType()}"
                         ],
-                        file("${projectDir}/${readsLane1.getR1()}"),
-                        file("${projectDir}/${readsLane1.getR2()}")
+                        file("${projectDir}/${readsSELane1.getR1()}"),
+                        file("${projectDir}/${readsSELane1.getR2()}")
                     ],
                     [
                         [
-                            sampleName:   "${readsLane2.getSampleName()}",
-                            sampleNumber: "${readsLane2.getSampleNumber()}",
-                            lane:         "${readsLane2.getLane()}",
-                            readType:     "${readsLane2.getReadType()}"
+                            sampleName:   "${readsSELane2.getSampleName()}",
+                            sampleNumber: "${readsSELane2.getSampleNumber()}",
+                            lane:         "${readsSELane2.getLane()}",
+                            readType:     "${readsSELane2.getReadType()}"
                         ],
-                        file("${projectDir}/${readsLane2.getR1()}"),
-                        file("${projectDir}/${readsLane2.getR2()}")
-                    ]
+                        file("${projectDir}/${readsSELane2.getR1()}"),
+                        file("${projectDir}/${readsSELane2.getR2()}")
+                    ],
+                    [
+                        [
+                            sampleName:   "${readsPELane1.getSampleName()}",
+                            sampleNumber: "${readsPELane1.getSampleNumber()}",
+                            lane:         "${readsPELane1.getLane()}",
+                            readType:     "${readsPELane1.getReadType()}"
+                        ],
+                        file("${projectDir}/${readsPELane1.getR1()}"),
+                        file("${projectDir}/${readsPELane1.getR2()}")
+                    ],
+                    [
+                        [
+                            sampleName:   "${readsPELane2.getSampleName()}",
+                            sampleNumber: "${readsPELane2.getSampleNumber()}",
+                            lane:         "${readsPELane2.getLane()}",
+                            readType:     "${readsPELane2.getReadType()}"
+                        ],
+                        file("${projectDir}/${readsPELane2.getR1()}"),
+                        file("${projectDir}/${readsPELane2.getR2()}")
+                    ],
                 )
                 input[1] = file("${projectDir}/assets/NO_FILE")
+                input[2] = 'fastp'
+                input[3] = false
                 """
             }
         }
@@ -119,215 +176,106 @@ nextflow_workflow {
         then {
             // test workflow status
             assert workflow.success
-            assert workflow.trace.succeeded().size() == 2
+            assert workflow.trace.succeeded().size() == 4
 
             // test read trimming and concatenation
             with(workflow.out.reads_pre_align) {
-                assert size() == 2
+                assert size() == 4
                 with(get(0)) {
                     assert size() == 3
-                    assert get(1) ==~ /^.*\/${readsLane1.getStemName()}_trimmed_R1\.fastq\.gz/
-                    assert get(2) ==~ /^.*\/${readsLane1.getStemName()}_trimmed_R2\.fastq\.gz/
+                    assert get(1) ==~ /^.*\/${readsSELane1.getStemName()}_trimmed_R1\.fastq\.gz/
+                    assert get(2) ==~ /^.*\/${readsSELane1.getStemName()}_trimmed_R2\.NOFILE/
                 }
                 with(get(1)) {
                     assert size() == 3
-                    assert get(1) ==~ /^.*\/${readsLane2.getStemName()}_trimmed_R1\.fastq\.gz/
-                    assert get(2) ==~ /^.*\/${readsLane2.getStemName()}_trimmed_R2\.fastq\.gz/
+                    assert get(1) ==~ /^.*\/${readsSELane2.getStemName()}_trimmed_R1\.fastq\.gz/
+                    assert get(2) ==~ /^.*\/${readsSELane2.getStemName()}_trimmed_R2\.NOFILE/
+                }
+                with(get(2)) {
+                    assert size() == 3
+                    assert get(1) ==~ /^.*\/${readsPELane1.getStemName()}_trimmed_R1\.fastq\.gz/
+                    assert get(2) ==~ /^.*\/${readsPELane1.getStemName()}_trimmed_R2\.fastq\.gz/
+                }
+                with(get(3)) {
+                    assert size() == 3
+                    assert get(1) ==~ /^.*\/${readsPELane2.getStemName()}_trimmed_R1\.fastq\.gz/
+                    assert get(2) ==~ /^.*\/${readsPELane2.getStemName()}_trimmed_R2\.fastq\.gz/
                 }
             }
             assert snapshot(workflow.out.reads_pre_align).match()
 
             // test read trimming log
             with(workflow.out.trim_log) {
-                assert size() == 2
-                assert get(0) ==~ /^.*\/${readsLane1.getStemName()}_cutadapt-log.txt/
-                assert get(1) ==~ /^.*\/${readsLane2.getStemName()}_cutadapt-log.txt/
+                assert size() == 4
+                assert get(0) ==~ /^.*\/${readsSELane1.getStemName()}_fastp.json/
+                assert get(1) ==~ /^.*\/${readsSELane2.getStemName()}_fastp.json/
+                assert get(2) ==~ /^.*\/${readsPELane1.getStemName()}_fastp.json/
+                assert get(3) ==~ /^.*\/${readsPELane2.getStemName()}_fastp.json/
             }
         }
-
     }
 
 
-    test("PROCESS_READS trims reads by default -- fastp + SE reads.") {
+
+    test("PROCESS_READS trims reads by default -- fastp + adapter fasta.") {
         // instantiate helper objects
-        def readsLane1 = new ReadsSELane1()
-        def readsLane2 = new ReadsSELane2()
+        def readsSELane1 = new ReadsSELane1()
+        def readsSELane2 = new ReadsSELane2()
+        def readsPELane1 = new ReadsPELane1()
+        def readsPELane2 = new ReadsPELane2()
 
         when {
             params {
                 publishDirReports = "${outputDir}/reports"
                 publishDirData    = "${outputDir}/data"
-                trimTool          = 'fastp'
             }
             workflow {
                 """
                 input[0] = Channel.of(
                     [
                         [
-                            sampleName:   "${readsLane1.getSampleName()}",
-                            sampleNumber: "${readsLane1.getSampleNumber()}",
-                            lane:         "${readsLane1.getLane()}",
-                            readType:     "${readsLane1.getReadType()}"
+                            sampleName:   "${readsSELane1.getSampleName()}",
+                            sampleNumber: "${readsSELane1.getSampleNumber()}",
+                            lane:         "${readsSELane1.getLane()}",
+                            readType:     "${readsSELane1.getReadType()}"
                         ],
-                        file("${projectDir}/${readsLane1.getR1()}"),
-                        file("${projectDir}/${readsLane1.getR2()}")
+                        file("${projectDir}/${readsSELane1.getR1()}"),
+                        file("${projectDir}/${readsSELane1.getR2()}")
                     ],
                     [
                         [
-                            sampleName:   "${readsLane2.getSampleName()}",
-                            sampleNumber: "${readsLane2.getSampleNumber()}",
-                            lane:         "${readsLane2.getLane()}",
-                            readType:     "${readsLane2.getReadType()}"
+                            sampleName:   "${readsSELane2.getSampleName()}",
+                            sampleNumber: "${readsSELane2.getSampleNumber()}",
+                            lane:         "${readsSELane2.getLane()}",
+                            readType:     "${readsSELane2.getReadType()}"
                         ],
-                        file("${projectDir}/${readsLane2.getR1()}"),
-                        file("${projectDir}/${readsLane2.getR2()}")
-                    ]
-                )
-                input[1] = file("${projectDir}/assets/NO_FILE")
-                """
-            }
-        }
-
-        then {
-            // test workflow status
-            assert workflow.success
-            assert workflow.trace.succeeded().size() == 2
-
-            // test read trimming and concatenation
-            with(workflow.out.reads_pre_align) {
-                assert size() == 2
-                with(get(0)) {
-                    assert size() == 3
-                    assert get(1) ==~ /^.*\/${readsLane1.getStemName()}_trimmed_R1\.fastq\.gz/
-                    assert get(2) ==~ /^.*\/${readsLane1.getStemName()}_trimmed_R2\.NOFILE/
-                }
-                with(get(1)) {
-                    assert size() == 3
-                    assert get(1) ==~ /^.*\/${readsLane2.getStemName()}_trimmed_R1\.fastq\.gz/
-                    assert get(2) ==~ /^.*\/${readsLane2.getStemName()}_trimmed_R2\.NOFILE/
-                }
-            }
-            assert snapshot(workflow.out.reads_pre_align).match()
-
-            // test read trimming log
-            with(workflow.out.trim_log) {
-                assert size() == 2
-                assert get(0) ==~ /^.*\/${readsLane1.getStemName()}_fastp.json/
-                assert get(1) ==~ /^.*\/${readsLane2.getStemName()}_fastp.json/
-            }
-        }
-
-    }
-
-
-    test("PROCESS_READS trims reads by default -- fastp +  PE reads.") {
-        // instantiate helper objects
-        def readsLane1 = new ReadsPELane1()
-        def readsLane2 = new ReadsPELane2()
-
-        when {
-            params {
-                publishDirReports = "${outputDir}/reports"
-                publishDirData    = "${outputDir}/data"
-                trimTool          = 'fastp'
-            }
-            workflow {
-                """
-                input[0] = Channel.of(
-                    [
-                        [
-                            sampleName:   "${readsLane1.getSampleName()}",
-                            sampleNumber: "${readsLane1.getSampleNumber()}",
-                            lane:         "${readsLane1.getLane()}",
-                            readType:     "${readsLane1.getReadType()}"
-                        ],
-                        file("${projectDir}/${readsLane1.getR1()}"),
-                        file("${projectDir}/${readsLane1.getR2()}")
+                        file("${projectDir}/${readsSELane2.getR1()}"),
+                        file("${projectDir}/${readsSELane2.getR2()}")
                     ],
                     [
                         [
-                            sampleName:   "${readsLane2.getSampleName()}",
-                            sampleNumber: "${readsLane2.getSampleNumber()}",
-                            lane:         "${readsLane2.getLane()}",
-                            readType:     "${readsLane2.getReadType()}"
+                            sampleName:   "${readsPELane1.getSampleName()}",
+                            sampleNumber: "${readsPELane1.getSampleNumber()}",
+                            lane:         "${readsPELane1.getLane()}",
+                            readType:     "${readsPELane1.getReadType()}"
                         ],
-                        file("${projectDir}/${readsLane2.getR1()}"),
-                        file("${projectDir}/${readsLane2.getR2()}")
-                    ]
-                )
-                input[1] = file("${projectDir}/assets/NO_FILE")
-                """
-            }
-        }
-
-        then {
-            // test workflow status
-            assert workflow.success
-            assert workflow.trace.succeeded().size() == 2
-
-            // test read trimming and concatenation
-            with(workflow.out.reads_pre_align) {
-                assert size() == 2
-                with(get(0)) {
-                    assert size() == 3
-                    assert get(1) ==~ /^.*\/${readsLane1.getStemName()}_trimmed_R1.fastq.gz/
-                    assert get(2) ==~ /^.*\/${readsLane1.getStemName()}_trimmed_R2.fastq.gz/
-                }
-                with(get(1)) {
-                    assert size() == 3
-                    assert get(1) ==~ /^.*\/${readsLane2.getStemName()}_trimmed_R1.fastq.gz/
-                    assert get(2) ==~ /^.*\/${readsLane2.getStemName()}_trimmed_R2.fastq.gz/
-                }
-            }
-            assert snapshot(workflow.out.reads_pre_align).match()
-
-            // test read trimming log
-            with(workflow.out.trim_log) {
-                assert size() == 2
-                assert get(0) ==~ /^.*\/${readsLane1.getStemName()}_fastp.json/
-                assert get(1) ==~ /^.*\/${readsLane2.getStemName()}_fastp.json/
-            }
-        }
-
-    }
-
-
-    test("PROCESS_READS trims reads by default -- fastp + SE reads + adapter fasta.") {
-        // instantiate helper objects
-        def readsLane1 = new ReadsSELane1()
-        def readsLane2 = new ReadsSELane2()
-
-        when {
-            params {
-                publishDirReports = "${outputDir}/reports"
-                publishDirData    = "${outputDir}/data"
-                trimTool          = 'fastp'
-            }
-            workflow {
-                """
-                input[0] = Channel.of(
-                    [
-                        [
-                            sampleName:   "${readsLane1.getSampleName()}",
-                            sampleNumber: "${readsLane1.getSampleNumber()}",
-                            lane:         "${readsLane1.getLane()}",
-                            readType:     "${readsLane1.getReadType()}"
-                        ],
-                        file("${projectDir}/${readsLane1.getR1()}"),
-                        file("${projectDir}/${readsLane1.getR2()}")
+                        file("${projectDir}/${readsPELane1.getR1()}"),
+                        file("${projectDir}/${readsPELane1.getR2()}")
                     ],
                     [
                         [
-                            sampleName:   "${readsLane2.getSampleName()}",
-                            sampleNumber: "${readsLane2.getSampleNumber()}",
-                            lane:         "${readsLane2.getLane()}",
-                            readType:     "${readsLane2.getReadType()}"
+                            sampleName:   "${readsPELane2.getSampleName()}",
+                            sampleNumber: "${readsPELane2.getSampleNumber()}",
+                            lane:         "${readsPELane2.getLane()}",
+                            readType:     "${readsPELane2.getReadType()}"
                         ],
-                        file("${projectDir}/${readsLane2.getR1()}"),
-                        file("${projectDir}/${readsLane2.getR2()}")
-                    ]
+                        file("${projectDir}/${readsPELane2.getR1()}"),
+                        file("${projectDir}/${readsPELane2.getR2()}")
+                    ],
                 )
                 input[1] = file("${projectDir}/tests/assets/sample_adapters.fasta")
+                input[2] = 'fastp'
+                input[3] = false
                 """
             }
         }
@@ -335,104 +283,43 @@ nextflow_workflow {
         then {
             // test workflow status
             assert workflow.success
-            assert workflow.trace.succeeded().size() == 2
+            assert workflow.trace.succeeded().size() == 4
 
             // test read trimming and concatenation
             with(workflow.out.reads_pre_align) {
-                assert size() == 2
+                assert size() == 4
                 with(get(0)) {
                     assert size() == 3
-                    assert get(1) ==~ /^.*\/${readsLane1.getStemName()}_trimmed_R1\.fastq\.gz/
-                    assert get(2) ==~ /^.*\/${readsLane1.getStemName()}_trimmed_R2\.NOFILE/
+                    assert get(1) ==~ /^.*\/${readsSELane1.getStemName()}_trimmed_R1\.fastq\.gz/
+                    assert get(2) ==~ /^.*\/${readsSELane1.getStemName()}_trimmed_R2\.NOFILE/
                 }
                 with(get(1)) {
                     assert size() == 3
-                    assert get(1) ==~ /^.*\/${readsLane2.getStemName()}_trimmed_R1\.fastq\.gz/
-                    assert get(2) ==~ /^.*\/${readsLane2.getStemName()}_trimmed_R2\.NOFILE/
+                    assert get(1) ==~ /^.*\/${readsSELane2.getStemName()}_trimmed_R1\.fastq\.gz/
+                    assert get(2) ==~ /^.*\/${readsSELane2.getStemName()}_trimmed_R2\.NOFILE/
+                }
+                with(get(2)) {
+                    assert size() == 3
+                    assert get(1) ==~ /^.*\/${readsPELane1.getStemName()}_trimmed_R1\.fastq\.gz/
+                    assert get(2) ==~ /^.*\/${readsPELane1.getStemName()}_trimmed_R2\.fastq\.gz/
+                }
+                with(get(3)) {
+                    assert size() == 3
+                    assert get(1) ==~ /^.*\/${readsPELane2.getStemName()}_trimmed_R1\.fastq\.gz/
+                    assert get(2) ==~ /^.*\/${readsPELane2.getStemName()}_trimmed_R2\.fastq\.gz/
                 }
             }
             assert snapshot(workflow.out.reads_pre_align).match()
 
             // test read trimming log
             with(workflow.out.trim_log) {
-                assert size() == 2
-                assert get(0) ==~ /^.*\/${readsLane1.getStemName()}_fastp.json/
-                assert get(1) ==~ /^.*\/${readsLane2.getStemName()}_fastp.json/
+                assert size() == 4
+                assert get(0) ==~ /^.*\/${readsSELane1.getStemName()}_fastp.json/
+                assert get(1) ==~ /^.*\/${readsSELane2.getStemName()}_fastp.json/
+                assert get(2) ==~ /^.*\/${readsPELane1.getStemName()}_fastp.json/
+                assert get(3) ==~ /^.*\/${readsPELane2.getStemName()}_fastp.json/
             }
         }
-
-    }
-
-
-    test("PROCESS_READS trims reads by default -- fastp +  PE reads + adapter fasta.") {
-        // instantiate helper objects
-        def readsLane1 = new ReadsPELane1()
-        def readsLane2 = new ReadsPELane2()
-
-        when {
-            params {
-                publishDirReports = "${outputDir}/reports"
-                publishDirData    = "${outputDir}/data"
-                trimTool          = 'fastp'
-            }
-            workflow {
-                """
-                input[0] = Channel.of(
-                    [
-                        [
-                            sampleName:   "${readsLane1.getSampleName()}",
-                            sampleNumber: "${readsLane1.getSampleNumber()}",
-                            lane:         "${readsLane1.getLane()}",
-                            readType:     "${readsLane1.getReadType()}"
-                        ],
-                        file("${projectDir}/${readsLane1.getR1()}"),
-                        file("${projectDir}/${readsLane1.getR2()}")
-                    ],
-                    [
-                        [
-                            sampleName:   "${readsLane2.getSampleName()}",
-                            sampleNumber: "${readsLane2.getSampleNumber()}",
-                            lane:         "${readsLane2.getLane()}",
-                            readType:     "${readsLane2.getReadType()}"
-                        ],
-                        file("${projectDir}/${readsLane2.getR1()}"),
-                        file("${projectDir}/${readsLane2.getR2()}")
-                    ]
-                )
-                input[1] = file("${projectDir}/tests/assets/sample_adapters.fasta")
-                """
-            }
-        }
-
-        then {
-            // test workflow status
-            assert workflow.success
-            assert workflow.trace.succeeded().size() == 2
-
-            // test read trimming and concatenation
-            with(workflow.out.reads_pre_align) {
-                assert size() == 2
-                with(get(0)) {
-                    assert size() == 3
-                    assert get(1) ==~ /^.*\/${readsLane1.getStemName()}_trimmed_R1.fastq.gz/
-                    assert get(2) ==~ /^.*\/${readsLane1.getStemName()}_trimmed_R2.fastq.gz/
-                }
-                with(get(1)) {
-                    assert size() == 3
-                    assert get(1) ==~ /^.*\/${readsLane2.getStemName()}_trimmed_R1.fastq.gz/
-                    assert get(2) ==~ /^.*\/${readsLane2.getStemName()}_trimmed_R2.fastq.gz/
-                }
-            }
-            assert snapshot(workflow.out.reads_pre_align).match()
-
-            // test read trimming log
-            with(workflow.out.trim_log) {
-                assert size() == 2
-                assert get(0) ==~ /^.*\/${readsLane1.getStemName()}_fastp.json/
-                assert get(1) ==~ /^.*\/${readsLane2.getStemName()}_fastp.json/
-            }
-        }
-
     }
 
 }

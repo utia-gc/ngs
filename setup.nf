@@ -1,7 +1,7 @@
 workflow {
     LinkedHashMap decodeMap = buildSampleNameDecodeMap(file(params.decode))
 
-    Channel
+    ch_fastqPairs = Channel
         .fromFilePairs(params.readsSources, checkIfExists: true, size: -1)
         /* Filter samples into buckets of excluded or retained samples
         Excluded samples go into the first bucket with a condition they violate.
@@ -14,7 +14,6 @@ workflow {
             /* capture retained samples */
             retained: true
         }
-        .set { ch_fastqPairs }
 
     // log warnings for excluded samples
     ch_fastqPairs.undetermined

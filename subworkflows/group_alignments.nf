@@ -3,7 +3,7 @@ workflow Group_Alignments {
         bamIndexed
 
     main:
-        bamIndexed
+        ch_alignments_grouped = bamIndexed
             .map { metadata, bam, bai ->
                 [ metadata.sampleName, metadata, bam, bai ]
             }
@@ -19,7 +19,6 @@ workflow Group_Alignments {
 
                 [ metadataIntersection, bamsSorted, baisSorted ]
             }
-            .set { ch_alignments_grouped }
 
     emit:
         alignments_grouped = ch_alignments_grouped

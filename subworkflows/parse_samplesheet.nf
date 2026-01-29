@@ -14,7 +14,7 @@ workflow Parse_Samplesheet {
         samplesheet
 
     main:
-        Channel
+        ch_parsedSamplesheetRows = Channel
             // use nf-schema to handle samplesheet parsing
             // and create a channel of parsed samplesheet rows
             .fromList(
@@ -31,7 +31,6 @@ workflow Parse_Samplesheet {
                 // catch retained samples
                 retained: true
             }
-            .set { ch_parsedSamplesheetRows }
 
         /* Reshape nf-schema output for retained samples to desired shape.
         This gives a shape of:
@@ -42,11 +41,10 @@ workflow Parse_Samplesheet {
             ]
         This general shape is passed into pretty much everything downstream that takes reads in fastq format.
         */
-        ch_parsedSamplesheetRows.retained
+        ch_samples = ch_parsedSamplesheetRows.retained
             .map { meta, reads1, reads2 ->
                 createSampleReadsChannel(meta, reads1, reads2)
             }
-            .set { ch_samples }
 
         // log warnings for excluded samples
         ch_parsedSamplesheetRows.reads1IsEmpty
