@@ -11,7 +11,7 @@ nextflow_workflow {
 
         // instantiate helper objects
         def readsLane1 = new ReadsSELane1()
-        
+
         when {
             params {
                 publishDirReports = "${outputDir}/reports"
@@ -73,6 +73,12 @@ nextflow_workflow {
                 assert get(3) ==~ /^.*\/${readsLane1.getSampleName()}_prealign_seq-depth.tsv/
                 assert get(4) ==~ /^.*\/${readsLane1.getSampleName()}_raw_seq-depth.tsv/
             }
+
+            // test sequencing depth reproducibility
+            assert snapshot(
+                workflow.out.multiqc.get(0).get(3),
+                workflow.out.multiqc.get(0).get(4),
+            ).match()
         }
 
     }
@@ -146,6 +152,12 @@ nextflow_workflow {
                 assert get(5) ==~ /^.*\/${readsLane1.getSampleName()}_prealign_seq-depth.tsv/
                 assert get(6) ==~ /^.*\/${readsLane1.getSampleName()}_raw_seq-depth.tsv/
             }
+
+            // test sequencing depth reproducibility
+            assert snapshot(
+                workflow.out.multiqc.get(0).get(5),
+                workflow.out.multiqc.get(0).get(6),
+            ).match()
         }
 
     }
@@ -217,6 +229,12 @@ nextflow_workflow {
                 assert get(3) ==~ /^.*\/${readsLane1.getSampleName()}_prealign_seq-depth.tsv/
                 assert get(4) ==~ /^.*\/${readsLane1.getSampleName()}_raw_seq-depth.tsv/
             }
+
+            // test sequencing depth reproducibility
+            assert snapshot(
+                workflow.out.multiqc.get(0).get(3),
+                workflow.out.multiqc.get(0).get(4),
+            ).match()
         }
 
     }
@@ -290,6 +308,12 @@ nextflow_workflow {
                 assert get(5) ==~ /^.*\/${readsLane1.getSampleName()}_prealign_seq-depth.tsv/
                 assert get(6) ==~ /^.*\/${readsLane1.getSampleName()}_raw_seq-depth.tsv/
             }
+
+            // test sequencing depth reproducibility
+            assert snapshot(
+                workflow.out.multiqc.get(0).get(5),
+                workflow.out.multiqc.get(0).get(6),
+            ).match()
         }
 
     }
