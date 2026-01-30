@@ -73,11 +73,27 @@ workflow QC_Reads {
         }
 
         ch_multiqc_reads = Channel.empty()
-            .concat(fastqc_raw.out.zip)
-            .concat(fastqc_prealign.out.zip)
-            .concat(trim_log)
-            .concat(ch_sequencingDepthRaw)
-            .concat(ch_sequencingDepthPrealign)
+            .mix(
+                fastqc_raw.out.zip.flatMap { metadata, r1FastQCZip, r2FastQCZip ->
+                    if ( metadata.readType == 'single' ) {
+                        return [ r1FastQCZip ]
+                    } else if ( metadata.readType == 'paired' ) {
+                        return [ r1FastQCZip, r2FastQCZip ]
+                    }
+                }
+            )
+            .mix(
+                fastqc_prealign.out.zip.flatMap { metadata, r1FastQCZip, r2FastQCZip ->
+                    if ( metadata.readType == 'single' ) {
+                        return [ r1FastQCZip ]
+                    } else if ( metadata.readType == 'paired' ) {
+                        return [ r1FastQCZip, r2FastQCZip ]
+                    }
+                }
+            )
+            .mix(trim_log)
+            .mix(ch_sequencingDepthRaw)
+            .mix(ch_sequencingDepthPrealign)
             .collect(
                 sort: { a, b ->
                     a.name <=> b.name
