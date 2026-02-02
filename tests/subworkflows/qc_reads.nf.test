@@ -58,8 +58,7 @@ nextflow_workflow {
                 Count number succeeded tasks:
                     - 1: Count bases in genome
                     - 1: MultiQC
-                    - 2 * (n fastq pairs): FastQC -- Raw and prealigned
-                    - 2 * (n samples): Count bases in reads -- Raw and prealigned
+                    - 4 * (n fastq pairs): FastQC + FastQC Summary -- Raw and prealigned
             */
             assert workflow.trace.succeeded().size() == 6
 
