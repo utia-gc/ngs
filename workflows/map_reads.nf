@@ -19,6 +19,7 @@ workflow MAP_READS {
         annotationsGTF
         map_tool
         skipMarkDuplicates
+        skipSortAlignmentsByName
 
     main:
         switch( map_tool.toUpperCase() ) {
@@ -58,8 +59,12 @@ workflow MAP_READS {
         }
 
         // sort alignments by name
-        samtools_sort_name(ch_alignmentsMergedSortedByCoord)
-        ch_alignmentsMergedSortedByName = samtools_sort_name.out.bamSortedByName
+        if ( !skipSortAlignmentsByName ) {
+            samtools_sort_name(ch_alignmentsMergedSortedByCoord)
+            ch_alignmentsMergedSortedByName = samtools_sort_name.out.bamSortedByName
+        } else {
+            ch_alignmentsMergedSortedByName = channel.empty()
+        }
 
     emit:
         alignmentsIndividualSortedByCoord = ch_alignmentsIndividualSortedByCoord
