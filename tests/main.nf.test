@@ -337,8 +337,8 @@ nextflow_pipeline {
                         - 1: Count bases in genome
                         - 3: MultiQC -- Reads, mappings, full
                         - 2 * (n fastq pairs): FastQC -- Raw and prealigned
+                        - 2 * (n fastq pairs): FastQC Summary -- Raw and prealigned
                         - 2 * (n fastq pairs): Samtools idxstats and flagstat
-                        - 2 * (n samples): Count bases in reads -- Raw and prealigned
                         - 1 * (n samples): Samtools stats
                     Map reads:
                         - 1: Build reference genome index
@@ -355,9 +355,9 @@ nextflow_pipeline {
                 [
                     constants: 8,
                     nFastqPairs: 4,
-                    fastqPairsTasks: 7,
+                    fastqPairsTasks: 9,
                     nSamples: 2,
-                    samplesTasks: 6,
+                    samplesTasks: 4,
                 ]
             ).size()
             assert workflow.trace.succeeded().size() == expectedSucceededTraces
@@ -450,8 +450,8 @@ nextflow_pipeline {
                         - 1: Count bases in genome
                         - 3: MultiQC -- Reads, mappings, full
                         - 2 * (n fastq pairs): FastQC -- Raw and prealigned
+                        - 2 * (n fastq pairs): FastQC Summary -- Raw and prealigned
                         - 2 * (n fastq pairs): Samtools idxstats and flagstat
-                        - 2 * (n samples): Count bases in reads -- Raw and prealigned
                         - 1 * (n samples): Samtools stats
                     Map reads:
                         - 1: Build reference genome index
@@ -467,9 +467,9 @@ nextflow_pipeline {
                 [
                     constants: 6,
                     nFastqPairs: 4,
-                    fastqPairsTasks: 7,
+                    fastqPairsTasks: 9,
                     nSamples: 2,
-                    samplesTasks: 6,
+                    samplesTasks: 4,
                 ]
             ).size()
             assert workflow.trace.succeeded().size() == expectedSucceededTraces
@@ -560,8 +560,8 @@ nextflow_pipeline {
                         - 1: Count bases in genome
                         - 3: MultiQC -- Reads, mappings, full
                         - 2 * (n fastq pairs): FastQC -- Raw and prealigned
+                        - 2 * (n fastq pairs): FastQC Summary -- Raw and prealigned
                         - 2 * (n fastq pairs): Samtools idxstats and flagstat
-                        - 2 * (n samples): Count bases in reads -- Raw and prealigned
                         - 1 * (n samples): Samtools stats
                     Map reads:
                         - 1: Build reference genome index
@@ -578,9 +578,9 @@ nextflow_pipeline {
                 [
                     constants: 8,
                     nFastqPairs: 4,
-                    fastqPairsTasks: 7,
+                    fastqPairsTasks: 9,
                     nSamples: 2,
-                    samplesTasks: 6,
+                    samplesTasks: 4,
                 ]
             ).size()
             assert workflow.trace.succeeded().size() == expectedSucceededTraces
@@ -671,8 +671,8 @@ nextflow_pipeline {
                         - 1: Count bases in genome
                         - 3: MultiQC -- Reads, mappings, full
                         - 2 * (n fastq pairs): FastQC -- Raw and prealigned
+                        - 2 * (n fastq pairs): FastQC Summary -- Raw and prealigned
                         - 2 * (n fastq pairs): Samtools idxstats and flagstat
-                        - 2 * (n samples): Count bases in reads -- Raw and prealigned
                         - 1 * (n samples): Samtools stats
                     Map reads:
                         - 1: Build reference genome index
@@ -689,9 +689,9 @@ nextflow_pipeline {
                 [
                     constants: 8,
                     nFastqPairs: 4,
-                    fastqPairsTasks: 7,
+                    fastqPairsTasks: 9,
                     nSamples: 2,
-                    samplesTasks: 6,
+                    samplesTasks: 4,
                 ]
             ).size()
             assert workflow.trace.succeeded().size() == expectedSucceededTraces
@@ -782,8 +782,8 @@ nextflow_pipeline {
                         - 1: Count bases in genome
                         - 3: MultiQC -- Reads, mappings, full
                         - 2 * (n fastq pairs): FastQC -- Raw and prealigned
+                        - 2 * (n fastq pairs): FastQC Summary -- Raw and prealigned
                         - 2 * (n fastq pairs): Samtools idxstats and flagstat
-                        - 2 * (n samples): Count bases in reads -- Raw and prealigned
                         - 1 * (n samples): Samtools stats
                     Map reads:
                         - 1: Build reference genome index
@@ -800,9 +800,9 @@ nextflow_pipeline {
                 [
                     constants: 8,
                     nFastqPairs: 4,
-                    fastqPairsTasks: 7,
+                    fastqPairsTasks: 9,
                     nSamples: 2,
-                    samplesTasks: 5,
+                    samplesTasks: 3,
                 ]
             ).size()
             assert workflow.trace.succeeded().size() == expectedSucceededTraces
