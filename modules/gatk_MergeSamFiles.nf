@@ -4,7 +4,7 @@ process gatk_MergeSamFiles {
     label 'gatk'
 
     label 'def_cpu'
-    label 'def_mem'
+    label 'med_mem'
     label 'def_time'
 
     input:
