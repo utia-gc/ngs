@@ -75,8 +75,12 @@ workflow QC_Reads {
                 }
             )
             .mix(trim_log)
-            .mix(ch_sequencingDepthRaw)
-            .mix(ch_sequencingDepthPrealign)
+            .mix(
+                ch_sequencingDepthRaw.map { sampleMetadata, sequencingDepth -> sequencingDepth }
+            )
+            .mix(
+                ch_sequencingDepthPrealign.map { sampleMetadata, sequencingDepth -> sequencingDepth }
+            )
             .collect(
                 sort: { a, b ->
                     a.name <=> b.name
@@ -104,10 +108,10 @@ workflow QC_Reads {
  * @param fastqcSummaryOutput A tuple channel of output from FastQC Summary process with shape [metadata, fastqcSummaryReads1Json, fastqcSummaryReads2Json].
  * @param baseCountGenome A value channel of count of bases in the reference genome as a Long type.
  * @param trimStatus A string of trim status either "raw" or "prealign" to add to the output file name.
- * @return A tab separated value file mapping sample name to sequencing depth.
+ * @return A tuple channel of sample level metadata and a tab separated value file mapping sample name to sequencing depth.
  */
 def computeSequencingDepth(fastqcSummaryOutput, baseCountGenome, trimStatus) {
-    sequencingDepthFile = fastqcSummaryOutput
+    def baseCountSampleLevel = fastqcSummaryOutput
         // Compute total base count across R1 and R2
         .map { metadata, fastqcSummaryReads1, fastqcSummaryReads2 -> 
             // read base counts for R1 and R2 from FastQC Summary
@@ -137,7 +141,9 @@ def computeSequencingDepth(fastqcSummaryOutput, baseCountGenome, trimStatus) {
 
             return [ metadataIntersection, baseCount ]
         }
-        // Compute sequencing depth
+
+    // Compute sequencing depth
+    def sequencingDepthFile = baseCountSampleLevel
         .combine(baseCountGenome)
         .map { metadata, baseCountReads, lengthGenome ->
             def sequencingDepth = baseCountReads / lengthGenome
@@ -151,5 +157,20 @@ def computeSequencingDepth(fastqcSummaryOutput, baseCountGenome, trimStatus) {
             ]
         }
 
-    return sequencingDepthFile
+    // Add sample level metadata to sequencing depth file
+    def sampleLevelMetadata = baseCountSampleLevel
+        .map { metadata, baseCountReads ->
+            return [ metadata.sampleName, metadata ]
+        }
+    def sequencingDepth = sequencingDepthFile
+        .map { sequencingDepthFilePath -> 
+            def sampleName = sequencingDepthFilePath.name.replaceFirst(/_${trimStatus}_seq-depth\.tsv$/, '')
+            return [ sampleName, sequencingDepthFilePath ]
+        }
+        .join(sampleLevelMetadata)
+        .map { sampleName, sequencingDepthFilePath, metadata ->
+            return [ metadata, sequencingDepthFilePath ]
+        }
+
+    return sequencingDepth
 }
