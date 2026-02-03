@@ -18,3 +18,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Depends nf-schema v2.6.1
 - Use standard assignment instead of set operator (#155)
 - Only refer to params in main workflow (#156)
+- Compute sequencing depth from FastQC results (#159)
