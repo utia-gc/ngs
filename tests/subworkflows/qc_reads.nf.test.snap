@@ -1,0 +1,46 @@
+{
+    "QC_Reads reports QC for raw and prealigned reads -- fastp + SE reads.": {
+        "content": [
+            "SRR1066657_prealign_seq-depth.tsv:md5,67ff8b307c74377009cc962fe94f9d32",
+            "SRR1066657_raw_seq-depth.tsv:md5,67ff8b307c74377009cc962fe94f9d32"
+        ],
+        "meta": {
+            "nf-test": "0.9.0",
+            "nextflow": "25.11.0"
+        },
+        "timestamp": "2026-01-30T12:09:59.269412752"
+    },
+    "QC_Reads reports QC for raw and prealigned reads -- fastp + PE reads.": {
+        "content": [
+            "SRR6924569_prealign_seq-depth.tsv:md5,5e258530edc5b04482121c35595a70ec",
+            "SRR6924569_raw_seq-depth.tsv:md5,5e258530edc5b04482121c35595a70ec"
+        ],
+        "meta": {
+            "nf-test": "0.9.0",
+            "nextflow": "25.11.0"
+        },
+        "timestamp": "2026-01-30T12:10:29.660859247"
+    },
+    "QC_Reads reports QC for raw and prealigned reads -- cutadapt + SE reads.": {
+        "content": [
+            "SRR1066657_prealign_seq-depth.tsv:md5,67ff8b307c74377009cc962fe94f9d32",
+            "SRR1066657_raw_seq-depth.tsv:md5,67ff8b307c74377009cc962fe94f9d32"
+        ],
+        "meta": {
+            "nf-test": "0.9.0",
+            "nextflow": "25.11.0"
+        },
+        "timestamp": "2026-01-30T11:54:46.662787415"
+    },
+    "QC_Reads reports QC for raw and prealigned reads -- cutadapt + PE reads.": {
+        "content": [
+            "SRR6924569_prealign_seq-depth.tsv:md5,5e258530edc5b04482121c35595a70ec",
+            "SRR6924569_raw_seq-depth.tsv:md5,5e258530edc5b04482121c35595a70ec"
+        ],
+        "meta": {
+            "nf-test": "0.9.0",
+            "nextflow": "25.11.0"
+        },
+        "timestamp": "2026-01-30T12:09:29.186598534"
+    }
+}

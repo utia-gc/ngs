@@ -337,8 +337,8 @@ nextflow_pipeline {
                         - 1: Count bases in genome
                         - 3: MultiQC -- Reads, mappings, full
                         - 2 * (n fastq pairs): FastQC -- Raw and prealigned
+                        - 2 * (n fastq pairs): FastQC Summary -- Raw and prealigned
                         - 2 * (n fastq pairs): Samtools idxstats and flagstat
-                        - 2 * (n samples): Count bases in reads -- Raw and prealigned
                         - 1 * (n samples): Samtools stats
                     Map reads:
                         - 1: Build reference genome index
@@ -355,9 +355,9 @@ nextflow_pipeline {
                 [
                     constants: 8,
                     nFastqPairs: 4,
-                    fastqPairsTasks: 7,
+                    fastqPairsTasks: 9,
                     nSamples: 2,
-                    samplesTasks: 6,
+                    samplesTasks: 4,
                 ]
             ).size()
             assert workflow.trace.succeeded().size() == expectedSucceededTraces
@@ -450,8 +450,8 @@ nextflow_pipeline {
                         - 1: Count bases in genome
                         - 3: MultiQC -- Reads, mappings, full
                         - 2 * (n fastq pairs): FastQC -- Raw and prealigned
+                        - 2 * (n fastq pairs): FastQC Summary -- Raw and prealigned
                         - 2 * (n fastq pairs): Samtools idxstats and flagstat
-                        - 2 * (n samples): Count bases in reads -- Raw and prealigned
                         - 1 * (n samples): Samtools stats
                     Map reads:
                         - 1: Build reference genome index
@@ -467,9 +467,9 @@ nextflow_pipeline {
                 [
                     constants: 6,
                     nFastqPairs: 4,
-                    fastqPairsTasks: 7,
+                    fastqPairsTasks: 9,
                     nSamples: 2,
-                    samplesTasks: 6,
+                    samplesTasks: 4,
                 ]
             ).size()
             assert workflow.trace.succeeded().size() == expectedSucceededTraces
@@ -560,8 +560,8 @@ nextflow_pipeline {
                         - 1: Count bases in genome
                         - 3: MultiQC -- Reads, mappings, full
                         - 2 * (n fastq pairs): FastQC -- Raw and prealigned
+                        - 2 * (n fastq pairs): FastQC Summary -- Raw and prealigned
                         - 2 * (n fastq pairs): Samtools idxstats and flagstat
-                        - 2 * (n samples): Count bases in reads -- Raw and prealigned
                         - 1 * (n samples): Samtools stats
                     Map reads:
                         - 1: Build reference genome index
@@ -578,9 +578,9 @@ nextflow_pipeline {
                 [
                     constants: 8,
                     nFastqPairs: 4,
-                    fastqPairsTasks: 7,
+                    fastqPairsTasks: 9,
                     nSamples: 2,
-                    samplesTasks: 6,
+                    samplesTasks: 4,
                 ]
             ).size()
             assert workflow.trace.succeeded().size() == expectedSucceededTraces
@@ -671,8 +671,8 @@ nextflow_pipeline {
                         - 1: Count bases in genome
                         - 3: MultiQC -- Reads, mappings, full
                         - 2 * (n fastq pairs): FastQC -- Raw and prealigned
+                        - 2 * (n fastq pairs): FastQC Summary -- Raw and prealigned
                         - 2 * (n fastq pairs): Samtools idxstats and flagstat
-                        - 2 * (n samples): Count bases in reads -- Raw and prealigned
                         - 1 * (n samples): Samtools stats
                     Map reads:
                         - 1: Build reference genome index
@@ -689,9 +689,9 @@ nextflow_pipeline {
                 [
                     constants: 8,
                     nFastqPairs: 4,
-                    fastqPairsTasks: 7,
+                    fastqPairsTasks: 9,
                     nSamples: 2,
-                    samplesTasks: 6,
+                    samplesTasks: 4,
                 ]
             ).size()
             assert workflow.trace.succeeded().size() == expectedSucceededTraces
@@ -756,117 +756,6 @@ nextflow_pipeline {
     }
 
 
-    test("main.nf succeeds -- skip raw and prealigned read depth") {
-        tag 'full'
-
-        // instantiate helper objects
-        def readsSELane1 = new ReadsSELane1()
-        def readsSELane2 = new ReadsSELane2()
-        def readsPELane1 = new ReadsPELane1()
-        def readsPELane2 = new ReadsPELane2()
-
-        when {
-            params {
-                publishDirReports     = "${outputDir}/reports"
-                publishDirData        = "${outputDir}/data"
-                skipRawReadDepth      = true
-                skipPrealignReadDepth = true
-            }
-        }
-
-        then {
-            // test workflow status
-            assert workflow.success
-            /*
-                Count number succeeded tasks:
-                    Check quality:
-                        - 3: MultiQC -- Reads, mappings, full
-                        - 2 * (n fastq pairs): FastQC -- Raw and prealigned
-                        - 2 * (n fastq pairs): Samtools idxstats and flagstat
-                        - 2 * (n samples): Count bases in reads -- Raw and prealigned
-                        - 1 * (n samples): Samtools stats
-                    Map reads:
-                        - 1: Build reference genome index
-                        - 1 * (n fastq pairs): Map reads
-                        - 1 * (n fastq pairs): Sort and index SAMs
-                        - 3 * (n samples): Merge SAM, Mark dups, Sort by name
-                    Prepare inputs:
-                        - 2: Unzip genome and annotations
-                        - 1: Index fasta
-                    Process reads:
-                        - 1 * (n fastq pairs): Trim reads
-            */
-            Integer expectedSucceededTraces = new TraceSucceededMainWorkflow(
-                [
-                    constants: 7,
-                    nFastqPairs: 4,
-                    fastqPairsTasks: 7,
-                    nSamples: 2,
-                    samplesTasks: 4,
-                ]
-            ).size()
-            assert workflow.trace.succeeded().size() == expectedSucceededTraces
-
-            // test raw FastQC html reports and zip files published to reports dir
-            assert path("${params.publishDirReports}/.fastqc/${readsSELane1.getStemName()}_raw_R1_fastqc.html").exists()
-            assert path("${params.publishDirReports}/.fastqc/${readsSELane1.getStemName()}_raw_R1_fastqc.zip").exists()
-            assert path("${params.publishDirReports}/.fastqc/${readsSELane2.getStemName()}_raw_R1_fastqc.html").exists()
-            assert path("${params.publishDirReports}/.fastqc/${readsSELane2.getStemName()}_raw_R1_fastqc.zip").exists()
-            assert path("${params.publishDirReports}/.fastqc/${readsPELane1.getStemName()}_raw_R1_fastqc.html").exists()
-            assert path("${params.publishDirReports}/.fastqc/${readsPELane1.getStemName()}_raw_R1_fastqc.zip").exists()
-            assert path("${params.publishDirReports}/.fastqc/${readsPELane1.getStemName()}_raw_R2_fastqc.html").exists()
-            assert path("${params.publishDirReports}/.fastqc/${readsPELane1.getStemName()}_raw_R2_fastqc.zip").exists()
-            assert path("${params.publishDirReports}/.fastqc/${readsPELane2.getStemName()}_raw_R1_fastqc.html").exists()
-            assert path("${params.publishDirReports}/.fastqc/${readsPELane2.getStemName()}_raw_R1_fastqc.zip").exists()
-            assert path("${params.publishDirReports}/.fastqc/${readsPELane2.getStemName()}_raw_R2_fastqc.html").exists()
-            assert path("${params.publishDirReports}/.fastqc/${readsPELane2.getStemName()}_raw_R2_fastqc.zip").exists()
-            // test prealign FastQC html reports and zip files published to reports dir
-            assert path("${params.publishDirReports}/.fastqc/${readsSELane1.getStemName()}_trimmed_R1_fastqc.html").exists()
-            assert path("${params.publishDirReports}/.fastqc/${readsSELane1.getStemName()}_trimmed_R1_fastqc.zip").exists()
-            assert path("${params.publishDirReports}/.fastqc/${readsSELane2.getStemName()}_trimmed_R1_fastqc.html").exists()
-            assert path("${params.publishDirReports}/.fastqc/${readsSELane2.getStemName()}_trimmed_R1_fastqc.zip").exists()
-            assert path("${params.publishDirReports}/.fastqc/${readsPELane1.getStemName()}_trimmed_R1_fastqc.html").exists()
-            assert path("${params.publishDirReports}/.fastqc/${readsPELane1.getStemName()}_trimmed_R1_fastqc.zip").exists()
-            assert path("${params.publishDirReports}/.fastqc/${readsPELane1.getStemName()}_trimmed_R2_fastqc.html").exists()
-            assert path("${params.publishDirReports}/.fastqc/${readsPELane1.getStemName()}_trimmed_R2_fastqc.zip").exists()
-            assert path("${params.publishDirReports}/.fastqc/${readsPELane2.getStemName()}_trimmed_R1_fastqc.html").exists()
-            assert path("${params.publishDirReports}/.fastqc/${readsPELane2.getStemName()}_trimmed_R1_fastqc.zip").exists()
-            assert path("${params.publishDirReports}/.fastqc/${readsPELane2.getStemName()}_trimmed_R2_fastqc.html").exists()
-            assert path("${params.publishDirReports}/.fastqc/${readsPELane2.getStemName()}_trimmed_R2_fastqc.zip").exists()
-            // test trimmed reads logs published to reports dir
-            assert path("${params.publishDirReports}/.reads/trim/${readsSELane1.getStemName()}_fastp.json").exists()
-            assert path("${params.publishDirReports}/.reads/trim/${readsSELane2.getStemName()}_fastp.json").exists()
-            assert path("${params.publishDirReports}/.reads/trim/${readsPELane1.getStemName()}_fastp.json").exists()
-            assert path("${params.publishDirReports}/.reads/trim/${readsPELane2.getStemName()}_fastp.json").exists()
-            // test samtools flagstat and samtools idxstats for individual alignments files written to reports dir
-            assert path("${params.publishDirReports}/.alignments/${readsSELane1.getStemName()}_idxstat.txt").exists()
-            assert path("${params.publishDirReports}/.alignments/${readsSELane2.getStemName()}_idxstat.txt").exists()
-            assert path("${params.publishDirReports}/.alignments/${readsPELane1.getStemName()}_idxstat.txt").exists()
-            assert path("${params.publishDirReports}/.alignments/${readsPELane2.getStemName()}_idxstat.txt").exists()
-            assert path("${params.publishDirReports}/.alignments/${readsSELane1.getStemName()}_samtools-flagstat.txt").exists()
-            assert path("${params.publishDirReports}/.alignments/${readsSELane2.getStemName()}_samtools-flagstat.txt").exists()
-            assert path("${params.publishDirReports}/.alignments/${readsPELane1.getStemName()}_samtools-flagstat.txt").exists()
-            assert path("${params.publishDirReports}/.alignments/${readsPELane2.getStemName()}_samtools-flagstat.txt").exists()
-            // test samtools stats for merged alignments files written to reports dir
-            assert path("${params.publishDirReports}/.alignments/${readsSELane1.getSampleName()}_samtools-stats.txt").exists()
-            assert path("${params.publishDirReports}/.alignments/${readsPELane1.getSampleName()}_samtools-stats.txt").exists()
-            // test BAM and BAM.BAI alignment and index files published to data dir
-            assert path("${params.publishDirData}/alignments/${readsSELane1.getSampleName()}.bam").exists()
-            assert path("${params.publishDirData}/alignments/${readsSELane1.getSampleName()}.bam.bai").exists()
-            assert path("${params.publishDirData}/alignments/${readsPELane1.getSampleName()}.bam").exists()
-            assert path("${params.publishDirData}/alignments/${readsPELane1.getSampleName()}.bam.bai").exists()
-            // test MultiQC reports and data published to reports dir
-            assert path("${params.publishDirReports}/multiqc/reads/reads.html").exists()
-            assert path("${params.publishDirReports}/multiqc/reads/reads_data/").exists()
-            assert path("${params.publishDirReports}/multiqc/alignments/alignments.html").exists()
-            assert path("${params.publishDirReports}/multiqc/alignments/alignments_data/").exists()
-            assert path("${params.publishDirReports}/multiqc/ngs_nf-test/ngs_nf-test.html").exists()
-            assert path("${params.publishDirReports}/multiqc/ngs_nf-test/ngs_nf-test_data/").exists()
-        }
-
-    }
-
-
     test("main.nf succeeds -- skip mark duplicates") {
         tag 'full'
 
@@ -893,8 +782,8 @@ nextflow_pipeline {
                         - 1: Count bases in genome
                         - 3: MultiQC -- Reads, mappings, full
                         - 2 * (n fastq pairs): FastQC -- Raw and prealigned
+                        - 2 * (n fastq pairs): FastQC Summary -- Raw and prealigned
                         - 2 * (n fastq pairs): Samtools idxstats and flagstat
-                        - 2 * (n samples): Count bases in reads -- Raw and prealigned
                         - 1 * (n samples): Samtools stats
                     Map reads:
                         - 1: Build reference genome index
@@ -911,9 +800,9 @@ nextflow_pipeline {
                 [
                     constants: 8,
                     nFastqPairs: 4,
-                    fastqPairsTasks: 7,
+                    fastqPairsTasks: 9,
                     nSamples: 2,
-                    samplesTasks: 5,
+                    samplesTasks: 3,
                 ]
             ).size()
             assert workflow.trace.succeeded().size() == expectedSucceededTraces
