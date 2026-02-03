@@ -52,7 +52,8 @@ workflow {
             ch_genome,
             ch_annotations,
             params.mapTool,
-            params.skipMarkDuplicates
+            params.skipMarkDuplicates,
+            params.skipSortAlignmentsByName
         )
         ch_alignmentsIndividualSortedByCoord = MAP_READS.out.alignmentsIndividualSortedByCoord
         ch_alignmentsMergedSortedByCoord     = MAP_READS.out.alignmentsMergedSortedByCoord

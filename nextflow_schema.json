@@ -132,6 +132,10 @@
         "skipMarkDuplicates": {
           "type": "boolean",
           "description": "Skip marking duplicates in mapped reads files."
+        },
+        "skipSortAlignmentsByName": {
+          "type": "boolean",
+          "description": "Skip name sorting mapped reads files."
         }
       }
     }
