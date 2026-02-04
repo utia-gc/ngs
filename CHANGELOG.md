@@ -12,6 +12,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Requires Nextflow >=25.10
 - Requires nf-core/tools >=v3.3.1
 
+### Added
+
+- param to skip mark duplicates (#150)
+- param to skip sort BAM records by name (#151)
+
 ### Changed
 
 - Began migration to workflow outputs
@@ -19,3 +24,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Use standard assignment instead of set operator (#155)
 - Only refer to params in main workflow (#156)
 - Compute sequencing depth from FastQC results (#159)
+
+### Fixed
+
+- FastQC SIGBUS error temp workaround (#149)
+- GATK MergeSamFiles and GATK MarkDuplicates OOM errors temp workarounds (#162; #142)
