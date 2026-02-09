@@ -25,6 +25,8 @@ process fastp {
         String stemName = MetadataUtils.buildStemName(metadata)
         String reads1NewName = "${stemName}_${metadata.trimStatus}_R1.fastq.gz"
 
+        def adapterFastaArg = adapterFasta.size() > 0 ? "--adapter_fasta ${adapterFasta}" : ''
+
         String args = new Args(argsDefault: task.ext.argsDefault, argsDynamic: task.ext.argsDynamic, argsUser: task.ext.argsUser).buildArgsString()
 
         if(metadata.readType == 'single') {
@@ -36,7 +38,7 @@ process fastp {
                 --in1 ${reads1NewName} \
                 --out1 ${stemName}_trimmed_R1.fastq.gz \
                 --json ${stemName}_fastp.json \
-                --adapter_fasta ${adapterFasta} \\
+                ${adapterFastaArg} \\
                 ${args}
 
             cp ${reads2} ${stemName}_trimmed_R2.NOFILE
@@ -55,7 +57,7 @@ process fastp {
                 --out1 ${stemName}_trimmed_R1.fastq.gz \
                 --out2 ${stemName}_trimmed_R2.fastq.gz \
                 --json ${stemName}_fastp.json \
-                --adapter_fasta ${adapterFasta} \\
+                ${adapterFastaArg} \\
                 ${args}
             """
         }
