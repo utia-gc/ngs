@@ -111,6 +111,8 @@ nextflow_workflow {
 
 
     test("PROCESS_READS trims reads by default -- fastp.") {
+        tag 'fastp'
+
         // instantiate helper objects
         def readsSELane1 = new ReadsSELane1()
         def readsSELane2 = new ReadsSELane2()
@@ -218,6 +220,8 @@ nextflow_workflow {
 
 
     test("PROCESS_READS trims reads by default -- fastp + adapter fasta.") {
+        tag 'fastp'
+
         // instantiate helper objects
         def readsSELane1 = new ReadsSELane1()
         def readsSELane2 = new ReadsSELane2()

@@ -161,6 +161,7 @@ assert workflow.trace.succeeded().size() == 6
     }
 
     test("QC_Reads reports QC for raw and prealigned reads -- fastp + SE reads.") {
+        tag 'fastp'
         tag 'check_quality'
 
         // instantiate helper objects
@@ -237,6 +238,7 @@ assert workflow.trace.succeeded().size() == 6
     }
 
     test("QC_Reads reports QC for raw and prealigned reads -- fastp + PE reads.") {
+        tag 'fastp'
         tag 'check_quality'
 
         // instantiate helper objects
