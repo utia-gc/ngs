@@ -33,13 +33,12 @@ process fastp {
             """
             mv ${reads1} ${reads1NewName}
 
-            fastp \
-                --thread ${task.cpus} \
-                --in1 ${reads1NewName} \
-                --out1 ${stemName}_trimmed_R1.fastq.gz \
-                --json ${stemName}_fastp.json \
-                ${adapterFastaArg} \\
-                ${args}
+            fastp \\
+                --thread ${task.cpus} \\
+                --in1 ${reads1NewName} \\
+                --out1 ${stemName}_trimmed_R1.fastq.gz \\
+                --json ${stemName}_fastp.json \\
+                ${adapterFastaArg} ${args}
 
             cp ${reads2} ${stemName}_trimmed_R2.NOFILE
             """
@@ -50,15 +49,14 @@ process fastp {
             mv ${reads1} ${reads1NewName}
             mv ${reads2} ${reads2NewName}
 
-            fastp \
-                --thread ${task.cpus} \
-                --in1 ${reads1NewName} \
-                --in2 ${reads2NewName} \
-                --out1 ${stemName}_trimmed_R1.fastq.gz \
-                --out2 ${stemName}_trimmed_R2.fastq.gz \
-                --json ${stemName}_fastp.json \
-                ${adapterFastaArg} \\
-                ${args}
+            fastp \\
+                --thread ${task.cpus} \\
+                --in1 ${reads1NewName} \\
+                --in2 ${reads2NewName} \\
+                --out1 ${stemName}_trimmed_R1.fastq.gz \\
+                --out2 ${stemName}_trimmed_R2.fastq.gz \\
+                --json ${stemName}_fastp.json \\
+                ${adapterFastaArg} ${args}
             """
         }
 }
