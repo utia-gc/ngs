@@ -314,6 +314,7 @@ nextflow_pipeline {
 
     test("main.nf succeeds with default `nf_test` params") {
         tag 'full'
+        tag 'fastp'
 
         // instantiate helper objects
         def readsSELane1 = new ReadsSELane1()
@@ -424,6 +425,7 @@ nextflow_pipeline {
 
     test("main.nf succeeds with default `nf_test` params and uncompressed genome and annotation files.") {
         tag 'full'
+        tag 'fastp'
 
         // instantiate helper objects
         def readsSELane1 = new ReadsSELane1()
@@ -647,6 +649,7 @@ nextflow_pipeline {
 
     test("main.nf succeeds -- STAR.") {
         tag 'full'
+        tag 'fastp'
 
         // instantiate helper objects
         def readsSELane1 = new ReadsSELane1()
@@ -758,6 +761,7 @@ nextflow_pipeline {
 
     test("main.nf succeeds -- skip mark duplicates") {
         tag 'full'
+        tag 'fastp'
 
         // instantiate helper objects
         def readsSELane1 = new ReadsSELane1()
@@ -868,6 +872,7 @@ nextflow_pipeline {
 
     test("main.nf succeeds -- skip name sort alignments files.") {
         tag 'full'
+        tag 'fastp'
 
         // instantiate helper objects
         def readsSELane1 = new ReadsSELane1()

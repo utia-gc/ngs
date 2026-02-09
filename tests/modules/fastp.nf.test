@@ -5,6 +5,8 @@ nextflow_process {
     process "fastp"
 
     test("fastp trims reads -- SE reads") {
+        tag 'fastp'
+
         // instantiate helper objects
         def readsLane1 = new ReadsSELane1()
 
@@ -56,6 +58,8 @@ nextflow_process {
     }
 
     test("fastp trims reads -- PE reads") {
+        tag 'fastp'
+
         // instantiate helper objects
         def readsLane1 = new ReadsPELane1()
 
@@ -108,6 +112,8 @@ nextflow_process {
 
 
     test("fastp trims reads -- SE reads + adapter fasta") {
+        tag 'fastp'
+
         // instantiate helper objects
         def readsLane1 = new ReadsSELane1()
 
@@ -160,6 +166,8 @@ nextflow_process {
 
 
     test("fastp trims reads -- PE reads + adapter fasta") {
+        tag 'fastp'
+
         // instantiate helper objects
         def readsLane1 = new ReadsPELane1()
 
