@@ -1,0 +1,9 @@
+# project subdirectories
+/.cache
+/.nextflow
+/data
+/exploratory
+/reports
+
+# project files
+/.nextflow.log*
